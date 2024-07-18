@@ -12,11 +12,11 @@ public class FleetBehaviour : MonoBehaviour
     public void MoveFleetToPlanetPosition(PlanetBehaviour targetPlanet)
     {
         currentPlanet = targetPlanet;
-        Transform targetTransform = targetPlanet.transform;
+        Transform targetTransform = targetPlanet.fleetSlotTransform;
 
         Sequence moveSequence = DOTween.Sequence();
 
         moveSequence.Append(transform.DOLookAt(targetTransform.position, lookTweenDuration));
-        moveSequence.Append(transform.DOMove(targetPlanet.transform.position, moveTweenDuration, false).SetEase(Ease.InOutExpo));
+        moveSequence.Append(transform.DOMove(targetTransform.position, moveTweenDuration, false).SetEase(Ease.InOutExpo));
     }
 }

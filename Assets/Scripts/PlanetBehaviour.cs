@@ -3,19 +3,12 @@ using System.Collections.Generic;
 
 public class PlanetBehaviour : MonoBehaviour
 {
-    [SerializeField] List<Transform> fleetPositions = new();
-    [SerializeField] List<FleetBehaviour> fleetsAtThisPlanet = new();
+    public Transform fleetSlotTransform;
 
-
-    public bool AddFleetToPlanet(FleetBehaviour fleetBehaviour)
+    private void OnDrawGizmosSelected()
     {
-        //Are there any fleet positions available?
-        if (fleetsAtThisPlanet.Count == fleetPositions.Count)
-        {
-            return false;
-        }
+        Gizmos.color = Color.cyan;
 
-        fleetsAtThisPlanet.Add(fleetBehaviour);
-        return true;
+        Gizmos.DrawWireSphere(fleetSlotTransform.position, 0.25f);
     }
 }
