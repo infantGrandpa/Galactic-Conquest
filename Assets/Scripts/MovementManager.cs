@@ -26,7 +26,7 @@ public class MovementManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             SwitchPlanets();
         }
@@ -35,8 +35,35 @@ public class MovementManager : MonoBehaviour
     private void SwitchPlanets(int planetIndex = -1)
     {
         //Get planet behaivour
-        PlanetBehaviour targetPlanet = planets[0];
+        PlanetBehaviour targetPlanet = GetNextPlanet(targetFleet.currentPlanet);
+
+        if (targetPlanet == null)
+        {
+            Debug.LogError("ERROR: Target Planet is null.");
+            return;
+        }
 
         targetFleet.MoveFleetToPlanetPosition(targetPlanet);
+    }
+
+    private PlanetBehaviour GetNextPlanet(PlanetBehaviour currentPlanet)
+    {
+        int nextPlanetIndex = 0;
+        for (int i = 0; i < planets.Count; i++)
+        {
+            if (currentPlanet != planets[i])
+            {
+                continue;
+            }
+
+            nextPlanetIndex = i + 1;
+            if (nextPlanetIndex >= planets.Count)
+            {
+                nextPlanetIndex = 0;
+            }
+        }
+
+
+        return planets[nextPlanetIndex];
     }
 }
