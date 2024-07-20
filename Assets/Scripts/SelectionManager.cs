@@ -22,21 +22,37 @@ public class SelectionManager : MonoBehaviour
 
     [SerializeField] GameObject testObject;
 
+    [SerializeField] float selectionSphereCastRadius = 0.25f;
+
     private void Update()
     {
         //If Left Click
         if (Input.GetMouseButtonUp(0))
         {
+
             Ray rayFromCameraToCursor = LevelManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
             Plane planetPlane = new Plane(Vector3.up, planetPlanePosition);
             planetPlane.Raycast(rayFromCameraToCursor, out float distanceFromCamera);
             Vector3 cursorPosition = rayFromCameraToCursor.GetPoint(distanceFromCamera);
 
-            GameObject newTestObject = Instantiate(testObject, LevelManager.Instance.DynamicTransform);
-            newTestObject.transform.position = cursorPosition;
+            //Sphere cast from camera to cursor position.
+            Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
+
+            //(Desitination - Origin).normalized = direction
+            Vector3 directionToCursor = (cursorPosition - cameraPosition).normalized;
+
+            RaycastHit hitInfo;
+            //TODO: Change 1000f to something less magic.
+            if (Physics.SphereCast(cameraPosition, selectionSphereCastRadius, directionToCursor, out hitInfo, 1000f))
+            {
+                //Get Planet Behaviour
+                if (hitInfo.transform.TryGetComponent(out PlanetBehaviour hitPlanet))
+                {
+                    Debug.Log("Hit a planet: " + hitPlanet.gameObject.name);
+                }
+            }
+
         }
-
-
     }
     private void OnDrawGizmosSelected()
     {
