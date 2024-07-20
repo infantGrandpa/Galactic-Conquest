@@ -22,7 +22,7 @@ public class MovementManager : MonoBehaviour
     private static MovementManager instance;
 
     public List<PlanetBehaviour> planets = new();
-    public FleetBehaviour targetFleet;
+    public FleetBehaviour activeFleet;
 
     private void Update()
     {
@@ -35,7 +35,7 @@ public class MovementManager : MonoBehaviour
     private void SwitchPlanets(int planetIndex = -1)
     {
         //Get planet behaivour
-        PlanetBehaviour targetPlanet = GetNextPlanet(targetFleet.currentPlanet);
+        PlanetBehaviour targetPlanet = GetNextPlanet(activeFleet.currentPlanet);
 
         if (targetPlanet == null)
         {
@@ -43,7 +43,7 @@ public class MovementManager : MonoBehaviour
             return;
         }
 
-        targetFleet.MoveFleetToPlanetPosition(targetPlanet);
+        activeFleet.MoveFleetToPlanetPosition(targetPlanet);
     }
 
     private PlanetBehaviour GetNextPlanet(PlanetBehaviour currentPlanet)
@@ -69,6 +69,18 @@ public class MovementManager : MonoBehaviour
 
     public void MoveActiveFleetToPlanet(PlanetBehaviour targetPlanet)
     {
-        targetFleet.MoveFleetToPlanetPosition(targetPlanet);
+        if (activeFleet == null)
+        {
+            Debug.LogWarning("No active fleet set. Cannot move to " + targetPlanet.gameObject.name);
+            return;
+        }
+
+        activeFleet.MoveFleetToPlanetPosition(targetPlanet);
+    }
+
+    public void ChangeActiveFleet(FleetBehaviour newFleet)
+    {
+        activeFleet = newFleet;
+        Debug.Log("Changed Active Fleet to " + newFleet.gameObject.name);
     }
 }

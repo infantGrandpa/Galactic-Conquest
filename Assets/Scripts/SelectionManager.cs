@@ -45,10 +45,19 @@ public class SelectionManager : MonoBehaviour
             //TODO: Change 1000f to something less magic.
             if (Physics.SphereCast(cameraPosition, selectionSphereCastRadius, directionToCursor, out hitInfo, 1000f))
             {
+                //Get Fleet Behaviour
+                FleetBehaviour hitFleet = hitInfo.transform.GetComponentInParent<FleetBehaviour>();
+                if (hitFleet)
+                {
+                    MovementManager.Instance.ChangeActiveFleet(hitFleet);
+                    return;
+                }
+
                 //Get Planet Behaviour
                 if (hitInfo.transform.TryGetComponent(out PlanetBehaviour hitPlanet))
                 {
                     MovementManager.Instance.MoveActiveFleetToPlanet(hitPlanet);
+                    return;
                 }
             }
 
