@@ -22,65 +22,15 @@ public class MovementManager : MonoBehaviour
     private static MovementManager instance;
 
     public List<PlanetBehaviour> planets = new();
-    public FleetBehaviour activeFleet;
 
-    private void Update()
+    public void MoveFleetToPlanet(FleetBehaviour fleetToMove, PlanetBehaviour targetPlanet)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (fleetToMove == null)
         {
-            SwitchPlanets();
-        }
-    }
-
-    private void SwitchPlanets(int planetIndex = -1)
-    {
-        //Get planet behaivour
-        PlanetBehaviour targetPlanet = GetNextPlanet(activeFleet.currentPlanet);
-
-        if (targetPlanet == null)
-        {
-            Debug.LogError("ERROR: Target Planet is null.");
+            Debug.LogWarning("MovementManager MoveFleetToPlanet(): Cannot move to " + targetPlanet.gameObject.name);
             return;
         }
 
-        activeFleet.MoveFleetToPlanetPosition(targetPlanet);
-    }
-
-    private PlanetBehaviour GetNextPlanet(PlanetBehaviour currentPlanet)
-    {
-        int nextPlanetIndex = 0;
-        for (int i = 0; i < planets.Count; i++)
-        {
-            if (currentPlanet != planets[i])
-            {
-                continue;
-            }
-
-            nextPlanetIndex = i + 1;
-            if (nextPlanetIndex >= planets.Count)
-            {
-                nextPlanetIndex = 0;
-            }
-        }
-
-
-        return planets[nextPlanetIndex];
-    }
-
-    public void MoveActiveFleetToPlanet(PlanetBehaviour targetPlanet)
-    {
-        if (activeFleet == null)
-        {
-            Debug.LogWarning("No active fleet set. Cannot move to " + targetPlanet.gameObject.name);
-            return;
-        }
-
-        activeFleet.MoveFleetToPlanetPosition(targetPlanet);
-    }
-
-    public void ChangeActiveFleet(FleetBehaviour newFleet)
-    {
-        activeFleet = newFleet;
-        Debug.Log("Changed Active Fleet to " + newFleet.gameObject.name);
+        fleetToMove.MoveFleetToPlanetPosition(targetPlanet);
     }
 }
