@@ -48,7 +48,7 @@ public class SelectionManager : MonoBehaviour
                 //Get Planet Behaviour
                 if (hitInfo.transform.TryGetComponent(out PlanetBehaviour hitPlanet))
                 {
-                    Debug.Log("Hit a planet: " + hitPlanet.gameObject.name);
+                    MovementManager.Instance.MoveActiveFleetToPlanet(hitPlanet);
                 }
             }
 

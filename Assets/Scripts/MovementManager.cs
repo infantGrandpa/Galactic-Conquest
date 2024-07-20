@@ -66,4 +66,9 @@ public class MovementManager : MonoBehaviour
 
         return planets[nextPlanetIndex];
     }
+
+    public void MoveActiveFleetToPlanet(PlanetBehaviour targetPlanet)
+    {
+        targetFleet.MoveFleetToPlanetPosition(targetPlanet);
+    }
 }
