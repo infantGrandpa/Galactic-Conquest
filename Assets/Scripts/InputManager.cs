@@ -36,6 +36,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             //Move to fleet or planet
+            SelectionManager.Instance.MoveToObject();
         }
     }
 

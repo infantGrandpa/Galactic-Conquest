@@ -28,6 +28,52 @@ public class SelectionManager : MonoBehaviour
 
     public void SelectObject()
     {
+        RaycastHit? nullableHitInfo = SphereCastFromCameraToCursor();
+
+        if (nullableHitInfo == null)
+        {
+            return;
+        }
+
+        //Get Planet Behaviour
+        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;       //We need this to get the transform of the hit object
+
+        //Get Fleet Behaviour
+        FleetBehaviour hitFleet = hitInfo.transform.GetComponentInParent<FleetBehaviour>();
+        if (hitFleet)
+        {
+            ChangeSelectedFleet(hitFleet);
+            return;
+        }
+        
+    }
+
+    public void MoveToObject()
+    {
+        if (selectedFleet == null)
+        {
+            return;
+        }
+
+        RaycastHit? nullableHitInfo = SphereCastFromCameraToCursor();
+
+        if (nullableHitInfo == null)
+        {
+            return;
+        }
+
+        //Get Planet Behaviour
+        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;       //We need this to get the transform of the hit object
+
+        if (hitInfo.transform.TryGetComponent(out PlanetBehaviour hitPlanet))
+        {
+            MovementManager.Instance.MoveFleetToPlanet(selectedFleet, hitPlanet);
+        }
+
+    }
+
+    private RaycastHit? SphereCastFromCameraToCursor()
+    {
         //Sphere cast from camera to cursor position.
         Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
         Vector3 cursorPosition = InputManager.Instance.GetCursorPosition();
@@ -36,29 +82,13 @@ public class SelectionManager : MonoBehaviour
         Vector3 directionToCursor = (cursorPosition - cameraPosition).normalized;
 
         RaycastHit hitInfo;
-        //TODO: Change 1000f to something less magic.
         if (Physics.SphereCast(cameraPosition, selectionSphereCastRadius, directionToCursor, out hitInfo, 1000f))
         {
-            //Get Fleet Behaviour
-            FleetBehaviour hitFleet = hitInfo.transform.GetComponentInParent<FleetBehaviour>();
-            if (hitFleet)
-            {
-                ChangeSelectedFleet(hitFleet);
-                return;
-            }
-
-            //Get Planet Behaviour
-            if (hitInfo.transform.TryGetComponent(out PlanetBehaviour hitPlanet))
-            {
-                if (selectedFleet == null)
-                {
-                    return;
-                }
-
-                MovementManager.Instance.MoveFleetToPlanet(selectedFleet, hitPlanet);
-                return;
-            }
+            return hitInfo;
         }
+
+        return null;
+
     }
 
     public void ChangeSelectedFleet(FleetBehaviour newFleet)
