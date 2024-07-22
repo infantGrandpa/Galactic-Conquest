@@ -53,9 +53,9 @@ public class MovementManager : MonoBehaviour
         //Send Move Command to selected objects
         foreach (Selectable thisObjectToMove in objectsToMove)
         {
-            if (thisObjectToMove.TryGetComponent(out FleetBehaviour thisFleetBehaviour))
+            if (thisObjectToMove.TryGetComponent(out Moveable moveableObject))
             {
-                thisFleetBehaviour.MoveFleetToPlanetPosition(targetPlanet);
+                moveableObject.MoveToPlanet(targetPlanet);
             }
         }
 
