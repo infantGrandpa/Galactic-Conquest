@@ -647,6 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 693083fc289dce649ac5ddae4dbbb1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onClickSphereCastRadius: 0.25
 --- !u!1 &1348953589
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,8 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a642fe84509c74593c35d5905a554d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionSphereCastRadius: 0.25
-  selectionObjectPrefab: {fileID: 2702148367254263371, guid: cdfcf73881681c44c8c59ff302714da9, type: 3}
+  selectedObjects: []
 --- !u!1 &1520388670
 GameObject:
   m_ObjectHideFlags: 0

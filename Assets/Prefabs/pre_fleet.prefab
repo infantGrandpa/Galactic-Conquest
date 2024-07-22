@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 1747910914384766496}
   - component: {fileID: 7507197599285484860}
   - component: {fileID: 133122592915136982}
+  - component: {fileID: 3478086654662609687}
   m_Layer: 0
   m_Name: pre_fleet
   m_TagString: Untagged
@@ -155,9 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6c81db1e6c443418cf5686ea6aeab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPlanet: {fileID: 0}
-  lookTweenDuration: 0.25
-  moveTweenDuration: 1
 --- !u!114 &133122592915136982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +169,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySelectionRing: {fileID: 973578414307028077}
+--- !u!114 &3478086654662609687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851111968153162774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461f49bf8992e0342821beeda2816b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookTweenDuration: 0.25
+  moveTweenDuration: 1
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0
