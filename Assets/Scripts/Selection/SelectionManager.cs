@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -25,6 +26,15 @@ public class SelectionManager : MonoBehaviour
 
     [ShowInInspector] private FleetBehaviour selectedFleet;
 
+    [SerializeField] private GameObject selectionObjectPrefab;
+    private GameObject selectionRing;
+
+    [ReadOnly] public List<Selectable> selectedObjects = new();
+
+    private void Start()
+    {
+        
+    }
 
     public void SelectObject()
     {
@@ -35,17 +45,15 @@ public class SelectionManager : MonoBehaviour
             return;
         }
 
-        //Get Planet Behaviour
-        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;       //We need this to get the transform of the hit object
+        //Convert so we can get the transform of the hit object
+        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;       
 
-        //Get Fleet Behaviour
-        FleetBehaviour hitFleet = hitInfo.transform.GetComponentInParent<FleetBehaviour>();
-        if (hitFleet)
-        {
-            ChangeSelectedFleet(hitFleet);
+        //Get Selectable
+        Selectable hitSelectableObject = hitInfo.transform.GetComponentInParent<Selectable>();
+        if (hitSelectableObject) {
+            hitSelectableObject.SelectObject();
             return;
         }
-        
     }
 
     public void MoveToObject()
@@ -95,7 +103,19 @@ public class SelectionManager : MonoBehaviour
     {
         selectedFleet = newFleet;
         Debug.Log("Changed Active Fleet to " + newFleet.gameObject.name);
+        HandleSelectionRingChange();
     }
 
+    private void HandleSelectionRingChange()
+    {
+        if (selectedFleet == null)
+        {
+            selectionRing.SetActive(false);
+            return;
+        }
 
+        selectionRing.SetActive(true);
+        selectionRing.transform.position = selectedFleet.transform.position;
+        selectionRing.transform.SetParent(selectedFleet.transform);
+    }
 }
