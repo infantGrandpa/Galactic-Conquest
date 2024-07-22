@@ -23,14 +23,41 @@ public class MovementManager : MonoBehaviour
 
     public List<PlanetBehaviour> planets = new();
 
-    public void MoveFleetToPlanet(FleetBehaviour fleetToMove, PlanetBehaviour targetPlanet)
+    public void MoveToPlanet()
     {
-        if (fleetToMove == null)
+        //Cancel if nothing is selected
+        List<Selectable> objectsToMove = new(SelectionManager.Instance.selectedObjects);
+        if (objectsToMove.Count == 0)
         {
-            Debug.LogWarning("MovementManager MoveFleetToPlanet(): Cannot move to " + targetPlanet.gameObject.name);
             return;
         }
 
-        fleetToMove.MoveFleetToPlanetPosition(targetPlanet);
+        //Get Move To Target
+        RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor();
+
+        if (nullableHitInfo == null)
+        {
+            return;
+        }
+
+        //Convert so we can get the transform of the hit object
+        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;
+
+        //Get Selectable
+        PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
+        if (!targetPlanet)
+        {
+            return;
+        }
+
+        //Send Move Command to selected objects
+        foreach (Selectable thisObjectToMove in objectsToMove)
+        {
+            if (thisObjectToMove.TryGetComponent(out FleetBehaviour thisFleetBehaviour))
+            {
+                thisFleetBehaviour.MoveFleetToPlanetPosition(targetPlanet);
+            }
+        }
+
     }
 }

@@ -20,25 +20,13 @@ public class SelectionManager : MonoBehaviour
     }
     private static SelectionManager instance;
 
-
-
-    [SerializeField] float selectionSphereCastRadius = 0.25f;
-
-    [ShowInInspector] private FleetBehaviour selectedFleet;
-
-    [SerializeField] private GameObject selectionObjectPrefab;
-    private GameObject selectionRing;
-
     [ReadOnly] public List<Selectable> selectedObjects = new();
-
-    private void Start()
-    {
-        
-    }
 
     public void SelectObject()
     {
-        RaycastHit? nullableHitInfo = SphereCastFromCameraToCursor();
+        ClearSelectedObjects();
+
+        RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor();
 
         if (nullableHitInfo == null)
         {
@@ -46,76 +34,23 @@ public class SelectionManager : MonoBehaviour
         }
 
         //Convert so we can get the transform of the hit object
-        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;       
+        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;
 
         //Get Selectable
         Selectable hitSelectableObject = hitInfo.transform.GetComponentInParent<Selectable>();
-        if (hitSelectableObject) {
+        if (hitSelectableObject)
+        {
             hitSelectableObject.SelectObject();
             return;
         }
     }
 
-    public void MoveToObject()
+    public void ClearSelectedObjects()
     {
-        if (selectedFleet == null)
+        List<Selectable> tempSelected = new(selectedObjects);
+        foreach (Selectable thisSelectedObject in tempSelected)
         {
-            return;
+            thisSelectedObject.DeselectObject();
         }
-
-        RaycastHit? nullableHitInfo = SphereCastFromCameraToCursor();
-
-        if (nullableHitInfo == null)
-        {
-            return;
-        }
-
-        //Get Planet Behaviour
-        RaycastHit hitInfo = (RaycastHit)nullableHitInfo;       //We need this to get the transform of the hit object
-
-        if (hitInfo.transform.TryGetComponent(out PlanetBehaviour hitPlanet))
-        {
-            MovementManager.Instance.MoveFleetToPlanet(selectedFleet, hitPlanet);
-        }
-
-    }
-
-    private RaycastHit? SphereCastFromCameraToCursor()
-    {
-        //Sphere cast from camera to cursor position.
-        Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
-        Vector3 cursorPosition = InputManager.Instance.GetCursorPosition();
-
-        //(Desitination - Origin).normalized = direction
-        Vector3 directionToCursor = (cursorPosition - cameraPosition).normalized;
-
-        RaycastHit hitInfo;
-        if (Physics.SphereCast(cameraPosition, selectionSphereCastRadius, directionToCursor, out hitInfo, 1000f))
-        {
-            return hitInfo;
-        }
-
-        return null;
-
-    }
-
-    public void ChangeSelectedFleet(FleetBehaviour newFleet)
-    {
-        selectedFleet = newFleet;
-        Debug.Log("Changed Active Fleet to " + newFleet.gameObject.name);
-        HandleSelectionRingChange();
-    }
-
-    private void HandleSelectionRingChange()
-    {
-        if (selectedFleet == null)
-        {
-            selectionRing.SetActive(false);
-            return;
-        }
-
-        selectionRing.SetActive(true);
-        selectionRing.transform.position = selectedFleet.transform.position;
-        selectionRing.transform.SetParent(selectedFleet.transform);
     }
 }

@@ -18,6 +18,8 @@ public class InputManager : MonoBehaviour
     }
     private static InputManager instance;
 
+    [SerializeField] float onClickSphereCastRadius = 0.25f;
+
     private void Update()
     {
         GetInput();
@@ -36,7 +38,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonUp(1))
         {
             //Move to fleet or planet
-            SelectionManager.Instance.MoveToObject();
+            MovementManager.Instance.MoveToPlanet();
         }
     }
 
@@ -48,5 +50,23 @@ public class InputManager : MonoBehaviour
         Vector3 cursorPosition = rayFromCameraToCursor.GetPoint(distanceFromCamera);
 
         return cursorPosition;
+    }
+
+    public RaycastHit? SphereCastFromCameraToCursor()
+    {
+        //Sphere cast from camera to cursor position.
+        Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
+        Vector3 cursorPosition = InputManager.Instance.GetCursorPosition();
+
+        //(Desitination - Origin).normalized = direction
+        Vector3 directionToCursor = (cursorPosition - cameraPosition).normalized;
+
+        RaycastHit hitInfo;
+        if (Physics.SphereCast(cameraPosition, onClickSphereCastRadius, directionToCursor, out hitInfo, 1000f))
+        {
+            return hitInfo;
+        }
+
+        return null;
     }
 }
