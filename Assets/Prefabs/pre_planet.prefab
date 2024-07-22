@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3552822677226016053}
   - component: {fileID: -5318011949778153505}
   - component: {fileID: 5999652517984165282}
+  - component: {fileID: 4936992261832728891}
   m_Layer: 0
   m_Name: pre_planet
   m_TagString: Untagged
@@ -62,6 +63,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySelectionRing: {fileID: 6970550277282335014}
+--- !u!114 &4936992261832728891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091433258522064170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95014a1acce3de4eacb475ca3db2132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myFaction: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
+  renderersToChangeOnSetFaction:
+  - {fileID: 6969439921661042112}
+  uiImagesToChangeOnSetFaction:
+  - {fileID: 98541115137625236}
 --- !u!1 &3379968224065540479
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +277,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
+--- !u!114 &98541115137625236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 657766506303609815, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
+  m_PrefabInstance: {fileID: 612152790783678275}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6970550277282335014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7548757776513031781, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
