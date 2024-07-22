@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: fa764a8a3fe87f14c874188169285cc5, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -857,6 +857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionSphereCastRadius: 0.25
+  selectionObjectPrefab: {fileID: 2702148367254263371, guid: cdfcf73881681c44c8c59ff302714da9, type: 3}
 --- !u!1 &1520388670
 GameObject:
   m_ObjectHideFlags: 0
