@@ -3,31 +3,34 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FactionHandler : MonoBehaviour
+namespace Abraham.GalacticConquest
 {
-    public Faction myFaction;
-
-    [SerializeField] List<Renderer> renderersToChangeOnSetFaction = new();
-    [SerializeField] List<Image> uiImagesToChangeOnSetFaction = new();
-
-    private void Start()
+    public class FactionHandler : MonoBehaviour
     {
-        SetFaction(myFaction);
-    }
+        public Faction myFaction;
 
-    public void SetFaction(Faction newFaction)
-    {
-        myFaction = newFaction;
-        foreach (Renderer thisRenderer in renderersToChangeOnSetFaction)
+        [SerializeField] List<Renderer> renderersToChangeOnSetFaction = new();
+        [SerializeField] List<Image> uiImagesToChangeOnSetFaction = new();
+
+        private void Start()
         {
-            thisRenderer.material.color = myFaction.FactionColor;
+            SetFaction(myFaction);
         }
 
-        foreach (Image thisImage in uiImagesToChangeOnSetFaction)
+        public void SetFaction(Faction newFaction)
         {
-            thisImage.color = myFaction.FactionColor;
-        }
+            myFaction = newFaction;
+            foreach (Renderer thisRenderer in renderersToChangeOnSetFaction)
+            {
+                thisRenderer.material.color = myFaction.FactionColor;
+            }
 
-        Debug.Log(gameObject.name + ": Set Faction to " + myFaction.name);
+            foreach (Image thisImage in uiImagesToChangeOnSetFaction)
+            {
+                thisImage.color = myFaction.FactionColor;
+            }
+
+            Debug.Log(gameObject.name + ": Set Faction to " + myFaction.name);
+        }
     }
 }

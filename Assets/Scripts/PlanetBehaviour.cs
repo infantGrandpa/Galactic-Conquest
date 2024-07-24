@@ -1,29 +1,32 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlanetBehaviour : MonoBehaviour
+namespace Abraham.GalacticConquest
 {
-    public Transform fleetSlotTransform;
-
-    private void OnEnable()
+    public class PlanetBehaviour : MonoBehaviour
     {
-        MovementManager.Instance.planets.Add(this);
-    }
+        public Transform fleetSlotTransform;
 
-    private void OnDisable()
-    {
-        if (MovementManager.Instance == null)
+        private void OnEnable()
         {
-            return;
+            MovementManager.Instance.planets.Add(this);
         }
 
-        MovementManager.Instance.planets.Remove(this);
-    }
+        private void OnDisable()
+        {
+            if (MovementManager.Instance == null)
+            {
+                return;
+            }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.cyan;
+            MovementManager.Instance.planets.Remove(this);
+        }
 
-        Gizmos.DrawWireSphere(fleetSlotTransform.position, 0.25f);
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.cyan;
+
+            Gizmos.DrawWireSphere(fleetSlotTransform.position, 0.25f);
+        }
     }
 }

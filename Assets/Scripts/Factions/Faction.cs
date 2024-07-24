@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Faction", menuName = "Game/Faction")]
-public class Faction : ScriptableObject
+namespace Abraham.GalacticConquest
 {
-    public string FactionName;
-    public Color FactionColor;
+    [CreateAssetMenu(fileName = "Faction", menuName = "Game/Faction")]
+    public class Faction : ScriptableObject
+    {
+        public string FactionName;
+        public Color FactionColor;
+    }
 }
