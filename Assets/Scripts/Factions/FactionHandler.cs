@@ -30,7 +30,6 @@ namespace Abraham.GalacticConquest
                 thisImage.color = myFaction.FactionColor;
             }
 
-            Debug.Log(gameObject.name + ": Set Faction to " + myFaction.name);
         }
     }
 }

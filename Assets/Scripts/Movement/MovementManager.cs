@@ -5,7 +5,6 @@ namespace Abraham.GalacticConquest
 {
     public class MovementManager : MonoBehaviour
     {
-        //Singleton
         public static MovementManager Instance
         {
             get
