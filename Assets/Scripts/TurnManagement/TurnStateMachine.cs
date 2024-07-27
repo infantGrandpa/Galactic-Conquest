@@ -25,7 +25,6 @@ namespace Abraham.GalacticConquest
 
         private void Start()
         {
-            Debug.Log("Starting state machine...");
             SetState(new PlayerTurnState());
         }
 
@@ -44,17 +43,8 @@ namespace Abraham.GalacticConquest
 
             currentState = newState;
             StartCoroutine(currentState.EnterState());
-        }
 
-        private void Update()
-        {
-            if (currentState == null)
-            {
-                Debug.LogWarning("TurnStateMachine Update(): Current State is null.");
-                return;
-            }
-
-
+            GUIManager.Instance.ChangeTurn(currentState.GetType().Name);
         }
     }
 }
