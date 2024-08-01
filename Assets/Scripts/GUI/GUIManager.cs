@@ -21,10 +21,16 @@ namespace Abraham.GalacticConquest
         private static GUIManager instance;
 
         [SerializeField] GUITurnHandler turnHandler;
+        [SerializeField] GUIActionPointHandler actionPointHandler;
 
         public void ChangeTurn(string turnString)
         {
             turnHandler.ChangeTurn(turnString);
+        }
+
+        public void UpdateActionPoints(int newValue)
+        {
+            actionPointHandler.UpdateActionPoints(newValue);
         }
     }
 }
