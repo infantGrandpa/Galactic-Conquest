@@ -7,8 +7,21 @@ namespace Abraham.GalacticConquest
     {
         public override IEnumerator EnterState()
         {
-            yield return new WaitForSeconds(2f);
-            TurnStateMachine.Instance.SetState(new EnemyTurnState());
+            ActionPointManager.Instance.CalculateActionPoints();
+            yield break;
+        }
+
+        public override IEnumerator UpdateState()
+        {
+            do
+            {
+                if (ActionPointManager.Instance.IsTurnComplete())
+                {
+                    TurnStateMachine.Instance.SetState(new EnemyTurnState());
+                }
+
+                yield return null;
+            } while (true);
         }
     }
 }

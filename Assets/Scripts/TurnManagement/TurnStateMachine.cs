@@ -22,6 +22,7 @@ namespace Abraham.GalacticConquest
         private static TurnStateMachine instance;
 
         [ShowInInspector, ReadOnly] protected TurnState currentState;
+        private Coroutine updateCoroutine;
 
         private void Start()
         {
@@ -36,15 +37,29 @@ namespace Abraham.GalacticConquest
                 return;
             }
 
+            //Stop last state's update coroutine
+            if (updateCoroutine != null)
+            {
+                StopCoroutine(updateCoroutine);
+            }
+
+            //Exit the current state
             if (currentState != null)
             {
                 StartCoroutine(currentState.ExitState());
             }
 
+            //Start new state
             currentState = newState;
             StartCoroutine(currentState.EnterState());
 
+            //Update GUI elements
             GUIManager.Instance.ChangeTurn(currentState.GetType().Name);
+
+            //Start the new state's updateCorutin.
+            //We can't do this in the update because it will start every frame, so here works for now.
+            updateCoroutine = StartCoroutine(currentState.UpdateState());
+
         }
     }
 }
