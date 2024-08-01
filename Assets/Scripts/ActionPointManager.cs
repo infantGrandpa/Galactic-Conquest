@@ -51,5 +51,15 @@ namespace Abraham.GalacticConquest
 
             return false;
         }
+
+        public bool CanPerformAction(int targetAPCost)
+        {
+            if (targetAPCost >= CurrentActionPoints)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
