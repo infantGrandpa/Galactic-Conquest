@@ -6,10 +6,31 @@ namespace Abraham.GalacticConquest
 {
     public class GUIActionLogHandler : MonoBehaviour
     {
-        [SerializeField] TMP_Text actionLogText;
+        [SerializeField] GameObject actionLogPrefab;
+        [SerializeField] List<TMP_Text> actionLogTextObjects = new();
+        [SerializeField] Transform actionLogContainer;
         [SerializeField] int maxLogMessages = 5;
 
         private Queue<string> logMessages = new();
+
+        private void Awake()
+        {
+            for (int i = 0; i < maxLogMessages; i++)
+            {
+                GameObject newLogObject = Instantiate(actionLogPrefab, actionLogContainer);
+                if (newLogObject.TryGetComponent(out TMP_Text newLogText))
+                {
+                    actionLogTextObjects.Add(newLogText);
+                    newLogText.text = "";
+                    newLogObject.name = "Log Object " + i;
+                }
+            }
+        }
+
+        private void Start()
+        {
+            AddLogMessage("Game Started.");
+        }
 
         public void AddLogMessage(string message)
         {
@@ -20,12 +41,18 @@ namespace Abraham.GalacticConquest
                 logMessages.Dequeue();
             }
 
-            UpdateLogText();
+            UpdateLogText(message);
         }
 
-        private void UpdateLogText()
+        private void UpdateLogText(string message)
         {
-            actionLogText.text = string.Join("\n", logMessages.ToArray());
+            //Get first child (first will be the highest one)
+            TMP_Text logToUpdate = actionLogTextObjects[0];
+
+            logToUpdate.text = message;
+
+            logToUpdate.transform.SetAsLastSibling();
+            MoveListObjectToEnd(0);
         }
 
         [ContextMenu("Test Action Log")]
@@ -43,6 +70,13 @@ namespace Abraham.GalacticConquest
             string newMessage = testMessages[newMessageIndex];
 
             AddLogMessage(newMessage);
+        }
+
+        private void MoveListObjectToEnd(int indexToMove)
+        {
+            TMP_Text itemToMove = actionLogTextObjects[indexToMove];
+            actionLogTextObjects.RemoveAt(indexToMove);
+            actionLogTextObjects.Add(itemToMove);
         }
     }
 }
