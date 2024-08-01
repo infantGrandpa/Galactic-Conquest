@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 namespace Abraham.GalacticConquest
 {
@@ -10,6 +12,9 @@ namespace Abraham.GalacticConquest
         [SerializeField] List<TMP_Text> actionLogTextObjects = new();
         [SerializeField] Transform actionLogContainer;
         [SerializeField] int maxLogMessages = 5;
+
+        [Header("Tweening")]
+        [SerializeField] float secsToTween = 0.5f;
 
         private Queue<string> logMessages = new();
 
@@ -49,14 +54,22 @@ namespace Abraham.GalacticConquest
             //Get first child (first will be the highest one)
             TMP_Text logToUpdate = actionLogTextObjects[0];
 
-            logToUpdate.text = message;
+            //logToUpdate.text = message;
 
             logToUpdate.transform.SetAsLastSibling();
+            TweenLogText(logToUpdate, message);
+
             MoveListObjectToEnd(0);
         }
 
+        private void TweenLogText(TMP_Text textToTween, string message)
+        {
+            textToTween.text = "";
+            textToTween.DOText(message, secsToTween, false);
+        }
+
         [ContextMenu("Test Action Log")]
-        private void TestActionLog()
+        public void TestActionLog()
         {
             List<string> testMessages = new();
 
