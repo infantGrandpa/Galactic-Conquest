@@ -22,6 +22,7 @@ namespace Abraham.GalacticConquest
 
         [SerializeField] GUITurnHandler turnHandler;
         [SerializeField] GUIActionPointHandler actionPointHandler;
+        [SerializeField] GUIActionLogHandler actionLogHandler;
 
         public void ChangeTurn(string turnString)
         {
@@ -31,6 +32,11 @@ namespace Abraham.GalacticConquest
         public void UpdateActionPoints(int newValue)
         {
             actionPointHandler.UpdateActionPoints(newValue);
+        }
+
+        public void AddActionLogMessage(string newMessage)
+        {
+            actionLogHandler.AddLogMessage(newMessage);
         }
     }
 }
