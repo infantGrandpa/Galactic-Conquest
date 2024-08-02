@@ -49,6 +49,9 @@ namespace Abraham.GalacticConquest
                 StartCoroutine(currentState.ExitState());
             }
 
+            string currentStateName = currentState != null ? currentState.GetType().Name : "none";
+            GUIManager.Instance.AddActionLogMessage("Changing state from " + currentStateName + " to " + newState.GetType().Name + "...");
+
             //Start new state
             currentState = newState;
             StartCoroutine(currentState.EnterState());

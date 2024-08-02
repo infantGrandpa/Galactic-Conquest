@@ -8,6 +8,8 @@ namespace Abraham.GalacticConquest
         [SerializeField] float lookTweenDuration = 0.5f;
         [SerializeField] float moveTweenDuration = 1f;
 
+        public int movementApCost;
+
         public void MoveToPlanet(PlanetBehaviour targetPlanet)
         {
             Transform targetTransform = targetPlanet.fleetSlotTransform;

@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTweenDuration: 0.25
   moveTweenDuration: 1
+  movementApCost: 4
 --- !u!114 &4678900628996214075
 MonoBehaviour:
   m_ObjectHideFlags: 0
