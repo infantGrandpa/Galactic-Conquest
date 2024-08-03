@@ -14,9 +14,8 @@ namespace Abraham.GalacticConquest
 
         public bool MoveToPlanet(PlanetBehaviour targetPlanet)
         {
-            if (targetPlanet == currentPlanet)
+            if (!CanMoveToTarget(targetPlanet))
             {
-                //We're already at this planet. Cancel.
                 return false;
             }
 
@@ -29,6 +28,17 @@ namespace Abraham.GalacticConquest
 
             //Move successful
             currentPlanet = targetPlanet;
+            return true;
+        }
+
+        public bool CanMoveToTarget(PlanetBehaviour targetPlanet)
+        {
+            if (targetPlanet == currentPlanet)
+            {
+                //We're already at this planet. Cancel.
+                return false;
+            }
+
             return true;
         }
     }
