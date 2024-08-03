@@ -39,25 +39,23 @@ namespace Abraham.GalacticConquest
                 return;
             }
 
-            int totalApCost = moveableObject.movementApCost;
+            //Get Move To Target
+            RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor();
+            if (nullableHitInfo == null)
+            {
+                //Didn't click on anything. Cancel.
+                return;
+            }
 
-            //Cancel if not enough AP
+            int totalApCost = moveableObject.movementApCost;
             if (!ActionPointManager.Instance.CanPerformAction(totalApCost))
             {
+                //Not Enough AP. Cancel.
                 GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + totalApCost + "): Movement Cancelled.");
                 return;
             }
 
-
-            //Get Move To Target
-            RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor();
-
-            if (nullableHitInfo == null)
-            {
-                return;
-            }
-
-            //Convert so we can get the transform of the hit object
+            //Convert hit info so we can get the transform of the hit object
             RaycastHit hitInfo = (RaycastHit)nullableHitInfo;
 
             //Get Selectable
@@ -68,7 +66,13 @@ namespace Abraham.GalacticConquest
             }
 
             //Send Move Command to moveable object
-            moveableObject.MoveToPlanet(targetPlanet);
+            bool moveSuccessful = moveableObject.MoveToPlanet(targetPlanet);
+            if (!moveSuccessful)
+            {
+                //Move cancelled by moveable object.
+                //TODO: Check if we're already at the target planet earlier.
+                return;
+            }
 
             ActionPointManager.Instance.DecreaseActionPoints(totalApCost);
         }

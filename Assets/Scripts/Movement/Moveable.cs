@@ -10,14 +10,26 @@ namespace Abraham.GalacticConquest
 
         public int movementApCost;
 
-        public void MoveToPlanet(PlanetBehaviour targetPlanet)
+        private PlanetBehaviour currentPlanet = null;
+
+        public bool MoveToPlanet(PlanetBehaviour targetPlanet)
         {
+            if (targetPlanet == currentPlanet)
+            {
+                //We're already at this planet. Cancel.
+                return false;
+            }
+
             Transform targetTransform = targetPlanet.fleetSlotTransform;
 
             Sequence moveSequence = DOTween.Sequence();
 
             moveSequence.Append(transform.DOLookAt(targetTransform.position, lookTweenDuration));
             moveSequence.Append(transform.DOMove(targetTransform.position, moveTweenDuration, false).SetEase(Ease.InOutExpo));
+
+            //Move successful
+            currentPlanet = targetPlanet;
+            return true;
         }
     }
 }
