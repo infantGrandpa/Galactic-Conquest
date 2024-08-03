@@ -22,11 +22,11 @@ namespace Abraham.GalacticConquest
         }
         private static SelectionManager instance;
 
-        [ReadOnly] public List<Selectable> selectedObjects = new();
+        [ReadOnly] public Selectable selectedObject;
 
         public void SelectObject()
         {
-            ClearSelectedObjects();
+            ClearSelectedObject();
 
             RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor();
 
@@ -42,18 +42,21 @@ namespace Abraham.GalacticConquest
             Selectable hitSelectableObject = hitInfo.transform.GetComponentInParent<Selectable>();
             if (hitSelectableObject)
             {
-                hitSelectableObject.SelectObject();
+                selectedObject = hitSelectableObject;
+                selectedObject.SelectObject();
                 return;
             }
         }
 
-        public void ClearSelectedObjects()
+        public void ClearSelectedObject()
         {
-            List<Selectable> tempSelected = new(selectedObjects);
-            foreach (Selectable thisSelectedObject in tempSelected)
+            if (selectedObject == null)
             {
-                thisSelectedObject.DeselectObject();
+                return;
             }
+
+            selectedObject.DeselectObject();
+            selectedObject = null;
         }
     }
 }

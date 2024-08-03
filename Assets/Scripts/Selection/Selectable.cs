@@ -27,14 +27,12 @@ namespace Abraham.GalacticConquest
 
             if (IsSelected())
             {
-                SelectionManager.Instance.selectedObjects.Remove(this);
+                SelectionManager.Instance.ClearSelectedObject();
             }
         }
 
         public void SelectObject()
         {
-            SelectionManager.Instance.selectedObjects.Add(this);
-
             if (mySelectionRing == null)
             {
                 Debug.LogError("ERROR Selectable SelectObject(): Selection Ring not assigned.");
@@ -42,13 +40,10 @@ namespace Abraham.GalacticConquest
             }
 
             mySelectionRing.SetActive(true);
-
         }
 
         public void DeselectObject()
         {
-            SelectionManager.Instance.selectedObjects.Remove(this);
-
             if (mySelectionRing == null)
             {
                 Debug.LogError("ERROR Selectable SelectObject(): Selection Ring not assigned.");
@@ -65,15 +60,10 @@ namespace Abraham.GalacticConquest
                 return false;
             }
 
-            List<Selectable> selectedObjects = SelectionManager.Instance.selectedObjects;
-            foreach (Selectable thisSelectedObject in selectedObjects)
+            if (SelectionManager.Instance.selectedObject == this)
             {
-                if (thisSelectedObject == this)
-                {
-                    return true;
-                }
+                return true;
             }
-
 
             return false;
         }

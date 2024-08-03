@@ -26,23 +26,20 @@ namespace Abraham.GalacticConquest
         public void MoveToPlanet()
         {
             //Cancel if nothing is selected
-            List<Selectable> selectedObjects = new(SelectionManager.Instance.selectedObjects);
-            if (selectedObjects.Count == 0)
+            Selectable selectedObject = SelectionManager.Instance.selectedObject;
+            if (selectedObject == null)
             {
                 return;
             }
 
             //Get Movement Point Cost
-            List<Moveable> objectsToMove = new();
-            int totalApCost = 0;
-            foreach (Selectable thisSelectedObject in selectedObjects)
+            if (!selectedObject.TryGetComponent(out Moveable moveableObject))
             {
-                if (thisSelectedObject.TryGetComponent(out Moveable moveableObject))
-                {
-                    objectsToMove.Add(moveableObject);
-                    totalApCost += moveableObject.movementApCost;
-                }
+                //Object not movable. Cancel.
+                return;
             }
+
+            int totalApCost = moveableObject.movementApCost;
 
             //Cancel if not enough AP
             if (!ActionPointManager.Instance.CanPerformAction(totalApCost))
@@ -70,14 +67,8 @@ namespace Abraham.GalacticConquest
                 return;
             }
 
-            //Send Move Command to selected objects
-            foreach (Selectable thisObjectToMove in selectedObjects)
-            {
-                if (thisObjectToMove.TryGetComponent(out Moveable moveableObject))
-                {
-                    moveableObject.MoveToPlanet(targetPlanet);
-                }
-            }
+            //Send Move Command to moveable object
+            moveableObject.MoveToPlanet(targetPlanet);
 
             ActionPointManager.Instance.DecreaseActionPoints(totalApCost);
         }

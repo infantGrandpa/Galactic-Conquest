@@ -59,7 +59,7 @@ namespace Abraham.GalacticConquest
             //Update GUI elements
             GUIManager.Instance.ChangeTurn(currentState.GetType().Name);
 
-            //Start the new state's updateCorutin.
+            //Start the new state's updateCoroutine.
             //We can't do this in the update because it will start every frame, so here works for now.
             updateCoroutine = StartCoroutine(currentState.UpdateState());
 
