@@ -7,7 +7,7 @@ namespace Abraham.GalacticConquest
     public class PlanetBehaviour : MonoBehaviour
     {
         public List<Transform> planetSlotTransforms = new();
-        public List<PlanetSlot> planetSlots = new();
+        [ReadOnly] public List<PlanetSlot> planetSlots = new();
 
         private void Awake()
         {
