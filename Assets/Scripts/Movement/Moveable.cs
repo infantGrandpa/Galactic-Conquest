@@ -47,6 +47,13 @@ namespace Abraham.GalacticConquest
                 return false;
             }
 
+            if (!targetPlanet.AreAnySlotsAvailable())
+            {
+                //Planet is fully occupied. Cancel.
+                GUIManager.Instance.AddActionLogMessage("Planet occupied. Movement Cancelled.");
+                return false;
+            }
+
             return true;
         }
     }

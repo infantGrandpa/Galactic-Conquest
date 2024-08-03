@@ -63,6 +63,19 @@ namespace Abraham.GalacticConquest
             }
         }
 
+        public bool AreAnySlotsAvailable()
+        {
+            foreach (PlanetSlot thisPlanetSlot in planetSlots)
+            {
+                if (thisPlanetSlot.occupyingMoveable == null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;
