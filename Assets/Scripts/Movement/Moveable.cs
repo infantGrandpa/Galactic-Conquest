@@ -19,7 +19,7 @@ namespace Abraham.GalacticConquest
                 return false;
             }
 
-            Transform moveToTransform = targetPlanet.GetAvailablePlanetSlotTransform(this);
+            Transform moveToTransform = targetPlanet.AddMoveableToAvailableSlot(this);
             if (moveToTransform == null)
             {
                 GUIManager.Instance.AddActionLogMessage("Planet occupied. Movement Cancelled.");
@@ -30,6 +30,9 @@ namespace Abraham.GalacticConquest
 
             moveSequence.Append(transform.DOLookAt(moveToTransform.position, lookTweenDuration));
             moveSequence.Append(transform.DOMove(moveToTransform.position, moveTweenDuration, false).SetEase(Ease.InOutExpo));
+
+            //Remove from old planet
+            currentPlanet?.RemoveMoveableFromSlot(this);
 
             //Move successful
             currentPlanet = targetPlanet;

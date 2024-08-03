@@ -33,7 +33,7 @@ namespace Abraham.GalacticConquest
             MovementManager.Instance.planets.Remove(this);
         }
 
-        public Transform GetAvailablePlanetSlotTransform(Moveable moveable)
+        public Transform AddMoveableToAvailableSlot(Moveable moveableToAdd)
         {
             foreach (PlanetSlot thisPlanetSlot in planetSlots)     //Can't use a foreach loop because thisPlanetSlot is readonly in a foreach loop
             {
@@ -43,12 +43,24 @@ namespace Abraham.GalacticConquest
                     continue;
                 }
 
-                thisPlanetSlot.occupyingMoveable = moveable;
+                thisPlanetSlot.occupyingMoveable = moveableToAdd;
                 return thisPlanetSlot.slotTransform;
             }
 
             //No slots were available;
             return null;
+        }
+
+        public void RemoveMoveableFromSlot(Moveable moveableToRemove)
+        {
+            foreach (PlanetSlot thisPlanetSlot in planetSlots)
+            {
+                if (thisPlanetSlot.occupyingMoveable == moveableToRemove)
+                {
+                    thisPlanetSlot.occupyingMoveable = null;
+                    return;
+                }
+            }
         }
 
         private void OnDrawGizmosSelected()
