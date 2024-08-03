@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea2139c92540274fb6c943a89e4247a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planetSlotTransforms:
+  - {fileID: 7633612294656823278}
+  - {fileID: 4105178593744126672}
   planetSlots: []
 --- !u!114 &5999652517984165282
 MonoBehaviour:
@@ -195,7 +198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7633612294656823278}
-  - component: {fileID: 2075684711793585774}
   m_Layer: 0
   m_Name: PlanetSlot
   m_TagString: Untagged
@@ -218,18 +220,6 @@ Transform:
   m_Father: {fileID: 3552822677226016053}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2075684711793585774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6642489305634633916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 359770089bf6f764a9b0290a61194db6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7762663606061964875
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +229,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4105178593744126672}
-  - component: {fileID: 8396476703331827854}
   m_Layer: 0
   m_Name: PlanetSlot (1)
   m_TagString: Untagged
@@ -262,18 +251,6 @@ Transform:
   m_Father: {fileID: 3552822677226016053}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8396476703331827854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7762663606061964875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 359770089bf6f764a9b0290a61194db6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &612152790783678275
 PrefabInstance:
   m_ObjectHideFlags: 0

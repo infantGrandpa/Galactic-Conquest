@@ -1,16 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
+using Sirenix.OdinInspector;
 
 namespace Abraham.GalacticConquest
 {
     public class PlanetBehaviour : MonoBehaviour
     {
+        public List<Transform> planetSlotTransforms = new();
         public List<PlanetSlot> planetSlots = new();
 
         private void Awake()
         {
-            planetSlots = new List<PlanetSlot>(GetComponentsInChildren<PlanetSlot>());
+            foreach (Transform thisSlotTransform in planetSlotTransforms)
+            {
+                PlanetSlot newPlanetSlot = new PlanetSlot(thisSlotTransform, null);
+                planetSlots.Add(newPlanetSlot);
+            }
         }
 
         private void OnEnable()
@@ -28,16 +33,21 @@ namespace Abraham.GalacticConquest
             MovementManager.Instance.planets.Remove(this);
         }
 
-        public PlanetSlot GetAvailablePlanetSlot()
+        public Transform GetAvailablePlanetSlotTransform(Moveable moveable)
         {
-            foreach (PlanetSlot thisPlanetSlot in planetSlots)
+            foreach (PlanetSlot thisPlanetSlot in planetSlots)     //Can't use a foreach loop because thisPlanetSlot is readonly in a foreach loop
             {
-                if (thisPlanetSlot.IsSlotAvailable())
+                if (thisPlanetSlot.occupyingMoveable != null)
                 {
-                    return thisPlanetSlot;
+                    //Occupied
+                    continue;
                 }
+
+                thisPlanetSlot.occupyingMoveable = moveable;
+                return thisPlanetSlot.slotTransform;
             }
 
+            //No slots were available;
             return null;
         }
 
@@ -45,9 +55,9 @@ namespace Abraham.GalacticConquest
         {
             Gizmos.color = Color.cyan;
 
-            foreach (PlanetSlot thisPlanetSlot in planetSlots)
+            foreach (Transform thisSlotTransform in planetSlotTransforms)
             {
-                Gizmos.DrawWireSphere(thisPlanetSlot.transform.position, 0.25f);
+                Gizmos.DrawWireSphere(thisSlotTransform.position, 0.25f);
             }
         }
     }

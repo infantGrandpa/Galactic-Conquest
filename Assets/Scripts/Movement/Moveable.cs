@@ -19,17 +19,10 @@ namespace Abraham.GalacticConquest
                 return false;
             }
 
-            PlanetSlot availablePlanetSlot = targetPlanet.GetAvailablePlanetSlot();
-            if (availablePlanetSlot == null)
-            {
-                GUIManager.Instance.AddActionLogMessage("Planet already occupied. Movement Cancelled.");
-                return false;
-            }
-
-            Transform moveToTransform = availablePlanetSlot.SetOccupyingObject(this);
+            Transform moveToTransform = targetPlanet.GetAvailablePlanetSlotTransform(this);
             if (moveToTransform == null)
             {
-                GUIManager.Instance.AddActionLogMessage("Move to transform is null. Movement Cancelled.");
+                GUIManager.Instance.AddActionLogMessage("Planet occupied. Movement Cancelled.");
                 return false;
             }
 

@@ -2,34 +2,16 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest
 {
-    public class PlanetSlot : MonoBehaviour
+    [System.Serializable]
+    public class PlanetSlot
     {
-        private Moveable occupyingMoveableObject;
+        public Transform slotTransform;
+        public Moveable occupyingMoveable;
 
-        public bool IsSlotAvailable()
+        public PlanetSlot(Transform newSlotTransform, Moveable newOccupyingMovable)
         {
-            if (occupyingMoveableObject == null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        public Transform SetOccupyingObject(Moveable newOccupier)
-        {
-            if (!IsSlotAvailable())
-            {
-                return null;
-            }
-
-            occupyingMoveableObject = newOccupier;
-            return transform;
-        }
-
-        public void ClearOccupyingObject()
-        {
-            occupyingMoveableObject = null;
+            slotTransform = newSlotTransform;
+            occupyingMoveable = newOccupyingMovable;
         }
     }
 }
