@@ -25,6 +25,11 @@ namespace Abraham.GalacticConquest
         [SerializeField] GUIActionLogHandler actionLogHandler;
         [SerializeField] GUIBattleHandler battleHander;
 
+        private void Awake()
+        {
+            battleHander.gameObject.SetActive(true);        //Activate the battle handler so it can assign all it's variables
+        }
+
         public void ChangeTurn(string turnString)
         {
             turnHandler.ChangeTurn(turnString);
