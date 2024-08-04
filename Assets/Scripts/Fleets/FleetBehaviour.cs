@@ -25,10 +25,20 @@ namespace Abraham.GalacticConquest
                     continue;
                 }
 
-                if (MyFaction.IsEnemyFaction(moveableFaction.myFaction))
+                if (!MyFaction.IsEnemyFaction(moveableFaction.myFaction))
                 {
-                    GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + targetPlanet.planetName + "...");
+                    //Not enemy faction
+                    continue;
                 }
+
+                if (!thisMoveable.TryGetComponent(out FleetBehaviour enemyFleetBehaviour))
+                {
+                    //not a fleet
+                    continue;
+                }
+
+                GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + targetPlanet.planetName + "...");
+                BattleHandler.Instance.StartBattle(this, enemyFleetBehaviour, targetPlanet);
             }
         }
     }

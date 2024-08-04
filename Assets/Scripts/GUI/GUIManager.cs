@@ -23,6 +23,7 @@ namespace Abraham.GalacticConquest
         [SerializeField] GUITurnHandler turnHandler;
         [SerializeField] GUIActionPointHandler actionPointHandler;
         [SerializeField] GUIActionLogHandler actionLogHandler;
+        [SerializeField] GUIBattleHandler battleHander;
 
         public void ChangeTurn(string turnString)
         {
@@ -37,6 +38,11 @@ namespace Abraham.GalacticConquest
         public void AddActionLogMessage(string newMessage)
         {
             actionLogHandler.AddLogMessage(newMessage);
+        }
+
+        public void ShowBattleDialogBox(Faction attackingFaction, Faction defendingFaction, PlanetBehaviour planetBehaviour)
+        {
+            battleHander.ShowBattleDialogBox(attackingFaction, defendingFaction, planetBehaviour);
         }
     }
 }
