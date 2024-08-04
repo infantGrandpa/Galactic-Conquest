@@ -11,11 +11,5 @@ namespace Abraham.GalacticConquest
         {
             myMoveable = GetComponent<Moveable>();
         }
-
-        public bool IsPlanetHostile()
-        {
-            GUIManager.Instance.AddActionLogMessage("Arrived at planet.");
-            return false;
-        }
     }
 }

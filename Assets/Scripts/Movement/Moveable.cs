@@ -1,7 +1,6 @@
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Abraham.GalacticConquest
 {
@@ -14,9 +13,7 @@ namespace Abraham.GalacticConquest
 
         [ReadOnly] public PlanetBehaviour currentPlanet = null;
 
-        public UnityEvent OnMoveCompleted;
-
-        public bool MoveToPlanet(PlanetBehaviour targetPlanet)
+        public virtual bool MoveToPlanet(PlanetBehaviour targetPlanet)
         {
             if (!CanMoveToTarget(targetPlanet))
             {
