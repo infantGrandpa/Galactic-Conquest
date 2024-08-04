@@ -76,6 +76,24 @@ namespace Abraham.GalacticConquest
             return false;
         }
 
+        public List<Moveable> GetAllMoveablesAtPlanet()
+        {
+            List<Moveable> moveables = new();
+
+            foreach (PlanetSlot thisPlanetSlot in planetSlots)
+            {
+                if (thisPlanetSlot.occupyingMoveable == null)
+                {
+                    //Slot empty
+                    continue;
+                }
+
+                moveables.Add(thisPlanetSlot.occupyingMoveable);
+            }
+
+            return moveables;
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.cyan;

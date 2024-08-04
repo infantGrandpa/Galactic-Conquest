@@ -29,7 +29,16 @@ namespace Abraham.GalacticConquest
             {
                 thisImage.color = myFaction.FactionColor;
             }
+        }
 
+        public bool IsEnemyFaction(Faction faction)
+        {
+            if (faction == myFaction)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

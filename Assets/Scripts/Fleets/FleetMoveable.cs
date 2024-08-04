@@ -26,7 +26,7 @@ namespace Abraham.GalacticConquest
                 return false;
             }
 
-            fleetBehaviour.IsPlanetHostile(targetPlanet);
+            fleetBehaviour.FleetArrivedAtPlanet(targetPlanet);
 
             return true;
         }

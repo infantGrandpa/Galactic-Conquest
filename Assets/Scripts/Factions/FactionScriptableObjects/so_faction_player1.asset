@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d609dd78b9dc6354aab8bffbb31f1d00, type: 3}
   m_Name: so_faction_player1
   m_EditorClassIdentifier: 
-  FactionName: Player 1
-  FactionColor: {r: 0, g: 0.11046457, b: 1, a: 1}
+  FactionName: Republic
+  FactionColor: {r: 0, g: 0.57254905, b: 0.8901961, a: 1}
