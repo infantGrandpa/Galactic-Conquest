@@ -39,7 +39,7 @@ namespace Abraham.GalacticConquest
             //Right Click
             if (Input.GetMouseButtonUp(1))
             {
-                //Move to fleet or planet
+                //Move to planet
                 MovementManager.Instance.MoveToPlanet();
             }
         }
@@ -56,20 +56,37 @@ namespace Abraham.GalacticConquest
 
         public RaycastHit? SphereCastFromCameraToCursor()
         {
-            //Sphere cast from camera to cursor position.
             Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
-            Vector3 cursorPosition = InputManager.Instance.GetCursorPosition();
-
-            //(Desitination - Origin).normalized = direction
-            Vector3 directionToCursor = (cursorPosition - cameraPosition).normalized;
+            Vector3 directionToCursor = GetDirectionToCursor(cameraPosition);
 
             RaycastHit hitInfo;
-            if (Physics.SphereCast(cameraPosition, onClickSphereCastRadius, directionToCursor, out hitInfo, 1000f))
+            if (Physics.SphereCast(cameraPosition, onClickSphereCastRadius, directionToCursor, out hitInfo, 1000f))     //TODO: Make distance not magic
             {
                 return hitInfo;
             }
 
             return null;
+        }
+
+        public RaycastHit? SphereCastFromCameraToCursor(LayerMask layerMask)
+        {
+            Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
+            Vector3 directionToCursor = GetDirectionToCursor(cameraPosition);
+
+            RaycastHit hitInfo;
+            if (Physics.SphereCast(cameraPosition, onClickSphereCastRadius, directionToCursor, out hitInfo, 1000f, layerMask.value))
+            {
+                return hitInfo;
+            }
+
+            return null;
+        }
+
+        private Vector3 GetDirectionToCursor(Vector3 startPosition)
+        {
+            Vector3 cursorPosition = GetCursorPosition();
+            Vector3 directionToCursor = (cursorPosition - startPosition).normalized;        //(Desitination - Origin).normalized = direction
+            return directionToCursor;
         }
     }
 }

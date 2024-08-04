@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -5318011949778153505}
   - component: {fileID: 5999652517984165282}
   - component: {fileID: 4936992261832728891}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pre_planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8352900080366080629}
   - component: {fileID: 6969439921661042112}
   - component: {fileID: 8537023728261489561}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7633612294656823278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlanetSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4105178593744126672}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlanetSlot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,9 +259,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3552822677226016053}
     m_Modifications:
+    - target: {fileID: 5624670100556682251, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374739485322334406, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7548757776513031781, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
       propertyPath: m_Name
       value: pre_selectionRing
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548757776513031781, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8404887110892757313, guid: 245874300a30c7541a4bf3460ce05b16, type: 3}
       propertyPath: m_RootOrder

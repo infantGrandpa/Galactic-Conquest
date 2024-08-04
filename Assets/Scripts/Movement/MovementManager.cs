@@ -40,7 +40,8 @@ namespace Abraham.GalacticConquest
             }
 
             //Get Move To Target
-            RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor();
+            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.planetLayer);
+            RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask);
             if (nullableHitInfo == null)
             {
                 //Didn't click on anything. Cancel.
