@@ -422,7 +422,7 @@ PrefabInstance:
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 96620912449b77e4fad8f596f91bdc6e, type: 2}
+      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2805,7 +2805,7 @@ PrefabInstance:
     - target: {fileID: 4678900628996214075, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 44460c6893a773d4898c795f82785e9d, type: 2}
+      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
     - target: {fileID: 7851111968153162774, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: m_Name
       value: Fleet

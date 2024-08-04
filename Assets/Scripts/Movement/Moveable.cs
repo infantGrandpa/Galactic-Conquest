@@ -10,9 +10,9 @@ namespace Abraham.GalacticConquest
 
         public int movementApCost;
 
-        private PlanetBehaviour currentPlanet = null;
+        private PlanetSlotHandler currentPlanet = null;
 
-        public bool MoveToPlanet(PlanetBehaviour targetPlanet)
+        public bool MoveToPlanet(PlanetSlotHandler targetPlanet)
         {
             if (!CanMoveToTarget(targetPlanet))
             {
@@ -39,7 +39,7 @@ namespace Abraham.GalacticConquest
             return true;
         }
 
-        public bool CanMoveToTarget(PlanetBehaviour targetPlanet)
+        public bool CanMoveToTarget(PlanetSlotHandler targetPlanet)
         {
             if (targetPlanet == currentPlanet)
             {

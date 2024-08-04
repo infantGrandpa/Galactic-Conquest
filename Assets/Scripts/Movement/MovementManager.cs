@@ -21,7 +21,7 @@ namespace Abraham.GalacticConquest
         }
         private static MovementManager instance;
 
-        public List<PlanetBehaviour> planets = new();
+        public List<PlanetSlotHandler> planets = new();
 
         public void MoveToPlanet()
         {
@@ -51,7 +51,7 @@ namespace Abraham.GalacticConquest
 
             //Get target planet
             RaycastHit hitInfo = (RaycastHit)nullableHitInfo;   //Convert hit info so we can get the transform of the hit object
-            PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
+            PlanetSlotHandler targetPlanet = hitInfo.transform.GetComponentInParent<PlanetSlotHandler>();
             if (!targetPlanet)
             {
                 //Didn't click on a planet. Cancel.

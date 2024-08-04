@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 
 namespace Abraham.GalacticConquest
 {
-    public class PlanetBehaviour : MonoBehaviour
+    public class PlanetSlotHandler : MonoBehaviour
     {
         public List<Transform> planetSlotTransforms = new();
         [ReadOnly] public List<PlanetSlot> planetSlots = new();
