@@ -5,6 +5,17 @@ namespace Abraham.GalacticConquest
 {
     public class FleetCombatBehaviour : MonoBehaviour
     {
-        
+        private Moveable myMoveable;
+
+        private void Awake()
+        {
+            myMoveable = GetComponent<Moveable>();
+        }
+
+        public bool IsPlanetHostile()
+        {
+            GUIManager.Instance.AddActionLogMessage("Arrived at planet.");
+            return false;
+        }
     }
 }

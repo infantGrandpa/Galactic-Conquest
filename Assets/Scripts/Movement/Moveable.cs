@@ -1,5 +1,7 @@
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Abraham.GalacticConquest
 {
@@ -10,16 +12,18 @@ namespace Abraham.GalacticConquest
 
         public int movementApCost;
 
-        private PlanetSlotHandler currentPlanet = null;
+        [ReadOnly] public PlanetBehaviour currentPlanet = null;
 
-        public bool MoveToPlanet(PlanetSlotHandler targetPlanet)
+        public UnityEvent OnMoveCompleted;
+
+        public bool MoveToPlanet(PlanetBehaviour targetPlanet)
         {
             if (!CanMoveToTarget(targetPlanet))
             {
                 return false;
             }
 
-            Transform moveToTransform = targetPlanet.AddMoveableToAvailableSlot(this);
+            Transform moveToTransform = targetPlanet.PlanetSlotHandler.AddMoveableToAvailableSlot(this);
             if (moveToTransform == null)
             {
                 GUIManager.Instance.AddActionLogMessage("Planet occupied. Movement Cancelled.");
@@ -32,14 +36,14 @@ namespace Abraham.GalacticConquest
             moveSequence.Append(transform.DOMove(moveToTransform.position, moveTweenDuration, false).SetEase(Ease.InOutExpo));
 
             //Remove from old planet
-            currentPlanet?.RemoveMoveableFromSlot(this);
+            currentPlanet?.PlanetSlotHandler.RemoveMoveableFromSlot(this);
 
             //Move successful
             currentPlanet = targetPlanet;
             return true;
         }
 
-        public bool CanMoveToTarget(PlanetSlotHandler targetPlanet)
+        public bool CanMoveToTarget(PlanetBehaviour targetPlanet)
         {
             if (targetPlanet == currentPlanet)
             {
@@ -47,7 +51,7 @@ namespace Abraham.GalacticConquest
                 return false;
             }
 
-            if (!targetPlanet.AreAnySlotsAvailable())
+            if (!targetPlanet.PlanetSlotHandler.AreAnySlotsAvailable())
             {
                 //Planet is fully occupied. Cancel.
                 GUIManager.Instance.AddActionLogMessage("Planet occupied. Movement Cancelled.");

@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 133122592915136982}
   - component: {fileID: 3478086654662609687}
   - component: {fileID: 4678900628996214075}
+  - component: {fileID: 9218066816573345027}
   m_Layer: 0
   m_Name: pre_fleet
   m_TagString: Untagged
@@ -183,6 +184,9 @@ MonoBehaviour:
   lookTweenDuration: 0.25
   moveTweenDuration: 1
   movementApCost: 4
+  OnMoveCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4678900628996214075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +205,18 @@ MonoBehaviour:
   - {fileID: 5950524711204264390}
   uiImagesToChangeOnSetFaction:
   - {fileID: 7809400616985602527}
+--- !u!114 &9218066816573345027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851111968153162774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6c81db1e6c443418cf5686ea6aeab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0

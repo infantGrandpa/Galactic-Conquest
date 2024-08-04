@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3552822677226016053}
+  - component: {fileID: 7560300631888595443}
   - component: {fileID: -5318011949778153505}
+  - component: {fileID: 8847201062721222119}
   - component: {fileID: 5999652517984165282}
   - component: {fileID: 4936992261832728891}
   m_Layer: 9
@@ -38,6 +40,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7560300631888595443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091433258522064170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7913f32ca4e8a1f4ba502009b66d920a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: 
 --- !u!114 &-5318011949778153505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,6 +69,18 @@ MonoBehaviour:
   - {fileID: 7633612294656823278}
   - {fileID: 4105178593744126672}
   planetSlots: []
+--- !u!114 &8847201062721222119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091433258522064170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8cc07e9730c0342bd6de6e5380fec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5999652517984165282
 MonoBehaviour:
   m_ObjectHideFlags: 0

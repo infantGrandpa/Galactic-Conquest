@@ -51,7 +51,7 @@ namespace Abraham.GalacticConquest
 
             //Get target planet
             RaycastHit hitInfo = (RaycastHit)nullableHitInfo;   //Convert hit info so we can get the transform of the hit object
-            PlanetSlotHandler targetPlanet = hitInfo.transform.GetComponentInParent<PlanetSlotHandler>();
+            PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
             if (!targetPlanet)
             {
                 //Didn't click on a planet. Cancel.
