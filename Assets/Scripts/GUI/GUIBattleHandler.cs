@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace Abraham.GalacticConquest
 {
     public class GUIBattleHandler : MonoBehaviour
     {
+        [Header("UI Elements")]
         [SerializeField] Button attackerWonButton;
         private TMP_Text attackerButtonText;
 
@@ -14,6 +16,11 @@ namespace Abraham.GalacticConquest
 
         [SerializeField] TMP_Text descriptionText;
 
+
+        [Header("Tweening")]
+        [SerializeField] float secsToTweenScale;
+        [SerializeField] Ease showBoxEasing;
+        [SerializeField] Ease hideBoxEasing;
         private RectTransform battleHandlerTransform;
 
         private void Awake()
@@ -60,6 +67,8 @@ namespace Abraham.GalacticConquest
             defenderButtonText.text = defendingFaction.FactionName;
 
             gameObject.SetActive(true);
+            battleHandlerTransform.localScale = Vector2.zero;
+            battleHandlerTransform.DOScale(1, secsToTweenScale).SetEase(showBoxEasing);
         }
 
         public void AttackerWon()
@@ -76,7 +85,9 @@ namespace Abraham.GalacticConquest
 
         public void HideDialogBox()
         {
-            gameObject.SetActive(false);
+            battleHandlerTransform.DOScale(0, secsToTweenScale).SetEase(hideBoxEasing).OnComplete(
+                () => gameObject.SetActive(false)       //Set inactive when tween is completed
+            );
         }
     }
 }
