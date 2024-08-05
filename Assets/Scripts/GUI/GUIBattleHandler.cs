@@ -7,6 +7,7 @@ namespace Abraham.GalacticConquest
 {
     public class GUIBattleHandler : MonoBehaviour
     {
+        #region Variables
         [Header("UI Elements")]
         [SerializeField] Button attackerWonButton;
         private TMP_Text attackerButtonText;
@@ -16,12 +17,17 @@ namespace Abraham.GalacticConquest
 
         [SerializeField] TMP_Text descriptionText;
 
+        [Header("Text")]
+        [SerializeField] string spaceBattlePrefix = "Space Battle Over";
+        [SerializeField] string groundBattlePrefix = "Ground Invasion of";
+
 
         [Header("Tweening")]
         [SerializeField] float secsToTweenScale;
         [SerializeField] Ease showBoxEasing;
         [SerializeField] Ease hideBoxEasing;
         private RectTransform battleHandlerTransform;
+        #endregion
 
         private void Awake()
         {
@@ -44,47 +50,94 @@ namespace Abraham.GalacticConquest
 
             gameObject.SetActive(false); //Hide the gui battle handler
         }
-
-        public void ShowBattleDialogBox(Faction attackingFaction, Faction defendingFaction, PlanetBehaviour planetBehaviour)
+        public void ShowBattleDialogBox(Battle battleInfo)
         {
-            if (attackingFaction == null)
+            if (battleInfo == null)
             {
-                Debug.LogError("ERROR GUIBattleHander ShowBattleDialogBox(): The attacking faction is null.", this);
+                Debug.LogError("ERROR GUIBattleHandler ShowBattleDialogBox(): Provided battleInfo is null.");
                 return;
             }
 
-            if (defendingFaction == null)
-            {
-                Debug.LogError("ERROR GUIBattleHander ShowBattleDialogBox(): The defending faction is null.", this);
-                return;
-            }
+            Faction attackingFaction = GetAttackingFaction(battleInfo);
+            Faction defendingFaction = GetDefendingFaction(battleInfo);
 
-            descriptionText.text = "Space Battle Over " + planetBehaviour.planetName;
+            SetText(battleInfo);
+            SetButtons(attackingFaction, defendingFaction);
+
+            StartShowTween();
+        }
+
+        #region Get Dialog Box Info
+        private void SetText(Battle battleInfo)
+        {
+            string descPrefix = battleInfo.battleType == Battle.BattleType.SpaceBattle ? spaceBattlePrefix : groundBattlePrefix;
+            descriptionText.text = descPrefix + " " + battleInfo.battlePlanet.planetName;
+        }
+
+        private void SetButtons(Faction attackingFaction, Faction defendingFaction)
+        {
             attackerWonButton.image.color = attackingFaction.FactionColor;
             attackerButtonText.text = attackingFaction.FactionName;
 
             defenderWonButton.image.color = defendingFaction.FactionColor;
             defenderButtonText.text = defendingFaction.FactionName;
-
-            gameObject.SetActive(true);
-            battleHandlerTransform.localScale = Vector2.zero;
-            battleHandlerTransform.DOScale(1, secsToTweenScale).SetEase(showBoxEasing);
         }
 
-        public void ShowBattleDialogBox(Battle battleInfo)
+        private Faction GetAttackingFaction(Battle battleInfo)
         {
-            Faction attackingFaction = battleInfo.attackingFleet.FactionHandler.myFaction;
-            Faction defendingFaction;
+            #region Validation
+            if (battleInfo.attackingFleet == null)
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetAttackingFaction(): Provided battleInfo has no attacking fleet.");
+                return null;
+            }
+
+            if (battleInfo.attackingFleet.FactionHandler == null)
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetAttackingFaction(): Provided attacking fleet has no faction handler.");
+                return null;
+            }
+
+            if (battleInfo.attackingFleet.FactionHandler.myFaction == null)
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetAttackingFaction(): Provided attacking fleet's faction handler is missing a faction.");
+                return null;
+            }
+            #endregion
+
+            return battleInfo.attackingFleet.FactionHandler.myFaction;
+        }
+
+        private Faction GetDefendingFaction(Battle battleInfo)
+        {
+            #region Validation
+            if (battleInfo.battlePlanet == null)
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battleInfo has no battle planet.");
+                return null;
+            }
+
+            if (battleInfo.battlePlanet.FactionHandler == null)
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battle planet has no faction handler.");
+                return null;
+            }
+
+            if (battleInfo.battlePlanet.FactionHandler.myFaction == null)
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battle planet's faction handler is missing a faction.");
+                return null;
+            }
+            #endregion
+
             if (battleInfo.battleType == Battle.BattleType.GroundBattle)
             {
-                defendingFaction = battleInfo.battlePlanet.FactionHandler.myFaction;
+                return battleInfo.battlePlanet.FactionHandler.myFaction;
             }
-            else
-            {
-                defendingFaction = battleInfo.defendingFleet.FactionHandler.myFaction;
-            }
-            ShowBattleDialogBox(attackingFaction, defendingFaction, battleInfo.battlePlanet);
+
+            return battleInfo.defendingFleet.FactionHandler.myFaction;
         }
+        #endregion
 
         public void AttackerWon()
         {
@@ -96,6 +149,13 @@ namespace Abraham.GalacticConquest
         {
             BattleManager.Instance.DefenderWon();
             HideDialogBox();
+        }
+
+        private void StartShowTween()
+        {
+            gameObject.SetActive(true);
+            battleHandlerTransform.localScale = Vector2.zero;
+            battleHandlerTransform.DOScale(1, secsToTweenScale).SetEase(showBoxEasing);
         }
 
         public void HideDialogBox()

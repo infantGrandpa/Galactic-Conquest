@@ -6,9 +6,7 @@ namespace Abraham.GalacticConquest
     {
         public void StartSpaceBattle(Battle battleInfo)
         {
-            Faction attackingFaction = battleInfo.attackingFleet.FactionHandler.myFaction;
-            Faction defendingFaction = battleInfo.defendingFleet.FactionHandler.myFaction;
-            GUIManager.Instance.ShowBattleDialogBox(attackingFaction, defendingFaction, battleInfo.battlePlanet);
+            GUIManager.Instance.ShowBattleDialogBox(battleInfo);
         }
 
     }

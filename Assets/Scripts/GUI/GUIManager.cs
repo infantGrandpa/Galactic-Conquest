@@ -45,11 +45,6 @@ namespace Abraham.GalacticConquest
             actionLogHandler.AddLogMessage(newMessage);
         }
 
-        public void ShowBattleDialogBox(Faction attackingFaction, Faction defendingFaction, PlanetBehaviour planetBehaviour)
-        {
-            guiBattleHandler.ShowBattleDialogBox(attackingFaction, defendingFaction, planetBehaviour);
-        }
-
         public void ShowBattleDialogBox(Battle battleInfo)
         {
             guiBattleHandler.ShowBattleDialogBox(battleInfo);
