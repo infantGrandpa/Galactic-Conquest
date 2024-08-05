@@ -7,9 +7,15 @@ namespace Abraham.GalacticConquest
     {
         public FactionHandler MyFaction { get; private set; }
 
+        public IDamageable HealthSystem { get; private set; }
+
+        private FleetCombatBehaviour combatBehaviour;
+
         private void Awake()
         {
             MyFaction = GetComponent<FactionHandler>();
+            HealthSystem = GetComponent<IDamageable>();
+            combatBehaviour = GetComponent<FleetCombatBehaviour>();
         }
 
         public void FleetArrivedAtPlanet(PlanetBehaviour targetPlanet)
@@ -40,6 +46,16 @@ namespace Abraham.GalacticConquest
                 GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + targetPlanet.planetName + "...");
                 BattleHandler.Instance.StartBattle(this, enemyFleetBehaviour, targetPlanet);
             }
+        }
+
+        public void DamageTargetFleet(FleetBehaviour targetFleet)
+        {
+            if (combatBehaviour == null)
+            {
+                Debug.LogError("ERROR FleetBehaviour DamageTargetFleet(): This fleet (" + gameObject.name + ") does not have a FleetCombatBehaviour component.", this);
+                return;
+            }
+            combatBehaviour.DamageTarget(targetFleet);
         }
     }
 }

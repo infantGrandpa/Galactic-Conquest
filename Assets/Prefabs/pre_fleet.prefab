@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e6c81db1e6c443418cf5686ea6aeab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageToDeal: 100
 --- !u!114 &7847030500744036283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,14 +230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  destroyOn0Health: 1
+  isInvulnerable: 0
   onTakeDamageEvent:
     m_PersistentCalls:
       m_Calls: []
-  destroyOn0Health: 1
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
-  isInvulnerable: 0
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0

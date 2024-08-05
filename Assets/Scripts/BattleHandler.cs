@@ -46,6 +46,10 @@ namespace Abraham.GalacticConquest
         private void ResolveBattle(FleetBehaviour winningFleet)
         {
             string factionName = winningFleet.MyFaction.myFaction.FactionName;
+
+            FleetBehaviour losingFleet = winningFleet == attackingFleet ? defendingFleet : attackingFleet;
+            winningFleet.DamageTargetFleet(losingFleet);
+
             GUIManager.Instance.AddActionLogMessage(factionName + " fleet won the battle over " + battlePlanet.planetName + "!");
             ClearBattleDetails();
         }
