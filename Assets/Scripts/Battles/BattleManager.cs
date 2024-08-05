@@ -19,23 +19,18 @@ namespace Abraham.GalacticConquest
             }
         }
         private static BattleManager instance;
-        public bool OngoingBattle { get; private set; }
         public Battle currentBattle { get; private set; }
 
         private SpaceBattleHandler spaceBattleHandler;
 
         private void Awake()
         {
-            OngoingBattle = false;
             spaceBattleHandler = GetComponent<SpaceBattleHandler>();
-
         }
 
         public void StartSpaceBattle(FleetBehaviour attackingFleet, FleetBehaviour defendingFleet, PlanetBehaviour planetBehaviour)
         {
             currentBattle = new Battle(attackingFleet, defendingFleet, planetBehaviour);
-
-            OngoingBattle = true;
             spaceBattleHandler.StartSpaceBattle(currentBattle);
         }
 
@@ -64,7 +59,6 @@ namespace Abraham.GalacticConquest
         private void ClearBattleDetails()
         {
             currentBattle = null;
-            OngoingBattle = false;
         }
 
     }
