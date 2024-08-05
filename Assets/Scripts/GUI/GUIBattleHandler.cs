@@ -73,13 +73,13 @@ namespace Abraham.GalacticConquest
 
         public void AttackerWon()
         {
-            BattleHandler.Instance.AttackerWon();
+            BattleManager.Instance.AttackerWon();
             HideDialogBox();
         }
 
         public void DefenderWon()
         {
-            BattleHandler.Instance.DefenderWon();
+            BattleManager.Instance.DefenderWon();
             HideDialogBox();
         }
 
