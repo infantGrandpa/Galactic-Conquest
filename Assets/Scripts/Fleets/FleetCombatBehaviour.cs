@@ -40,5 +40,10 @@ namespace Abraham.GalacticConquest
             GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + planet.planetName + "...");
             BattleHandler.Instance.StartBattle(myFleetBehaviour, enemyFleetBehaviour, planet);
         }
+
+        public void StartGroundBattle(FleetBehaviour myFleetBehaviour, PlanetBehaviour targetPlanet)
+        {
+            GUIManager.Instance.AddActionLogMessage("Invading " + targetPlanet.planetName + "...");
+        }
     }
 }

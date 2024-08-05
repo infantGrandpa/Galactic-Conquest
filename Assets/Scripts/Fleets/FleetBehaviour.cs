@@ -26,10 +26,17 @@ namespace Abraham.GalacticConquest
                 return;
             }
 
-            CheckForSpaceBattle(targetPlanet);
+            bool spaceBattleStarted = CheckForSpaceBattle(targetPlanet);
+
+            if (spaceBattleStarted)
+            {
+                return;
+            }
+
+            CheckForGroundBattle(targetPlanet);
         }
 
-        private void CheckForSpaceBattle(PlanetBehaviour targetPlanet)
+        private bool CheckForSpaceBattle(PlanetBehaviour targetPlanet)
         {
             List<Moveable> moveablesAtPlanet = targetPlanet.PlanetSlotHandler.GetAllMoveablesAtPlanet();
 
@@ -55,7 +62,29 @@ namespace Abraham.GalacticConquest
                 }
 
                 combatBehaviour.StartSpaceBattle(this, enemyFleetBehaviour, targetPlanet);
+                return true;        //This means only 1 space battle can be started at a time. Not sure if that'll ever be an issue.
             }
+
+            //No space battle
+            return false;
+        }
+
+        private bool CheckForGroundBattle(PlanetBehaviour targetPlanet)
+        {
+            if (targetPlanet.FactionHandler == null)
+            {
+                Debug.LogError("ERROR FleetBehaviour CheckForGroundBattle(): Planet (" + targetPlanet.gameObject.name + ") does not have a faction handler component assigned.");
+                return false;
+            }
+
+            if (!FactionHandler.IsEnemyFaction(targetPlanet.FactionHandler.myFaction))
+            {
+                //Not enemy faction
+                return false;
+            }
+
+            combatBehaviour.StartGroundBattle(this, targetPlanet);
+            return true;
         }
 
         public void DamageTargetFleet(FleetBehaviour targetFleet)
