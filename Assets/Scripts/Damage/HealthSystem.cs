@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -37,6 +38,16 @@ namespace Abraham.GalacticConquest
             {
                 Die();
             }
+        }
+
+        public void Heal(int healAmount)
+        {
+            CurrentHealth += Math.Clamp(healAmount, 0, maxHealth);
+        }
+
+        public void HealFully()
+        {
+            CurrentHealth = maxHealth;
         }
 
         private void Die()

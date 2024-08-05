@@ -21,7 +21,7 @@ namespace Abraham.GalacticConquest
         {
             if (target == null)
             {
-                Debug.LogError("ERROR CombatBehaviour DamageTarget(): Target Fleet is null.");
+                Debug.LogError("ERROR CombatBehaviour DamageTarget(): Target is null.");
                 return;
             }
 

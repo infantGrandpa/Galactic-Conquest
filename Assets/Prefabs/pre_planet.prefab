@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8847201062721222119}
   - component: {fileID: 5999652517984165282}
   - component: {fileID: 4936992261832728891}
+  - component: {fileID: 6502950007264611155}
   m_Layer: 9
   m_Name: pre_planet
   m_TagString: Untagged
@@ -81,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8cc07e9730c0342bd6de6e5380fec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageToDeal: 100
 --- !u!114 &5999652517984165282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +113,40 @@ MonoBehaviour:
   - {fileID: 6969439921661042112}
   uiImagesToChangeOnSetFaction:
   - {fileID: 98541115137625236}
+--- !u!114 &6502950007264611155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091433258522064170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc29478758ae5fc4eb7acf7c65c3d028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  destroyOn0Health: 0
+  isInvulnerable: 0
+  onTakeDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8847201062721222119}
+        m_TargetAssemblyTypeName: Abraham.GalacticConquest.PlanetCombatBehaviour,
+          Assembly-CSharp
+        m_MethodName: CapturePlanet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3379968224065540479
 GameObject:
   m_ObjectHideFlags: 0

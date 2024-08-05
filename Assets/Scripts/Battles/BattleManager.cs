@@ -32,13 +32,18 @@ namespace Abraham.GalacticConquest
 
         public void StartSpaceBattle(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
         {
-            CurrentBattle = new Battle(attacker, defender, planet);
+            CurrentBattle = new Battle(attacker, defender, planet, Battle.BattleType.SpaceBattle);
             spaceBattleHandler.StartSpaceBattle(CurrentBattle);
         }
 
         public void StartGroundBattle(CombatantBehaviour attacker, PlanetBehaviour planet)
         {
-            CurrentBattle = new Battle(attacker, planet);
+            if (!planet.TryGetComponent(out CombatantBehaviour defender))
+            {
+                Debug.LogError("ERROR BattleManger StartGroundBattle(): Planet is missing a CombatantBehaviour and cannot participate in a ground battle.", this);
+                return;
+            }
+            CurrentBattle = new Battle(attacker, defender, planet, Battle.BattleType.GroundBattle);
             groundBattleHandler.StartGroundBattle(CurrentBattle);
         }
 

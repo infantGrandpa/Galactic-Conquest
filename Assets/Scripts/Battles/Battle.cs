@@ -17,21 +17,12 @@ namespace Abraham.GalacticConquest
         public PlanetBehaviour battlePlanet;
         public BattleType battleType;
 
-        // Constructor for ground battles
-        public Battle(CombatantBehaviour attacker, PlanetBehaviour planet)
-        {
-            this.attacker = attacker;
-            this.battlePlanet = planet;
-            this.battleType = BattleType.GroundBattle;
-        }
-
-        // Constructor for space battles
-        public Battle(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
+        public Battle(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour battlePlanet, BattleType battleType)
         {
             this.attacker = attacker;
             this.defender = defender;
-            this.battlePlanet = planet;
-            this.battleType = BattleType.SpaceBattle;
+            this.battlePlanet = battlePlanet;
+            this.battleType = battleType;
         }
     }
 }
