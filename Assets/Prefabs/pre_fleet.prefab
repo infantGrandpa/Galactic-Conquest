@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 7847030500744036283}
   - component: {fileID: 133122592915136982}
   - component: {fileID: 4678900628996214075}
+  - component: {fileID: 5440470072820585767}
   m_Layer: 0
   m_Name: pre_fleet
   m_TagString: Untagged
@@ -184,9 +185,6 @@ MonoBehaviour:
   moveTweenDuration: 1
   movementApCost: 3
   currentPlanet: {fileID: 0}
-  OnMoveCompleted:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &133122592915136982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +216,27 @@ MonoBehaviour:
   - {fileID: 5950524711204264390}
   uiImagesToChangeOnSetFaction:
   - {fileID: 7809400616985602527}
+--- !u!114 &5440470072820585767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851111968153162774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc29478758ae5fc4eb7acf7c65c3d028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  onTakeDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  destroyOn0Health: 1
+  onDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  isInvulnerable: 0
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0
