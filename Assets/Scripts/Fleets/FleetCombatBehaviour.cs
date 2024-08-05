@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest
@@ -32,6 +33,12 @@ namespace Abraham.GalacticConquest
             }
 
             DamageTarget(targetFleet.HealthSystem);
+        }
+
+        public void StartSpaceBattle(FleetBehaviour myFleetBehaviour, FleetBehaviour enemyFleetBehaviour, PlanetBehaviour planet)
+        {
+            GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + planet.planetName + "...");
+            BattleHandler.Instance.StartBattle(myFleetBehaviour, enemyFleetBehaviour, planet);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Abraham.GalacticConquest
             attackingFleet = newAttackingFleet;
             defendingFleet = newDefendingFleet;
             battlePlanet = planetBehaviour;
-            GUIManager.Instance.ShowBattleDialogBox(attackingFleet.MyFaction.myFaction, defendingFleet.MyFaction.myFaction, battlePlanet);
+            GUIManager.Instance.ShowBattleDialogBox(attackingFleet.FactionHandler.myFaction, defendingFleet.FactionHandler.myFaction, battlePlanet);
         }
 
         public void AttackerWon()
@@ -45,7 +45,7 @@ namespace Abraham.GalacticConquest
 
         private void ResolveBattle(FleetBehaviour winningFleet)
         {
-            string factionName = winningFleet.MyFaction.myFaction.FactionName;
+            string factionName = winningFleet.FactionHandler.myFaction.FactionName;
 
             FleetBehaviour losingFleet = winningFleet == attackingFleet ? defendingFleet : attackingFleet;
             winningFleet.DamageTargetFleet(losingFleet);

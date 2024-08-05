@@ -5,7 +5,7 @@ namespace Abraham.GalacticConquest
 {
     public class FleetBehaviour : MonoBehaviour
     {
-        public FactionHandler MyFaction { get; private set; }
+        public FactionHandler FactionHandler { get; private set; }
 
         public IDamageable HealthSystem { get; private set; }
 
@@ -13,12 +13,23 @@ namespace Abraham.GalacticConquest
 
         private void Awake()
         {
-            MyFaction = GetComponent<FactionHandler>();
+            FactionHandler = GetComponent<FactionHandler>();
             HealthSystem = GetComponent<IDamageable>();
             combatBehaviour = GetComponent<FleetCombatBehaviour>();
         }
 
         public void FleetArrivedAtPlanet(PlanetBehaviour targetPlanet)
+        {
+            if (targetPlanet == null)
+            {
+                Debug.LogError("ERROR FleetBehaviour FleetArrivedAtPlanet(): Fleet (" + gameObject.name + ") cannot arrive at planet because the provided planet is null.");
+                return;
+            }
+
+            CheckForSpaceBattle(targetPlanet);
+        }
+
+        private void CheckForSpaceBattle(PlanetBehaviour targetPlanet)
         {
             List<Moveable> moveablesAtPlanet = targetPlanet.PlanetSlotHandler.GetAllMoveablesAtPlanet();
 
@@ -31,7 +42,7 @@ namespace Abraham.GalacticConquest
                     continue;
                 }
 
-                if (!MyFaction.IsEnemyFaction(moveableFaction.myFaction))
+                if (!FactionHandler.IsEnemyFaction(moveableFaction.myFaction))
                 {
                     //Not enemy faction
                     continue;
@@ -43,8 +54,7 @@ namespace Abraham.GalacticConquest
                     continue;
                 }
 
-                GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + targetPlanet.planetName + "...");
-                BattleHandler.Instance.StartBattle(this, enemyFleetBehaviour, targetPlanet);
+                combatBehaviour.StartSpaceBattle(this, enemyFleetBehaviour, targetPlanet);
             }
         }
 
