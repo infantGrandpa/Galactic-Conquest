@@ -60,6 +60,13 @@ namespace Abraham.GalacticConquest
         private void ResolveBattle(CombatantBehaviour winner)
         {
             CombatantBehaviour loser = winner == CurrentBattle.attacker ? CurrentBattle.defender : CurrentBattle.attacker;
+
+            if (CurrentBattle.battleType == Battle.BattleType.GroundBattle && loser is PlanetCombatBehaviour)
+            {
+                PlanetCombatBehaviour loserPlanet = (PlanetCombatBehaviour)loser;
+                loserPlanet.PrepareForInvasion(winner);
+            }
+
             winner.DamageTarget(loser);
             PrintWinMessage(winner);
             ClearBattleDetails();

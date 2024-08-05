@@ -753,6 +753,8 @@ MonoBehaviour:
   attackerWonButton: {fileID: 2026770916}
   defenderWonButton: {fileID: 1659057430}
   descriptionText: {fileID: 2062805881}
+  spaceBattlePrefix: Space Battle Over
+  groundBattlePrefix: Ground Invasion of
   secsToTweenScale: 0.3
   showBoxEasing: 27
   hideBoxEasing: 26
@@ -1056,7 +1058,7 @@ MonoBehaviour:
   turnHandler: {fileID: 65105251}
   actionPointHandler: {fileID: 1760930797}
   actionLogHandler: {fileID: 241162726}
-  battleHander: {fileID: 254310459}
+  guiBattleHandler: {fileID: 254310459}
 --- !u!1 &599199070
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,6 +3562,7 @@ GameObject:
   - component: {fileID: 1976774654}
   - component: {fileID: 1976774656}
   - component: {fileID: 1976774655}
+  - component: {fileID: 1976774657}
   m_Layer: 0
   m_Name: '@BattleManager'
   m_TagString: Untagged
@@ -3604,6 +3607,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c1ca9e2e3b4da941b6febc6706d9cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1976774657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976774653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bf7577ccc3f04428920511aae15c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2002004147
