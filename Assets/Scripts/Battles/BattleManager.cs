@@ -19,7 +19,7 @@ namespace Abraham.GalacticConquest
             }
         }
         private static BattleManager instance;
-        public Battle currentBattle { get; private set; }
+        public Battle CurrentBattle { get; private set; }
 
         private SpaceBattleHandler spaceBattleHandler;
 
@@ -30,27 +30,27 @@ namespace Abraham.GalacticConquest
 
         public void StartSpaceBattle(FleetBehaviour attackingFleet, FleetBehaviour defendingFleet, PlanetBehaviour planetBehaviour)
         {
-            currentBattle = new Battle(attackingFleet, defendingFleet, planetBehaviour);
-            spaceBattleHandler.StartSpaceBattle(currentBattle);
+            CurrentBattle = new Battle(attackingFleet, defendingFleet, planetBehaviour);
+            spaceBattleHandler.StartSpaceBattle(CurrentBattle);
         }
 
         public void AttackerWon()
         {
-            ResolveBattle(currentBattle.attackingFleet);
+            ResolveBattle(CurrentBattle.attackingFleet);
         }
 
         public void DefenderWon()
         {
-            ResolveBattle(currentBattle.defendingFleet);
+            ResolveBattle(CurrentBattle.defendingFleet);
         }
 
         private void ResolveBattle(FleetBehaviour winningFleet)
         {
-            FleetBehaviour losingFleet = winningFleet == currentBattle.attackingFleet ? currentBattle.defendingFleet : currentBattle.attackingFleet;
+            FleetBehaviour losingFleet = winningFleet == CurrentBattle.attackingFleet ? CurrentBattle.defendingFleet : CurrentBattle.attackingFleet;
             winningFleet.DamageTargetFleet(losingFleet);
 
             string factionName = winningFleet.FactionHandler.myFaction.FactionName;
-            string planetName = currentBattle.battlePlanet.planetName;
+            string planetName = CurrentBattle.battlePlanet.planetName;
             GUIManager.Instance.AddActionLogMessage(factionName + " fleet won the battle over " + planetName + "!");
 
             ClearBattleDetails();
@@ -58,7 +58,7 @@ namespace Abraham.GalacticConquest
 
         private void ClearBattleDetails()
         {
-            currentBattle = null;
+            CurrentBattle = null;
         }
 
     }

@@ -65,7 +65,7 @@ namespace Abraham.GalacticConquest
 
                 combatBehaviour.StartSpaceBattle(this, enemyFleetBehaviour, targetPlanet);
                 //Wait for battle to be resolved
-                while (BattleManager.Instance.currentBattle != null)
+                while (BattleManager.Instance.CurrentBattle != null)
                 {
                     yield return null;
                 }
