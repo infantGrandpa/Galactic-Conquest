@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,18 +27,23 @@ namespace Abraham.GalacticConquest
                 return;
             }
 
-            bool spaceBattleStarted = CheckForSpaceBattle(targetPlanet);
-
-            if (spaceBattleStarted)
-            {
-                return;
-            }
-
-            CheckForGroundBattle(targetPlanet);
+            StartCoroutine(CheckForBattles(targetPlanet));
         }
 
-        private bool CheckForSpaceBattle(PlanetBehaviour targetPlanet)
+        public void DamageTargetFleet(FleetBehaviour targetFleet)
         {
+            if (combatBehaviour == null)
+            {
+                Debug.LogError("ERROR FleetBehaviour DamageTargetFleet(): This fleet (" + gameObject.name + ") does not have a FleetCombatBehaviour component.", this);
+                return;
+            }
+            combatBehaviour.DamageTarget(targetFleet);
+        }
+
+        private IEnumerator CheckForBattles(PlanetBehaviour targetPlanet)
+        {
+
+            //Check for space battles
             List<Moveable> moveablesAtPlanet = targetPlanet.PlanetSlotHandler.GetAllMoveablesAtPlanet();
 
             foreach (Moveable thisMoveable in moveablesAtPlanet)
@@ -62,39 +68,28 @@ namespace Abraham.GalacticConquest
                 }
 
                 combatBehaviour.StartSpaceBattle(this, enemyFleetBehaviour, targetPlanet);
-                return true;        //This means only 1 space battle can be started at a time. Not sure if that'll ever be an issue.
+                //Wait for battle to be resolved
+                while (BattleHandler.Instance.OngoingBattle)
+                {
+                    yield return null;
+                }
             }
 
-            //No space battle
-            return false;
-        }
-
-        private bool CheckForGroundBattle(PlanetBehaviour targetPlanet)
-        {
+            //Check for ground battles
             if (targetPlanet.FactionHandler == null)
             {
                 Debug.LogError("ERROR FleetBehaviour CheckForGroundBattle(): Planet (" + targetPlanet.gameObject.name + ") does not have a faction handler component assigned.");
-                return false;
+                yield break;
             }
 
             if (!FactionHandler.IsEnemyFaction(targetPlanet.FactionHandler.myFaction))
             {
                 //Not enemy faction
-                return false;
+                yield break;
             }
 
             combatBehaviour.StartGroundBattle(this, targetPlanet);
-            return true;
-        }
-
-        public void DamageTargetFleet(FleetBehaviour targetFleet)
-        {
-            if (combatBehaviour == null)
-            {
-                Debug.LogError("ERROR FleetBehaviour DamageTargetFleet(): This fleet (" + gameObject.name + ") does not have a FleetCombatBehaviour component.", this);
-                return;
-            }
-            combatBehaviour.DamageTarget(targetFleet);
+            GUIManager.Instance.AddActionLogMessage("No battles at " + targetPlanet.planetName);
         }
     }
 }

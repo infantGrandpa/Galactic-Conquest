@@ -25,8 +25,17 @@ namespace Abraham.GalacticConquest
 
         private PlanetBehaviour battlePlanet;
 
+        public bool OngoingBattle { get; private set; }
+
+        private void Start()
+        {
+            OngoingBattle = false;
+        }
+
         public void StartBattle(FleetBehaviour newAttackingFleet, FleetBehaviour newDefendingFleet, PlanetBehaviour planetBehaviour)
         {
+            OngoingBattle = true;
+
             attackingFleet = newAttackingFleet;
             defendingFleet = newDefendingFleet;
             battlePlanet = planetBehaviour;
@@ -59,6 +68,8 @@ namespace Abraham.GalacticConquest
             attackingFleet = null;
             defendingFleet = null;
             battlePlanet = null;
+
+            OngoingBattle = false;
         }
     }
 }
