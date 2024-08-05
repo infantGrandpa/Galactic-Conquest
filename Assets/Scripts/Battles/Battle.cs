@@ -12,25 +12,25 @@ namespace Abraham.GalacticConquest
             GroundBattle
         }
 
-        public FleetBehaviour attackingFleet;
-        public FleetBehaviour defendingFleet;
+        public CombatantBehaviour attacker;
+        public CombatantBehaviour defender;
         public PlanetBehaviour battlePlanet;
         public BattleType battleType;
 
         // Constructor for ground battles
-        public Battle(FleetBehaviour attackingFleet, PlanetBehaviour planetBehaviour)
+        public Battle(CombatantBehaviour attacker, PlanetBehaviour planet)
         {
-            this.attackingFleet = attackingFleet;
-            this.battlePlanet = planetBehaviour;
+            this.attacker = attacker;
+            this.battlePlanet = planet;
             this.battleType = BattleType.GroundBattle;
         }
 
         // Constructor for space battles
-        public Battle(FleetBehaviour attackingFleet, FleetBehaviour defendingFleet, PlanetBehaviour planetBehaviour)
+        public Battle(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
         {
-            this.attackingFleet = attackingFleet;
-            this.defendingFleet = defendingFleet;
-            this.battlePlanet = planetBehaviour;
+            this.attacker = attacker;
+            this.defender = defender;
+            this.battlePlanet = planet;
             this.battleType = BattleType.SpaceBattle;
         }
     }

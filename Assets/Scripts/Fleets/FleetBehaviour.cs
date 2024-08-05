@@ -30,14 +30,14 @@ namespace Abraham.GalacticConquest
             StartCoroutine(CheckForBattles(targetPlanet));
         }
 
-        public void DamageTargetFleet(FleetBehaviour targetFleet)
+        public void DamageTargetFleet(CombatantBehaviour target)
         {
             if (combatBehaviour == null)
             {
                 Debug.LogError("ERROR FleetBehaviour DamageTargetFleet(): This fleet (" + gameObject.name + ") does not have a FleetCombatBehaviour component.", this);
                 return;
             }
-            combatBehaviour.DamageTarget(targetFleet);
+            combatBehaviour.DamageTarget(target);
         }
 
         private IEnumerator CheckForBattles(PlanetBehaviour targetPlanet)
@@ -63,7 +63,7 @@ namespace Abraham.GalacticConquest
                     continue;
                 }
 
-                combatBehaviour.StartSpaceBattle(this, enemyFleetBehaviour, targetPlanet);
+                combatBehaviour.StartSpaceBattle(enemyFleetBehaviour, targetPlanet);
                 //Wait for battle to be resolved
                 while (BattleManager.Instance.CurrentBattle != null)
                 {
@@ -87,8 +87,12 @@ namespace Abraham.GalacticConquest
                 yield break;
             }
 
-            combatBehaviour.StartGroundBattle(this, targetPlanet);
-            yield return new WaitForSeconds(1.5f);
+            combatBehaviour.StartGroundBattle(targetPlanet);
+            //Wait for battle to be resolved
+            while (BattleManager.Instance.CurrentBattle != null)
+            {
+                yield return null;
+            }
 
             GUIManager.Instance.AddActionLogMessage(targetPlanet.planetName + " has been captured!");
         }

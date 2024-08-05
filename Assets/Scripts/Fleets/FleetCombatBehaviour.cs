@@ -3,48 +3,24 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest
 {
-    public class FleetCombatBehaviour : MonoBehaviour
+    public class FleetCombatBehaviour : CombatantBehaviour
     {
-        public int damageToDeal;
-
-        public void DamageTarget(IDamageable damageableTarget)
+        public void StartSpaceBattle(FleetBehaviour enemyFleetBehaviour, PlanetBehaviour planet)
         {
-            if (damageableTarget == null)
+            if (!enemyFleetBehaviour.TryGetComponent(out CombatantBehaviour enemyCombatant))
             {
-                Debug.LogError("ERROR FleetCombatBehaviour DamageTarget(): Provided damageableTarget is null.");
+                Debug.LogError("ERROR FleetCombatBehaviour StartSpaceBattle(): Enemy fleet behaviour is missing Combatant Behaviour.");
                 return;
             }
 
-            damageableTarget.TakeDamage(damageToDeal);
-        }
-
-        public void DamageTarget(FleetBehaviour targetFleet)
-        {
-            if (targetFleet == null)
-            {
-                Debug.LogError("ERROR FleetCombatBehaviour DamageTarget(): Target Fleet is null.");
-                return;
-            }
-
-            if (targetFleet.HealthSystem == null)
-            {
-                Debug.LogError("ERROR FleetCombatBehaviour DamageTarget(): Target Fleet (" + targetFleet.gameObject.name + ") is missing an IDamagable component.");
-                return;
-            }
-
-            DamageTarget(targetFleet.HealthSystem);
-        }
-
-        public void StartSpaceBattle(FleetBehaviour myFleetBehaviour, FleetBehaviour enemyFleetBehaviour, PlanetBehaviour planet)
-        {
             GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + planet.planetName + "...");
-            BattleManager.Instance.StartSpaceBattle(myFleetBehaviour, enemyFleetBehaviour, planet);
+            BattleManager.Instance.StartSpaceBattle(this, enemyCombatant, planet);
         }
 
-        public void StartGroundBattle(FleetBehaviour myFleetBehaviour, PlanetBehaviour targetPlanet)
+        public void StartGroundBattle(PlanetBehaviour targetPlanet)
         {
             GUIManager.Instance.AddActionLogMessage("Invading " + targetPlanet.planetName + "...");
-            BattleManager.Instance.StartGroundBattle(myFleetBehaviour, targetPlanet);
+            BattleManager.Instance.StartGroundBattle(this, targetPlanet);
         }
     }
 }

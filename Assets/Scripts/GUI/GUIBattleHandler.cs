@@ -86,56 +86,77 @@ namespace Abraham.GalacticConquest
         private Faction GetAttackingFaction(Battle battleInfo)
         {
             #region Validation
-            if (battleInfo.attackingFleet == null)
+            if (battleInfo.attacker == null)
             {
                 Debug.LogError("ERROR GUIBattleHandler GetAttackingFaction(): Provided battleInfo has no attacking fleet.");
                 return null;
             }
 
-            if (battleInfo.attackingFleet.FactionHandler == null)
+            if (!battleInfo.attacker.TryGetComponent(out FactionHandler attackerFactionHandler))
             {
                 Debug.LogError("ERROR GUIBattleHandler GetAttackingFaction(): Provided attacking fleet has no faction handler.");
                 return null;
             }
 
-            if (battleInfo.attackingFleet.FactionHandler.myFaction == null)
+            if (attackerFactionHandler.myFaction == null)
             {
                 Debug.LogError("ERROR GUIBattleHandler GetAttackingFaction(): Provided attacking fleet's faction handler is missing a faction.");
                 return null;
             }
             #endregion
 
-            return battleInfo.attackingFleet.FactionHandler.myFaction;
+            return attackerFactionHandler.myFaction;
         }
 
         private Faction GetDefendingFaction(Battle battleInfo)
         {
-            #region Validation
-            if (battleInfo.battlePlanet == null)
+            #region Get Planet Faction
+            if (battleInfo.battleType == Battle.BattleType.GroundBattle)
             {
-                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battleInfo has no battle planet.");
-                return null;
-            }
+                if (battleInfo.battlePlanet == null)
+                {
+                    Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battleInfo has no battle planet.");
+                    return null;
+                }
 
-            if (battleInfo.battlePlanet.FactionHandler == null)
-            {
-                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battle planet has no faction handler.");
-                return null;
-            }
+                if (battleInfo.battlePlanet.FactionHandler == null)
+                {
+                    Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battle planet has no faction handler.");
+                    return null;
+                }
 
-            if (battleInfo.battlePlanet.FactionHandler.myFaction == null)
-            {
-                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battle planet's faction handler is missing a faction.");
-                return null;
+                if (battleInfo.battlePlanet.FactionHandler.myFaction == null)
+                {
+                    Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battle planet's faction handler is missing a faction.");
+                    return null;
+                }
+
+                return battleInfo.battlePlanet.FactionHandler.myFaction;
             }
             #endregion
 
-            if (battleInfo.battleType == Battle.BattleType.GroundBattle)
+            //TODO: Change defender to work with planets
+            #region Get Defender Faction
+            if (battleInfo.defender == null)
             {
-                return battleInfo.battlePlanet.FactionHandler.myFaction;
+                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided battleInfo has no defending fleet.");
+                return null;
             }
 
-            return battleInfo.defendingFleet.FactionHandler.myFaction;
+            if (!battleInfo.defender.TryGetComponent(out FactionHandler defenderFactionHandler))
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided defending fleet has no faction handler.");
+                return null;
+            }
+
+            if (defenderFactionHandler.myFaction == null)
+            {
+                Debug.LogError("ERROR GUIBattleHandler GetDefendingFaction(): Provided defending fleet's faction handler is missing a faction.");
+                return null;
+            }
+
+            return defenderFactionHandler.myFaction;
+            #endregion
         }
         #endregion
 

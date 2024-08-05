@@ -30,38 +30,45 @@ namespace Abraham.GalacticConquest
             groundBattleHandler = GetComponent<GroundBattleHandler>();
         }
 
-        public void StartSpaceBattle(FleetBehaviour attackingFleet, FleetBehaviour defendingFleet, PlanetBehaviour planetBehaviour)
+        public void StartSpaceBattle(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
         {
-            CurrentBattle = new Battle(attackingFleet, defendingFleet, planetBehaviour);
+            CurrentBattle = new Battle(attacker, defender, planet);
             spaceBattleHandler.StartSpaceBattle(CurrentBattle);
         }
 
-        public void StartGroundBattle(FleetBehaviour attackingFleet, PlanetBehaviour planetBehaviour)
+        public void StartGroundBattle(CombatantBehaviour attacker, PlanetBehaviour planet)
         {
-            CurrentBattle = new Battle(attackingFleet, planetBehaviour);
+            CurrentBattle = new Battle(attacker, planet);
             groundBattleHandler.StartGroundBattle(CurrentBattle);
         }
 
         public void AttackerWon()
         {
-            ResolveBattle(CurrentBattle.attackingFleet);
+            ResolveBattle(CurrentBattle.attacker);
         }
 
         public void DefenderWon()
         {
-            ResolveBattle(CurrentBattle.defendingFleet);
+            ResolveBattle(CurrentBattle.defender);
         }
 
-        private void ResolveBattle(FleetBehaviour winningFleet)
+        private void ResolveBattle(CombatantBehaviour winner)
         {
-            FleetBehaviour losingFleet = winningFleet == CurrentBattle.attackingFleet ? CurrentBattle.defendingFleet : CurrentBattle.attackingFleet;
-            winningFleet.DamageTargetFleet(losingFleet);
-
-            string factionName = winningFleet.FactionHandler.myFaction.FactionName;
-            string planetName = CurrentBattle.battlePlanet.planetName;
-            GUIManager.Instance.AddActionLogMessage(factionName + " fleet won the battle over " + planetName + "!");
-
+            CombatantBehaviour loser = winner == CurrentBattle.attacker ? CurrentBattle.defender : CurrentBattle.attacker;
+            winner.DamageTarget(loser);
+            PrintWinMessage(winner);
             ClearBattleDetails();
+        }
+
+        private void PrintWinMessage(CombatantBehaviour winner)
+        {
+            if (!winner.TryGetComponent(out FactionHandler winningFactionHandler))
+            {
+                Debug.LogWarning("BattleManager ResolveBattle(): Winner (" + winner.gameObject.name + ") does not have a FactionHandler component.");
+            }
+            string factionName = winningFactionHandler.myFaction.FactionName;
+            string planetName = CurrentBattle.battlePlanet.planetName;
+            GUIManager.Instance.AddActionLogMessage("The " + factionName + " won the battle at " + planetName + "!");
         }
 
         private void ClearBattleDetails()
