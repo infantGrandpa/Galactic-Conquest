@@ -22,16 +22,24 @@ namespace Abraham.GalacticConquest
         public Battle CurrentBattle { get; private set; }
 
         private SpaceBattleHandler spaceBattleHandler;
+        private GroundBattleHandler groundBattleHandler;
 
         private void Awake()
         {
             spaceBattleHandler = GetComponent<SpaceBattleHandler>();
+            groundBattleHandler = GetComponent<GroundBattleHandler>();
         }
 
         public void StartSpaceBattle(FleetBehaviour attackingFleet, FleetBehaviour defendingFleet, PlanetBehaviour planetBehaviour)
         {
             CurrentBattle = new Battle(attackingFleet, defendingFleet, planetBehaviour);
             spaceBattleHandler.StartSpaceBattle(CurrentBattle);
+        }
+
+        public void StartGroundBattle(FleetBehaviour attackingFleet, PlanetBehaviour planetBehaviour)
+        {
+            CurrentBattle = new Battle(attackingFleet, planetBehaviour);
+            groundBattleHandler.StartGroundBattle(CurrentBattle);
         }
 
         public void AttackerWon()

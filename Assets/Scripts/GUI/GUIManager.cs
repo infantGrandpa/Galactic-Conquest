@@ -23,11 +23,11 @@ namespace Abraham.GalacticConquest
         [SerializeField] GUITurnHandler turnHandler;
         [SerializeField] GUIActionPointHandler actionPointHandler;
         [SerializeField] GUIActionLogHandler actionLogHandler;
-        [SerializeField] GUIBattleHandler battleHander;
+        [SerializeField] GUIBattleHandler guiBattleHandler;
 
         private void Awake()
         {
-            battleHander.gameObject.SetActive(true);        //Activate the battle handler so it can assign all it's variables
+            guiBattleHandler.gameObject.SetActive(true);        //Activate the battle handler so it can assign all it's variables
         }
 
         public void ChangeTurn(string turnString)
@@ -47,7 +47,12 @@ namespace Abraham.GalacticConquest
 
         public void ShowBattleDialogBox(Faction attackingFaction, Faction defendingFaction, PlanetBehaviour planetBehaviour)
         {
-            battleHander.ShowBattleDialogBox(attackingFaction, defendingFaction, planetBehaviour);
+            guiBattleHandler.ShowBattleDialogBox(attackingFaction, defendingFaction, planetBehaviour);
+        }
+
+        public void ShowBattleDialogBox(Battle battleInfo)
+        {
+            guiBattleHandler.ShowBattleDialogBox(battleInfo);
         }
     }
 }

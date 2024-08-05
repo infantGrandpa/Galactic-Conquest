@@ -71,6 +71,21 @@ namespace Abraham.GalacticConquest
             battleHandlerTransform.DOScale(1, secsToTweenScale).SetEase(showBoxEasing);
         }
 
+        public void ShowBattleDialogBox(Battle battleInfo)
+        {
+            Faction attackingFaction = battleInfo.attackingFleet.FactionHandler.myFaction;
+            Faction defendingFaction;
+            if (battleInfo.battleType == Battle.BattleType.GroundBattle)
+            {
+                defendingFaction = battleInfo.battlePlanet.FactionHandler.myFaction;
+            }
+            else
+            {
+                defendingFaction = battleInfo.defendingFleet.FactionHandler.myFaction;
+            }
+            ShowBattleDialogBox(attackingFaction, defendingFaction, battleInfo.battlePlanet);
+        }
+
         public void AttackerWon()
         {
             BattleManager.Instance.AttackerWon();
