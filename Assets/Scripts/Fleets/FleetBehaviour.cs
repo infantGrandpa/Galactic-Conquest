@@ -43,27 +43,23 @@ namespace Abraham.GalacticConquest
         private IEnumerator CheckForBattles(PlanetBehaviour targetPlanet)
         {
 
-            //Check for space battles
+            yield return CheckForSpaceBattles(targetPlanet);
+            yield return new WaitForSeconds(1f);
+            yield return CheckForGroundBattles(targetPlanet);
+
+            yield return new WaitForSeconds(1f);
+            GUIManager.Instance.AddActionLogMessage("No more battles at " + targetPlanet.planetName + ".");
+        }
+
+        private IEnumerator CheckForSpaceBattles(PlanetBehaviour targetPlanet)
+        {
             List<Moveable> moveablesAtPlanet = targetPlanet.PlanetSlotHandler.GetAllMoveablesAtPlanet();
 
             foreach (Moveable thisMoveable in moveablesAtPlanet)
             {
-                FactionHandler moveableFaction = thisMoveable.GetComponent<FactionHandler>();
-                if (moveableFaction == null)
+                IsEnemyFleet(thisMoveable, out FleetBehaviour enemyFleetBehaviour);
+                if (enemyFleetBehaviour == null)
                 {
-                    //Moveable doesn't have a faction
-                    continue;
-                }
-
-                if (!FactionHandler.IsEnemyFaction(moveableFaction.myFaction))
-                {
-                    //Not enemy faction
-                    continue;
-                }
-
-                if (!thisMoveable.TryGetComponent(out FleetBehaviour enemyFleetBehaviour))
-                {
-                    //not a fleet
                     continue;
                 }
 
@@ -74,7 +70,10 @@ namespace Abraham.GalacticConquest
                     yield return null;
                 }
             }
+        }
 
+        private IEnumerator CheckForGroundBattles(PlanetBehaviour targetPlanet)
+        {
             //Check for ground battles
             if (targetPlanet.FactionHandler == null)
             {
@@ -89,7 +88,35 @@ namespace Abraham.GalacticConquest
             }
 
             combatBehaviour.StartGroundBattle(this, targetPlanet);
-            GUIManager.Instance.AddActionLogMessage("No battles at " + targetPlanet.planetName);
+            yield return new WaitForSeconds(1.5f);
+
+            GUIManager.Instance.AddActionLogMessage(targetPlanet.planetName + " has been captured!");
+        }
+
+        private bool IsEnemyFleet(Moveable moveable, out FleetBehaviour enemyFleetBehaviour)
+        {
+            enemyFleetBehaviour = null;
+
+            FactionHandler moveableFaction = moveable.GetComponent<FactionHandler>();
+            if (moveableFaction == null)
+            {
+                //Moveable doesn't have a faction
+                return false;
+            }
+
+            if (!FactionHandler.IsEnemyFaction(moveableFaction.myFaction))
+            {
+                //Not enemy faction
+                return false;
+            }
+
+            if (!moveable.TryGetComponent(out enemyFleetBehaviour))
+            {
+                //not a fleet
+                return false;
+            }
+
+            return enemyFleetBehaviour;
         }
     }
 }
