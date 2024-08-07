@@ -8,17 +8,14 @@ namespace Abraham.GalacticConquest
         {
             get
             {
-                if (instance == null)
-                    instance = FindObjectOfType(typeof(InputManager)) as InputManager;
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(InputManager)) as InputManager;
 
-                return instance;
+                return _instance;
             }
-            set
-            {
-                instance = value;
-            }
+            set => _instance = value;
         }
-        private static InputManager instance;
+        private static InputManager _instance;
 
         [SerializeField] float onClickSphereCastRadius = 0.25f;
 
@@ -44,7 +41,7 @@ namespace Abraham.GalacticConquest
             }
         }
 
-        public Vector3 GetCursorPosition()
+        private Vector3 GetCursorPosition()
         {
             Ray rayFromCameraToCursor = LevelManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
             Plane planetPlane = new Plane(Vector3.up, LevelManager.Instance.planetPlanePosition);

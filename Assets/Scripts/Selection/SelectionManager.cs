@@ -10,17 +10,14 @@ namespace Abraham.GalacticConquest
         {
             get
             {
-                if (instance == null)
-                    instance = FindObjectOfType(typeof(SelectionManager)) as SelectionManager;
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(SelectionManager)) as SelectionManager;
 
-                return instance;
+                return _instance;
             }
-            set
-            {
-                instance = value;
-            }
+            set => _instance = value;
         }
-        private static SelectionManager instance;
+        private static SelectionManager _instance;
 
         [ReadOnly] public Selectable selectedObject;
 
