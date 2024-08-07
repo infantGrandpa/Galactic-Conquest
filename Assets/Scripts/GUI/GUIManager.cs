@@ -8,26 +8,32 @@ namespace Abraham.GalacticConquest
         {
             get
             {
-                if (instance == null)
-                    instance = FindObjectOfType(typeof(GUIManager)) as GUIManager;
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(GUIManager)) as GUIManager;
 
-                return instance;
+                return _instance;
             }
-            set
-            {
-                instance = value;
-            }
+            set => _instance = value;
         }
-        private static GUIManager instance;
+        private static GUIManager _instance;
 
+        public Canvas mainCanvas;
+        public Camera mainCamera;
+
+        [Header("Non-Diegetic Elements")] 
         [SerializeField] GUITurnHandler turnHandler;
         [SerializeField] GUIActionPointHandler actionPointHandler;
         [SerializeField] GUIActionLogHandler actionLogHandler;
         [SerializeField] GUIBattleHandler guiBattleHandler;
 
+        [Header("Spatial Elements")] [SerializeField]
+        GUISpatialHandler spatialHandler;
         private void Awake()
         {
-            guiBattleHandler.gameObject.SetActive(true);        //Activate the battle handler so it can assign all it's variables
+            mainCanvas = GetComponent<Canvas>();
+            mainCamera = Camera.main;
+            //Activate the battle handler so it can assign all it's variables
+            guiBattleHandler.gameObject.SetActive(true);
         }
 
         public void ChangeTurn(string turnString)
@@ -48,6 +54,11 @@ namespace Abraham.GalacticConquest
         public void ShowBattleDialogBox(Battle battleInfo)
         {
             guiBattleHandler.ShowBattleDialogBox(battleInfo);
+        }
+
+        public void AddUIElementToSpatialCanvas(Transform transformToAdd)
+        {
+            spatialHandler.AddUIElement(transformToAdd);
         }
     }
 }

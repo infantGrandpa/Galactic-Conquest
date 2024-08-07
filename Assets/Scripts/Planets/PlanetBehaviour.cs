@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest
@@ -10,6 +11,10 @@ namespace Abraham.GalacticConquest
         public PlanetCombatBehaviour PlanetCombatBehaviour { get; private set; }
         public FactionHandler FactionHandler { get; private set; }
 
+        [Header("Planet Label")] [SerializeField]
+        GameObject planetLabelPrefab;
+        PlanetLabelBehaviour planetLabel;
+
         private void Awake()
         {
             PlanetSlotHandler = GetComponent<PlanetSlotHandler>();
@@ -17,6 +22,17 @@ namespace Abraham.GalacticConquest
             FactionHandler = GetComponent<FactionHandler>();
         }
 
+        void Start()
+        {
+            GameObject newPlanetLabel = Instantiate(planetLabelPrefab) ?? throw new ArgumentNullException("Instantiate(planetLabelPrefab)");
 
+            planetLabel = newPlanetLabel.GetComponent<PlanetLabelBehaviour>();
+            if (planetLabel == null) {
+                Debug.LogError("ERROR PlanetBehaviour Start(): The planet label prefab is missing a PlanetLabelBehaviour component.");
+                return;
+            }
+
+            planetLabel.InitLabel(planetName, FactionHandler.myFaction, transform.position);
+        }
     }
 }

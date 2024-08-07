@@ -54,6 +54,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetName: 
+  planetLabelPrefab: {fileID: 894364721116048451, guid: 385d9106eb62f7b4397fef67b52dcbd8, type: 3}
+  planetLabelPosition: {fileID: 0}
 --- !u!114 &-5318011949778153505
 MonoBehaviour:
   m_ObjectHideFlags: 0
