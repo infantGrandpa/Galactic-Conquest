@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest
@@ -24,6 +25,8 @@ namespace Abraham.GalacticConquest
         public Camera MainCamera { get; private set; }
         public Vector3 planetPlanePosition = new Vector3(0, 0, 0);
 
+        public List<PlanetBehaviour> planets = new();
+        
         private void Awake()
         {
             CreateDynamicTransform();
@@ -71,5 +74,40 @@ namespace Abraham.GalacticConquest
 
             Gizmos.DrawWireCube(transform.position, cubeSizeVector);
         }
+
+        public void CheckWinCondition()
+        {
+            //Check if all planets have been captured
+            Faction previousPlanetFaction = null;
+            bool winConditionMet = true;
+            foreach (PlanetBehaviour thisPlanet in planets) {
+                FactionHandler factionHandler = thisPlanet.GetComponent<FactionHandler>();
+                if (factionHandler == null) {
+                    continue;
+                }
+
+                Faction currentPlanetFaction = factionHandler.myFaction;
+                if (previousPlanetFaction == null) {
+                    previousPlanetFaction = currentPlanetFaction; //Test all future planets against this
+                    continue;
+                }
+
+                //Check if this planet's faction matches the last faction
+                //If any aren't the same, then not every planet has been captured
+                if (currentPlanetFaction == previousPlanetFaction) {
+                    //this faction matches, move on to the next
+                    continue;
+                }
+
+                //This planet doesn't match the last planet. Win condition hasn't been met
+                winConditionMet = false;
+                break;
+            }
+
+            if (winConditionMet) {
+                GUIManager.Instance.AddActionLogMessage("WIN CONDITION MET! The " + previousPlanetFaction?.FactionName + " has won!");
+            }
+        }
+
     }
 }

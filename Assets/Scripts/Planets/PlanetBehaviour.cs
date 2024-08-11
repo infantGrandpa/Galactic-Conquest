@@ -15,6 +15,20 @@ namespace Abraham.GalacticConquest
         GameObject planetLabelPrefab;
         PlanetLabelBehaviour planetLabel;
 
+        private void OnEnable()
+        {
+            LevelManager.Instance.planets.Add(this);
+        }
+
+        private void OnDisable()
+        {
+            if (LevelManager.Instance == null) {
+                return;
+            }
+
+            LevelManager.Instance.planets.Remove(this);
+        }
+        
         private void Awake()
         {
             PlanetSlotHandler = GetComponent<PlanetSlotHandler>();

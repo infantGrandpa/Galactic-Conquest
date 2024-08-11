@@ -25,11 +25,13 @@ namespace Abraham.GalacticConquest
             healthSystem.HealFully();
 
             invader = null;
+
+            LevelManager.Instance.CheckWinCondition();
         }
 
-        public void PrepareForInvasion(CombatantBehaviour invader)
+        public void PrepareForInvasion(CombatantBehaviour newInvader)
         {
-            this.invader = invader;
+            this.invader = newInvader;
         }
 
         private Faction GetInvaderFaction()
