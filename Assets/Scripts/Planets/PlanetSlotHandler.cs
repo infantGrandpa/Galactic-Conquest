@@ -18,21 +18,6 @@ namespace Abraham.GalacticConquest
             }
         }
 
-        private void OnEnable()
-        {
-            MovementManager.Instance.planets.Add(this);
-        }
-
-        private void OnDisable()
-        {
-            if (MovementManager.Instance == null)
-            {
-                return;
-            }
-
-            MovementManager.Instance.planets.Remove(this);
-        }
-
         public Transform AddMoveableToAvailableSlot(Moveable moveableToAdd)
         {
             foreach (PlanetSlot thisPlanetSlot in planetSlots)     //Can't use a foreach loop because thisPlanetSlot is readonly in a foreach loop

@@ -21,8 +21,6 @@ namespace Abraham.GalacticConquest
         }
         private static MovementManager instance;
 
-        public List<PlanetSlotHandler> planets = new();
-
         public void MoveToPlanet()
         {
             //Cancel if nothing is selected
