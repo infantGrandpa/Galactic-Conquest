@@ -1,7 +1,6 @@
 using System.Collections;
-using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.TurnManagement
 {
     [System.Serializable]
     public abstract class TurnState

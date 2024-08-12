@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.TurnManagement
 {
     public class TurnStateMachine : MonoBehaviour
     {
@@ -9,19 +9,19 @@ namespace Abraham.GalacticConquest
         {
             get
             {
-                if (instance == null)
-                    instance = FindObjectOfType(typeof(TurnStateMachine)) as TurnStateMachine;
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(TurnStateMachine)) as TurnStateMachine;
 
-                return instance;
+                return _instance;
             }
             set
             {
-                instance = value;
+                _instance = value;
             }
         }
-        private static TurnStateMachine instance;
+        private static TurnStateMachine _instance;
 
-        [ShowInInspector, ReadOnly] protected TurnState currentState;
+        [ShowInInspector, ReadOnly] protected TurnState CurrentState;
         private Coroutine updateCoroutine;
 
         private void Start()
@@ -44,24 +44,24 @@ namespace Abraham.GalacticConquest
             }
 
             //Exit the current state
-            if (currentState != null)
+            if (CurrentState != null)
             {
-                StartCoroutine(currentState.ExitState());
+                StartCoroutine(CurrentState.ExitState());
             }
 
-            string currentStateName = currentState != null ? currentState.GetType().Name : "none";
+            string currentStateName = CurrentState != null ? CurrentState.GetType().Name : "none";
             GUIManager.Instance.AddActionLogMessage("Changing state from " + currentStateName + " to " + newState.GetType().Name + "...");
 
             //Start new state
-            currentState = newState;
-            StartCoroutine(currentState.EnterState());
+            CurrentState = newState;
+            StartCoroutine(CurrentState.EnterState());
 
             //Update GUI elements
-            GUIManager.Instance.ChangeTurn(currentState.GetType().Name);
+            GUIManager.Instance.ChangeTurn(CurrentState.GetType().Name);
 
             //Start the new state's updateCoroutine.
             //We can't do this in the update because it will start every frame, so here works for now.
-            updateCoroutine = StartCoroutine(currentState.UpdateState());
+            updateCoroutine = StartCoroutine(CurrentState.UpdateState());
 
         }
     }

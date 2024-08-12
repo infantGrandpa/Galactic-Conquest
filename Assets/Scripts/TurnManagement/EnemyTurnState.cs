@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.TurnManagement
 {
     public class EnemyTurnState : TurnState
     {
