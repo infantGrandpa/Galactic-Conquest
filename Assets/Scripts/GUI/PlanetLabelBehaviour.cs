@@ -1,9 +1,8 @@
 using Abraham.GalacticConquest.Factions;
-using Abraham.GalacticConquest.GUI;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.GUI
 {
     public class PlanetLabelBehaviour : MonoBehaviour
     {
@@ -14,6 +13,10 @@ namespace Abraham.GalacticConquest
         [SerializeField] Vector2 positionOffset;
 
         Vector3 currentWorldPosition;
+
+        public bool isCapital;
+        public bool isProductionCenter;
+        public bool isShipyard;
 
         public void InitLabel(string planetName, Faction faction, Vector3 worldPosition)
         {

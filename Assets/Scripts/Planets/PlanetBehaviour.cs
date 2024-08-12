@@ -1,5 +1,6 @@
 using System;
 using Abraham.GalacticConquest.Factions;
+using Abraham.GalacticConquest.GUI;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Planets
