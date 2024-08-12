@@ -1,9 +1,9 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.GUI
 {
     public class GUIBattleHandler : MonoBehaviour
     {
@@ -35,13 +35,13 @@ namespace Abraham.GalacticConquest
 
             if (attackerWonButton == null)
             {
-                Debug.LogError("ERROR GUIBattleHander Awake(): The attacker button is null. Please assign the attackerWonButton.", this);
+                Debug.LogError("ERROR GUIBattleHandler Awake(): The attacker button is null. Please assign the attackerWonButton.", this);
                 return;
             }
 
             if (defenderWonButton == null)
             {
-                Debug.LogError("ERROR GUIBattleHander Awake(): The defender button is null. Please assign the defenderWonButton.", this);
+                Debug.LogError("ERROR GUIBattleHandler Awake(): The defender button is null. Please assign the defenderWonButton.", this);
                 return;
             }
 

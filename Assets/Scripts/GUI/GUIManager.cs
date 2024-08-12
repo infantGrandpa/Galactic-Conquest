@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.GUI
 {
     public class GUIManager : MonoBehaviour
     {

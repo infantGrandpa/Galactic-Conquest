@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.GUI
 {
     /// <summary>
     /// Small helper class to convert viewport, screen or world positions to canvas space.

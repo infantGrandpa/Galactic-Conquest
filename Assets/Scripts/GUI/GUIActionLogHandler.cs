@@ -1,10 +1,9 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.GUI
 {
     public class GUIActionLogHandler : MonoBehaviour
     {
