@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.GUI;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.Fleets
 {
     public class FleetCombatBehaviour : CombatantBehaviour
     {

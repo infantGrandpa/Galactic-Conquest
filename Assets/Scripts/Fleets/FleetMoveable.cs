@@ -1,7 +1,7 @@
 using Abraham.GalacticConquest.UnitControl;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.Fleets
 {
     public class FleetMoveable : Moveable
     {
