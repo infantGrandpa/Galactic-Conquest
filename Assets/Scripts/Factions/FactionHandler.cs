@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.Factions
 {
     public class FactionHandler : MonoBehaviour
     {
@@ -22,12 +21,12 @@ namespace Abraham.GalacticConquest
             myFaction = newFaction;
             foreach (Renderer thisRenderer in renderersToChangeOnSetFaction)
             {
-                thisRenderer.material.color = myFaction.FactionColor;
+                thisRenderer.material.color = myFaction.factionColor;
             }
 
             foreach (Image thisImage in uiImagesToChangeOnSetFaction)
             {
-                thisImage.color = myFaction.FactionColor;
+                thisImage.color = myFaction.factionColor;
             }
         }
 

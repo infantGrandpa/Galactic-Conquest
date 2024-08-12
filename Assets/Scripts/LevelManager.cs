@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using UnityEngine;
 
@@ -106,7 +107,7 @@ namespace Abraham.GalacticConquest
             }
 
             if (winConditionMet) {
-                GUIManager.Instance.AddActionLogMessage("WIN CONDITION MET! The " + previousPlanetFaction?.FactionName + " has won!");
+                GUIManager.Instance.AddActionLogMessage("WIN CONDITION MET! The " + previousPlanetFaction?.factionName + " has won!");
             }
         }
 

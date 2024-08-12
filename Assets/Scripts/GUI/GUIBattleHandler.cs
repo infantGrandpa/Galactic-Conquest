@@ -1,4 +1,5 @@
 using Abraham.GalacticConquest.Combat;
+using Abraham.GalacticConquest.Factions;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -77,11 +78,11 @@ namespace Abraham.GalacticConquest.GUI
 
         private void SetButtons(Faction attackingFaction, Faction defendingFaction)
         {
-            attackerWonButton.image.color = attackingFaction.FactionColor;
-            attackerButtonText.text = attackingFaction.FactionName;
+            attackerWonButton.image.color = attackingFaction.factionColor;
+            attackerButtonText.text = attackingFaction.factionName;
 
-            defenderWonButton.image.color = defendingFaction.FactionColor;
-            defenderButtonText.text = defendingFaction.FactionName;
+            defenderWonButton.image.color = defendingFaction.factionColor;
+            defenderButtonText.text = defendingFaction.factionName;
         }
 
         private Faction GetAttackingFaction(Battle battleInfo)

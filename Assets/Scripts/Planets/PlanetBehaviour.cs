@@ -1,4 +1,5 @@
 using System;
+using Abraham.GalacticConquest.Factions;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest

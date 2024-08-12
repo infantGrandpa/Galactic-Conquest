@@ -1,4 +1,5 @@
 using Abraham.GalacticConquest.Combat;
+using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace Abraham.GalacticConquest
             Faction newFaction = GetInvaderFaction();
             factionHandler.SetFaction(newFaction);
 
-            GUIManager.Instance.AddActionLogMessage("Planet captured by " + newFaction.FactionName + "!");
+            GUIManager.Instance.AddActionLogMessage("Planet captured by " + newFaction.factionName + "!");
             healthSystem.HealFully();
 
             invader = null;
