@@ -1,9 +1,9 @@
-using UnityEngine;
 using System.Collections.Generic;
 using Abraham.GalacticConquest.UnitControl;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.Planets
 {
     public class PlanetSlotHandler : MonoBehaviour
     {

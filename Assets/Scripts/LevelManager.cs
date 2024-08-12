@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
+using Abraham.GalacticConquest.Planets;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest

@@ -1,10 +1,9 @@
 using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.Planets
 {
     public class PlanetCombatBehaviour : CombatantBehaviour
     {

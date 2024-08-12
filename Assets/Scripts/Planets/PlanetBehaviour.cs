@@ -2,7 +2,7 @@ using System;
 using Abraham.GalacticConquest.Factions;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.Planets
 {
     public class PlanetBehaviour : MonoBehaviour
     {

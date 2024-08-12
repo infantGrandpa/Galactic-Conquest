@@ -1,3 +1,5 @@
+using Abraham.GalacticConquest.Planets;
+
 namespace Abraham.GalacticConquest.Combat
 {
     [System.Serializable]
