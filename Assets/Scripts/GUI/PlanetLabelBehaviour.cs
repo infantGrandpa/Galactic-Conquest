@@ -1,6 +1,10 @@
+using System;
 using Abraham.GalacticConquest.Factions;
+using Abraham.GalacticConquest.Planets;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Abraham.GalacticConquest.GUI
 {
@@ -14,22 +18,64 @@ namespace Abraham.GalacticConquest.GUI
 
         Vector3 currentWorldPosition;
 
-        public bool isCapital;
-        public bool isProductionCenter;
-        public bool isShipyard;
+        [SerializeField] Image capitalImage;
+        [SerializeField] Image prodCenterImage;
+        [SerializeField] Image shipyardImage;
 
-        public void InitLabel(string planetName, Faction faction, Vector3 worldPosition)
+        public void InitLabel(Planet planetDetails, Faction faction, Vector3 worldPosition)
         {
             currentFaction = faction;
-            planetNameText.text = planetName;
+            planetNameText.text = planetDetails.planetName;
+
+            ShowSpecialtyImages(planetDetails.planetSpecialty, planetDetails.isShipyard);
 
             GUIManager.Instance.AddUIElementToSpatialCanvas(transform);
 
             rectTransform = GetComponent<RectTransform>();
 
+            SetColors(faction.factionColor);
             SetCanvasPosition(worldPosition);
 
         }
+
+        private void ShowSpecialtyImages(PlanetSpecialty planetSpecialty, bool isShipyard)
+        {
+            GameObject capitalGameObject = capitalImage.gameObject;
+            GameObject prodCenterGameObject = prodCenterImage.gameObject;
+            GameObject shipyardGameObject = shipyardImage.gameObject;
+
+            //Hide everything
+            capitalGameObject.SetActive(false);
+            prodCenterGameObject.SetActive(false);
+            shipyardGameObject.SetActive(false);
+
+            if (isShipyard) {
+                shipyardGameObject.SetActive(true);
+            }
+
+            //Show speciality icons
+            switch (planetSpecialty) {
+            case PlanetSpecialty.Capital:
+                capitalGameObject.SetActive(true);
+                break;
+            case PlanetSpecialty.ProductionCenter:
+                prodCenterGameObject.SetActive(true);
+                break;
+            default:
+                break;
+            }
+
+        }
+
+        private void SetColors(Color newColor)
+        {
+            capitalImage.color = newColor;
+            prodCenterImage.color = newColor;
+            shipyardImage.color = newColor;
+
+            planetNameText.color = newColor;
+        }
+
         public void SetCanvasPosition(Vector3 worldPosition)
         {
             currentWorldPosition = worldPosition;

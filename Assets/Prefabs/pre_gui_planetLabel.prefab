@@ -41,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 157.8, y: 38.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2743136516189574759
 CanvasRenderer:
@@ -95,6 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetNameText: {fileID: 6292017551180285074}
   positionOffset: {x: 0, y: -45}
+  capitalImage: {fileID: 5426490395889190724}
+  prodCenterImage: {fileID: 3343551423563879881}
+  shipyardImage: {fileID: 829342903037977558}
 --- !u!114 &8296286169609386749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +136,7 @@ GameObject:
   - component: {fileID: 4988967967032341034}
   - component: {fileID: 829342903037977558}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Shipyard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,7 +160,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4988967967032341034
 CanvasRenderer:
@@ -233,7 +236,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4924170405235303403
 CanvasRenderer:
@@ -283,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6755516984172144676}
   m_Layer: 0
-  m_Name: Shipyard Icon
+  m_Name: SecondaryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +349,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6565048924661019087
 CanvasRenderer:

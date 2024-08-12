@@ -8,7 +8,8 @@ namespace Abraham.GalacticConquest.Planets
     public class PlanetBehaviour : MonoBehaviour
     {
         public string planetName;
-
+        public Planet planet;
+        
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }
         public PlanetCombatBehaviour PlanetCombatBehaviour { get; private set; }
         public FactionHandler FactionHandler { get; private set; }
@@ -48,7 +49,7 @@ namespace Abraham.GalacticConquest.Planets
                 return;
             }
 
-            planetLabel.InitLabel(planetName, FactionHandler.myFaction, transform.position);
+            planetLabel.InitLabel(planet, FactionHandler.myFaction, transform.position);
         }
     }
 }

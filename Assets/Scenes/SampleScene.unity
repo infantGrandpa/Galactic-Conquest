@@ -562,6 +562,14 @@ PrefabInstance:
       propertyPath: planetName
       value: Utapau
       objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planet.isShipyard
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planet.planetName
+      value: Kuat
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1636,6 +1644,10 @@ PrefabInstance:
       propertyPath: planetName
       value: Alderaan
       objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planet.planetName
+      value: Kamino
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1878,6 +1890,14 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Kashyyyk
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planet.planetName
+      value: Geonosis
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planet.planetSpecialty
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2156,6 +2176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetPlanePosition: {x: 0, y: 0, z: 0}
+  planets: []
 --- !u!1 &1356143146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,7 +2502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4b89ec610aebd4e889df25db716290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planets: []
 --- !u!114 &1515541766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4210,6 +4230,14 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Tatooine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planet.planetName
+      value: Coruscant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planet.planetSpecialty
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
