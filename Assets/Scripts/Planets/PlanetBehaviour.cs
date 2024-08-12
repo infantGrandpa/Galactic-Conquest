@@ -7,7 +7,6 @@ namespace Abraham.GalacticConquest.Planets
 {
     public class PlanetBehaviour : MonoBehaviour
     {
-        public string planetName;
         public Planet planet;
         
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }

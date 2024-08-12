@@ -17,6 +17,11 @@ namespace Abraham.GalacticConquest.Planets
             this.planetSpecialty = planetSpecialty;
             this.isShipyard = isShipyard;
         }
+
+        public override string ToString()
+        {
+            return planetName;
+        }
     }
 
     public enum PlanetSpecialty
