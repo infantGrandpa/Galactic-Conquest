@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.GUI;
 using UnityEngine;
 

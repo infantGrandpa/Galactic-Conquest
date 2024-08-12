@@ -1,3 +1,4 @@
+using Abraham.GalacticConquest.Combat;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.GUI
