@@ -1,3 +1,4 @@
+using Abraham.GalacticConquest.Refs;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.UnitControl
@@ -37,7 +38,7 @@ namespace Abraham.GalacticConquest.UnitControl
             }
 
             //Get Move To Target
-            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.planetLayer);
+            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
             RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask);
             if (nullableHitInfo == null)
             {

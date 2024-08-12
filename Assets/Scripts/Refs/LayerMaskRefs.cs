@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.Refs
 {
     public static class LayerMaskRefs
     {
-        public static int planetLayer = 9;
+        public const int PlanetLayer = 9;
 
         public static LayerMask GetLayerMask(int layer)
         {
