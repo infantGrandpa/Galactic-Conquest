@@ -76,7 +76,7 @@ namespace Abraham.GalacticConquest.GUI
             planetNameText.color = newColor;
         }
 
-        public void SetCanvasPosition(Vector3 worldPosition)
+        void SetCanvasPosition(Vector3 worldPosition)
         {
             currentWorldPosition = worldPosition;
             Vector2 canvasPosition = GUIManager.Instance.mainCanvas.WorldToCanvasPosition(worldPosition, GUIManager.Instance.mainCamera);
@@ -85,10 +85,11 @@ namespace Abraham.GalacticConquest.GUI
             rectTransform.anchoredPosition = finalPosition;
         }
 
-        [ContextMenu("Recalc Canvas Position")]
-        private void RecalcCanvasPosition()
+        public void UpdateLabel(Faction newFaction)
         {
-            SetCanvasPosition(currentWorldPosition);
+            currentFaction = newFaction;
+
+            SetColors(currentFaction.factionColor);
         }
     }
 }
