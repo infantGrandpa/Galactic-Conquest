@@ -9,26 +9,16 @@ namespace Abraham.GalacticConquest.Planets
     {
         private HealthSystem healthSystem;
         private CombatantBehaviour invader;
-        private FactionHandler factionHandler;
 
         private void Awake()
         {
             healthSystem = GetComponent<HealthSystem>();
-            factionHandler = GetComponent<FactionHandler>();
         }
 
-        //TODO: Determine if capturing the planet should all happen in the PlanetBehaviour component
-        public void CapturePlanet()
+        public void ResetPlanetAfterCapture()
         {
-            Faction newFaction = GetInvaderFaction();
-            factionHandler.SetFaction(newFaction);
-
-            GUIManager.Instance.AddActionLogMessage("Planet captured by " + newFaction.factionName + "!");
             healthSystem.HealFully();
-
             invader = null;
-
-            LevelManager.Instance.CheckWinCondition();
         }
 
         public void PrepareForInvasion(CombatantBehaviour newInvader)
@@ -36,7 +26,7 @@ namespace Abraham.GalacticConquest.Planets
             this.invader = newInvader;
         }
 
-        private Faction GetInvaderFaction()
+        public Faction GetInvaderFaction()
         {
             if (invader == null)
             {

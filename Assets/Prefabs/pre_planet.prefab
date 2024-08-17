@@ -53,9 +53,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7913f32ca4e8a1f4ba502009b66d920a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: 
+  planet:
+    planetName: 
+    planetSpecialty: 0
+    isShipyard: 0
   planetLabelPrefab: {fileID: 894364721116048451, guid: 385d9106eb62f7b4397fef67b52dcbd8, type: 3}
-  planetLabelPosition: {fileID: 0}
 --- !u!114 &-5318011949778153505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,8 +138,8 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8847201062721222119}
-        m_TargetAssemblyTypeName: Abraham.GalacticConquest.PlanetCombatBehaviour,
+      - m_Target: {fileID: 7560300631888595443}
+        m_TargetAssemblyTypeName: Abraham.GalacticConquest.Planets.PlanetBehaviour,
           Assembly-CSharp
         m_MethodName: CapturePlanet
         m_Mode: 1

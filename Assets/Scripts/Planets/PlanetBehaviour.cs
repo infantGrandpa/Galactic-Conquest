@@ -50,5 +50,18 @@ namespace Abraham.GalacticConquest.Planets
 
             planetLabel.InitLabel(planet, FactionHandler.myFaction, transform.position);
         }
+
+        public void CapturePlanet() //Called by HealthSystem OnDeathEvent
+        {
+            Faction newFaction = PlanetCombatBehaviour.GetInvaderFaction();
+            FactionHandler.SetFaction(newFaction);
+            planetLabel.UpdateLabel(newFaction);
+
+            PlanetCombatBehaviour.ResetPlanetAfterCapture();
+
+            GUIManager.Instance.AddActionLogMessage("Planet captured by " + newFaction.factionName + "!");
+
+            LevelManager.Instance.CheckWinCondition();
+        }
     }
 }
