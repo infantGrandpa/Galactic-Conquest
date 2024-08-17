@@ -63,5 +63,15 @@ namespace Abraham.GalacticConquest.Planets
 
             LevelManager.Instance.CheckWinCondition();
         }
+
+        public void OnSelectPlanet()
+        {
+            GUIManager.Instance.ShowActionListForPlanet(this);
+        }
+
+        public void OnDeselectPlanet()
+        {
+            GUIManager.Instance.HideActionList();
+        }
     }
 }

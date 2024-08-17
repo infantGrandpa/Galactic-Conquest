@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Abraham.GalacticConquest.UnitControl
 {
     public class Selectable : MonoBehaviour
     {
         [SerializeField] GameObject mySelectionRing;
-
+        [SerializeField] UnityEvent onSelectObjectEvent;
+        [SerializeField] UnityEvent onDeselectObjectEvent;
+        
+        
         private void OnEnable()
         {
             if (mySelectionRing == null)
@@ -39,6 +43,8 @@ namespace Abraham.GalacticConquest.UnitControl
             }
 
             mySelectionRing.SetActive(true);
+
+            onSelectObjectEvent?.Invoke();
         }
 
         public void DeselectObject()
@@ -50,6 +56,8 @@ namespace Abraham.GalacticConquest.UnitControl
             }
 
             mySelectionRing.SetActive(false);
+
+            onDeselectObjectEvent?.Invoke();
         }
 
         private bool IsSelected()

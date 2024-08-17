@@ -1,4 +1,5 @@
 using Abraham.GalacticConquest.Combat;
+using Abraham.GalacticConquest.Planets;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.GUI
@@ -29,6 +30,8 @@ namespace Abraham.GalacticConquest.GUI
 
         [Header("Spatial Elements")] [SerializeField]
         GUISpatialHandler spatialHandler;
+        [SerializeField] GUIActionListHandler actionListHandler;
+        
         private void Awake()
         {
             mainCanvas = GetComponent<Canvas>();
@@ -60,6 +63,16 @@ namespace Abraham.GalacticConquest.GUI
         public void AddUIElementToSpatialCanvas(Transform transformToAdd)
         {
             spatialHandler.AddUIElement(transformToAdd);
+        }
+
+        public void ShowActionListForPlanet(PlanetBehaviour planet)
+        {
+            actionListHandler.ShowActionList(planet);
+        }
+
+        public void HideActionList()
+        {
+            actionListHandler.HideActionList();
         }
     }
 }
