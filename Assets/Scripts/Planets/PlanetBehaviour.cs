@@ -71,6 +71,10 @@ namespace Abraham.GalacticConquest.Planets
 
         public void OnDeselectPlanet()
         {
+            if (GUIManager.Instance == null) {
+                return;
+            }
+            
             GUIManager.Instance.HideActionList();
         }
     }
