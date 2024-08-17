@@ -13,6 +13,7 @@ namespace Abraham.GalacticConquest.GUI
             };
             dynamicUITransform = dynamicGameObject.transform;
             dynamicUITransform.SetParent(transform);
+            dynamicUITransform.SetAsFirstSibling();
             dynamicUITransform.localPosition = Vector3.zero;
             dynamicUITransform.localScale = Vector3.one;
         }
