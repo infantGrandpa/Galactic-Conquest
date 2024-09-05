@@ -12,17 +12,17 @@ namespace Abraham.GalacticConquest
         {
             get
             {
-                if (instance == null)
-                    instance = FindObjectOfType(typeof(LevelManager)) as LevelManager;
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(LevelManager)) as LevelManager;
 
-                return instance;
+                return _instance;
             }
             set
             {
-                instance = value;
+                _instance = value;
             }
         }
-        private static LevelManager instance;
+        private static LevelManager _instance;
 
         public Transform DynamicTransform { get; private set; }
         public Camera MainCamera { get; private set; }
