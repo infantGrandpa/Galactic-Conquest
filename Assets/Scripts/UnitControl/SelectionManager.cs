@@ -58,6 +58,8 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private IEnumerator ManageMovementIndicator()
         {
+            MovementManager.Instance.ShowMovementIndicator();
+            
             while (selectedObject) {
                 MovementManager.Instance.UpdateMovementIndicator();
                 yield return null;

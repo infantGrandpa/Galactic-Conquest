@@ -136,16 +136,11 @@ namespace Abraham.GalacticConquest.UnitControl
             RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask, movementIndicatorSphereCastRadius);
 
             PlanetBehaviour targetPlanet = GetPlanetFromNullableHitInfo(nullableHitInfo);
-            if (targetPlanet == null) {
-                movementIndicatorHandler.HideLineRenderer();
-                return;
-            }
-
+            
             Vector3 startPosition = moveableObject.transform.position;
-            Vector3 endPosition = targetPlanet.transform.position;
+            Vector3 endPosition = targetPlanet == null ? InputManager.Instance.GetCursorPosition() : targetPlanet.transform.position;
 
             movementIndicatorHandler.SetMovementLinePositions(startPosition, endPosition);
-            movementIndicatorHandler.ShowLineRenderer();
 
         }
 
