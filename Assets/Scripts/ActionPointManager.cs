@@ -10,17 +10,17 @@ namespace Abraham.GalacticConquest
         {
             get
             {
-                if (instance == null)
-                    instance = FindObjectOfType(typeof(ActionPointManager)) as ActionPointManager;
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(ActionPointManager)) as ActionPointManager;
 
-                return instance;
+                return _instance;
             }
             set
             {
-                instance = value;
+                _instance = value;
             }
         }
-        private static ActionPointManager instance;
+        private static ActionPointManager _instance;
 
         [SerializeField] int baseActionPoints;
         [ShowInInspector, ReadOnly] public int CurrentActionPoints { get; private set; }
