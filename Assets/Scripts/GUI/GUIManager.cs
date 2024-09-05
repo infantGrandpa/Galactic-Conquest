@@ -1,5 +1,6 @@
 using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.Planets;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.GUI
@@ -19,8 +20,8 @@ namespace Abraham.GalacticConquest.GUI
         }
         private static GUIManager _instance;
 
-        public Canvas mainCanvas;
-        public Camera mainCamera;
+        [ReadOnly] public Canvas mainCanvas;
+        [ReadOnly] public Camera mainCamera;
 
         [Header("Non-Diegetic Elements")] 
         [SerializeField] GUITurnHandler turnHandler;
