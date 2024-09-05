@@ -32,6 +32,7 @@ namespace Abraham.GalacticConquest.GUI
         [Header("Spatial Elements")] [SerializeField]
         GUISpatialHandler spatialHandler;
         [SerializeField] GUIActionListHandler actionListHandler;
+        [SerializeField] GUIMovementCostIndicator costIndicator;
         
         private void Awake()
         {
@@ -74,6 +75,11 @@ namespace Abraham.GalacticConquest.GUI
         public void HideActionList()
         {
             actionListHandler.HideActionList();
+        }
+
+        public void UpdateMovementCostIndicator(int newCost)
+        {
+            costIndicator.UpdateMovementCost(newCost);
         }
     }
 }

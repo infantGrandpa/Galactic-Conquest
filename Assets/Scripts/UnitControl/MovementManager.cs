@@ -140,6 +140,9 @@ namespace Abraham.GalacticConquest.UnitControl
             Vector3 startPosition = moveableObject.transform.position;
             Vector3 endPosition = targetPlanet == null ? InputManager.Instance.GetCursorPosition() : targetPlanet.transform.position;
 
+            int apCost = moveableObject.CalculateMovementCost(endPosition);
+            GUIManager.Instance.UpdateMovementCostIndicator(apCost);
+
             movementIndicatorHandler.SetMovementLinePositions(startPosition, endPosition);
 
         }
@@ -152,7 +155,5 @@ namespace Abraham.GalacticConquest.UnitControl
         {
             movementIndicatorHandler.ShowLineRenderer();
         }
-
-
     }
 }

@@ -585,6 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104875694}
   - component: {fileID: 104875696}
+  - component: {fileID: 104875697}
   - component: {fileID: 104875695}
   m_Layer: 0
   m_Name: MovementCalculator
@@ -652,6 +653,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104875693}
   m_CullTransparentMesh: 1
+--- !u!114 &104875697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104875693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c99c900299d8404e8defd64093b5df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costText: {fileID: 1538081413}
 --- !u!1 &179071811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,6 +1470,7 @@ MonoBehaviour:
   guiBattleHandler: {fileID: 254310459}
   spatialHandler: {fileID: 1924216230}
   actionListHandler: {fileID: 1150917168}
+  costIndicator: {fileID: 104875697}
 --- !u!1 &599199070
 GameObject:
   m_ObjectHideFlags: 0
