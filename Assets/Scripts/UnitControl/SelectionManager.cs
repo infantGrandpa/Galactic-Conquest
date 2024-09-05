@@ -63,6 +63,7 @@ namespace Abraham.GalacticConquest.UnitControl
                 yield return null;
             }
 
+            MovementManager.Instance.HideMovementIndicator();
             manageMovementIndicatorCoroutine = null;
         }
 

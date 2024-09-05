@@ -3290,6 +3290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementIndicatorLinePrefab: {fileID: 2526200663556024541, guid: 4d687500e4105e14dbf1fdad0a0080b6, type: 3}
+  movementIndicatorSphereCastRadius: 5
 --- !u!114 &1515541766
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -67,12 +67,15 @@ namespace Abraham.GalacticConquest.UnitControl
 
         public RaycastHit? SphereCastFromCameraToCursor(LayerMask layerMask)
         {
+            return SphereCastFromCameraToCursor(layerMask, onClickSphereCastRadius);
+        }
+
+        public RaycastHit? SphereCastFromCameraToCursor(LayerMask layerMask, float sphereCastRadius)
+        {
             Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
             Vector3 directionToCursor = GetDirectionToCursor(cameraPosition);
 
-            RaycastHit hitInfo;
-            if (Physics.SphereCast(cameraPosition, onClickSphereCastRadius, directionToCursor, out hitInfo, 1000f, layerMask.value))
-            {
+            if (Physics.SphereCast(cameraPosition, sphereCastRadius, directionToCursor, out RaycastHit hitInfo, 1000f, layerMask.value)) {
                 return hitInfo;
             }
 

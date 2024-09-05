@@ -26,6 +26,8 @@ namespace Abraham.GalacticConquest.UnitControl
         [SerializeField] GameObject movementIndicatorLinePrefab;
         MovementIndicatorHandler movementIndicatorHandler;
 
+        [SerializeField] float movementIndicatorSphereCastRadius;
+
         void Awake()
         {
             if (movementIndicatorLinePrefab == null) {
@@ -40,6 +42,8 @@ namespace Abraham.GalacticConquest.UnitControl
                 Debug.LogError("ERROR MovementManager Awake(): Provided Movement Indicator Line Prefab does not have a MovementIndicatorHandler component.", this);
                 return;
             }
+
+            movementIndicatorHandler.HideLineRenderer();
         }
 
         private Moveable GetMoveableFromSelectedObject()
@@ -64,8 +68,13 @@ namespace Abraham.GalacticConquest.UnitControl
             //Get Move To Target
             LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
             RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask);
+            return GetPlanetFromNullableHitInfo(nullableHitInfo);
+        }
+
+        private PlanetBehaviour GetPlanetFromNullableHitInfo(RaycastHit? nullableHitInfo)
+        {
             if (nullableHitInfo == null) {
-                //Didn't click on anything. Cancel.
+                //Nothing hit
                 return null;
             }
 
@@ -74,7 +83,7 @@ namespace Abraham.GalacticConquest.UnitControl
             PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
             return targetPlanet;
         }
-        
+
         public void MoveToPlanet()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
@@ -87,10 +96,9 @@ namespace Abraham.GalacticConquest.UnitControl
                 //Didn't click on a planet. Cancel.
                 return;
             }
-            
+
             bool canMove = moveableObject.CanMoveToTarget(targetPlanet);
-            if (!canMove)
-            {
+            if (!canMove) {
                 //Moveable object already at planet. Cancel.
                 return;
             }
@@ -98,18 +106,16 @@ namespace Abraham.GalacticConquest.UnitControl
             //Check AP costs. 
             // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
             int totalApCost = moveableObject.CalculateMovementCost(targetPlanet);
-            if (!ActionPointManager.Instance.CanPerformAction(totalApCost))
-            {
+            if (!ActionPointManager.Instance.CanPerformAction(totalApCost)) {
                 //Not Enough AP. Cancel.
                 GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + totalApCost + "): Movement Cancelled.");
-                
+
                 return;
             }
 
             //Send Move Command to moveable object
             bool moveSuccessful = moveableObject.MoveToPlanet(targetPlanet);
-            if (!moveSuccessful)
-            {
+            if (!moveSuccessful) {
                 //Move cancelled by moveable object.
                 return;
             }
@@ -125,16 +131,33 @@ namespace Abraham.GalacticConquest.UnitControl
                 return;
             }
 
+            //Get Closest Planet
+            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
+            RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask, movementIndicatorSphereCastRadius);
+
+            PlanetBehaviour targetPlanet = GetPlanetFromNullableHitInfo(nullableHitInfo);
+            if (targetPlanet == null) {
+                movementIndicatorHandler.HideLineRenderer();
+                return;
+            }
+
             Vector3 startPosition = moveableObject.transform.position;
-            Vector3 endPosition = InputManager.Instance.GetCursorPosition();
+            Vector3 endPosition = targetPlanet.transform.position;
 
             movementIndicatorHandler.SetMovementLinePositions(startPosition, endPosition);
+            movementIndicatorHandler.ShowLineRenderer();
 
         }
 
+        public void HideMovementIndicator()
+        {
+            movementIndicatorHandler.HideLineRenderer();
+        }
+        public void ShowMovementIndicator()
+        {
+            movementIndicatorHandler.ShowLineRenderer();
+        }
 
 
-        
-        
     }
 }
