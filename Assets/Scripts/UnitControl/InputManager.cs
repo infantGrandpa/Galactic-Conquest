@@ -41,7 +41,7 @@ namespace Abraham.GalacticConquest.UnitControl
             }
         }
 
-        private Vector3 GetCursorPosition()
+        public Vector3 GetCursorPosition()
         {
             Ray rayFromCameraToCursor = LevelManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
             Plane planetPlane = new Plane(Vector3.up, LevelManager.Instance.planetPlanePosition);

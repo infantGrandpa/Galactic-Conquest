@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -19,6 +21,7 @@ namespace Abraham.GalacticConquest.UnitControl
         private static SelectionManager _instance;
 
         [ReadOnly] public Selectable selectedObject;
+        Coroutine manageMovementIndicatorCoroutine;
 
         public void SelectObject()
         {
@@ -38,10 +41,29 @@ namespace Abraham.GalacticConquest.UnitControl
             Selectable hitSelectableObject = hitInfo.transform.GetComponentInParent<Selectable>();
             if (hitSelectableObject)
             {
-                selectedObject = hitSelectableObject;
-                selectedObject.SelectObject();
+                SelectObject(hitSelectableObject);
                 return;
             }
+            
+            
+        }
+
+        private void SelectObject(Selectable objectToSelect)
+        {
+            selectedObject = objectToSelect;
+            selectedObject.SelectObject();
+            manageMovementIndicatorCoroutine = StartCoroutine(ManageMovementIndicator());
+
+        }
+
+        private IEnumerator ManageMovementIndicator()
+        {
+            while (selectedObject) {
+                MovementManager.Instance.UpdateMovementIndicator();
+                yield return null;
+            }
+
+            manageMovementIndicatorCoroutine = null;
         }
 
         public void ClearSelectedObject()

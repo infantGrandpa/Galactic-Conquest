@@ -11,53 +11,83 @@ namespace Abraham.GalacticConquest.UnitControl
         {
             get
             {
-                if (instance == null)
-                    instance = FindObjectOfType(typeof(MovementManager)) as MovementManager;
+                if (_instance == null)
+                    _instance = FindObjectOfType(typeof(MovementManager)) as MovementManager;
 
-                return instance;
+                return _instance;
             }
             set
             {
-                instance = value;
+                _instance = value;
             }
         }
-        private static MovementManager instance;
+        private static MovementManager _instance;
 
-        public void MoveToPlanet()
+        [SerializeField] GameObject movementIndicatorLinePrefab;
+        MovementIndicatorHandler movementIndicatorHandler;
+
+        void Awake()
+        {
+            if (movementIndicatorLinePrefab == null) {
+                Debug.LogError("ERROR MovementManager Awake(): Movement Indicator prefab is null.", this);
+                return;
+            }
+
+            GameObject movementIndicatorObject = Instantiate(movementIndicatorLinePrefab, LevelManager.Instance.DynamicTransform);
+            movementIndicatorHandler = movementIndicatorObject.GetComponent<MovementIndicatorHandler>();
+
+            if (movementIndicatorHandler == null) {
+                Debug.LogError("ERROR MovementManager Awake(): Provided Movement Indicator Line Prefab does not have a MovementIndicatorHandler component.", this);
+                return;
+            }
+        }
+
+        private Moveable GetMoveableFromSelectedObject()
         {
             //Cancel if nothing is selected
             Selectable selectedObject = SelectionManager.Instance.selectedObject;
-            if (selectedObject == null)
-            {
-                return;
+            if (selectedObject == null) {
+                return null;
             }
 
-            //Get Movement Point Cost
-            if (!selectedObject.TryGetComponent(out Moveable moveableObject))
-            {
+            //Is Object Moveable
+            if (!selectedObject.TryGetComponent(out Moveable moveableObject)) {
                 //Object not movable. Cancel.
-                return;
+                return null;
             }
 
+            return moveableObject;
+        }
+
+        private PlanetBehaviour GetPlanetToMoveTo()
+        {
             //Get Move To Target
             LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
             RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask);
-            if (nullableHitInfo == null)
-            {
+            if (nullableHitInfo == null) {
                 //Didn't click on anything. Cancel.
+                return null;
+            }
+
+            //Get target planet
+            RaycastHit hitInfo = (RaycastHit)nullableHitInfo; //Convert hit info so we can get the transform of the hit object
+            PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
+            return targetPlanet;
+        }
+        
+        public void MoveToPlanet()
+        {
+            Moveable moveableObject = GetMoveableFromSelectedObject();
+            if (moveableObject == null) {
                 return;
             }
 
-
-            //Get target planet
-            RaycastHit hitInfo = (RaycastHit)nullableHitInfo;   //Convert hit info so we can get the transform of the hit object
-            PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
-            if (!targetPlanet)
-            {
+            PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
+            if (!targetPlanet) {
                 //Didn't click on a planet. Cancel.
                 return;
             }
-
+            
             bool canMove = moveableObject.CanMoveToTarget(targetPlanet);
             if (!canMove)
             {
@@ -67,11 +97,12 @@ namespace Abraham.GalacticConquest.UnitControl
 
             //Check AP costs. 
             // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
-            int totalApCost = moveableObject.movementApCost;
+            int totalApCost = moveableObject.CalculateMovementCost(targetPlanet);
             if (!ActionPointManager.Instance.CanPerformAction(totalApCost))
             {
                 //Not Enough AP. Cancel.
                 GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + totalApCost + "): Movement Cancelled.");
+                
                 return;
             }
 
@@ -85,6 +116,24 @@ namespace Abraham.GalacticConquest.UnitControl
 
             ActionPointManager.Instance.DecreaseActionPoints(totalApCost);
         }
+
+
+        public void UpdateMovementIndicator()
+        {
+            Moveable moveableObject = GetMoveableFromSelectedObject();
+            if (moveableObject == null) {
+                return;
+            }
+
+            Vector3 startPosition = moveableObject.transform.position;
+            Vector3 endPosition = InputManager.Instance.GetCursorPosition();
+
+            movementIndicatorHandler.SetMovementLinePositions(startPosition, endPosition);
+
+        }
+
+
+
         
         
     }

@@ -3,6 +3,7 @@ using Abraham.GalacticConquest.Planets;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Abraham.GalacticConquest.UnitControl
 {
@@ -11,7 +12,8 @@ namespace Abraham.GalacticConquest.UnitControl
         [SerializeField] float lookTweenDuration = 0.5f;
         [SerializeField] float moveTweenDuration = 1f;
 
-        public int movementApCost;
+        [FormerlySerializedAs("movementApCost"), SerializeField]
+        int baseMovementApCost;
 
         [ReadOnly] public PlanetBehaviour currentPlanet = null;
 
@@ -58,6 +60,12 @@ namespace Abraham.GalacticConquest.UnitControl
             }
 
             return true;
+        }
+
+        public int CalculateMovementCost(PlanetBehaviour targetPlanet)
+        {
+            float distanceToPlanet = Vector3.Distance(transform.position, targetPlanet.transform.position);
+            return baseMovementApCost;
         }
     }
 }
