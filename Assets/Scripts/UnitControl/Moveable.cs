@@ -71,7 +71,7 @@ namespace Abraham.GalacticConquest.UnitControl
         {
             float distanceToPlanet = Vector3.Distance(transform.position, endPosition);
 
-            int distanceApCost = Mathf.FloorToInt(distanceToPlanet / 10);
+            int distanceApCost = Mathf.FloorToInt(distanceToPlanet / 10);   //TODO: Base distance off less magic numbers
 
             int totalApCost = baseMovementApCost + distanceApCost;
 

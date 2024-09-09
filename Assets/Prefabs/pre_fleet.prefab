@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 63371917b34a3884bbe9f36ede877702, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTweenDuration: 0.25
   moveTweenDuration: 1
-  movementApCost: 3
+  baseMovementApCost: 3
   currentPlanet: {fileID: 0}
 --- !u!114 &133122592915136982
 MonoBehaviour:
@@ -199,6 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySelectionRing: {fileID: 973578414307028077}
+  onSelectObjectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselectObjectEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4678900628996214075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +305,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 63371917b34a3884bbe9f36ede877702, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
