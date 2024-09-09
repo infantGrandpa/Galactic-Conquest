@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest.UnitControl
 {
-    public class UnitAppearanceController : SerializedMonoBehaviour
+    public class FactionAppearanceController : SerializedMonoBehaviour
     {
         [OdinSerialize] public Dictionary<Faction, GameObject> FactionSkins = new Dictionary<Faction, GameObject>();
 
