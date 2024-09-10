@@ -45,7 +45,7 @@ namespace Abraham.GalacticConquest.ActionPoints
             CalculateAp();
         }
 
-        private void CalculateAp()
+        protected virtual void CalculateAp()
         {
             int apThisTurn = baseApPerTurn;
 

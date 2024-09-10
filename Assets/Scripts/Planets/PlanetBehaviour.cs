@@ -36,18 +36,18 @@ namespace Abraham.GalacticConquest.Planets
             PlanetSlotHandler = GetComponent<PlanetSlotHandler>();
             PlanetCombatBehaviour = GetComponent<PlanetCombatBehaviour>();
             FactionHandler = GetComponent<FactionHandler>();
-        }
 
-        void Start()
-        {
-            GameObject newPlanetLabel = Instantiate(planetLabelPrefab) ?? throw new ArgumentNullException("Instantiate(planetLabelPrefab)");
+            GameObject newPlanetLabel = Instantiate(planetLabelPrefab);
 
             planetLabel = newPlanetLabel.GetComponent<PlanetLabelBehaviour>();
             if (planetLabel == null) {
                 Debug.LogError("ERROR PlanetBehaviour Start(): The planet label prefab is missing a PlanetLabelBehaviour component.");
                 return;
             }
+        }
 
+        void Start()
+        {
             planetLabel.InitLabel(planet, FactionHandler.myFaction, transform.position);
         }
 
@@ -55,7 +55,7 @@ namespace Abraham.GalacticConquest.Planets
         {
             Faction newFaction = PlanetCombatBehaviour.GetInvaderFaction();
             FactionHandler.SetFaction(newFaction);
-            planetLabel.UpdateLabel(newFaction);
+            planetLabel.UpdateLabelFaction(newFaction);
 
             PlanetCombatBehaviour.ResetPlanetAfterCapture();
 
@@ -76,6 +76,11 @@ namespace Abraham.GalacticConquest.Planets
             }
             
             GUIManager.Instance.HideActionList();
+        }
+
+        public void UpdateApLabel(int newAp)
+        {
+            planetLabel.UpdateAPLabel(newAp);
         }
     }
 }

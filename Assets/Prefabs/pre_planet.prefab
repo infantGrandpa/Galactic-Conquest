@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4936992261832728891}
   - component: {fileID: 6502950007264611155}
   - component: {fileID: 8869608432704605659}
-  - component: {fileID: 4263201137056577216}
+  - component: {fileID: 5526301174624392162}
   m_Layer: 9
   m_Name: pre_planet
   m_TagString: Untagged
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traits:
   - {fileID: 11400000, guid: d31b2bfee28412144828b4f994201315, type: 2}
---- !u!114 &4263201137056577216
+--- !u!114 &5526301174624392162
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3091433258522064170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 077c8a6b22a51ee44af1e8a03acaeb8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b9988634fc3c3c4a9b2176ea545e1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseApPerTurn: 0

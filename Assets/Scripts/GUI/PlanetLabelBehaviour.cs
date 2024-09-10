@@ -22,6 +22,8 @@ namespace Abraham.GalacticConquest.GUI
         [SerializeField] Image prodCenterImage;
         [SerializeField] Image shipyardImage;
 
+        [SerializeField] TMP_Text apLabel;
+
         public void InitLabel(Planet planetDetails, Faction faction, Vector3 worldPosition)
         {
             currentFaction = faction;
@@ -35,7 +37,11 @@ namespace Abraham.GalacticConquest.GUI
 
             SetColors(faction.factionColor);
             SetCanvasPosition(worldPosition);
+        }
 
+        public void UpdateAPLabel(int newAP)
+        {
+            apLabel.text = newAP + " AP";
         }
 
         private void ShowSpecialtyImages(PlanetSpecialty planetSpecialty, bool isShipyard)
@@ -85,7 +91,7 @@ namespace Abraham.GalacticConquest.GUI
             rectTransform.anchoredPosition = finalPosition;
         }
 
-        public void UpdateLabel(Faction newFaction)
+        public void UpdateLabelFaction(Faction newFaction)
         {
             currentFaction = newFaction;
 
