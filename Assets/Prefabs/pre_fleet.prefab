@@ -226,7 +226,8 @@ GameObject:
   - component: {fileID: 133122592915136982}
   - component: {fileID: 4678900628996214075}
   - component: {fileID: 5440470072820585767}
-  - component: {fileID: 5527128321969345551}
+  - component: {fileID: 4140671871952486091}
+  - component: {fileID: 8514238081515761836}
   m_Layer: 0
   m_Name: pre_fleet
   m_TagString: Untagged
@@ -332,6 +333,10 @@ MonoBehaviour:
   onDeselectObjectEvent:
     m_PersistentCalls:
       m_Calls: []
+  selectableInfo:
+    infoBoxTitle: 
+    infoBoxDesc: 
+    apPerTurn: 0
 --- !u!114 &4678900628996214075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +376,7 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5527128321969345551
+--- !u!114 &4140671871952486091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -380,10 +385,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 7851111968153162774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a796a2b9e672b34ba0b21e22eaec717, type: 3}
+  m_Script: {fileID: 11500000, guid: 077c8a6b22a51ee44af1e8a03acaeb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apCostPerTurn: 4
+  baseApPerTurn: 0
+  apAdjustments: []
+--- !u!114 &8514238081515761836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851111968153162774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308ff8ce6779d6e4faabf5fd26265ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traits:
+  - {fileID: 11400000, guid: 61984f940e52bdd44b5895e817ce8225, type: 2}
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Abraham.GalacticConquest.ActionPoints;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Traits
@@ -24,7 +25,7 @@ namespace Abraham.GalacticConquest.Traits
             foreach (TraitAspect thisTraitAspect in traitAspects) {
                 switch (thisTraitAspect) {
                 case TraitAspect.ActionPointModifier:
-                    Debug.Log("Action Point Modifier Trait: " + actionPointModifier, this);
+                    ApplyActionPointModifier(target);
                     break;
                 case TraitAspect.CanBuildShips:
                     Debug.Log("Can Build Ships Trait.", this);
@@ -36,6 +37,16 @@ namespace Abraham.GalacticConquest.Traits
                 }
 
             }
+        }
+
+        private void ApplyActionPointModifier(GameObject target)
+        {
+            ActionPointAdjuster apAdjuster = target.GetComponent<ActionPointAdjuster>();
+            if (apAdjuster == null) {
+                apAdjuster = target.AddComponent<ActionPointAdjuster>();
+            }
+
+            apAdjuster.AddApAdjustment(actionPointModifier, traitName);
         }
     }
 }
