@@ -36,26 +36,6 @@ namespace Abraham.GalacticConquest.ActionPoints
         public int CurrentActionPoints { get; private set; }
 
         [HideInInspector] public List<ActionPointAdjuster> actionPointAdjusters = new List<ActionPointAdjuster>();
-
-        public int GetAPGeneratorValue(Planet planetInfo)
-        {
-            int totalApToGenerate = apPerPlanet;
-
-            if (planetInfo.isShipyard) {
-                totalApToGenerate += additionalApPerShipyard;
-            }
-
-            switch (planetInfo.planetSpecialty) {
-            case PlanetSpecialty.Capital:
-                totalApToGenerate += additionalApPerCapital;
-                break;
-            case PlanetSpecialty.ProductionCenter:
-                totalApToGenerate += additionalApPerProdCenter;
-                break;
-            }
-            
-            return totalApToGenerate;
-        }
         
         public void CalculateActionPoints()
         {
