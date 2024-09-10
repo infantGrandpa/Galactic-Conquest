@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Traits
@@ -17,7 +18,10 @@ namespace Abraham.GalacticConquest.Traits
         public string traitName;
         public string traitDesc;
 
+        [ListDrawerSettings(ShowFoldout = true)]
         public List<TraitAspect> traitAspects = new List<TraitAspect>();
+
+        [ShowIf("HasActionPointModifierAspect")]
         public int actionPointModifier = 0;
 
         public void ApplyTrait(GameObject target)
@@ -33,9 +37,7 @@ namespace Abraham.GalacticConquest.Traits
                 case TraitAspect.RequiredToWin:
                     Debug.Log("Required to Win Trait.", this);
                     break;
-
                 }
-
             }
         }
 
@@ -47,6 +49,11 @@ namespace Abraham.GalacticConquest.Traits
             }
 
             apAdjuster.AddApAdjustment(actionPointModifier, traitName);
+        }
+
+        private bool HasActionPointModifierAspect()
+        {
+            return traitAspects.Contains(TraitAspect.ActionPointModifier);
         }
     }
 }
