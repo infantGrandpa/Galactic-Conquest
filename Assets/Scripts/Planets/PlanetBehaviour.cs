@@ -1,6 +1,7 @@
 using System;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
+using Abraham.GalacticConquest.Traits;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Planets
@@ -12,6 +13,7 @@ namespace Abraham.GalacticConquest.Planets
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }
         public PlanetCombatBehaviour PlanetCombatBehaviour { get; private set; }
         public FactionHandler FactionHandler { get; private set; }
+        public TraitHandler TraitHandler { get; private set; }
 
         [Header("Planet Label")] [SerializeField]
         GameObject planetLabelPrefab;
@@ -36,6 +38,7 @@ namespace Abraham.GalacticConquest.Planets
             PlanetSlotHandler = GetComponent<PlanetSlotHandler>();
             PlanetCombatBehaviour = GetComponent<PlanetCombatBehaviour>();
             FactionHandler = GetComponent<FactionHandler>();
+            TraitHandler = GetComponent<TraitHandler>();
 
             GameObject newPlanetLabel = Instantiate(planetLabelPrefab);
 
@@ -48,7 +51,7 @@ namespace Abraham.GalacticConquest.Planets
 
         void Start()
         {
-            planetLabel.InitLabel(planet, FactionHandler.myFaction, transform.position);
+            planetLabel.InitLabel(planet, FactionHandler.myFaction, TraitHandler, transform.position);
         }
 
         public void CapturePlanet() //Called by HealthSystem OnDeathEvent

@@ -17,3 +17,4 @@ MonoBehaviour:
   traitOrder: 40
   traitAspects: 000000000200000001000000
   actionPointModifier: 5
+  traitIcon: {fileID: 21300000, guid: c3454deb546ab9b499226d38959eeaa5, type: 3}

@@ -1,5 +1,6 @@
 using System;
 using Abraham.GalacticConquest.Planets;
+using Abraham.GalacticConquest.Traits;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,17 +44,29 @@ namespace Abraham.GalacticConquest.GUI
             Vector2 finalPosition = canvasPosition + positionOffset;
             rectTransform.anchoredPosition = finalPosition;
 
-            UpdateListBasedOnPlanet(planetBehaviour.planet);
+            UpdateListBasedOnPlanet(planetBehaviour);
             gameObject.SetActive(true);
         }
 
-        private void UpdateListBasedOnPlanet(Planet planet)
+        private void UpdateListBasedOnPlanet(PlanetBehaviour planetBehaviour)
         {
-            header.text = planet.planetName;
 
-            buildFleetButton.gameObject.SetActive(planet.isShipyard);
+            //TODO: Add a new way to get the planet's name
+            //header.text = planet.planetName;
+
+            buildFleetButton.gameObject.SetActive(IsPlanetShipyard(planetBehaviour));
 
             fortifyPlanetButton.interactable = true; //TODO: Set this up to only work if planet isn't already fortified
+        }
+
+        bool IsPlanetShipyard(PlanetBehaviour planetBehaviour)
+        {
+            TraitHandler traitHandler = planetBehaviour.GetComponent<TraitHandler>();
+            if (traitHandler == null) {
+                return false;
+            }
+
+            return traitHandler.CanBuildShips();
         }
 
         public void HideActionList()

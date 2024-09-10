@@ -25,6 +25,8 @@ namespace Abraham.GalacticConquest.Traits
         [ShowIf("HasActionPointModifierAspect")]
         public int actionPointModifier = 0;
 
+        public Sprite traitIcon;
+
         public void ApplyTrait(GameObject target)
         {
             foreach (TraitAspect thisTraitAspect in traitAspects) {

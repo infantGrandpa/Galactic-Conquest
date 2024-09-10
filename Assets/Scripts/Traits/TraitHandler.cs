@@ -24,5 +24,16 @@ namespace Abraham.GalacticConquest.Traits
                 thisTrait.ApplyTrait(gameObject);
             }
         }
+
+        public bool CanBuildShips()
+        {
+            foreach (Trait thisTrait in traits) {
+                if (thisTrait.traitAspects.Contains(TraitAspect.CanBuildShips)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

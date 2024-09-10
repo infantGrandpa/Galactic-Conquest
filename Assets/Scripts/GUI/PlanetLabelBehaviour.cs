@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.Planets;
+using Abraham.GalacticConquest.Traits;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,18 +20,16 @@ namespace Abraham.GalacticConquest.GUI
 
         Vector3 currentWorldPosition;
 
-        [SerializeField] Image capitalImage;
-        [SerializeField] Image prodCenterImage;
-        [SerializeField] Image shipyardImage;
-
+        [SerializeField] List<Image> traitIcons = new List<Image>();
+        
         [SerializeField] TMP_Text apLabel;
 
-        public void InitLabel(Planet planetDetails, Faction faction, Vector3 worldPosition)
+        public void InitLabel(Planet planetDetails, Faction faction, TraitHandler traitHandler, Vector3 worldPosition)
         {
             currentFaction = faction;
             planetNameText.text = planetDetails.planetName;
 
-            ShowSpecialtyImages(planetDetails.planetSpecialty, planetDetails.isShipyard);
+            ShowTraitIcons(traitHandler);
 
             GUIManager.Instance.AddUIElementToSpatialCanvas(transform);
 
@@ -44,40 +44,31 @@ namespace Abraham.GalacticConquest.GUI
             apLabel.text = newAP + " AP";
         }
 
-        private void ShowSpecialtyImages(PlanetSpecialty planetSpecialty, bool isShipyard)
+        void ShowTraitIcons(TraitHandler traitHandler)
         {
-            GameObject capitalGameObject = capitalImage.gameObject;
-            GameObject prodCenterGameObject = prodCenterImage.gameObject;
-            GameObject shipyardGameObject = shipyardImage.gameObject;
-
-            //Hide everything
-            capitalGameObject.SetActive(false);
-            prodCenterGameObject.SetActive(false);
-            shipyardGameObject.SetActive(false);
-
-            if (isShipyard) {
-                shipyardGameObject.SetActive(true);
+            foreach (Image thisTraitIconSlot in traitIcons) {
+                thisTraitIconSlot.gameObject.SetActive(false);
             }
 
-            //Show speciality icons
-            switch (planetSpecialty) {
-            case PlanetSpecialty.Capital:
-                capitalGameObject.SetActive(true);
-                break;
-            case PlanetSpecialty.ProductionCenter:
-                prodCenterGameObject.SetActive(true);
-                break;
-            default:
-                break;
-            }
+            int traitCount = 0;
+            foreach (Trait thisTrait in traitHandler.traits) {
+                if (thisTrait.traitIcon == null) {
+                    continue;
+                }
 
+                Image thisTraitIconSlot = traitIcons[traitCount];
+                thisTraitIconSlot.sprite = thisTrait.traitIcon;
+                thisTraitIconSlot.gameObject.SetActive(true);
+
+                traitCount++;
+            }
         }
 
         private void SetColors(Color newColor)
         {
-            capitalImage.color = newColor;
-            prodCenterImage.color = newColor;
-            shipyardImage.color = newColor;
+            foreach (Image thisTraitIconSlot in traitIcons) {
+                thisTraitIconSlot.color = newColor;
+            }
 
             planetNameText.color = newColor;
             apLabel.color = newColor;
