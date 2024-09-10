@@ -80,6 +80,7 @@ namespace Abraham.GalacticConquest.GUI
             shipyardImage.color = newColor;
 
             planetNameText.color = newColor;
+            apLabel.color = newColor;
         }
 
         void SetCanvasPosition(Vector3 worldPosition)
