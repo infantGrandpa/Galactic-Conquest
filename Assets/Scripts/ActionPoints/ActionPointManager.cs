@@ -35,8 +35,7 @@ namespace Abraham.GalacticConquest.ActionPoints
         [PropertySpace, ShowInInspector, ReadOnly]
         public int CurrentActionPoints { get; private set; }
 
-        [HideInInspector] public List<ActionPointGenerator> actionPointGenerators = new List<ActionPointGenerator>();
-        [HideInInspector] public List<ActionPointReducer> actionPointReducers = new List<ActionPointReducer>();
+        [HideInInspector] public List<ActionPointAdjuster> actionPointAdjusters = new List<ActionPointAdjuster>();
 
         public int GetAPGeneratorValue(Planet planetInfo)
         {
@@ -62,14 +61,8 @@ namespace Abraham.GalacticConquest.ActionPoints
         {
             int totalActionPoints = baseActionPoints;
 
-            //Add Generators
-            foreach (ActionPointGenerator thisGenerator in actionPointGenerators) {
-                totalActionPoints += thisGenerator.APGeneratedPerTurn;
-            }
-
-            //Subtract Reducers
-            foreach (ActionPointReducer thisReducer in actionPointReducers) {
-                totalActionPoints -= thisReducer.apCostPerTurn;
+            foreach (ActionPointAdjuster thisAdjuster in actionPointAdjusters) {
+                totalActionPoints += thisAdjuster.TotalApPerTurn;
             }
 
             CurrentActionPoints = totalActionPoints;
