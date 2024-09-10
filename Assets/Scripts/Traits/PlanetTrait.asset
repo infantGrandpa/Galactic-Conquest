@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traitName: Planet
   traitDesc: The people and resources here provide Action Points every turn.
+  traitOrder: 100
   traitAspects: 00000000
   actionPointModifier: 5

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traitName: Shipyard
   traitDesc: New fleets can be manufactured here.
+  traitOrder: 20
   traitAspects: 0100000000000000
   actionPointModifier: 2

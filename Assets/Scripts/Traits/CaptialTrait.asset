@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traitName: Capital
   traitDesc: The capital is the heart of a faction. Without it, they'll be crippled!
+  traitOrder: 50
   traitAspects: 0200000000000000
   actionPointModifier: 4

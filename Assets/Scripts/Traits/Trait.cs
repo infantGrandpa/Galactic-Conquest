@@ -17,6 +17,7 @@ namespace Abraham.GalacticConquest.Traits
     {
         public string traitName;
         public string traitDesc;
+        [Tooltip("Dictates the order to apply traits. Higher numbers = higher importance.")] public int traitOrder = 0;
 
         [ListDrawerSettings(ShowFoldout = true)]
         public List<TraitAspect> traitAspects = new List<TraitAspect>();

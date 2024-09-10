@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traitName: Production Center
   traitDesc: This is the core of industry and manufacturing.
+  traitOrder: 40
   traitAspects: 000000000200000001000000
   actionPointModifier: 5

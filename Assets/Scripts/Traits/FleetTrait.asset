@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traitName: Fleet
   traitDesc: The core of any offensive operations.
+  traitOrder: 90
   traitAspects: 00000000
   actionPointModifier: -3

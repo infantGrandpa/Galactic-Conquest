@@ -9,7 +9,13 @@ namespace Abraham.GalacticConquest.Traits
 
         void Start()
         {
+            SortTraits();
             ApplyTraits();
+        }
+
+        void SortTraits()
+        {
+            traits.Sort((trait1, trait2) => trait2.traitOrder.CompareTo(trait1.traitOrder));
         }
 
         void ApplyTraits()
