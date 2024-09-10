@@ -50,7 +50,7 @@ namespace Abraham.GalacticConquest.GUI
 
         private void UpdateListBasedOnPlanet(PlanetBehaviour planetBehaviour)
         {
-            header.text = planetBehaviour.planetInfo.myName;
+            header.text = planetBehaviour.PlanetInfo.myName;
 
             buildFleetButton.gameObject.SetActive(IsPlanetShipyard(planetBehaviour));
 
@@ -85,13 +85,13 @@ namespace Abraham.GalacticConquest.GUI
         //Called by button onclick event
         public void OnBuildFleetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("Building a new fleet at " + currentPlanet.planetInfo.myName + "...");
+            GUIManager.Instance.AddActionLogMessage("Building a new fleet at " + currentPlanet.PlanetInfo.myName + "...");
         }
 
         //Called by button onclick event
         public void OnFortifyPlanetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("Fortifying " + currentPlanet.planetInfo.myName + "...");
+            GUIManager.Instance.AddActionLogMessage("Fortifying " + currentPlanet.PlanetInfo.myName + "...");
         }
     }
 }

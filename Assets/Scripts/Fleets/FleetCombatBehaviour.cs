@@ -15,13 +15,13 @@ namespace Abraham.GalacticConquest.Fleets
                 return;
             }
 
-            GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + planet.planetInfo.myName + "...");
+            GUIManager.Instance.AddActionLogMessage("Initiating space battle over " + planet.PlanetInfo.myName + "...");
             BattleManager.Instance.StartSpaceBattle(this, enemyCombatant, planet);
         }
 
         public void StartGroundBattle(PlanetBehaviour targetPlanet)
         {
-            GUIManager.Instance.AddActionLogMessage("Invading " + targetPlanet.planetInfo.myName + "...");
+            GUIManager.Instance.AddActionLogMessage("Invading " + targetPlanet.PlanetInfo.myName + "...");
             BattleManager.Instance.StartGroundBattle(this, targetPlanet);
         }
     }

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 6502950007264611155}
   - component: {fileID: 8869608432704605659}
   - component: {fileID: 5526301174624392162}
+  - component: {fileID: 4141150999313406922}
   m_Layer: 9
   m_Name: pre_planet
   m_TagString: Untagged
@@ -77,10 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7913f32ca4e8a1f4ba502009b66d920a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planet:
-    planetName: 
-    planetSpecialty: 0
-    isShipyard: 0
+  planetInfo: {fileID: 0}
   planetLabelPrefab: {fileID: 894364721116048451, guid: 385d9106eb62f7b4397fef67b52dcbd8, type: 3}
 --- !u!114 &-5318011949778153505
 MonoBehaviour:
@@ -156,10 +154,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  selectableInfo:
-    infoBoxTitle: Planet
-    infoBoxDesc: 
-    apPerTurn: 0
 --- !u!114 &4936992261832728891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +233,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseApPerTurn: 0
   apAdjustments: []
+--- !u!114 &4141150999313406922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091433258522064170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639143a9b33ee3d4d9e19b08d62f914c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myName: 
 --- !u!1 &3379968224065540479
 GameObject:
   m_ObjectHideFlags: 0

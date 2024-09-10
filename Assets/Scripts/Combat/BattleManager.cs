@@ -82,7 +82,7 @@ namespace Abraham.GalacticConquest.Combat
                 Debug.LogWarning("BattleManager ResolveBattle(): Winner (" + winner.gameObject.name + ") does not have a FactionHandler component.");
             }
             string factionName = winningFactionHandler.myFaction.factionName;
-            string planetName = CurrentBattle.battlePlanet.planetInfo.myName;
+            string planetName = CurrentBattle.battlePlanet.PlanetInfo.myName;
             GUIManager.Instance.AddActionLogMessage("The " + factionName + " won the battle at " + planetName + "!");
         }
 

@@ -554,6 +554,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myName
+      value: Kuat
+      objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
@@ -1820,6 +1824,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myName
+      value: Tatooine
+      objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
@@ -2532,6 +2540,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myName
+      value: Kamino
+      objectReference: {fileID: 0}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Alderaan
@@ -3048,6 +3060,10 @@ PrefabInstance:
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myName
+      value: Geonosis
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -4903,6 +4919,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 420205103}
     m_Modifications:
+    - target: {fileID: 1170545883627905908, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
+      propertyPath: myName
+      value: 2nd Republic Fleet
+      objectReference: {fileID: 0}
     - target: {fileID: 1747910914384766496, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5169,6 +5189,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 420205103}
     m_Modifications:
+    - target: {fileID: 1170545883627905908, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
+      propertyPath: myName
+      value: 1st Republic Fleet
+      objectReference: {fileID: 0}
     - target: {fileID: 1747910914384766496, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -6237,6 +6261,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myName
+      value: Coruscant
+      objectReference: {fileID: 0}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Tatooine
@@ -6286,6 +6314,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 420205103}
     m_Modifications:
+    - target: {fileID: 1170545883627905908, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
+      propertyPath: myName
+      value: 1st CIS Fleet
+      objectReference: {fileID: 0}
     - target: {fileID: 1747910914384766496, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: m_RootOrder
       value: -1

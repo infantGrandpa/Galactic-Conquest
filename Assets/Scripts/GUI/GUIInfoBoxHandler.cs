@@ -19,10 +19,23 @@ namespace Abraham.GalacticConquest.GUI
 
         public void ShowInfoBox(GameObject target)
         {
+            GetGenericInfo(target);
             GetTraitInfo(target);
             GetActionPointInfo(target);
 
             gameObject.SetActive(true);
+        }
+        void GetGenericInfo(GameObject target)
+        {
+            GenericInfo targetInfo = target.GetComponent<GenericInfo>();
+            if (targetInfo == null) {
+                Debug.LogWarning("GUIInfoBoxHandler ShowInfoBox(): Target " + target.name + " does not have generic info.", this);
+                titleText.text = "Unknown Name";
+                descText.text = "";
+                return;
+            }
+
+            titleText.text = targetInfo.myName;
         }
 
         void GetTraitInfo(GameObject target)

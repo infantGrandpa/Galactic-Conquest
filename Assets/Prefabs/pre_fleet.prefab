@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 5440470072820585767}
   - component: {fileID: 4140671871952486091}
   - component: {fileID: 8514238081515761836}
+  - component: {fileID: 1170545883627905908}
   m_Layer: 0
   m_Name: pre_fleet
   m_TagString: Untagged
@@ -333,10 +334,6 @@ MonoBehaviour:
   onDeselectObjectEvent:
     m_PersistentCalls:
       m_Calls: []
-  selectableInfo:
-    infoBoxTitle: 
-    infoBoxDesc: 
-    apPerTurn: 0
 --- !u!114 &4678900628996214075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +401,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traits:
   - {fileID: 11400000, guid: 61984f940e52bdd44b5895e817ce8225, type: 2}
+--- !u!114 &1170545883627905908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851111968153162774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639143a9b33ee3d4d9e19b08d62f914c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myName: 
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0

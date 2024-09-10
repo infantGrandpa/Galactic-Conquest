@@ -8,8 +8,7 @@ namespace Abraham.GalacticConquest.Planets
 {
     public class PlanetBehaviour : MonoBehaviour
     {
-        public GenericInfo planetInfo;
-        
+        public GenericInfo PlanetInfo { get; private set; }
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }
         public PlanetCombatBehaviour PlanetCombatBehaviour { get; private set; }
         public FactionHandler FactionHandler { get; private set; }
@@ -39,6 +38,7 @@ namespace Abraham.GalacticConquest.Planets
             PlanetCombatBehaviour = GetComponent<PlanetCombatBehaviour>();
             FactionHandler = GetComponent<FactionHandler>();
             TraitHandler = GetComponent<TraitHandler>();
+            PlanetInfo = GetComponent<GenericInfo>();
 
             GameObject newPlanetLabel = Instantiate(planetLabelPrefab);
 
@@ -51,7 +51,7 @@ namespace Abraham.GalacticConquest.Planets
 
         void Start()
         {
-            planetLabel.InitLabel(planetInfo, FactionHandler.myFaction, TraitHandler, transform.position);
+            planetLabel.InitLabel(PlanetInfo, FactionHandler.myFaction, TraitHandler, transform.position);
         }
 
         public void CapturePlanet() //Called by HealthSystem OnDeathEvent

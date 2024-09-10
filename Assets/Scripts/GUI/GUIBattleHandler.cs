@@ -73,7 +73,7 @@ namespace Abraham.GalacticConquest.GUI
         private void SetText(Battle battleInfo)
         {
             string descPrefix = battleInfo.battleType == Battle.BattleType.SpaceBattle ? spaceBattlePrefix : groundBattlePrefix;
-            descriptionText.text = descPrefix + " " + battleInfo.battlePlanet.planetInfo.myName;
+            descriptionText.text = descPrefix + " " + battleInfo.battlePlanet.PlanetInfo.myName;
         }
 
         private void SetButtons(Faction attackingFaction, Faction defendingFaction)
