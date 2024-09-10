@@ -1,9 +1,8 @@
-using System;
 using Abraham.GalacticConquest.Planets;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.ActionPoints
 {
     public class ActionPointGenerator : MonoBehaviour
     {

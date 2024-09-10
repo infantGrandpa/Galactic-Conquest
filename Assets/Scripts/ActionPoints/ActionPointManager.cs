@@ -4,7 +4,7 @@ using Abraham.GalacticConquest.Planets;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Abraham.GalacticConquest
+namespace Abraham.GalacticConquest.ActionPoints
 {
     public class ActionPointManager : MonoBehaviour
     {
