@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cb0c4d20058461a4db7dc95a11a894ee, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1173,11 +1173,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480221243}
   m_CullTransparentMesh: 1
---- !u!1 &517548912 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
-  m_PrefabInstance: {fileID: 1856346654761339369}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &525226698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4159,6 +4154,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5570365128598586815, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5570365128598586815, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
     - target: {fileID: 7851111968153162774, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: m_Name
       value: Fleet (2)
@@ -4421,6 +4420,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5570365128598586815, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5570365128598586815, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
     - target: {fileID: 7851111968153162774, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: m_Name
       value: Fleet (1)
@@ -4944,27 +4947,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
   m_PrefabInstance: {fileID: 1856346654761339369}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2004205158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 517548912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc29478758ae5fc4eb7acf7c65c3d028, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  destroyOn0Health: 0
-  isInvulnerable: 0
-  onTakeDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2026770914
 GameObject:
   m_ObjectHideFlags: 0
@@ -5342,10 +5324,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2004205158}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
 --- !u!1001 &6282807000176966619
 PrefabInstance:
@@ -5403,6 +5382,10 @@ PrefabInstance:
       propertyPath: myFaction
       value: 
       objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+    - target: {fileID: 5570365128598586815, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 5570365128598586815, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
     - target: {fileID: 7851111968153162774, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
       propertyPath: m_Name
       value: Fleet
