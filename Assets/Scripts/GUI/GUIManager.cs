@@ -28,6 +28,7 @@ namespace Abraham.GalacticConquest.GUI
         [SerializeField] GUIActionPointHandler actionPointHandler;
         [SerializeField] GUIActionLogHandler actionLogHandler;
         [SerializeField] GUIBattleHandler guiBattleHandler;
+        [SerializeField] GUIInfoBoxHandler infoBoxHandler;
 
         [Header("Spatial Elements")] [SerializeField]
         GUISpatialHandler spatialHandler;
@@ -38,7 +39,8 @@ namespace Abraham.GalacticConquest.GUI
         {
             mainCanvas = GetComponent<Canvas>();
             mainCamera = Camera.main;
-            //Activate the battle handler so it can assign all it's variables
+
+            //Activate the battle handler so it can assign all its variables
             guiBattleHandler.gameObject.SetActive(true);
         }
 
@@ -80,6 +82,16 @@ namespace Abraham.GalacticConquest.GUI
         public void UpdateMovementCostIndicator(int newCost)
         {
             costIndicator.UpdateMovementCost(newCost);
+        }
+
+        public void ShowInfoBox(GameObject target)
+        {
+            infoBoxHandler.ShowInfoBox(target);
+        }
+
+        public void HideInfoBox()
+        {
+            infoBoxHandler.HideInfoBox();
         }
     }
 }

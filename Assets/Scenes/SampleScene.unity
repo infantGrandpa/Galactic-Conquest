@@ -1506,6 +1506,7 @@ MonoBehaviour:
   actionPointHandler: {fileID: 1760930797}
   actionLogHandler: {fileID: 241162726}
   guiBattleHandler: {fileID: 254310459}
+  infoBoxHandler: {fileID: 702917889}
   spatialHandler: {fileID: 1924216230}
   actionListHandler: {fileID: 1150917168}
   costIndicator: {fileID: 104875697}

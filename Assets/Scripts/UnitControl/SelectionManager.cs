@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Abraham.GalacticConquest.GUI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -45,7 +46,6 @@ namespace Abraham.GalacticConquest.UnitControl
                 return;
             }
             
-            
         }
 
         private void SelectObject(Selectable objectToSelect)
@@ -54,6 +54,7 @@ namespace Abraham.GalacticConquest.UnitControl
             selectedObject.SelectObject();
             manageMovementIndicatorCoroutine = StartCoroutine(ManageMovementIndicator());
 
+            GUIManager.Instance.ShowInfoBox(objectToSelect.gameObject);
         }
 
         private IEnumerator ManageMovementIndicator()
@@ -78,6 +79,8 @@ namespace Abraham.GalacticConquest.UnitControl
 
             selectedObject.DeselectObject();
             selectedObject = null;
+
+            GUIManager.Instance.HideInfoBox();
         }
     }
 }
