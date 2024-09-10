@@ -50,9 +50,7 @@ namespace Abraham.GalacticConquest.GUI
 
         private void UpdateListBasedOnPlanet(PlanetBehaviour planetBehaviour)
         {
-
-            //TODO: Add a new way to get the planet's name
-            //header.text = planet.planetName;
+            header.text = planetBehaviour.planetInfo.myName;
 
             buildFleetButton.gameObject.SetActive(IsPlanetShipyard(planetBehaviour));
 
