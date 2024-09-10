@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5999652517984165282}
   - component: {fileID: 4936992261832728891}
   - component: {fileID: 6502950007264611155}
+  - component: {fileID: 5360740761461169029}
   m_Layer: 9
   m_Name: pre_planet
   m_TagString: Untagged
@@ -205,6 +206,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5360740761461169029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091433258522064170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952a69e1ed3754444b6705507568ef7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apGeneratedPerTurn: 5
 --- !u!1 &3379968224065540479
 GameObject:
   m_ObjectHideFlags: 0

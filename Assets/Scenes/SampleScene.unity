@@ -3351,6 +3351,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseActionPoints: 10
+  apPerPlanet: 5
+  additionalApPerCapital: 4
+  additionalApPerProdCenter: 3
+  additionalApPerShipyard: 2
+  actionPointGenerators: []
 --- !u!1 &1520388670
 GameObject:
   m_ObjectHideFlags: 0
