@@ -570,6 +570,10 @@ PrefabInstance:
       propertyPath: planet.planetName
       value: Kuat
       objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planetInfo.myName
+      value: Kuat
+      objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
       value: 2
@@ -1832,6 +1836,10 @@ PrefabInstance:
       propertyPath: planet.planetName
       value: Tatooine
       objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planetInfo.myName
+      value: Tatooine
+      objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
       value: 1
@@ -2532,6 +2540,10 @@ PrefabInstance:
       propertyPath: planet.planetName
       value: Kamino
       objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planetInfo.myName
+      value: Kamino
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3047,6 +3059,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetName
+      value: Geonosis
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planetInfo.myName
       value: Geonosis
       objectReference: {fileID: 0}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
@@ -6227,6 +6243,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetName
+      value: Coruscant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: planetInfo.myName
       value: Coruscant
       objectReference: {fileID: 0}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}

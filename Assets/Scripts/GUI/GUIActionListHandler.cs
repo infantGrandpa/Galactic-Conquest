@@ -87,13 +87,13 @@ namespace Abraham.GalacticConquest.GUI
         //Called by button onclick event
         public void OnBuildFleetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("Building a new fleet at " + currentPlanet.planet.planetName + "...");
+            GUIManager.Instance.AddActionLogMessage("Building a new fleet at " + currentPlanet.planetInfo.myName + "...");
         }
 
         //Called by button onclick event
         public void OnFortifyPlanetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("Fortifying " + currentPlanet.planet.planetName + "...");
+            GUIManager.Instance.AddActionLogMessage("Fortifying " + currentPlanet.planetInfo.myName + "...");
         }
     }
 }

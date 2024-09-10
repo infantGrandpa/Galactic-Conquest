@@ -24,10 +24,10 @@ namespace Abraham.GalacticConquest.GUI
         
         [SerializeField] TMP_Text apLabel;
 
-        public void InitLabel(Planet planetDetails, Faction faction, TraitHandler traitHandler, Vector3 worldPosition)
+        public void InitLabel(GenericInfo planetDetails, Faction faction, TraitHandler traitHandler, Vector3 worldPosition)
         {
             currentFaction = faction;
-            planetNameText.text = planetDetails.planetName;
+            planetNameText.text = planetDetails.myName;
 
             ShowTraitIcons(traitHandler);
 

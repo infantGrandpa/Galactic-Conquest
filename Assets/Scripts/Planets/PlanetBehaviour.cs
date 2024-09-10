@@ -8,7 +8,7 @@ namespace Abraham.GalacticConquest.Planets
 {
     public class PlanetBehaviour : MonoBehaviour
     {
-        public Planet planet;
+        public GenericInfo planetInfo;
         
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }
         public PlanetCombatBehaviour PlanetCombatBehaviour { get; private set; }
@@ -51,7 +51,7 @@ namespace Abraham.GalacticConquest.Planets
 
         void Start()
         {
-            planetLabel.InitLabel(planet, FactionHandler.myFaction, TraitHandler, transform.position);
+            planetLabel.InitLabel(planetInfo, FactionHandler.myFaction, TraitHandler, transform.position);
         }
 
         public void CapturePlanet() //Called by HealthSystem OnDeathEvent
