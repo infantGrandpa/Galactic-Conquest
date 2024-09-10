@@ -8,7 +8,8 @@ namespace Abraham.GalacticConquest.UnitControl
         [SerializeField] GameObject mySelectionRing;
         [SerializeField] UnityEvent onSelectObjectEvent;
         [SerializeField] UnityEvent onDeselectObjectEvent;
-        
+
+        public SelectableInfo selectableInfo;
         
         private void OnEnable()
         {
