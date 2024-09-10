@@ -24,7 +24,7 @@ namespace Abraham.GalacticConquest.ActionPoints
         }
         private static ActionPointManager _instance;
 
-        [Header("Action Point Values")] [SerializeField, Tooltip("The minimum number of action points that a player can have at the start of their turn.")]
+        [Header("Action Point Values")] [SerializeField, Tooltip("The number of Action Points a player always gets at the start of their turn.")]
         int baseActionPoints;
         [SerializeField] int apPerPlanet;
         [SerializeField] int additionalApPerCapital;
@@ -36,6 +36,7 @@ namespace Abraham.GalacticConquest.ActionPoints
         public int CurrentActionPoints { get; private set; }
 
         [HideInInspector] public List<ActionPointGenerator> actionPointGenerators = new List<ActionPointGenerator>();
+        [HideInInspector] public List<ActionPointReducer> actionPointReducers = new List<ActionPointReducer>();
 
         public int GetAPGeneratorValue(Planet planetInfo)
         {
@@ -52,10 +53,8 @@ namespace Abraham.GalacticConquest.ActionPoints
             case PlanetSpecialty.ProductionCenter:
                 totalApToGenerate += additionalApPerProdCenter;
                 break;
-            default:
-                break;
             }
-
+            
             return totalApToGenerate;
         }
         
@@ -63,8 +62,14 @@ namespace Abraham.GalacticConquest.ActionPoints
         {
             int totalActionPoints = baseActionPoints;
 
+            //Add Generators
             foreach (ActionPointGenerator thisGenerator in actionPointGenerators) {
                 totalActionPoints += thisGenerator.APGeneratedPerTurn;
+            }
+
+            //Subtract Reducers
+            foreach (ActionPointReducer thisReducer in actionPointReducers) {
+                totalActionPoints -= thisReducer.apCostPerTurn;
             }
 
             CurrentActionPoints = totalActionPoints;
