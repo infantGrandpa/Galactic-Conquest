@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Abraham.GalacticConquest.TurnManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +12,16 @@ namespace Abraham.GalacticConquest.Factions
 
         [SerializeField] List<Renderer> renderersToChangeOnSetFaction = new();
         [SerializeField] List<Image> uiImagesToChangeOnSetFaction = new();
+
+        void OnEnable()
+        {
+            TurnStateMachine.Instance.AddFactionHandlerToTurnList(this);
+        }
+
+        void OnDisable()
+        {
+            TurnStateMachine.Instance?.RemoveFactionHandlerFromTurnList(this);
+        }
 
         private void Start()
         {
