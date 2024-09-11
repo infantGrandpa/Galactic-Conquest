@@ -4023,6 +4023,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseActionPoints: 10
+  buildShipApCost: 7
   actionPointAdjusters: []
 --- !u!1 &1520388670
 GameObject:

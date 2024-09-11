@@ -26,6 +26,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         [Header("Action Point Values")] [SerializeField, Tooltip("The number of Action Points a player always gets at the start of their turn.")]
         int baseActionPoints;
+        public int buildShipApCost;
 
         [PropertySpace, ShowInInspector, ReadOnly]
         public int CurrentActionPoints { get; private set; }
