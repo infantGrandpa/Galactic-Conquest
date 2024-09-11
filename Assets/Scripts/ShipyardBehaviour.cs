@@ -39,6 +39,7 @@ namespace Abraham.GalacticConquest
                 return;
             }
             newFleet.transform.position = slotTransform.position;
+            moveable.ChangeCurrentPlanet(gameObject);
 
             SetFleetFaction(newFleet);
         }

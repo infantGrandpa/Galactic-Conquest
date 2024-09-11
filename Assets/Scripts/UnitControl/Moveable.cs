@@ -36,11 +36,7 @@ namespace Abraham.GalacticConquest.UnitControl
             moveSequence.Append(transform.DOLookAt(moveToTransform.position, lookTweenDuration));
             moveSequence.Append(transform.DOMove(moveToTransform.position, moveTweenDuration, false).SetEase(Ease.InOutExpo));
 
-            //Remove from old planet
-            currentPlanet?.PlanetSlotHandler.RemoveMoveableFromSlot(this);
-
-            //Move successful
-            currentPlanet = targetPlanet;
+            ChangeCurrentPlanet(targetPlanet);
             return true;
         }
 
@@ -76,6 +72,26 @@ namespace Abraham.GalacticConquest.UnitControl
             int totalApCost = baseMovementApCost + distanceApCost;
 
             return totalApCost;
+        }
+
+        public void ChangeCurrentPlanet(PlanetBehaviour newPlanet)
+        {
+            //Remove from old planet
+            currentPlanet?.PlanetSlotHandler.RemoveMoveableFromSlot(this);
+
+            //Move successful
+            currentPlanet = newPlanet;
+        }
+
+        public void ChangeCurrentPlanet(GameObject newPlanetObject)
+        {
+            PlanetBehaviour newPlanetBehaviour = newPlanetObject.GetComponent<PlanetBehaviour>();
+            if (newPlanetBehaviour == null) {
+                Debug.LogError("ERROR Moveable ChangeCurrentPlanet(): " + newPlanetObject.gameObject + " is missing a PlanetBehaviour component.", this);
+                return;
+            }
+
+            ChangeCurrentPlanet(newPlanetBehaviour);
         }
     }
 }

@@ -85,7 +85,10 @@ namespace Abraham.GalacticConquest.GUI
         //Called by button onclick event
         public void OnBuildFleetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("Building a new fleet at " + currentPlanet.PlanetInfo.myName + "...");
+            ShipyardBehaviour shipyardBehaviour = currentPlanet.GetComponent<ShipyardBehaviour>();
+            shipyardBehaviour.BuildFleet();
+
+            GUIManager.Instance.AddActionLogMessage(currentPlanet.FactionHandler.myFaction.factionName + " built a new fleet at " + currentPlanet.PlanetInfo.myName + ".");
         }
 
         //Called by button onclick event
