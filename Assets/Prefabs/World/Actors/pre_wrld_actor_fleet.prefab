@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 8514238081515761836}
   - component: {fileID: 1170545883627905908}
   m_Layer: 0
-  m_Name: pre_fleet
+  m_Name: pre_wrld_actor_fleet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

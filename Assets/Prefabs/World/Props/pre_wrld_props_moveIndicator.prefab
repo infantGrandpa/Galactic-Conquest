@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 536131558482357180}
   - component: {fileID: 385085924116936780}
   m_Layer: 0
-  m_Name: pre_moveIndicator
+  m_Name: pre_wrld_props_moveIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

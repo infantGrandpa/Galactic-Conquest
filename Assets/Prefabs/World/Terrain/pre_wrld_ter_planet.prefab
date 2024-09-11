@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 5526301174624392162}
   - component: {fileID: 4141150999313406922}
   m_Layer: 9
-  m_Name: pre_planet
+  m_Name: pre_wrld_ter_planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

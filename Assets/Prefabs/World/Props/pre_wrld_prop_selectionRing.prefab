@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8404887110892757313}
   m_Layer: 0
-  m_Name: pre_selectionRing
+  m_Name: pre_wrld_prop_selectionRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
