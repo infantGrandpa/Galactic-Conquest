@@ -3603,6 +3603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetPlanePosition: {x: 0, y: 0, z: 0}
   planets: []
+  fleetPrefab: {fileID: 7851111968153162774, guid: 577475bd6a16c864d9d7990f3a1ede45, type: 3}
 --- !u!1 &1356143146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,10 +4023,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseActionPoints: 10
-  apPerPlanet: 5
-  additionalApPerCapital: 4
-  additionalApPerProdCenter: 3
-  additionalApPerShipyard: 2
   actionPointAdjusters: []
 --- !u!1 &1520388670
 GameObject:

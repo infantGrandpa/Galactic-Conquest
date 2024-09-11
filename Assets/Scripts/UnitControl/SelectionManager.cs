@@ -80,7 +80,7 @@ namespace Abraham.GalacticConquest.UnitControl
             selectedObject.DeselectObject();
             selectedObject = null;
 
-            GUIManager.Instance.HideInfoBox();
+            GUIManager.Instance?.HideInfoBox();
         }
     }
 }

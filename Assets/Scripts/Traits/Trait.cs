@@ -35,7 +35,7 @@ namespace Abraham.GalacticConquest.Traits
                     ApplyActionPointModifier(target);
                     break;
                 case TraitAspect.CanBuildShips:
-                    Debug.Log("Can Build Ships Trait.", this);
+                    ApplyBuildShipsTrait(target);
                     break;
                 case TraitAspect.RequiredToWin:
                     Debug.Log("Required to Win Trait.", this);
@@ -52,6 +52,17 @@ namespace Abraham.GalacticConquest.Traits
             }
 
             apAdjuster.AddApAdjustment(actionPointModifier, traitName);
+        }
+
+        void ApplyBuildShipsTrait(GameObject target)
+        {
+            ShipyardBehaviour shipyardBehaviour = target.GetComponent<ShipyardBehaviour>();
+            if (shipyardBehaviour != null) {
+                Debug.LogWarning("Trait ApplyBuildShipsTrait(): Target " + target.name + " already has a shipyard behaviour.", this);
+                return;
+            }
+
+            target.AddComponent<ShipyardBehaviour>();
         }
 
         private bool HasActionPointModifierAspect()

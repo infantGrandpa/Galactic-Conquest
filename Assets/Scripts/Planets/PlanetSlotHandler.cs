@@ -7,8 +7,8 @@ namespace Abraham.GalacticConquest.Planets
 {
     public class PlanetSlotHandler : MonoBehaviour
     {
-        public List<Transform> planetSlotTransforms = new();
-        [ReadOnly] public List<PlanetSlot> planetSlots = new();
+        public List<Transform> planetSlotTransforms = new List<Transform>();
+        [ReadOnly] public List<PlanetSlot> planetSlots = new List<PlanetSlot>();
 
         private void Awake()
         {

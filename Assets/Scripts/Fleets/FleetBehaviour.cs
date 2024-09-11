@@ -35,16 +35,6 @@ namespace Abraham.GalacticConquest.Fleets
             StartCoroutine(CheckForBattles(targetPlanet));
         }
 
-        public void DamageTargetFleet(CombatantBehaviour target)
-        {
-            if (combatBehaviour == null)
-            {
-                Debug.LogError("ERROR FleetBehaviour DamageTargetFleet(): This fleet (" + gameObject.name + ") does not have a FleetCombatBehaviour component.", this);
-                return;
-            }
-            combatBehaviour.DamageTarget(target);
-        }
-
         private IEnumerator CheckForBattles(PlanetBehaviour targetPlanet)
         {
 

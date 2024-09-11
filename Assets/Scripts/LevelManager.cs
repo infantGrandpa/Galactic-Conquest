@@ -28,7 +28,10 @@ namespace Abraham.GalacticConquest
         public Camera MainCamera { get; private set; }
         public Vector3 planetPlanePosition = new Vector3(0, 0, 0);
 
-        public List<PlanetBehaviour> planets = new();
+        public List<PlanetBehaviour> planets = new List<PlanetBehaviour>();
+
+        [Tooltip("The prefab to use when shipyards build fleets.")]
+        public GameObject fleetPrefab;
         
         private void Awake()
         {
