@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7913f32ca4e8a1f4ba502009b66d920a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetInfo: {fileID: 0}
   planetLabelPrefab: {fileID: 894364721116048451, guid: 385d9106eb62f7b4397fef67b52dcbd8, type: 3}
 --- !u!114 &-5318011949778153505
 MonoBehaviour:
@@ -246,6 +245,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 
+  myDesc: 
+  typeDescriptor: Planet
 --- !u!1 &3379968224065540479
 GameObject:
   m_ObjectHideFlags: 0

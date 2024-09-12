@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest
@@ -13,5 +14,28 @@ namespace Abraham.GalacticConquest
 
         public string myName;
         [TextArea(4, 10)] public string myDesc;
+
+        [Tooltip("The general type of this object.")]
+        public string typeDescriptor;
+
+        void Awake()
+        {
+            BuildGameObjectName();
+        }
+
+        private void BuildGameObjectName()
+        {
+            if (string.IsNullOrEmpty(myName) && string.IsNullOrEmpty(typeDescriptor)) {
+                return;
+            }
+
+            string separator = " - ";
+            if (string.IsNullOrEmpty(myName) || string.IsNullOrEmpty(typeDescriptor)) {
+                separator = "";
+            }
+
+            string gameObjectName = typeDescriptor + separator + myName;
+            gameObject.name = gameObjectName;
+        }
     }
 }

@@ -414,6 +414,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 
+  myDesc: 
+  typeDescriptor: Fleet
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0
