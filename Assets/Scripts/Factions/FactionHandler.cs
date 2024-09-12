@@ -40,6 +40,8 @@ namespace Abraham.GalacticConquest.Factions
             {
                 thisImage.color = myFaction.factionColor;
             }
+
+            ActiveFactionManager.Instance.CalculateActiveFactions();
         }
 
         public bool IsEnemyFaction(Faction faction)

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.TurnManagement
@@ -40,7 +41,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         //We don't want anyone to be able to directly edit the FactionHandler list, we have tasks we need to do each time 1 gets added or removed.
         [ShowInInspector, ReadOnly] public List<FactionHandler> FactionHandlers { get; private set; } = new List<FactionHandler>();
 
-        [ShowInInspector, ReadOnly] public List<FactionState> activeFactions { get; private set; } = new List<FactionState>();
+        [ShowInInspector, ReadOnly] public List<FactionState> FactionStates { get; private set; } = new List<FactionState>();
 
         public void AddFactionHandlerToTurnList(FactionHandler factionHandlerToAdd)
         {
@@ -59,10 +60,10 @@ namespace Abraham.GalacticConquest.TurnManagement
                 return;
             }
             FactionHandlers.Remove(factionHandlerToRemove);
-            AddNewFaction();
+            CalculateActiveFactions();
         }
 
-        public void AddNewFaction()
+        void AddAllFactions()
         {
             foreach (FactionHandler thisFactionHandler in FactionHandlers) {
                 Faction thisFaction = thisFactionHandler.myFaction;
@@ -70,30 +71,66 @@ namespace Abraham.GalacticConquest.TurnManagement
                     continue;
                 }
 
-                FactionState newFactionState = new FactionState(thisFaction, true, activeFactions.Count + 1);
-                activeFactions.Add(newFactionState);
+                FactionState newFactionState = new FactionState(thisFaction, true, FactionStates.Count + 1);
+                FactionStates.Add(newFactionState);
             }
         }
 
-        public void AddNewFaction(Faction newFactionToCheck)
+        FactionState AddNewFaction(Faction newFactionToCheck)
         {
-            if (ActiveFactionsContains(newFactionToCheck)) {
-                return;
+            if (ActiveFactionsContains(newFactionToCheck, out FactionState newFactionState)) {
+                return newFactionState;
             }
 
-            FactionState newFactionState = new FactionState(newFactionToCheck, true, activeFactions.Count + 1);
-            activeFactions.Add(newFactionState);
+            newFactionState = new FactionState(newFactionToCheck, true, FactionStates.Count + 1);
+            FactionStates.Add(newFactionState);
+            return newFactionState;
         }
 
-        private bool ActiveFactionsContains(Faction factionToTest)
+        [ContextMenu("Calculate Active Factions")]
+        public void CalculateActiveFactions()
         {
-            foreach (FactionState thisFactionState in activeFactions) {
-                if (thisFactionState.faction == factionToTest) {
-                    return true;
+            //Set all factions to inactive
+            foreach (FactionState thisFactionState in FactionStates) {
+                thisFactionState.isActive = false;
+            }
+
+            //Check FactionHandlers to determine which factions are active
+            foreach (FactionHandler thisFactionHandler in FactionHandlers) {
+                Faction thisFaction = thisFactionHandler.myFaction;
+                FactionState thisFactionState = GetFactionStateByFaction(thisFaction);
+                if (thisFactionState == null) {
+                    thisFactionState = AddNewFaction(thisFaction);
+                }
+
+                thisFactionState.isActive = true;
+            }
+        }
+
+        bool ActiveFactionsContains(Faction factionToTest)
+        {
+            return ActiveFactionsContains(factionToTest, out FactionState _);
+        }
+
+        bool ActiveFactionsContains(Faction factionToTest, out FactionState factionState)
+        {
+            factionState = GetFactionStateByFaction(factionToTest);
+            if (factionState == null) {
+                return false;
+            }
+
+            return true;
+        }
+
+        FactionState GetFactionStateByFaction(Faction faction)
+        {
+            foreach (FactionState thisFactionState in FactionStates) {
+                if (thisFactionState.faction == faction) {
+                    return thisFactionState;
                 }
             }
 
-            return false;
+            return null;
         }
     }
 }
