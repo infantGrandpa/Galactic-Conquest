@@ -29,6 +29,12 @@ namespace Abraham.GalacticConquest.TurnManagement
 
         private void Start()
         {
+            // TODO: Add a delay before starting the first turn state.
+            // This is causing an issue on the first turn. The ActionPointAdjusters haven't received all their adjustments yet.
+            // This means that first turn AP is only equal to the base AP per turn.
+            // Adding a delay here would allow us to do anything we need to in order to set up before the turn starts.
+            // It might also be a good idea to have this "delay" state to run before every turn to allow everything to calculate.
+            
             SetState(new PlayerTurnState());
         }
 
