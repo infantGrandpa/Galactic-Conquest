@@ -62,7 +62,7 @@ namespace Abraham.GalacticConquest.Planets
 
             PlanetCombatBehaviour.ResetPlanetAfterCapture();
 
-            GUIManager.Instance.AddActionLogMessage("Planet captured by " + newFaction.factionName + "!");
+            GUIManager.Instance.AddActionLogMessage(PlanetInfo.myName + " captured by " + newFaction.factionName + "!");
 
             LevelManager.Instance.CheckWinCondition();
         }

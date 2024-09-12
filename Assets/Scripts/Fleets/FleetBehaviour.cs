@@ -43,7 +43,6 @@ namespace Abraham.GalacticConquest.Fleets
             yield return CheckForGroundBattles(targetPlanet);
 
             yield return new WaitForSeconds(1f);
-            GUIManager.Instance.AddActionLogMessage("No more battles at " + targetPlanet.PlanetInfo.myName + ".");
         }
 
         private IEnumerator CheckForSpaceBattles(PlanetBehaviour targetPlanet)
@@ -88,8 +87,6 @@ namespace Abraham.GalacticConquest.Fleets
             {
                 yield return null;
             }
-
-            GUIManager.Instance.AddActionLogMessage(targetPlanet.PlanetInfo.myName + " has been captured!");
         }
 
         private bool IsEnemyFleet(Moveable moveable, out FleetBehaviour enemyFleetBehaviour)
