@@ -30,6 +30,7 @@ namespace Abraham.GalacticConquest.Factions
 
         public void SetFaction(Faction newFaction)
         {
+            Faction oldFaction = myFaction;
             myFaction = newFaction;
             foreach (Renderer thisRenderer in renderersToChangeOnSetFaction)
             {
@@ -41,7 +42,7 @@ namespace Abraham.GalacticConquest.Factions
                 thisImage.color = myFaction.factionColor;
             }
 
-            ActiveFactionManager.Instance.CalculateActiveFactions();
+            ActiveFactionManager.Instance.IsFactionActive(oldFaction);
         }
 
         public bool IsEnemyFaction(Faction faction)

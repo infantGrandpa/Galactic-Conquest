@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
+using Abraham.GalacticConquest.GUI;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -107,6 +108,20 @@ namespace Abraham.GalacticConquest.TurnManagement
             }
         }
 
+        void SetFactionAsActive(Faction faction)
+        {
+            FactionState factionState = GetFactionStateByFaction(faction);
+            factionState.isActive = true;
+        }
+
+        void SetFactionAsInactive(Faction faction)
+        {
+            FactionState factionState = GetFactionStateByFaction(faction);
+            factionState.isActive = false;
+
+            GUIManager.Instance.AddActionLogMessage(faction.factionName + " has been defeated!");
+        }
+
         bool ActiveFactionsContains(Faction factionToTest)
         {
             return ActiveFactionsContains(factionToTest, out FactionState _);
@@ -131,6 +146,19 @@ namespace Abraham.GalacticConquest.TurnManagement
             }
 
             return null;
+        }
+
+        public bool IsFactionActive(Faction factionToTest)
+        {
+            foreach (FactionHandler thisFactionhandler in FactionHandlers) {
+                if (thisFactionhandler.myFaction == factionToTest) {
+                    SetFactionAsActive(factionToTest);
+                    return true;
+                }
+            }
+
+            SetFactionAsInactive(factionToTest);
+            return false;
         }
     }
 }
