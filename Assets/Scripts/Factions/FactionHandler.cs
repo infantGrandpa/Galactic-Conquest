@@ -15,12 +15,12 @@ namespace Abraham.GalacticConquest.Factions
 
         void OnEnable()
         {
-            TurnStateMachine.Instance.AddFactionHandlerToTurnList(this);
+            ActiveFactionManager.Instance.AddFactionHandlerToTurnList(this);
         }
 
         void OnDisable()
         {
-            TurnStateMachine.Instance?.RemoveFactionHandlerFromTurnList(this);
+            ActiveFactionManager.Instance?.RemoveFactionHandlerFromTurnList(this);
         }
 
         private void Start()
