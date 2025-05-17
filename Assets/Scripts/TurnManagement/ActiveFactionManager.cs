@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.TurnManagement
