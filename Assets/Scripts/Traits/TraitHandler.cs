@@ -20,20 +20,40 @@ namespace Abraham.GalacticConquest.Traits
 
         void ApplyTraits()
         {
-            foreach (Trait thisTrait in traits) {
+            foreach (Trait thisTrait in traits)
+            {
                 thisTrait.ApplyTrait(gameObject);
             }
         }
 
         public bool CanBuildShips()
         {
-            foreach (Trait thisTrait in traits) {
-                if (thisTrait.traitAspects.Contains(TraitAspect.CanBuildShips)) {
+            foreach (Trait thisTrait in traits)
+            {
+                if (thisTrait.traitAspects.Contains(TraitAspect.CanBuildShips))
+                {
                     return true;
                 }
             }
 
             return false;
+        }
+
+        public Trait GetTraitWithHighestImportance()
+        {
+            float maxImportanceSoFar = Mathf.NegativeInfinity;
+            Trait mostImportantTrait = null;
+            foreach (Trait thisTrait in traits)
+            {
+                if (thisTrait.traitOrder <= maxImportanceSoFar)
+                {
+                    continue;
+                }
+
+                mostImportantTrait = thisTrait;
+            }
+
+            return mostImportantTrait;
         }
     }
 }

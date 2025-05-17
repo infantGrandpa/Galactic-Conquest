@@ -1,4 +1,4 @@
-using System;
+using Abraham.GalacticConquest.Traits;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,11 +13,13 @@ namespace Abraham.GalacticConquest
         //Then, to get data from the GenericInfo class, I would have to check each MonoBehaviour that could hold the class.
         //That sucks. So I did this instead.  
 
+        private TraitHandler traitHandler;
+
         public string myName;
         [TextArea(4, 10)] public string myDesc;
 
         [Tooltip("The general type of this object.")]
-        public string typeDescriptor;
+        public string typeDescriptor = "Planet";
 
         void Awake()
         {
@@ -27,17 +29,38 @@ namespace Abraham.GalacticConquest
         [Button("Rebuild Planet Name")]
         private void BuildGameObjectName()
         {
-            if (string.IsNullOrEmpty(myName) && string.IsNullOrEmpty(typeDescriptor)) {
+            string planetTypeDesc = GetPlanetTypeDesc();
+
+            if (string.IsNullOrEmpty(myName) && string.IsNullOrEmpty(planetTypeDesc))
+            {
                 return;
             }
 
             string separator = " - ";
-            if (string.IsNullOrEmpty(myName) || string.IsNullOrEmpty(typeDescriptor)) {
+            if (string.IsNullOrEmpty(myName) || string.IsNullOrEmpty(planetTypeDesc))
+            {
                 separator = "";
             }
 
-            string gameObjectName = typeDescriptor + separator + myName;
+            string gameObjectName = planetTypeDesc + separator + myName;
             gameObject.name = gameObjectName;
+        }
+
+        private string GetPlanetTypeDesc()
+        {
+            string planetType = typeDescriptor;
+            if (!TryGetComponent(out traitHandler))
+            {
+                return planetType;
+            }
+
+            Trait mostImportantTrait = traitHandler.GetTraitWithHighestImportance();
+            if (!mostImportantTrait)
+            {
+                return planetType;
+            }
+
+            return mostImportantTrait.traitName;
         }
     }
 }
