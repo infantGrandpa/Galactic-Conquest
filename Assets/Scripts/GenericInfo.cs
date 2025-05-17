@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest
@@ -23,6 +24,7 @@ namespace Abraham.GalacticConquest
             BuildGameObjectName();
         }
 
+        [Button("Rebuild Planet Name")]
         private void BuildGameObjectName()
         {
             if (string.IsNullOrEmpty(myName) && string.IsNullOrEmpty(typeDescriptor)) {
