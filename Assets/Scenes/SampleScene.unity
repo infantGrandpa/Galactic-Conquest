@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
@@ -306,7 +306,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (10)
+      value: Planet - Rhen Var
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Rhen Var
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -378,7 +378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
@@ -493,7 +493,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (3)
+      value: Planet - Kashyyyk
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -541,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Kashyyyk
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -565,7 +565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
@@ -812,7 +812,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Kamino
+      value: Production Center - Kamino
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -862,6 +862,10 @@ PrefabInstance:
       propertyPath: myName
       value: Kamino
       objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: typeDescriptor
+      value: Hub
+      objectReference: {fileID: 0}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Alderaan
@@ -874,6 +878,14 @@ PrefabInstance:
       propertyPath: planetInfo.myName
       value: Kamino
       objectReference: {fileID: 0}
+    - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: traits.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: traits.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1031,7 +1043,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (2)
+      value: Shipyard - Bespin
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1079,7 +1091,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Bespin
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: typeDescriptor
+      value: Shipyard
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -1108,7 +1124,7 @@ PrefabInstance:
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: a697ecc7e7e1fc846bfc7167bd07794f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1129,7 +1145,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis
+      value: Production Center - Geonosis
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1179,6 +1195,10 @@ PrefabInstance:
       propertyPath: myName
       value: Geonosis
       objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: typeDescriptor
+      value: Hub
+      objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
@@ -1222,7 +1242,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (11)
+      value: Planet - Naboo
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1270,7 +1290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Naboo
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -1294,7 +1314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
@@ -1426,7 +1446,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (5)
+      value: Planet - Yavin 4
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1474,7 +1494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Yavin 4
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -1498,7 +1518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
@@ -1534,7 +1554,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (9)
+      value: Shipyard - Death Star
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1582,7 +1602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Death Star
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -1611,7 +1631,7 @@ PrefabInstance:
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: a697ecc7e7e1fc846bfc7167bd07794f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1632,7 +1652,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (1)
+      value: Planet - Dagobah
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1680,7 +1700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Dagobah
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -1704,7 +1724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
@@ -1730,7 +1750,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (8)
+      value: Shipyard - Felucia
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1778,7 +1798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Felucia
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -1807,7 +1827,7 @@ PrefabInstance:
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: a697ecc7e7e1fc846bfc7167bd07794f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1900,7 +1920,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (7)
+      value: Capital - Mustafar
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -1948,7 +1968,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Mustafar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: typeDescriptor
+      value: Capital
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -1977,7 +2001,7 @@ PrefabInstance:
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: 1c163e2ce0f8bd04c8f3faf2cf8fb386, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1998,7 +2022,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (6)
+      value: Shipyard - Mygeeto
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -2046,7 +2070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Mygeeto
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -2075,7 +2099,7 @@ PrefabInstance:
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: a697ecc7e7e1fc846bfc7167bd07794f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2327,17 +2351,17 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2004205152}
+  - {fileID: 1611111225}
   - {fileID: 714408301}
   - {fileID: 409141226}
-  - {fileID: 1490802498}
   - {fileID: 968660165}
+  - {fileID: 1424747474}
+  - {fileID: 1508766899}
+  - {fileID: 1783398973}
+  - {fileID: 1490802498}
   - {fileID: 627670299}
   - {fileID: 2037118805}
   - {fileID: 1326830177}
-  - {fileID: 1783398973}
-  - {fileID: 1611111225}
-  - {fileID: 1508766899}
-  - {fileID: 1424747474}
   - {fileID: 521626621}
   - {fileID: 1089419137}
   - {fileID: 1795895208}
@@ -2364,7 +2388,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Geonosis (4)
+      value: Planet - Utapau
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -2412,7 +2436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
-      value: Geonosis
+      value: Utapau
       objectReference: {fileID: 0}
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
@@ -2436,7 +2460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
@@ -2499,7 +2523,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
-      value: Planet - Coruscant
+      value: Capital - Coruscant
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -2961,7 +2985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5250981362775085324, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25.000061
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5250981362775085324, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2989,7 +3013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5832625421470515406, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 25.000061
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5832625421470515406, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
       propertyPath: m_AnchoredPosition.y
