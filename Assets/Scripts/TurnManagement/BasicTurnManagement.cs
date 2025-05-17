@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         private Faction currentFactionTurn;
 
 
-        private void Awake()
+        private void Start()
         {
             SetCurrentTurn(startingFaction);
         }
@@ -50,6 +51,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         {
             currentFactionTurn = faction;
             GUIManager.Instance.ChangeTurn($"{currentFactionTurn.factionName}'s Turn");
+            ActionPointManager.Instance.CalculateActionPoints();
         }
 
         //TODO: add list of rollover action points
