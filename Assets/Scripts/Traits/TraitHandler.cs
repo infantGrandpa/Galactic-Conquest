@@ -50,6 +50,7 @@ namespace Abraham.GalacticConquest.Traits
                     continue;
                 }
 
+                maxImportanceSoFar = thisTrait.traitOrder;
                 mostImportantTrait = thisTrait;
             }
 
