@@ -83,7 +83,7 @@ namespace Abraham.GalacticConquest.Planets
 
         public void UpdateApLabel(int newAp)
         {
-            planetLabel.UpdateAPLabel(newAp);
+            planetLabel?.UpdateAPLabel(newAp);
         }
     }
 }
