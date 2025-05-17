@@ -7,7 +7,7 @@ namespace Abraham.GalacticConquest.Traits
     {
         public List<Trait> traits = new List<Trait>();
 
-        void Start()
+        void Awake()
         {
             SortTraits();
             ApplyTraits();

@@ -42,6 +42,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         void Start()
         {
+            // We do this in Start() instead of Awake() because we need to wait for TraitHandlers to apply each Trait
             CalculateAp();
         }
 
