@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Abraham.GalacticConquest.TurnManagement;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,15 +33,7 @@ namespace Abraham.GalacticConquest.Factions
         {
             Faction oldFaction = myFaction;
             myFaction = newFaction;
-            foreach (Renderer thisRenderer in renderersToChangeOnSetFaction)
-            {
-                thisRenderer.material.color = myFaction.factionColor;
-            }
-
-            foreach (Image thisImage in uiImagesToChangeOnSetFaction)
-            {
-                thisImage.color = myFaction.factionColor;
-            }
+            UpdateAppearanceToMatchFaction();
 
             ActiveFactionManager.Instance.IsFactionActive(oldFaction);
         }
@@ -53,6 +46,20 @@ namespace Abraham.GalacticConquest.Factions
             }
 
             return true;
+        }
+
+        [Button("Update Colors to Match Faction")]
+        private void UpdateAppearanceToMatchFaction()
+        {
+            foreach (Renderer thisRenderer in renderersToChangeOnSetFaction)
+            {
+                thisRenderer.material.color = myFaction.factionColor;
+            }
+
+            foreach (Image thisImage in uiImagesToChangeOnSetFaction)
+            {
+                thisImage.color = myFaction.factionColor;
+            }
         }
     }
 }
