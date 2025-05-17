@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+      objectReference: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Utapau
@@ -209,12 +209,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: a697ecc7e7e1fc846bfc7167bd07794f, type: 2}
+      objectReference: {fileID: 11400000, guid: d31b2bfee28412144828b4f994201315, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -480,7 +480,6 @@ Transform:
   - {fileID: 1604631839}
   - {fileID: 1964751948}
   - {fileID: 420205103}
-  - {fileID: 1287066260}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &627670298
@@ -546,7 +545,7 @@ PrefabInstance:
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+      objectReference: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Kashyyyk
@@ -565,12 +564,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: d31b2bfee28412144828b4f994201315, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1100,7 +1099,7 @@ PrefabInstance:
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+      objectReference: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Kashyyyk
@@ -1295,7 +1294,7 @@ PrefabInstance:
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+      objectReference: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Kashyyyk
@@ -1314,12 +1313,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: d31b2bfee28412144828b4f994201315, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1348,7 +1347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1287066260
 Transform:
   m_ObjectHideFlags: 0
@@ -1357,12 +1356,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287066259}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10.678145, y: 10.546317, z: 10.546317}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 599199071}
+  m_Father: {fileID: 1604631839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1287066261
 MeshCollider:
@@ -1705,7 +1704,7 @@ PrefabInstance:
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+      objectReference: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Kashyyyk
@@ -1724,12 +1723,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: c12b632c463771d42b9b78bbc59347a8, type: 2}
+      objectReference: {fileID: 11400000, guid: d31b2bfee28412144828b4f994201315, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1907,7 +1906,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1287066260}
   m_Father: {fileID: 599199071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1611111224
@@ -2075,7 +2075,7 @@ PrefabInstance:
     - target: {fileID: 4936992261832728891, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myFaction
       value: 
-      objectReference: {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+      objectReference: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetName
       value: Kashyyyk
@@ -2100,6 +2100,10 @@ PrefabInstance:
       propertyPath: traits.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: a697ecc7e7e1fc846bfc7167bd07794f, type: 2}
+    - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: traits.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: d31b2bfee28412144828b4f994201315, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3320,6 +3324,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2955829940665727126, guid: 6939d25467f2c054287de818e6895af9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361774726992741392, guid: 6939d25467f2c054287de818e6895af9, type: 3}
+      propertyPath: buildShipApCost
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361774726992741392, guid: 6939d25467f2c054287de818e6895af9, type: 3}
+      propertyPath: baseActionPoints
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
