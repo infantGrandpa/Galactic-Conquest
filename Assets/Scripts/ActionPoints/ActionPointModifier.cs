@@ -23,6 +23,12 @@ namespace Abraham.GalacticConquest.ActionPoints
                 this.apModificationReason = apModificationReason;
                 this.apModificationValue = apModificationValue;
             }
+            
+            public override string ToString()
+            {
+                string apString = apModificationValue < 0 ? apModificationValue.ToString() : "+" + apModificationValue; 
+                return $"{apString} AP for {apModificationReason} at {apModificationSource}.";
+            }
         }
 
         public int baseApPerTurn = 0;
