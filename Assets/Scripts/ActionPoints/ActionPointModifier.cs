@@ -11,13 +11,17 @@ namespace Abraham.GalacticConquest.ActionPoints
         [Serializable]
         class APModifier
         {
-            [FormerlySerializedAs("apAdjustValue")] public int apModificationValue;
+            public string apModificationSource;
             [FormerlySerializedAs("adjustReason")] public string apModificationReason;
 
-            public APModifier(int apModificationValue, string apModificationReason)
+            [FormerlySerializedAs("apAdjustValue")]
+            public int apModificationValue;
+
+            public APModifier(string apModificationSource, string apModificationReason, int apModificationValue)
             {
-                this.apModificationValue = apModificationValue;
+                this.apModificationSource = apModificationSource;
                 this.apModificationReason = apModificationReason;
+                this.apModificationValue = apModificationValue;
             }
         }
 
@@ -25,7 +29,8 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         [ShowInInspector, ReadOnly] public int TotalApPerTurn { get; private set; }
 
-        [FormerlySerializedAs("apAdjustments")] [SerializeField] List<APModifier> apModifiers = new();
+        [FormerlySerializedAs("apAdjustments")] [SerializeField]
+        List<APModifier> apModifiers = new();
 
         void OnEnable()
         {
@@ -60,10 +65,12 @@ namespace Abraham.GalacticConquest.ActionPoints
             TotalApPerTurn = apThisTurn;
         }
 
-        public void AddApModifier(int adjustBy, string reason)
+        public void AddApModifier(string reason, int modifyValue)
         {
-            APModifier newModifier = new(adjustBy, reason);
+            GenericInfo info = GetComponent<GenericInfo>();
+            string source = info ? info.myName : "Unknown";
 
+            APModifier newModifier = new(source, reason, modifyValue);
             apModifiers.Add(newModifier);
 
             CalculateAp();
