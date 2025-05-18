@@ -11,15 +11,15 @@ namespace Abraham.GalacticConquest.Factions
     {
         public Faction myFaction;
 
-        [SerializeField] List<Renderer> renderersToChangeOnSetFaction = new();
-        [SerializeField] List<Image> uiImagesToChangeOnSetFaction = new();
+        [SerializeField] private List<Renderer> renderersToChangeOnSetFaction = new();
+        [SerializeField] private List<Image> uiImagesToChangeOnSetFaction = new();
 
-        void OnEnable()
+        private void OnEnable()
         {
             ActiveFactionManager.Instance.AddFactionHandlerToTurnList(this);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             ActiveFactionManager.Instance?.RemoveFactionHandlerFromTurnList(this);
         }

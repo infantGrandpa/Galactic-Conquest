@@ -9,25 +9,25 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class GUIActionListHandler : MonoBehaviour
     {
-        [SerializeField] Vector2 positionOffset;
+        [SerializeField] private Vector2 positionOffset;
 
         [Header("List Elements")] [SerializeField]
-        TMP_Text header;
-        [SerializeField] Button fortifyPlanetButton;
-        [SerializeField] Button buildFleetButton;
-        
+        private TMP_Text header;
+        [SerializeField] private Button fortifyPlanetButton;
+        [SerializeField] private Button buildFleetButton;
 
-        RectTransform rectTransform;
 
-        PlanetBehaviour currentPlanet;
+        private RectTransform rectTransform;
 
-        void Awake()
+        private PlanetBehaviour currentPlanet;
+
+        private void Awake()
         {
             GetComponents();
             HideActionList();
         }
 
-        void GetComponents()
+        private void GetComponents()
         {
             rectTransform = GetComponent<RectTransform>();
         }
@@ -57,7 +57,7 @@ namespace Abraham.GalacticConquest.GUI
             fortifyPlanetButton.interactable = true; //TODO: Set this up to only work if planet isn't already fortified
         }
 
-        bool IsPlanetShipyard(PlanetBehaviour planetBehaviour)
+        private bool IsPlanetShipyard(PlanetBehaviour planetBehaviour)
         {
             TraitHandler traitHandler = planetBehaviour.GetComponent<TraitHandler>();
             if (traitHandler == null) {

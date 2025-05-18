@@ -7,13 +7,14 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class GUIActionLogHandler : MonoBehaviour
     {
-        [SerializeField] GameObject actionLogPrefab;
-        [SerializeField] List<TMP_Text> actionLogTextObjects = new();
-        [SerializeField] Transform actionLogContainer;
-        [SerializeField] int maxLogMessages = 5;
+        [SerializeField] private GameObject actionLogPrefab;
+        [SerializeField] private List<TMP_Text> actionLogTextObjects = new();
+        [SerializeField] private Transform actionLogContainer;
+        [SerializeField] private int maxLogMessages = 5;
 
         [Header("Tweening")]
-        [SerializeField] float secsToTween = 0.5f;
+        [SerializeField]
+        private float secsToTween = 0.5f;
 
         private Queue<string> logMessages = new();
 

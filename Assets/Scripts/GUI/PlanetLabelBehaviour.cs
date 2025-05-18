@@ -12,17 +12,17 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class PlanetLabelBehaviour : MonoBehaviour
     {
-        [SerializeField] TMP_Text planetNameText;
-        Faction currentFaction;
-        RectTransform rectTransform;
+        [SerializeField] private TMP_Text planetNameText;
+        private Faction currentFaction;
+        private RectTransform rectTransform;
 
-        [SerializeField] Vector2 positionOffset;
+        [SerializeField] private Vector2 positionOffset;
 
-        Vector3 currentWorldPosition;
+        private Vector3 currentWorldPosition;
 
-        [SerializeField] List<Image> traitIcons = new List<Image>();
+        [SerializeField] private List<Image> traitIcons = new List<Image>();
         
-        [SerializeField] TMP_Text apLabel;
+        [SerializeField] private TMP_Text apLabel;
 
         public void InitLabel(GenericInfo planetDetails, Faction faction, TraitHandler traitHandler, Vector3 worldPosition)
         {
@@ -44,7 +44,7 @@ namespace Abraham.GalacticConquest.GUI
             apLabel.text = newAP + " AP";
         }
 
-        void ShowTraitIcons(TraitHandler traitHandler)
+        private void ShowTraitIcons(TraitHandler traitHandler)
         {
             foreach (Image thisTraitIconSlot in traitIcons) {
                 thisTraitIconSlot.gameObject.SetActive(false);
@@ -74,7 +74,7 @@ namespace Abraham.GalacticConquest.GUI
             apLabel.color = newColor;
         }
 
-        void SetCanvasPosition(Vector3 worldPosition)
+        private void SetCanvasPosition(Vector3 worldPosition)
         {
             currentWorldPosition = worldPosition;
             Vector2 canvasPosition = GUIManager.Instance.mainCanvas.WorldToCanvasPosition(worldPosition, GUIManager.Instance.mainCamera);

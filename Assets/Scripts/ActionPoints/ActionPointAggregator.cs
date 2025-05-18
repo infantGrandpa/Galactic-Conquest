@@ -14,14 +14,14 @@ namespace Abraham.GalacticConquest.ActionPoints
         [ShowInInspector, ReadOnly] public int TotalApPerTurn { get; private set; }
 
         [FormerlySerializedAs("apAdjustments")] [SerializeField]
-        List<ActionPointModifier> apModifiers = new();
+        private List<ActionPointModifier> apModifiers = new();
 
-        void OnEnable()
+        private void OnEnable()
         {
             ActionPointManager.Instance.actionPointAggregators.Add(this);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             if (ActionPointManager.Instance == null)
             {
@@ -31,7 +31,7 @@ namespace Abraham.GalacticConquest.ActionPoints
             ActionPointManager.Instance.actionPointAggregators.Remove(this);
         }
 
-        void Start()
+        private void Start()
         {
             // We do this in Start() instead of Awake() because we need to wait for TraitHandlers to apply each Trait
             CalculateAp();

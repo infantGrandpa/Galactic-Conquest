@@ -9,11 +9,11 @@ namespace Abraham.GalacticConquest.UnitControl
 {
     public class Moveable : MonoBehaviour
     {
-        [SerializeField] float lookTweenDuration = 0.5f;
-        [SerializeField] float moveTweenDuration = 1f;
+        [SerializeField] private float lookTweenDuration = 0.5f;
+        [SerializeField] private float moveTweenDuration = 1f;
 
         [FormerlySerializedAs("movementApCost"), SerializeField]
-        int baseMovementApCost;
+        private int baseMovementApCost;
 
         [ReadOnly] public PlanetBehaviour currentPlanet = null;
 

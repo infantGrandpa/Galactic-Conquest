@@ -6,7 +6,7 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class GUIActionPointHandler : MonoBehaviour
     {
-        [SerializeField] TMP_Text actionPointText;
+        [SerializeField] private TMP_Text actionPointText;
 
         public void UpdateActionPoints(int newValue)
         {

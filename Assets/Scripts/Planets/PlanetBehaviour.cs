@@ -15,8 +15,9 @@ namespace Abraham.GalacticConquest.Planets
         public TraitHandler TraitHandler { get; private set; }
 
         [Header("Planet Label")] [SerializeField]
-        GameObject planetLabelPrefab;
-        PlanetLabelBehaviour planetLabel;
+        private GameObject planetLabelPrefab;
+
+        private PlanetLabelBehaviour planetLabel;
 
         private void OnEnable()
         {
@@ -49,7 +50,7 @@ namespace Abraham.GalacticConquest.Planets
             }
         }
 
-        void Start()
+        private void Start()
         {
             planetLabel.InitLabel(PlanetInfo, FactionHandler.myFaction, TraitHandler, transform.position);
         }

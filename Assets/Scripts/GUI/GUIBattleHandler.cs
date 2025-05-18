@@ -11,23 +11,26 @@ namespace Abraham.GalacticConquest.GUI
     {
         #region Variables
         [Header("UI Elements")]
-        [SerializeField] Button attackerWonButton;
+        [SerializeField]
+        private Button attackerWonButton;
         private TMP_Text attackerButtonText;
 
-        [SerializeField] Button defenderWonButton;
+        [SerializeField] private Button defenderWonButton;
         private TMP_Text defenderButtonText;
 
-        [SerializeField] TMP_Text descriptionText;
+        [SerializeField] private TMP_Text descriptionText;
 
         [Header("Text")]
-        [SerializeField] string spaceBattlePrefix = "Space Battle Over";
-        [SerializeField] string groundBattlePrefix = "Ground Invasion of";
+        [SerializeField]
+        private string spaceBattlePrefix = "Space Battle Over";
+        [SerializeField] private string groundBattlePrefix = "Ground Invasion of";
 
 
         [Header("Tweening")]
-        [SerializeField] float secsToTweenScale;
-        [SerializeField] Ease showBoxEasing;
-        [SerializeField] Ease hideBoxEasing;
+        [SerializeField]
+        private float secsToTweenScale;
+        [SerializeField] private Ease showBoxEasing;
+        [SerializeField] private Ease hideBoxEasing;
         private RectTransform battleHandlerTransform;
         #endregion
 

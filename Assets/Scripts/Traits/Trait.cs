@@ -54,7 +54,7 @@ namespace Abraham.GalacticConquest.Traits
             apAggregator.AddApModifier(traitName, actionPointModifier);
         }
 
-        void ApplyBuildShipsTrait(GameObject target)
+        private void ApplyBuildShipsTrait(GameObject target)
         {
             ShipyardBehaviour shipyardBehaviour = target.GetComponent<ShipyardBehaviour>();
             if (shipyardBehaviour != null) {
@@ -65,7 +65,7 @@ namespace Abraham.GalacticConquest.Traits
             target.AddComponent<ShipyardBehaviour>();
         }
 
-        void ApplyRequiredToWinTrait(GameObject target)
+        private void ApplyRequiredToWinTrait(GameObject target)
         {
             // TODO: Implement Required to Win Trait
         }

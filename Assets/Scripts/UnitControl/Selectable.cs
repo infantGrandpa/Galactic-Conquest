@@ -5,9 +5,9 @@ namespace Abraham.GalacticConquest.UnitControl
 {
     public class Selectable : MonoBehaviour
     {
-        [SerializeField] GameObject mySelectionRing;
-        [SerializeField] UnityEvent onSelectObjectEvent;
-        [SerializeField] UnityEvent onDeselectObjectEvent;
+        [SerializeField] private GameObject mySelectionRing;
+        [SerializeField] private UnityEvent onSelectObjectEvent;
+        [SerializeField] private UnityEvent onDeselectObjectEvent;
         
         private void OnEnable()
         {

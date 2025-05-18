@@ -11,7 +11,7 @@ namespace Abraham.GalacticConquest.UnitControl
     {
         [OdinSerialize] public Dictionary<Faction, GameObject> FactionSkins = new Dictionary<Faction, GameObject>();
 
-        void Start()
+        private void Start()
         {
             Faction myFaction = GetFactionFromParent();
             GameObject factionSkin = GetSkinFromFaction(myFaction);

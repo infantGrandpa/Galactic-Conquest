@@ -4,7 +4,7 @@ namespace Abraham.GalacticConquest
 {
     public class MovementIndicatorHandler : MonoBehaviour
     {
-        [SerializeField] LineRenderer lineRenderer;
+        [SerializeField] private LineRenderer lineRenderer;
 
         public void ShowLineRenderer()
         {

@@ -4,9 +4,9 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class GUISpatialHandler : MonoBehaviour
     {
-        Transform dynamicUITransform;
+        private Transform dynamicUITransform;
 
-        void Awake()
+        private void Awake()
         {
             GameObject dynamicGameObject = new() {
                 name = "_dynamicUI"

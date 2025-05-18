@@ -24,12 +24,12 @@ namespace Abraham.GalacticConquest.UnitControl
         }
         private static MovementManager _instance;
 
-        [SerializeField] GameObject movementIndicatorLinePrefab;
-        MovementIndicatorHandler movementIndicatorHandler;
+        [SerializeField] private GameObject movementIndicatorLinePrefab;
+        private MovementIndicatorHandler movementIndicatorHandler;
 
-        [SerializeField] float movementIndicatorSphereCastRadius;
+        [SerializeField] private float movementIndicatorSphereCastRadius;
 
-        void Awake()
+        private void Awake()
         {
             if (movementIndicatorLinePrefab == null) {
                 Debug.LogError("ERROR MovementManager Awake(): Movement Indicator prefab is null.", this);

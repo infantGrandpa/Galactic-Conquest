@@ -12,13 +12,13 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private GameObject activeSkin;
 
-        void Start()
+        private void Start()
         {
             ActivateRandomSkin();
             ApplyRandomMaterial();
         }
 
-        void ApplyRandomMaterial()
+        private void ApplyRandomMaterial()
         {
             if (possibleMaterials.Count == 0) {
                 return;
@@ -38,7 +38,7 @@ namespace Abraham.GalacticConquest.UnitControl
             meshRenderer.material = chosenMaterial;
         }
 
-        void ActivateRandomSkin()
+        private void ActivateRandomSkin()
         {
             //Deactivate All skins
             foreach (GameObject thisSkin in possibleSkins) {
@@ -55,7 +55,7 @@ namespace Abraham.GalacticConquest.UnitControl
             activeSkin = chosenSkin;
         }
 
-        GameObject ChooseRandomSkin()
+        private GameObject ChooseRandomSkin()
         {
             if (possibleSkins.Count == 0) {
                 return null;
@@ -65,7 +65,7 @@ namespace Abraham.GalacticConquest.UnitControl
             return possibleSkins[randomIndex];
         }
 
-        Material ChooseRandomMaterial()
+        private Material ChooseRandomMaterial()
         {
             if (possibleMaterials.Count == 0) {
                 return null;

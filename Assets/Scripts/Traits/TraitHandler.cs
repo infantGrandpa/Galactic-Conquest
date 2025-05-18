@@ -7,18 +7,18 @@ namespace Abraham.GalacticConquest.Traits
     {
         public List<Trait> traits = new List<Trait>();
 
-        void Awake()
+        private void Awake()
         {
             SortTraits();
             ApplyTraits();
         }
 
-        void SortTraits()
+        private void SortTraits()
         {
             traits.Sort((trait1, trait2) => trait2.traitOrder.CompareTo(trait1.traitOrder));
         }
 
-        void ApplyTraits()
+        private void ApplyTraits()
         {
             foreach (Trait thisTrait in traits)
             {

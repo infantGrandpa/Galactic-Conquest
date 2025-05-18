@@ -22,7 +22,7 @@ namespace Abraham.GalacticConquest.UnitControl
         private static SelectionManager _instance;
 
         [ReadOnly] public Selectable selectedObject;
-        Coroutine manageMovementIndicatorCoroutine;
+        private Coroutine manageMovementIndicatorCoroutine;
 
         public void SelectObject()
         {

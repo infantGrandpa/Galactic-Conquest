@@ -63,7 +63,7 @@ namespace Abraham.GalacticConquest.TurnManagement
             CalculateActiveFactions();
         }
 
-        void AddAllFactions()
+        private void AddAllFactions()
         {
             foreach (FactionHandler thisFactionHandler in FactionHandlers) {
                 Faction thisFaction = thisFactionHandler.myFaction;
@@ -76,7 +76,7 @@ namespace Abraham.GalacticConquest.TurnManagement
             }
         }
 
-        FactionState AddNewFaction(Faction newFactionToCheck)
+        private FactionState AddNewFaction(Faction newFactionToCheck)
         {
             if (ActiveFactionsContains(newFactionToCheck, out FactionState newFactionState)) {
                 return newFactionState;
@@ -107,13 +107,13 @@ namespace Abraham.GalacticConquest.TurnManagement
             }
         }
 
-        void SetFactionAsActive(Faction faction)
+        private void SetFactionAsActive(Faction faction)
         {
             FactionState factionState = GetFactionStateByFaction(faction);
             factionState.isActive = true;
         }
 
-        void SetFactionAsInactive(Faction faction)
+        private void SetFactionAsInactive(Faction faction)
         {
             FactionState factionState = GetFactionStateByFaction(faction);
             factionState.isActive = false;
@@ -121,12 +121,12 @@ namespace Abraham.GalacticConquest.TurnManagement
             GUIManager.Instance.AddActionLogMessage(faction.factionName + " has been defeated!");
         }
 
-        bool ActiveFactionsContains(Faction factionToTest)
+        private bool ActiveFactionsContains(Faction factionToTest)
         {
             return ActiveFactionsContains(factionToTest, out FactionState _);
         }
 
-        bool ActiveFactionsContains(Faction factionToTest, out FactionState factionState)
+        private bool ActiveFactionsContains(Faction factionToTest, out FactionState factionState)
         {
             factionState = GetFactionStateByFaction(factionToTest);
             if (factionState == null) {
@@ -136,7 +136,7 @@ namespace Abraham.GalacticConquest.TurnManagement
             return true;
         }
 
-        FactionState GetFactionStateByFaction(Faction faction)
+        private FactionState GetFactionStateByFaction(Faction faction)
         {
             foreach (FactionState thisFactionState in FactionStates) {
                 if (thisFactionState.faction == faction) {

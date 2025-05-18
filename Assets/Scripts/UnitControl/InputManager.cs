@@ -17,7 +17,7 @@ namespace Abraham.GalacticConquest.UnitControl
         }
         private static InputManager _instance;
 
-        [SerializeField] float onClickSphereCastRadius = 0.25f;
+        [SerializeField] private float onClickSphereCastRadius = 0.25f;
 
         private void Update()
         {

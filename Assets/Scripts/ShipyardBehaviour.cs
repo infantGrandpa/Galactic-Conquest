@@ -11,12 +11,12 @@ namespace Abraham.GalacticConquest
 {
     public class ShipyardBehaviour : MonoBehaviour
     {
-        PlanetSlotHandler planetSlotHandler;
-        FactionHandler factionHandler;
+        private PlanetSlotHandler planetSlotHandler;
+        private FactionHandler factionHandler;
 
-        GenericInfo info;
+        private GenericInfo info;
 
-        void Awake()
+        private void Awake()
         {
             planetSlotHandler = GetComponent<PlanetSlotHandler>();
             factionHandler = GetComponent<FactionHandler>();
@@ -70,7 +70,8 @@ namespace Abraham.GalacticConquest
             int buildShipCost = ActionPointManager.Instance.buildShipApCost;
             ActionPointManager.Instance.DecreaseActionPoints(buildShipCost);
         }
-        void SetFleetFaction(GameObject newFleet)
+
+        private void SetFleetFaction(GameObject newFleet)
         {
             FactionHandler fleetFactionHandler = newFleet.GetComponent<FactionHandler>();
             fleetFactionHandler.SetFaction(factionHandler.myFaction);

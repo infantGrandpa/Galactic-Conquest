@@ -6,8 +6,8 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class GUITurnHandler : MonoBehaviour
     {
-        [SerializeField] Image turnBackground;
-        [SerializeField] TMP_Text turnText;
+        [SerializeField] private Image turnBackground;
+        [SerializeField] private TMP_Text turnText;
 
         public void ChangeTurn(string turnString)
         {

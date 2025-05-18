@@ -6,7 +6,7 @@ namespace Abraham.GalacticConquest.Fleets
 {
     public class FleetMoveable : Moveable
     {
-        FleetBehaviour fleetBehaviour;
+        private FleetBehaviour fleetBehaviour;
 
         private void Awake()
         {

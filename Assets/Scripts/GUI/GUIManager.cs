@@ -24,16 +24,17 @@ namespace Abraham.GalacticConquest.GUI
         [ReadOnly] public Camera mainCamera;
 
         [Header("Non-Diegetic Elements")] 
-        [SerializeField] GUITurnHandler turnHandler;
-        [SerializeField] GUIActionPointHandler actionPointHandler;
-        [SerializeField] GUIActionLogHandler actionLogHandler;
-        [SerializeField] GUIBattleHandler guiBattleHandler;
-        [SerializeField] GUIInfoBoxHandler infoBoxHandler;
+        [SerializeField]
+        private GUITurnHandler turnHandler;
+        [SerializeField] private GUIActionPointHandler actionPointHandler;
+        [SerializeField] private GUIActionLogHandler actionLogHandler;
+        [SerializeField] private GUIBattleHandler guiBattleHandler;
+        [SerializeField] private GUIInfoBoxHandler infoBoxHandler;
 
         [Header("Spatial Elements")] [SerializeField]
-        GUISpatialHandler spatialHandler;
-        [SerializeField] GUIActionListHandler actionListHandler;
-        [SerializeField] GUIMovementCostIndicator costIndicator;
+        private GUISpatialHandler spatialHandler;
+        [SerializeField] private GUIActionListHandler actionListHandler;
+        [SerializeField] private GUIMovementCostIndicator costIndicator;
         
         private void Awake()
         {

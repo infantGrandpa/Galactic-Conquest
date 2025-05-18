@@ -8,14 +8,16 @@ namespace Abraham.GalacticConquest.Combat
     public class HealthSystem : MonoBehaviour, IDamageable
     {
         [Header("Health")]
-        [SerializeField] int maxHealth;
+        [SerializeField]
+        private int maxHealth;
         [ShowInInspector, ReadOnly] public float CurrentHealth { get; private set; }
-        [SerializeField] bool destroyOn0Health = true;
+        [SerializeField] private bool destroyOn0Health = true;
         public bool isInvulnerable;
 
         [Header("Events")]
-        [SerializeField] UnityEvent onTakeDamageEvent;
-        [SerializeField] UnityEvent onDeathEvent;
+        [SerializeField]
+        private UnityEvent onTakeDamageEvent;
+        [SerializeField] private UnityEvent onDeathEvent;
 
 
         private void Start()

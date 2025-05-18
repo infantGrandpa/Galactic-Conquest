@@ -8,11 +8,11 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class GUIInfoBoxHandler : MonoBehaviour
     {
-        [SerializeField] TMP_Text titleText;
-        [SerializeField] TMP_Text descText;
-        [SerializeField] TMP_Text apPerTurnText;
+        [SerializeField] private TMP_Text titleText;
+        [SerializeField] private TMP_Text descText;
+        [SerializeField] private TMP_Text apPerTurnText;
 
-        void Awake()
+        private void Awake()
         {
             HideInfoBox();
         }
@@ -25,7 +25,8 @@ namespace Abraham.GalacticConquest.GUI
 
             gameObject.SetActive(true);
         }
-        void GetGenericInfo(GameObject target)
+
+        private void GetGenericInfo(GameObject target)
         {
             GenericInfo targetInfo = target.GetComponent<GenericInfo>();
             if (targetInfo == null) {
@@ -38,7 +39,7 @@ namespace Abraham.GalacticConquest.GUI
             titleText.text = targetInfo.myName;
         }
 
-        void GetTraitInfo(GameObject target)
+        private void GetTraitInfo(GameObject target)
         {
             TraitHandler targetTraitHandler = target.GetComponent<TraitHandler>();
             if (targetTraitHandler == null) {
@@ -55,7 +56,7 @@ namespace Abraham.GalacticConquest.GUI
             descText.text = testString;
         }
 
-        void GetActionPointInfo(GameObject target)
+        private void GetActionPointInfo(GameObject target)
         {
             ActionPointAggregator actionPointAggregator = target.GetComponent<ActionPointAggregator>();
             if (actionPointAggregator == null) {

@@ -6,7 +6,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 {
     public class PlanetActionPointAggregator : ActionPointAggregator
     {
-        PlanetBehaviour planetBehaviour;
+        private PlanetBehaviour planetBehaviour;
         
         private PlanetBehaviour GetPlanetBehaviour()
         {
