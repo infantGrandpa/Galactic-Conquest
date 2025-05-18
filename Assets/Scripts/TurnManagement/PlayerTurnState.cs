@@ -7,7 +7,11 @@ namespace Abraham.GalacticConquest.TurnManagement
     {
         public override IEnumerator EnterState()
         {
-            ActionPointManager.Instance.CalculateActionPoints();
+            // This script isn't currently in use.
+            // I've change CalculateActionPoints to require a Faction to calculate, which breaks this use.
+            // Instead of fixing it, I'm commenting it out for now.
+            
+            //ActionPointManager.Instance.CalculateActionPoints();  
             yield break;
         }
 

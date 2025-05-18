@@ -39,15 +39,24 @@ namespace Abraham.GalacticConquest.ActionPoints
         private readonly Dictionary<Faction, List<ActionPointModifier>> _factionApModifiers = new();
 
 
-        public void CalculateActionPoints()
+        public void CalculateActionPoints(Faction currentFaction)
         {
+            BuildFactionApModifierList();   // TODO: Do we need to build this EVERY TIME we calculate AP?
             int totalActionPoints = baseActionPoints;
 
-            foreach (ActionPointAggregator aggregator in actionPointAggregators)
+            if (!_factionApModifiers.TryGetValue(currentFaction, out List<ActionPointModifier> factionMods))
             {
-                totalActionPoints += aggregator.TotalApPerTurn;
+                Debug.LogWarning($"No AP Modifiers found for faction {currentFaction.name}. Defaulting to base AP.");
+                goto FactionNotFound;
             }
 
+            foreach (ActionPointModifier thisMod in factionMods)
+            {
+                Debug.Log($"  • Reason: {thisMod.apModificationReason}, Value: {thisMod.apModificationValue}");
+                totalActionPoints += thisMod.apModificationValue;
+            }
+
+            FactionNotFound:
             CurrentActionPoints = totalActionPoints;
             GUIManager.Instance.UpdateActionPoints(CurrentActionPoints);
         }
@@ -59,6 +68,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
             foreach (ActionPointAggregator aggregator in actionPointAggregators)
             {
+                //Get Aggregator Faction
                 Faction aggregatorFaction = aggregator.ApFactionHandler?.myFaction;
                 if (!aggregatorFaction)
                 {
@@ -67,34 +77,19 @@ namespace Abraham.GalacticConquest.ActionPoints
                         this);
                     continue;
                 }
-
+                
+                //Add Faction to dictionary if necessary
                 if (!_factionApModifiers.ContainsKey(aggregatorFaction))
                 {
                     _factionApModifiers[aggregatorFaction] = new List<ActionPointModifier>();
                 }
 
+                //Add each modifier within this aggregator to the faction
                 List<ActionPointModifier> modifiersAtThisAggregator = aggregator.APModifiers;
                 foreach (ActionPointModifier thisModifier in modifiersAtThisAggregator)
                 {
                     _factionApModifiers[aggregatorFaction].Add(thisModifier);
                 }
-            }
-
-            foreach (var kvp in _factionApModifiers)
-            {
-                Faction faction = kvp.Key;
-                List<ActionPointModifier> modifiers = kvp.Value;
-
-                Debug.Log($"Faction: {faction.name} has {modifiers.Count} AP Modifiers:");
-
-                int totalAp = baseActionPoints;
-                foreach (ActionPointModifier mod in modifiers)
-                {
-                    Debug.Log($"  • Reason: {mod.apModificationReason}, Value: {mod.apModificationValue}");
-                    totalAp += mod.apModificationValue;
-                }
-
-                Debug.Log($"Total {faction.factionName} AP: {totalAp}", this);
             }
         }
 

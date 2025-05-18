@@ -51,7 +51,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         {
             currentFactionTurn = faction;
             GUIManager.Instance.ChangeTurn($"{currentFactionTurn.factionName}'s Turn");
-            ActionPointManager.Instance.CalculateActionPoints();
+            ActionPointManager.Instance.CalculateActionPoints(currentFactionTurn);
         }
 
         //TODO: add list of rollover action points
