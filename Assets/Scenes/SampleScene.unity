@@ -2832,7 +2832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1287066260
 Transform:
   m_ObjectHideFlags: 0
@@ -5702,6 +5702,10 @@ PrefabInstance:
     - target: {fileID: 2955829940665727126, guid: 6939d25467f2c054287de818e6895af9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414812171666900910, guid: 6939d25467f2c054287de818e6895af9, type: 3}
+      propertyPath: movementRingRadius
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8361774726992741392, guid: 6939d25467f2c054287de818e6895af9, type: 3}
       propertyPath: buildShipApCost

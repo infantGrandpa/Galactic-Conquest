@@ -29,6 +29,9 @@ namespace Abraham.GalacticConquest.UnitControl
 
         [SerializeField] private float movementIndicatorSphereCastRadius;
 
+        [SerializeField] private int movementRings = 5;
+        [SerializeField] private float movementRingRadius = 12.5f;
+
         private void Awake()
         {
             if (movementIndicatorLinePrefab == null) {
@@ -155,6 +158,14 @@ namespace Abraham.GalacticConquest.UnitControl
         public void ShowMovementIndicator()
         {
             movementIndicatorHandler.ShowLineRenderer();
+        }
+
+        private void OnDrawGizmos()
+        {
+            for (int i = 0; i < movementRings; i++)
+            {
+                Gizmos.DrawWireSphere(Vector3.zero, movementRingRadius * (i + 1));
+            }
         }
     }
 }
