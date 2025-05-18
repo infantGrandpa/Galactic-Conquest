@@ -8,35 +8,13 @@ namespace Abraham.GalacticConquest.ActionPoints
 {
     public class ActionPointAggregator : MonoBehaviour
     {
-        [Serializable]
-        class APModifier        //TODO: Extract this to its own file
-        {
-            public string apModificationSource; //TODO: Delete this
-            [FormerlySerializedAs("adjustReason")] public string apModificationReason;
-
-            [FormerlySerializedAs("apAdjustValue")]
-            public int apModificationValue;
-
-            public APModifier(string apModificationSource, string apModificationReason, int apModificationValue)
-            {
-                this.apModificationSource = apModificationSource;
-                this.apModificationReason = apModificationReason;
-                this.apModificationValue = apModificationValue;
-            }
-            
-            public override string ToString()
-            {
-                string apString = apModificationValue < 0 ? apModificationValue.ToString() : "+" + apModificationValue; 
-                return $"{apString} AP for {apModificationReason} at {apModificationSource}.";
-            }
-        }
 
         public int baseApPerTurn = 0;
 
         [ShowInInspector, ReadOnly] public int TotalApPerTurn { get; private set; }
 
         [FormerlySerializedAs("apAdjustments")] [SerializeField]
-        List<APModifier> apModifiers = new();
+        List<ActionPointModifier> apModifiers = new();
 
         void OnEnable()
         {
@@ -63,7 +41,7 @@ namespace Abraham.GalacticConquest.ActionPoints
         {
             int apThisTurn = baseApPerTurn;
 
-            foreach (APModifier modifier in apModifiers)
+            foreach (ActionPointModifier modifier in apModifiers)
             {
                 apThisTurn += modifier.apModificationValue;
             }
@@ -73,10 +51,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         public void AddApModifier(string reason, int modifyValue)
         {
-            GenericInfo info = GetComponent<GenericInfo>();
-            string source = info ? info.myName : "Unknown";
-
-            APModifier newModifier = new(source, reason, modifyValue);
+            ActionPointModifier newModifier = new(reason, modifyValue);
             apModifiers.Add(newModifier);
             
             /* We used to call CalculateAp() here, but that meant that on Start(), we were calculating AP repeatedly for no reason.
