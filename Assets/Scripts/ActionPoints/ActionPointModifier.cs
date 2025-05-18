@@ -72,8 +72,12 @@ namespace Abraham.GalacticConquest.ActionPoints
 
             APModifier newModifier = new(source, reason, modifyValue);
             apModifiers.Add(newModifier);
-
-            CalculateAp();
+            
+            /* We used to call CalculateAp() here, but that meant that on Start(), we were calculating AP repeatedly for no reason.
+                As of right now, AP modifiers are only added on Awake, so we don't need to calculate AP each time.
+                If that changes, feel free to add CalculateAp() back in here. 
+                The performance hit probably won't be too bad, but definitely keep it in mind.
+            */ 
         }
     }
 }
