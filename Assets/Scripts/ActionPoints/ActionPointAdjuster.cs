@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Abraham.GalacticConquest.ActionPoints
 {
     public class ActionPointAdjuster : MonoBehaviour
     {
-        [System.Serializable]
+        [Serializable]
         private class APAdjustment
         {
             public int apAdjustValue;
