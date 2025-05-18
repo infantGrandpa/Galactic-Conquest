@@ -57,13 +57,13 @@ namespace Abraham.GalacticConquest.GUI
 
         void GetActionPointInfo(GameObject target)
         {
-            ActionPointModifier actionPointModifier = target.GetComponent<ActionPointModifier>();
-            if (actionPointModifier == null) {
+            ActionPointAggregator actionPointAggregator = target.GetComponent<ActionPointAggregator>();
+            if (actionPointAggregator == null) {
                 Debug.LogWarning("GUIInfoBoxHandler GetActionPointInfo(): Target " + target.name + " does not have an action point modifier.", this);
                 return;
             }
 
-            int apValue = actionPointModifier.TotalApPerTurn;
+            int apValue = actionPointAggregator.TotalApPerTurn;
             //Add plus sign if the apValue positive; minus is always shown
             string apString = apValue < 0 ? apValue.ToString() : "+" + apValue;     
 

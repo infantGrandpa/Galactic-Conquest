@@ -32,14 +32,14 @@ namespace Abraham.GalacticConquest.ActionPoints
         [PropertySpace, ShowInInspector, ReadOnly]
         public int CurrentActionPoints { get; private set; }
 
-        [FormerlySerializedAs("actionPointAdjusters")] [HideInInspector] public List<ActionPointModifier> actionPointModifiers = new();
+        [FormerlySerializedAs("actionPointModifiers")] [FormerlySerializedAs("actionPointAdjusters")] [HideInInspector] public List<ActionPointAggregator> actionPointAggregators = new();
         
         public void CalculateActionPoints()
         {
             int totalActionPoints = baseActionPoints;
 
-            foreach (ActionPointModifier thisModifier in actionPointModifiers) {
-                totalActionPoints += thisModifier.TotalApPerTurn;
+            foreach (ActionPointAggregator aggregator in actionPointAggregators) {
+                totalActionPoints += aggregator.TotalApPerTurn;
             }
 
             CurrentActionPoints = totalActionPoints;

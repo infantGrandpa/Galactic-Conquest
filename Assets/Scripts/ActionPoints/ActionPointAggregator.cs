@@ -6,12 +6,12 @@ using UnityEngine.Serialization;
 
 namespace Abraham.GalacticConquest.ActionPoints
 {
-    public class ActionPointModifier : MonoBehaviour
+    public class ActionPointAggregator : MonoBehaviour
     {
         [Serializable]
-        class APModifier
+        class APModifier        //TODO: Extract this to its own file
         {
-            public string apModificationSource;
+            public string apModificationSource; //TODO: Delete this
             [FormerlySerializedAs("adjustReason")] public string apModificationReason;
 
             [FormerlySerializedAs("apAdjustValue")]
@@ -40,7 +40,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         void OnEnable()
         {
-            ActionPointManager.Instance.actionPointModifiers.Add(this);
+            ActionPointManager.Instance.actionPointAggregators.Add(this);
         }
 
         void OnDisable()
@@ -50,7 +50,7 @@ namespace Abraham.GalacticConquest.ActionPoints
                 return;
             }
 
-            ActionPointManager.Instance.actionPointModifiers.Remove(this);
+            ActionPointManager.Instance.actionPointAggregators.Remove(this);
         }
 
         void Start()

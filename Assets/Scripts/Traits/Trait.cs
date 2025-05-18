@@ -46,12 +46,12 @@ namespace Abraham.GalacticConquest.Traits
 
         private void ApplyActionPointModifiers(GameObject target)
         {
-            ActionPointModifier apModifier = target.GetComponent<ActionPointModifier>();
-            if (apModifier == null) {
-                apModifier = target.AddComponent<ActionPointModifier>();
+            ActionPointAggregator apAggregator = target.GetComponent<ActionPointAggregator>();
+            if (apAggregator == null) {
+                apAggregator = target.AddComponent<ActionPointAggregator>();
             }
 
-            apModifier.AddApModifier(traitName, actionPointModifier);
+            apAggregator.AddApModifier(traitName, actionPointModifier);
         }
 
         void ApplyBuildShipsTrait(GameObject target)
