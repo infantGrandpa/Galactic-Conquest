@@ -14,6 +14,7 @@ namespace Abraham.GalacticConquest.UnitControl
 
         [FormerlySerializedAs("movementApCost"), SerializeField]
         private int baseMovementApCost;
+        [SerializeField] private float movementScalingFactor = 2.5f;
 
         [ReadOnly] public PlanetBehaviour currentPlanet = null;
 
@@ -58,25 +59,16 @@ namespace Abraham.GalacticConquest.UnitControl
             return true;
         }
 
-        public int CalculateMovementCost(PlanetBehaviour targetPlanet)
+        public int CalculateMovementCost(int ringLevel)
         {
-            return CalculateMovementCost(targetPlanet.transform.position);
+            float exponentialMovementCost = Mathf.Pow(movementScalingFactor, ringLevel) / 2;
+            int totalMovementCost = Mathf.FloorToInt(exponentialMovementCost + baseMovementApCost);
+            return totalMovementCost;
         }
 
         public float GetDistanceToTarget(Vector3 endPosition)
         {
             return Vector3.Distance(transform.position, endPosition);
-        }
-        
-        public int CalculateMovementCost(Vector3 endPosition)
-        {
-            float distanceToPlanet = Vector3.Distance(transform.position, endPosition);
-
-            int distanceApCost = Mathf.FloorToInt(distanceToPlanet / 10);   //TODO: Base distance off less magic numbers
-
-            int totalApCost = baseMovementApCost + distanceApCost;
-
-            return totalApCost;
         }
 
         public void ChangeCurrentPlanet(PlanetBehaviour newPlanet)

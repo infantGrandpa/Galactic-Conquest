@@ -26,6 +26,7 @@ namespace Abraham.GalacticConquest.UnitControl
         [Header("Move Line Indicator")]
         [SerializeField] private GameObject movementIndicatorLinePrefab;
         private MovementIndicatorHandler movementIndicatorHandler;
+        private Vector3 _selectedMoveablePosition;
 
         [SerializeField] private float movementIndicatorSphereCastRadius;
 
@@ -126,14 +127,17 @@ namespace Abraham.GalacticConquest.UnitControl
                 return;
             }
 
+            // Get Ring Level
+            float distanceToTarget = moveableObject.GetDistanceToTarget(targetPlanet.transform.position);
+            _activeMovementRing = GetRingLevelFromDistance(distanceToTarget);
+            
             //Check AP costs. 
             // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
-            int totalApCost = moveableObject.CalculateMovementCost(targetPlanet);
+            int totalApCost = moveableObject.CalculateMovementCost(_activeMovementRing);
             if (!ActionPointManager.Instance.CanPerformAction(totalApCost))
             {
                 //Not Enough AP. Cancel.
                 GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + totalApCost + "): Movement Cancelled.");
-
                 return;
             }
 
@@ -164,23 +168,17 @@ namespace Abraham.GalacticConquest.UnitControl
 
             PlanetBehaviour targetPlanet = GetPlanetFromNullableHitInfo(nullableHitInfo);
 
-            Vector3 startPosition = moveableObject.transform.position;
+            _selectedMoveablePosition = moveableObject.transform.position;
             Vector3 endPosition = targetPlanet == null
                 ? InputManager.Instance.GetCursorPosition()
                 : targetPlanet.transform.position;
+            
+            _activeMovementRing = GetRingLevelFromDistance(_selectedMoveablePosition, endPosition);
+            int apCost = moveableObject.CalculateMovementCost(_activeMovementRing);
+            
+            GUIManager.Instance.UpdateMovementCostIndicator(apCost);
 
-            int apCost = moveableObject.CalculateMovementCost(endPosition);
-
-            //TEMP
-            float distanceToTarget = moveableObject.GetDistanceToTarget(endPosition);
-            int ringLevel = GetRingLevelFromDistance(distanceToTarget);
-            _activeMovementRing = ringLevel;
-            GUIManager.Instance.UpdateMovementCostIndicator(ringLevel);
-            //END TEMP
-
-            //GUIManager.Instance.UpdateMovementCostIndicator(apCost);
-
-            movementIndicatorHandler.SetMovementLinePositions(startPosition, endPosition);
+            movementIndicatorHandler.SetMovementLinePositions(_selectedMoveablePosition, endPosition);
         }
 
         public void HideMovementIndicator()
@@ -193,10 +191,16 @@ namespace Abraham.GalacticConquest.UnitControl
             movementIndicatorHandler.ShowLineRenderer();
         }
 
-        public int GetRingLevelFromDistance(float distanceToTarget)
+        private int GetRingLevelFromDistance(float distanceToTarget)
         {
             int ringLevel = Mathf.CeilToInt(distanceToTarget / movementRingRadius);
             return Mathf.Clamp(ringLevel, 1, 5);
+        }
+
+        private int GetRingLevelFromDistance(Vector3 startPosition, Vector3 endPosition)
+        {
+            float distance = Vector3.Distance(startPosition, endPosition);
+            return GetRingLevelFromDistance(distance);
         }
 
 
@@ -213,14 +217,14 @@ namespace Abraham.GalacticConquest.UnitControl
                 for (int i = 0; i < movementRings; i++)
                 {
                     Gizmos.color = ringColors[i];
-                    Gizmos.DrawWireSphere(Vector3.zero, movementRingRadius * (i + 1));
+                    Gizmos.DrawWireSphere(_selectedMoveablePosition, movementRingRadius * (i + 1));
                 }
             }
             else if (_activeMovementRing > 0 && _activeMovementRing <= movementRings)
             {
                 int ringIndex = _activeMovementRing - 1;
                 Gizmos.color = ringColors[ringIndex];
-                Gizmos.DrawWireSphere(Vector3.zero, movementRingRadius * _activeMovementRing);
+                Gizmos.DrawWireSphere(_selectedMoveablePosition, movementRingRadius * _activeMovementRing);
             }
         }
     }
