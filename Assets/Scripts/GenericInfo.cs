@@ -21,11 +21,6 @@ namespace Abraham.GalacticConquest
         [Tooltip("The general type of this object.")]
         public string typeDescriptor = "Planet";
 
-        void Awake()
-        {
-            RenameGameObject();
-        }
-
         [Button("Rebuild Planet Name")]
         private void RenameGameObject()
         {
