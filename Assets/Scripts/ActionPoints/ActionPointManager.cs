@@ -3,6 +3,7 @@ using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Abraham.GalacticConquest.ActionPoints
 {
@@ -31,14 +32,14 @@ namespace Abraham.GalacticConquest.ActionPoints
         [PropertySpace, ShowInInspector, ReadOnly]
         public int CurrentActionPoints { get; private set; }
 
-        [HideInInspector] public List<ActionPointAdjuster> actionPointAdjusters = new List<ActionPointAdjuster>();
+        [FormerlySerializedAs("actionPointAdjusters")] [HideInInspector] public List<ActionPointModifier> actionPointModifiers = new();
         
         public void CalculateActionPoints()
         {
             int totalActionPoints = baseActionPoints;
 
-            foreach (ActionPointAdjuster thisAdjuster in actionPointAdjusters) {
-                totalActionPoints += thisAdjuster.TotalApPerTurn;
+            foreach (ActionPointModifier thisModifier in actionPointModifiers) {
+                totalActionPoints += thisModifier.TotalApPerTurn;
             }
 
             CurrentActionPoints = totalActionPoints;

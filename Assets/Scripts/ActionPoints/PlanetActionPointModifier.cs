@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest.ActionPoints
 {
-    public class PlanetActionPointAdjuster : ActionPointAdjuster
+    public class PlanetActionPointModifier : ActionPointModifier
     {
         PlanetBehaviour planetBehaviour;
         
@@ -22,8 +22,8 @@ namespace Abraham.GalacticConquest.ActionPoints
 
 
             Debug.LogError(
-                "ERROR PlanetActionPointAdjuster Awake(): " + gameObject.name +
-                " is missing a Planet Behaviour component. If this isn't a planet, use the regular ActionPointAdjuster class.",
+                "ERROR PlanetActionPointModifier Awake(): " + gameObject.name +
+                " is missing a Planet Behaviour component. If this isn't a planet, use the regular ActionPointModifier class.",
                 this);
             return null;
         }

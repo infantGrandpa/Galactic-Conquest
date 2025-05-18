@@ -20,7 +20,7 @@ namespace Abraham.GalacticConquest.Traits
         [Tooltip("Dictates the order to apply traits. Higher numbers = higher importance.")] public int traitOrder = 0;
 
         [ListDrawerSettings(ShowFoldout = true)]
-        public List<TraitAspect> traitAspects = new List<TraitAspect>();
+        public List<TraitAspect> traitAspects = new();
 
         [ShowIf("HasActionPointModifierAspect")]
         public int actionPointModifier = 0;
@@ -32,7 +32,7 @@ namespace Abraham.GalacticConquest.Traits
             foreach (TraitAspect thisTraitAspect in traitAspects) {
                 switch (thisTraitAspect) {
                 case TraitAspect.ActionPointModifier:
-                    ApplyActionPointModifier(target);
+                    ApplyActionPointModifiers(target);
                     break;
                 case TraitAspect.CanBuildShips:
                     ApplyBuildShipsTrait(target);
@@ -44,14 +44,14 @@ namespace Abraham.GalacticConquest.Traits
             }
         }
 
-        private void ApplyActionPointModifier(GameObject target)
+        private void ApplyActionPointModifiers(GameObject target)
         {
-            ActionPointAdjuster apAdjuster = target.GetComponent<ActionPointAdjuster>();
-            if (apAdjuster == null) {
-                apAdjuster = target.AddComponent<ActionPointAdjuster>();
+            ActionPointModifier apModifier = target.GetComponent<ActionPointModifier>();
+            if (apModifier == null) {
+                apModifier = target.AddComponent<ActionPointModifier>();
             }
 
-            apAdjuster.AddApAdjustment(actionPointModifier, traitName);
+            apModifier.AddApModifier(actionPointModifier, traitName);
         }
 
         void ApplyBuildShipsTrait(GameObject target)
