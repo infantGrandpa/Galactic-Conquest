@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Abraham.GalacticConquest.Factions;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -8,13 +9,17 @@ namespace Abraham.GalacticConquest.ActionPoints
 {
     public class ActionPointAggregator : MonoBehaviour
     {
-
         public int baseApPerTurn = 0;
 
         [ShowInInspector, ReadOnly] public int TotalApPerTurn { get; private set; }
 
-        [FormerlySerializedAs("apAdjustments")] [SerializeField]
-        private List<ActionPointModifier> apModifiers = new();
+        [ShowInInspector, ReadOnly] public List<ActionPointModifier> APModifiers { get; private set; } = new();
+        public FactionHandler ApFactionHandler { get; private set; }
+
+        private void Awake()
+        {
+            ApFactionHandler = GetComponent<FactionHandler>();
+        }
 
         private void OnEnable()
         {
@@ -41,7 +46,7 @@ namespace Abraham.GalacticConquest.ActionPoints
         {
             int apThisTurn = baseApPerTurn;
 
-            foreach (ActionPointModifier modifier in apModifiers)
+            foreach (ActionPointModifier modifier in APModifiers)
             {
                 apThisTurn += modifier.apModificationValue;
             }
@@ -52,13 +57,13 @@ namespace Abraham.GalacticConquest.ActionPoints
         public void AddApModifier(string reason, int modifyValue)
         {
             ActionPointModifier newModifier = new(reason, modifyValue);
-            apModifiers.Add(newModifier);
-            
+            APModifiers.Add(newModifier);
+
             /* We used to call CalculateAp() here, but that meant that on Start(), we were calculating AP repeatedly for no reason.
                 As of right now, AP modifiers are only added on Awake, so we don't need to calculate AP each time.
-                If that changes, feel free to add CalculateAp() back in here. 
+                If that changes, feel free to add CalculateAp() back in here.
                 The performance hit probably won't be too bad, but definitely keep it in mind.
-            */ 
+            */
         }
     }
 }
