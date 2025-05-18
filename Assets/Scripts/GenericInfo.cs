@@ -23,11 +23,11 @@ namespace Abraham.GalacticConquest
 
         void Awake()
         {
-            BuildGameObjectName();
+            RenameGameObject();
         }
 
         [Button("Rebuild Planet Name")]
-        private void BuildGameObjectName()
+        private void RenameGameObject()
         {
             string planetTypeDesc = GetPlanetTypeDesc();
 
