@@ -32,6 +32,12 @@ namespace Abraham.GalacticConquest.UnitControl
         [Header("Movement Rings")]
         [SerializeField] private int movementRings = 5;
         [SerializeField] private float movementRingRadius = 12.5f;
+        private int _activeMovementRing;
+
+        //TEMP
+        [SerializeField] private Color[] ringColors;
+        [SerializeField] private bool showAllRings = false;
+        //END TEMP
 
         private void Awake()
         {
@@ -164,11 +170,11 @@ namespace Abraham.GalacticConquest.UnitControl
                 : targetPlanet.transform.position;
 
             int apCost = moveableObject.CalculateMovementCost(endPosition);
-            GUIManager.Instance.UpdateMovementCostIndicator(apCost);
 
             //TEMP
             float distanceToTarget = moveableObject.GetDistanceToTarget(endPosition);
             int ringLevel = GetRingLevelFromDistance(distanceToTarget);
+            _activeMovementRing = ringLevel;
             GUIManager.Instance.UpdateMovementCostIndicator(ringLevel);
             //END TEMP
 
@@ -196,9 +202,25 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private void OnDrawGizmos()
         {
-            for (int i = 0; i < movementRings; i++)
+            if (ringColors == null || ringColors.Length < movementRings)
             {
-                Gizmos.DrawWireSphere(Vector3.zero, movementRingRadius * (i + 1));
+                Debug.LogWarning("Not enough colors defined for movement rings.");
+                return;
+            }
+
+            if (showAllRings)
+            {
+                for (int i = 0; i < movementRings; i++)
+                {
+                    Gizmos.color = ringColors[i];
+                    Gizmos.DrawWireSphere(Vector3.zero, movementRingRadius * (i + 1));
+                }
+            }
+            else if (_activeMovementRing > 0 && _activeMovementRing <= movementRings)
+            {
+                int ringIndex = _activeMovementRing - 1;
+                Gizmos.color = ringColors[ringIndex];
+                Gizmos.DrawWireSphere(Vector3.zero, movementRingRadius * _activeMovementRing);
             }
         }
     }
