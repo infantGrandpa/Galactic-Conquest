@@ -1,3 +1,4 @@
+using System;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
@@ -17,11 +18,9 @@ namespace Abraham.GalacticConquest.UnitControl
 
                 return _instance;
             }
-            set
-            {
-                _instance = value;
-            }
+            set { _instance = value; }
         }
+
         private static MovementManager _instance;
 
         [SerializeField] private GameObject movementIndicatorLinePrefab;
@@ -34,16 +33,21 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private void Awake()
         {
-            if (movementIndicatorLinePrefab == null) {
+            if (movementIndicatorLinePrefab == null)
+            {
                 Debug.LogError("ERROR MovementManager Awake(): Movement Indicator prefab is null.", this);
                 return;
             }
 
-            GameObject movementIndicatorObject = Instantiate(movementIndicatorLinePrefab, LevelManager.Instance.DynamicTransform);
+            GameObject movementIndicatorObject =
+                Instantiate(movementIndicatorLinePrefab, LevelManager.Instance.DynamicTransform);
             movementIndicatorHandler = movementIndicatorObject.GetComponent<MovementIndicatorHandler>();
 
-            if (movementIndicatorHandler == null) {
-                Debug.LogError("ERROR MovementManager Awake(): Provided Movement Indicator Line Prefab does not have a MovementIndicatorHandler component.", this);
+            if (movementIndicatorHandler == null)
+            {
+                Debug.LogError(
+                    "ERROR MovementManager Awake(): Provided Movement Indicator Line Prefab does not have a MovementIndicatorHandler component.",
+                    this);
                 return;
             }
 
@@ -54,12 +58,14 @@ namespace Abraham.GalacticConquest.UnitControl
         {
             //Cancel if nothing is selected
             Selectable selectedObject = SelectionManager.Instance.selectedObject;
-            if (selectedObject == null) {
+            if (selectedObject == null)
+            {
                 return null;
             }
 
             //Is Object Moveable
-            if (!selectedObject.TryGetComponent(out Moveable moveableObject)) {
+            if (!selectedObject.TryGetComponent(out Moveable moveableObject))
+            {
                 //Object not movable. Cancel.
                 return null;
             }
@@ -77,13 +83,15 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private PlanetBehaviour GetPlanetFromNullableHitInfo(RaycastHit? nullableHitInfo)
         {
-            if (nullableHitInfo == null) {
+            if (nullableHitInfo == null)
+            {
                 //Nothing hit
                 return null;
             }
 
             //Get target planet
-            RaycastHit hitInfo = (RaycastHit)nullableHitInfo; //Convert hit info so we can get the transform of the hit object
+            RaycastHit
+                hitInfo = (RaycastHit)nullableHitInfo; //Convert hit info so we can get the transform of the hit object
             PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
             return targetPlanet;
         }
@@ -91,18 +99,21 @@ namespace Abraham.GalacticConquest.UnitControl
         public void MoveToPlanet()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
-            if (moveableObject == null) {
+            if (moveableObject == null)
+            {
                 return;
             }
 
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
-            if (!targetPlanet) {
+            if (!targetPlanet)
+            {
                 //Didn't click on a planet. Cancel.
                 return;
             }
 
             bool canMove = moveableObject.CanMoveToTarget(targetPlanet);
-            if (!canMove) {
+            if (!canMove)
+            {
                 //Moveable object already at planet. Cancel.
                 return;
             }
@@ -110,7 +121,8 @@ namespace Abraham.GalacticConquest.UnitControl
             //Check AP costs. 
             // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
             int totalApCost = moveableObject.CalculateMovementCost(targetPlanet);
-            if (!ActionPointManager.Instance.CanPerformAction(totalApCost)) {
+            if (!ActionPointManager.Instance.CanPerformAction(totalApCost))
+            {
                 //Not Enough AP. Cancel.
                 GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + totalApCost + "): Movement Cancelled.");
 
@@ -119,7 +131,8 @@ namespace Abraham.GalacticConquest.UnitControl
 
             //Send Move Command to moveable object
             bool moveSuccessful = moveableObject.MoveToPlanet(targetPlanet);
-            if (!moveSuccessful) {
+            if (!moveSuccessful)
+            {
                 //Move cancelled by moveable object.
                 return;
             }
@@ -131,30 +144,34 @@ namespace Abraham.GalacticConquest.UnitControl
         public void UpdateMovementIndicator()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
-            if (moveableObject == null) {
+            if (moveableObject == null)
+            {
                 return;
             }
 
             //Get Closest Planet
             LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
-            RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask, movementIndicatorSphereCastRadius);
+            RaycastHit? nullableHitInfo =
+                InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask, movementIndicatorSphereCastRadius);
 
             PlanetBehaviour targetPlanet = GetPlanetFromNullableHitInfo(nullableHitInfo);
-            
+
             Vector3 startPosition = moveableObject.transform.position;
-            Vector3 endPosition = targetPlanet == null ? InputManager.Instance.GetCursorPosition() : targetPlanet.transform.position;
+            Vector3 endPosition = targetPlanet == null
+                ? InputManager.Instance.GetCursorPosition()
+                : targetPlanet.transform.position;
 
             int apCost = moveableObject.CalculateMovementCost(endPosition);
             GUIManager.Instance.UpdateMovementCostIndicator(apCost);
 
             movementIndicatorHandler.SetMovementLinePositions(startPosition, endPosition);
-
         }
 
         public void HideMovementIndicator()
         {
             movementIndicatorHandler.HideLineRenderer();
         }
+
         public void ShowMovementIndicator()
         {
             movementIndicatorHandler.ShowLineRenderer();
