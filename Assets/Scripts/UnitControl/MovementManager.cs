@@ -23,11 +23,13 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private static MovementManager _instance;
 
+        [Header("Move Line Indicator")]
         [SerializeField] private GameObject movementIndicatorLinePrefab;
         private MovementIndicatorHandler movementIndicatorHandler;
 
         [SerializeField] private float movementIndicatorSphereCastRadius;
 
+        [Header("Movement Rings")]
         [SerializeField] private int movementRings = 5;
         [SerializeField] private float movementRingRadius = 12.5f;
 
@@ -164,6 +166,14 @@ namespace Abraham.GalacticConquest.UnitControl
             int apCost = moveableObject.CalculateMovementCost(endPosition);
             GUIManager.Instance.UpdateMovementCostIndicator(apCost);
 
+            //TEMP
+            float distanceToTarget = moveableObject.GetDistanceToTarget(endPosition);
+            int ringLevel = GetRingLevelFromDistance(distanceToTarget);
+            GUIManager.Instance.UpdateMovementCostIndicator(ringLevel);
+            //END TEMP
+
+            //GUIManager.Instance.UpdateMovementCostIndicator(apCost);
+
             movementIndicatorHandler.SetMovementLinePositions(startPosition, endPosition);
         }
 
@@ -176,6 +186,13 @@ namespace Abraham.GalacticConquest.UnitControl
         {
             movementIndicatorHandler.ShowLineRenderer();
         }
+
+        public int GetRingLevelFromDistance(float distanceToTarget)
+        {
+            int ringLevel = Mathf.CeilToInt(distanceToTarget / movementRingRadius);
+            return Mathf.Clamp(ringLevel, 1, 5);
+        }
+
 
         private void OnDrawGizmos()
         {

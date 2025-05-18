@@ -63,6 +63,11 @@ namespace Abraham.GalacticConquest.UnitControl
             return CalculateMovementCost(targetPlanet.transform.position);
         }
 
+        public float GetDistanceToTarget(Vector3 endPosition)
+        {
+            return Vector3.Distance(transform.position, endPosition);
+        }
+        
         public int CalculateMovementCost(Vector3 endPosition)
         {
             float distanceToPlanet = Vector3.Distance(transform.position, endPosition);
