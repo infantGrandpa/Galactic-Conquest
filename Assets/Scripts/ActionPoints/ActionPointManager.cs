@@ -37,10 +37,14 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         // readonly refers to the Dictionary itself, not the contents of the dictionary I guess
         private readonly Dictionary<Faction, List<ActionPointModifier>> _factionApModifiers = new();
+        private readonly Dictionary<Faction, int> _factionRolloverPoints = new();
 
+        [SerializeField] private float percOfRolloverPoints = 0.5f;
 
         public void CalculateActionPoints(Faction currentFaction)
         {
+            
+            
             BuildFactionApModifierList();   // TODO: Do we need to build this EVERY TIME we calculate AP?
             int totalActionPoints = baseActionPoints;
 
@@ -52,8 +56,16 @@ namespace Abraham.GalacticConquest.ActionPoints
 
             foreach (ActionPointModifier thisMod in factionMods)
             {
-                Debug.Log($"  • Reason: {thisMod.apModificationReason}, Value: {thisMod.apModificationValue}");
                 totalActionPoints += thisMod.apModificationValue;
+            }
+            
+            if (_factionRolloverPoints.TryGetValue(currentFaction, out int rolloverPoints))
+            {
+                GUIManager.Instance.AddActionLogMessage($"Adding {rolloverPoints} points to {currentFaction.factionName} from last turn.");
+                totalActionPoints += rolloverPoints;
+
+                // Optionally clear it right away if you want them only used once:
+                _factionRolloverPoints[currentFaction] = 0;
             }
 
             FactionNotFound:
@@ -92,6 +104,14 @@ namespace Abraham.GalacticConquest.ActionPoints
                 }
             }
         }
+        
+        public void SaveRolloverPoints(Faction faction)
+        {
+            int rollover = Mathf.FloorToInt(CurrentActionPoints * percOfRolloverPoints);
+            _factionRolloverPoints[faction] = rollover;
+            GUIManager.Instance.AddActionLogMessage($"Saved {rollover} of {CurrentActionPoints} points for the {faction.factionName}.");
+        }
+
 
         public void IncreaseActionPoints(int increaseBy)
         {
