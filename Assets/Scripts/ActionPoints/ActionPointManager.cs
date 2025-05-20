@@ -37,7 +37,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         // readonly refers to the Dictionary itself, not the contents of the dictionary I guess
         private readonly Dictionary<Faction, List<ActionPointModifier>> _factionApModifiers = new();
-        private readonly Dictionary<Faction, int> _factionRolloverPoints = new();
+        private readonly Dictionary<Faction, int> _factionRolloverPoints = new();       //TODO: Implement a not shit version of rollover points
 
         [SerializeField] private float percOfRolloverPoints = 0.5f;
 
