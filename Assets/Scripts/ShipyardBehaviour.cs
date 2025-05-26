@@ -60,6 +60,7 @@ namespace Abraham.GalacticConquest
 
             if (slotTransform == null) {
                 Debug.LogError("ERROR ShipyardBehaviour BuildFleet(): No available planet slots at " + gameObject.name, this);
+                // TODO: Delete the fleet we just created if we fail here
                 return;
             }
             newFleet.transform.position = slotTransform.position;
@@ -67,6 +68,8 @@ namespace Abraham.GalacticConquest
 
             SetFleetFaction(newFleet);
 
+            //TODO: Standardize the way we handle actions. 
+            //  the AP Manager shouldn't hold the cost for building ships.
             int buildShipCost = ActionPointManager.Instance.buildShipApCost;
             ActionPointManager.Instance.DecreaseActionPoints(buildShipCost);
         }
