@@ -1,8 +1,8 @@
+using System;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using Abraham.GalacticConquest.UnitControl;
-using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
 {
@@ -22,12 +22,20 @@ namespace Abraham.GalacticConquest.Actions
 
         public int GetActionPointCost()
         {
-            throw new System.NotImplementedException();
+            if (!_moveableObject)
+            {
+                throw new InvalidOperationException(
+                    "MoveableObject is required but was null. Ensure the game action was properly initialized.");
+            }
+            
+            float distanceToTarget = _moveableObject.GetDistanceToTarget(_targetPlanet.transform.position);
+            int ringLevel = MovementManager.Instance.GetRingLevelFromDistance(distanceToTarget);
+            return _moveableObject.CalculateMovementCost(ringLevel);
         }
 
         public bool CanExecuteAction()
         {
-            if (_moveableObject == null)
+            if (!_moveableObject)
             {
                 return false;
             }
@@ -45,13 +53,9 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
-
-            // Get Ring level and check AP cost 
+            
             // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
-            float distanceToTarget = _moveableObject.GetDistanceToTarget(_targetPlanet.transform.position);
-            int ringLevel = MovementManager.Instance.GetRingLevelFromDistance(distanceToTarget);
-            _apMoveCost = _moveableObject.CalculateMovementCost(ringLevel);
-
+            _apMoveCost = GetActionPointCost();
             if (!ActionPointManager.Instance.CanPerformAction(_apMoveCost))
             {
                 //Not Enough AP. Cancel.
