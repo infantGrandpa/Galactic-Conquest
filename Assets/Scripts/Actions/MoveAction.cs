@@ -10,8 +10,8 @@ namespace Abraham.GalacticConquest.Actions
     {
         private readonly Moveable _moveableObject;
         private readonly PlanetBehaviour _targetPlanet;
-
-        private int _apMoveCost = 0;
+        
+        private int? _cachedApCost = null;
 
         public MoveAction(Moveable moveableObject, PlanetBehaviour targetPlanet)
         {
@@ -22,15 +22,23 @@ namespace Abraham.GalacticConquest.Actions
 
         public int GetActionPointCost()
         {
+            // If we've already calculated the AP cost for this action, just return that.
+            // This could cause an issue if that action cost would change during runtime, but I don't think that is the case right now.
+            if (_cachedApCost != null)
+            {
+                return _cachedApCost.Value;
+            }
+
             if (!_moveableObject)
             {
                 throw new InvalidOperationException(
                     "MoveableObject is required but was null. Ensure the game action was properly initialized.");
             }
-            
+
             float distanceToTarget = _moveableObject.GetDistanceToTarget(_targetPlanet.transform.position);
             int ringLevel = MovementManager.Instance.GetRingLevelFromDistance(distanceToTarget);
-            return _moveableObject.CalculateMovementCost(ringLevel);
+            _cachedApCost = _moveableObject.CalculateMovementCost(ringLevel);
+            return _cachedApCost.Value;
         }
 
         public bool CanExecuteAction()
@@ -53,13 +61,13 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
-            
+
             // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
-            _apMoveCost = GetActionPointCost();
-            if (!ActionPointManager.Instance.CanPerformAction(_apMoveCost))
+            int apCost = GetActionPointCost();
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
             {
                 //Not Enough AP. Cancel.
-                GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + _apMoveCost + "): Movement Cancelled.");
+                GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + apCost + "): Movement Cancelled.");
                 return false;
             }
 
@@ -81,7 +89,8 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
-            ActionPointManager.Instance.DecreaseActionPoints(_apMoveCost);
+            int apCost = GetActionPointCost();
+            ActionPointManager.Instance.DecreaseActionPoints(apCost);
             return true;
         }
 
