@@ -1,5 +1,4 @@
-using System;
-using Abraham.GalacticConquest.ActionPoints;
+using Abraham.GalacticConquest.Actions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using Abraham.GalacticConquest.Refs;
@@ -108,48 +107,10 @@ namespace Abraham.GalacticConquest.UnitControl
         public void MoveToPlanet()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
-            if (moveableObject == null)
-            {
-                return;
-            }
-
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
-            if (!targetPlanet)
-            {
-                //Didn't click on a planet. Cancel.
-                return;
-            }
-
-            bool canMove = moveableObject.CanMoveToTarget(targetPlanet);
-            if (!canMove)
-            {
-                //Moveable object already at planet. Cancel.
-                return;
-            }
-
-            // Get Ring Level
-            float distanceToTarget = moveableObject.GetDistanceToTarget(targetPlanet.transform.position);
-            _activeMovementRing = GetRingLevelFromDistance(distanceToTarget);
             
-            //Check AP costs. 
-            // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
-            int totalApCost = moveableObject.CalculateMovementCost(_activeMovementRing);
-            if (!ActionPointManager.Instance.CanPerformAction(totalApCost))
-            {
-                //Not Enough AP. Cancel.
-                GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + totalApCost + "): Movement Cancelled.");
-                return;
-            }
-
-            //Send Move Command to moveable object
-            bool moveSuccessful = moveableObject.MoveToPlanet(targetPlanet);
-            if (!moveSuccessful)
-            {
-                //Move cancelled by moveable object.
-                return;
-            }
-
-            ActionPointManager.Instance.DecreaseActionPoints(totalApCost);
+            MoveAction moveAction = new MoveAction(moveableObject, targetPlanet);
+            moveAction.ExecuteAction();
         }
 
 
@@ -191,13 +152,13 @@ namespace Abraham.GalacticConquest.UnitControl
             movementIndicatorHandler.ShowLineRenderer();
         }
 
-        private int GetRingLevelFromDistance(float distanceToTarget)
+        public int GetRingLevelFromDistance(float distanceToTarget)
         {
             int ringLevel = Mathf.CeilToInt(distanceToTarget / movementRingRadius);
             return Mathf.Clamp(ringLevel, 1, 5);
         }
 
-        private int GetRingLevelFromDistance(Vector3 startPosition, Vector3 endPosition)
+        public int GetRingLevelFromDistance(Vector3 startPosition, Vector3 endPosition)
         {
             float distance = Vector3.Distance(startPosition, endPosition);
             return GetRingLevelFromDistance(distance);
