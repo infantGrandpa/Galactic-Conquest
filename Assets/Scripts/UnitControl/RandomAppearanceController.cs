@@ -10,7 +10,7 @@ namespace Abraham.GalacticConquest.UnitControl
         public List<GameObject> possibleSkins = new List<GameObject>();
         public List<Material> possibleMaterials = new List<Material>();
 
-        private GameObject activeSkin;
+        private GameObject _activeSkin;
 
         private void Start()
         {
@@ -24,7 +24,7 @@ namespace Abraham.GalacticConquest.UnitControl
                 return;
             }
 
-            MeshRenderer meshRenderer = activeSkin.GetComponent<MeshRenderer>();
+            MeshRenderer meshRenderer = _activeSkin.GetComponent<MeshRenderer>();
             if (meshRenderer == null) {
                 Debug.LogError("ERROR RandomAppearanceController ApplyRandomMaterial(): The active skin is missing a Mesh Renderer component.", this);
                 return;
@@ -52,7 +52,7 @@ namespace Abraham.GalacticConquest.UnitControl
                 return;
             }
             chosenSkin.SetActive(true);
-            activeSkin = chosenSkin;
+            _activeSkin = chosenSkin;
         }
 
         private GameObject ChooseRandomSkin()

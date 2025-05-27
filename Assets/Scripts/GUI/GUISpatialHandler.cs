@@ -4,23 +4,23 @@ namespace Abraham.GalacticConquest.GUI
 {
     public class GUISpatialHandler : MonoBehaviour
     {
-        private Transform dynamicUITransform;
+        private Transform _dynamicUITransform;
 
         private void Awake()
         {
             GameObject dynamicGameObject = new() {
                 name = "_dynamicUI"
             };
-            dynamicUITransform = dynamicGameObject.transform;
-            dynamicUITransform.SetParent(transform);
-            dynamicUITransform.SetAsFirstSibling();
-            dynamicUITransform.localPosition = Vector3.zero;
-            dynamicUITransform.localScale = Vector3.one;
+            _dynamicUITransform = dynamicGameObject.transform;
+            _dynamicUITransform.SetParent(transform);
+            _dynamicUITransform.SetAsFirstSibling();
+            _dynamicUITransform.localPosition = Vector3.zero;
+            _dynamicUITransform.localScale = Vector3.one;
         }
 
         public void AddUIElement(Transform transformToAdd)
         {
-            transformToAdd.SetParent(dynamicUITransform);
+            transformToAdd.SetParent(_dynamicUITransform);
             transformToAdd.localScale = Vector3.one;
         }
     }

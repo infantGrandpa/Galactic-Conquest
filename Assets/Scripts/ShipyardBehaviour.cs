@@ -11,21 +11,21 @@ namespace Abraham.GalacticConquest
 {
     public class ShipyardBehaviour : MonoBehaviour
     {
-        private PlanetSlotHandler planetSlotHandler;
-        private FactionHandler factionHandler;
+        private PlanetSlotHandler _planetSlotHandler;
+        private FactionHandler _factionHandler;
 
-        private GenericInfo info;
+        private GenericInfo _info;
 
         private void Awake()
         {
-            planetSlotHandler = GetComponent<PlanetSlotHandler>();
-            factionHandler = GetComponent<FactionHandler>();
-            info = GetComponent<GenericInfo>();
+            _planetSlotHandler = GetComponent<PlanetSlotHandler>();
+            _factionHandler = GetComponent<FactionHandler>();
+            _info = GetComponent<GenericInfo>();
         }
 
         public bool CanBuildFleet()
         {
-            bool slotsAvailable = planetSlotHandler.AreAnySlotsAvailable();
+            bool slotsAvailable = _planetSlotHandler.AreAnySlotsAvailable();
             if (!slotsAvailable) {
                 return false;
             }
@@ -43,7 +43,7 @@ namespace Abraham.GalacticConquest
         public void BuildFleet()
         {
             if (!CanBuildFleet()) {
-                GUIManager.Instance.AddActionLogMessage("Unable to build a fleet at " + info.myName);
+                GUIManager.Instance.AddActionLogMessage("Unable to build a fleet at " + _info.myName);
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace Abraham.GalacticConquest
             GameObject newFleet = Instantiate(fleetToBuild, LevelManager.Instance.DynamicTransform);
 
             Moveable moveable = newFleet.GetComponent<Moveable>();
-            Transform slotTransform = planetSlotHandler.AddMoveableToAvailableSlot(moveable);
+            Transform slotTransform = _planetSlotHandler.AddMoveableToAvailableSlot(moveable);
 
             if (slotTransform == null) {
                 Debug.LogError("ERROR ShipyardBehaviour BuildFleet(): No available planet slots at " + gameObject.name, this);
@@ -74,7 +74,7 @@ namespace Abraham.GalacticConquest
         private void SetFleetFaction(GameObject newFleet)
         {
             FactionHandler fleetFactionHandler = newFleet.GetComponent<FactionHandler>();
-            fleetFactionHandler.SetFaction(factionHandler.myFaction);
+            fleetFactionHandler.SetFaction(_factionHandler.myFaction);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Abraham.GalacticConquest.GUI
         [SerializeField]
         private float secsToTween = 0.5f;
 
-        private Queue<string> logMessages = new();
+        private Queue<string> _logMessages = new();
 
         private void Awake()
         {
@@ -39,11 +39,11 @@ namespace Abraham.GalacticConquest.GUI
 
         public void AddLogMessage(string message)
         {
-            logMessages.Enqueue(message);
+            _logMessages.Enqueue(message);
 
-            if (logMessages.Count > maxLogMessages)
+            if (_logMessages.Count > maxLogMessages)
             {
-                logMessages.Dequeue();
+                _logMessages.Dequeue();
             }
 
             UpdateLogText(message);

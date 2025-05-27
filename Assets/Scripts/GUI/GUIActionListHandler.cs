@@ -17,9 +17,9 @@ namespace Abraham.GalacticConquest.GUI
         [SerializeField] private Button buildFleetButton;
 
 
-        private RectTransform rectTransform;
+        private RectTransform _rectTransform;
 
-        private PlanetBehaviour currentPlanet;
+        private PlanetBehaviour _currentPlanet;
 
         private void Awake()
         {
@@ -29,20 +29,20 @@ namespace Abraham.GalacticConquest.GUI
 
         private void GetComponents()
         {
-            rectTransform = GetComponent<RectTransform>();
+            _rectTransform = GetComponent<RectTransform>();
         }
 
         public void ShowActionList(PlanetBehaviour planetBehaviour)
         {
-            if (rectTransform == null) {
+            if (_rectTransform == null) {
                 GetComponents();
             }
 
-            currentPlanet = planetBehaviour;
+            _currentPlanet = planetBehaviour;
 
             Vector2 canvasPosition = GUIManager.Instance.mainCanvas.WorldToCanvasPosition(planetBehaviour.transform.position, GUIManager.Instance.mainCamera);
             Vector2 finalPosition = canvasPosition + positionOffset;
-            rectTransform.anchoredPosition = finalPosition;
+            _rectTransform.anchoredPosition = finalPosition;
 
             UpdateListBasedOnPlanet(planetBehaviour);
             gameObject.SetActive(true);
@@ -69,32 +69,32 @@ namespace Abraham.GalacticConquest.GUI
 
         public void HideActionList()
         {
-            currentPlanet = null;
+            _currentPlanet = null;
             gameObject.SetActive(false);
         }
 
         [ContextMenu("Recalculate")]
         public void RecalculatePosition()
         {
-            if (currentPlanet == null) {
+            if (_currentPlanet == null) {
                 Debug.LogWarning("No active planet.");
             }
-            ShowActionList(currentPlanet);
+            ShowActionList(_currentPlanet);
         }
 
         //Called by button onclick event
         public void OnBuildFleetButtonClicked()
         {
-            ShipyardBehaviour shipyardBehaviour = currentPlanet.GetComponent<ShipyardBehaviour>();
+            ShipyardBehaviour shipyardBehaviour = _currentPlanet.GetComponent<ShipyardBehaviour>();
             shipyardBehaviour.BuildFleet();
 
-            GUIManager.Instance.AddActionLogMessage(currentPlanet.FactionHandler.myFaction.factionName + " built a new fleet at " + currentPlanet.PlanetInfo.myName + ".");
+            GUIManager.Instance.AddActionLogMessage(_currentPlanet.FactionHandler.myFaction.factionName + " built a new fleet at " + _currentPlanet.PlanetInfo.myName + ".");
         }
 
         //Called by button onclick event
         public void OnFortifyPlanetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("Fortifying " + currentPlanet.PlanetInfo.myName + "...");
+            GUIManager.Instance.AddActionLogMessage("Fortifying " + _currentPlanet.PlanetInfo.myName + "...");
         }
     }
 }

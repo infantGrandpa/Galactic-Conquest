@@ -15,13 +15,13 @@ namespace Abraham.GalacticConquest.Fleets
 
         public IDamageable HealthSystem { get; private set; }
 
-        private FleetCombatBehaviour combatBehaviour;
+        private FleetCombatBehaviour _combatBehaviour;
 
         private void Awake()
         {
             FactionHandler = GetComponent<FactionHandler>();
             HealthSystem = GetComponent<IDamageable>();
-            combatBehaviour = GetComponent<FleetCombatBehaviour>();
+            _combatBehaviour = GetComponent<FleetCombatBehaviour>();
         }
 
         public void FleetArrivedAtPlanet(PlanetBehaviour targetPlanet)
@@ -57,7 +57,7 @@ namespace Abraham.GalacticConquest.Fleets
                     continue;
                 }
 
-                combatBehaviour.StartSpaceBattle(enemyFleetBehaviour, targetPlanet);
+                _combatBehaviour.StartSpaceBattle(enemyFleetBehaviour, targetPlanet);
                 //Wait for battle to be resolved
                 while (BattleManager.Instance.CurrentBattle != null)
                 {
@@ -81,7 +81,7 @@ namespace Abraham.GalacticConquest.Fleets
                 yield break;
             }
 
-            combatBehaviour.StartGroundBattle(targetPlanet);
+            _combatBehaviour.StartGroundBattle(targetPlanet);
             //Wait for battle to be resolved
             while (BattleManager.Instance.CurrentBattle != null)
             {

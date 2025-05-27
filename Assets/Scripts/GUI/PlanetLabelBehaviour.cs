@@ -13,12 +13,12 @@ namespace Abraham.GalacticConquest.GUI
     public class PlanetLabelBehaviour : MonoBehaviour
     {
         [SerializeField] private TMP_Text planetNameText;
-        private Faction currentFaction;
-        private RectTransform rectTransform;
+        private Faction _currentFaction;
+        private RectTransform _rectTransform;
 
         [SerializeField] private Vector2 positionOffset;
 
-        private Vector3 currentWorldPosition;
+        private Vector3 _currentWorldPosition;
 
         [SerializeField] private List<Image> traitIcons = new List<Image>();
         
@@ -26,14 +26,14 @@ namespace Abraham.GalacticConquest.GUI
 
         public void InitLabel(GenericInfo planetDetails, Faction faction, TraitHandler traitHandler, Vector3 worldPosition)
         {
-            currentFaction = faction;
+            _currentFaction = faction;
             planetNameText.text = planetDetails.myName;
 
             ShowTraitIcons(traitHandler);
 
             GUIManager.Instance.AddUIElementToSpatialCanvas(transform);
 
-            rectTransform = GetComponent<RectTransform>();
+            _rectTransform = GetComponent<RectTransform>();
 
             SetColors(faction.factionColor);
             SetCanvasPosition(worldPosition);
@@ -76,18 +76,18 @@ namespace Abraham.GalacticConquest.GUI
 
         private void SetCanvasPosition(Vector3 worldPosition)
         {
-            currentWorldPosition = worldPosition;
+            _currentWorldPosition = worldPosition;
             Vector2 canvasPosition = GUIManager.Instance.mainCanvas.WorldToCanvasPosition(worldPosition, GUIManager.Instance.mainCamera);
             Vector2 finalPosition = canvasPosition + positionOffset;
 
-            rectTransform.anchoredPosition = finalPosition;
+            _rectTransform.anchoredPosition = finalPosition;
         }
 
         public void UpdateLabelFaction(Faction newFaction)
         {
-            currentFaction = newFaction;
+            _currentFaction = newFaction;
 
-            SetColors(currentFaction.factionColor);
+            SetColors(_currentFaction.factionColor);
         }
     }
 }

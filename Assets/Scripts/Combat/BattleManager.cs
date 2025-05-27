@@ -24,19 +24,19 @@ namespace Abraham.GalacticConquest.Combat
         private static BattleManager _instance;
         public Battle CurrentBattle { get; private set; }
 
-        private SpaceBattleHandler spaceBattleHandler;
-        private GroundBattleHandler groundBattleHandler;
+        private SpaceBattleHandler _spaceBattleHandler;
+        private GroundBattleHandler _groundBattleHandler;
 
         private void Awake()
         {
-            spaceBattleHandler = GetComponent<SpaceBattleHandler>();
-            groundBattleHandler = GetComponent<GroundBattleHandler>();
+            _spaceBattleHandler = GetComponent<SpaceBattleHandler>();
+            _groundBattleHandler = GetComponent<GroundBattleHandler>();
         }
 
         public void StartSpaceBattle(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
         {
             CurrentBattle = new Battle(attacker, defender, planet, Battle.BattleType.SpaceBattle);
-            spaceBattleHandler.StartSpaceBattle(CurrentBattle);
+            _spaceBattleHandler.StartSpaceBattle(CurrentBattle);
         }
 
         public void StartGroundBattle(CombatantBehaviour attacker, PlanetBehaviour planet)
@@ -47,7 +47,7 @@ namespace Abraham.GalacticConquest.Combat
                 return;
             }
             CurrentBattle = new Battle(attacker, defender, planet, Battle.BattleType.GroundBattle);
-            groundBattleHandler.StartGroundBattle(CurrentBattle);
+            _groundBattleHandler.StartGroundBattle(CurrentBattle);
         }
 
         public void AttackerWon()

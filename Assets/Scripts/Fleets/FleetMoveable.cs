@@ -6,11 +6,11 @@ namespace Abraham.GalacticConquest.Fleets
 {
     public class FleetMoveable : Moveable
     {
-        private FleetBehaviour fleetBehaviour;
+        private FleetBehaviour _fleetBehaviour;
 
         private void Awake()
         {
-            fleetBehaviour = GetComponent<FleetBehaviour>();
+            _fleetBehaviour = GetComponent<FleetBehaviour>();
         }
 
         public override bool MoveToPlanet(PlanetBehaviour targetPlanet)
@@ -22,13 +22,13 @@ namespace Abraham.GalacticConquest.Fleets
                 return false;
             }
 
-            if (fleetBehaviour == null)
+            if (_fleetBehaviour == null)
             {
                 Debug.LogError("ERROR FleetMoveable MoveToPlanet: Fleet Behaviour is null.", this);
                 return false;
             }
 
-            fleetBehaviour.FleetArrivedAtPlanet(targetPlanet);
+            _fleetBehaviour.FleetArrivedAtPlanet(targetPlanet);
 
             return true;
         }

@@ -17,7 +17,7 @@ namespace Abraham.GalacticConquest.Planets
         [Header("Planet Label")] [SerializeField]
         private GameObject planetLabelPrefab;
 
-        private PlanetLabelBehaviour planetLabel;
+        private PlanetLabelBehaviour _planetLabel;
 
         private void OnEnable()
         {
@@ -43,8 +43,8 @@ namespace Abraham.GalacticConquest.Planets
 
             GameObject newPlanetLabel = Instantiate(planetLabelPrefab);
 
-            planetLabel = newPlanetLabel.GetComponent<PlanetLabelBehaviour>();
-            if (planetLabel == null) {
+            _planetLabel = newPlanetLabel.GetComponent<PlanetLabelBehaviour>();
+            if (_planetLabel == null) {
                 Debug.LogError("ERROR PlanetBehaviour Start(): The planet label prefab is missing a PlanetLabelBehaviour component.");
                 return;
             }
@@ -52,14 +52,14 @@ namespace Abraham.GalacticConquest.Planets
 
         private void Start()
         {
-            planetLabel.InitLabel(PlanetInfo, FactionHandler.myFaction, TraitHandler, transform.position);
+            _planetLabel.InitLabel(PlanetInfo, FactionHandler.myFaction, TraitHandler, transform.position);
         }
 
         public void CapturePlanet() //Called by HealthSystem OnDeathEvent
         {
             Faction newFaction = PlanetCombatBehaviour.GetInvaderFaction();
             FactionHandler.SetFaction(newFaction);
-            planetLabel.UpdateLabelFaction(newFaction);
+            _planetLabel.UpdateLabelFaction(newFaction);
 
             PlanetCombatBehaviour.ResetPlanetAfterCapture();
 
@@ -84,7 +84,7 @@ namespace Abraham.GalacticConquest.Planets
 
         public void UpdateApLabel(int newAp)
         {
-            planetLabel?.UpdateAPLabel(newAp);
+            _planetLabel?.UpdateAPLabel(newAp);
         }
     }
 }

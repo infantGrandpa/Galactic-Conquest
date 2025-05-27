@@ -25,7 +25,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         private static TurnStateMachine _instance;
 
         [ShowInInspector, ReadOnly] protected TurnState CurrentState;
-        private Coroutine updateCoroutine;
+        private Coroutine _updateCoroutine;
 
         private void Start()
         {
@@ -46,8 +46,8 @@ namespace Abraham.GalacticConquest.TurnManagement
             }
 
             //Stop last state's update coroutine
-            if (updateCoroutine != null) {
-                StopCoroutine(updateCoroutine);
+            if (_updateCoroutine != null) {
+                StopCoroutine(_updateCoroutine);
             }
 
             //Exit the current state
@@ -67,7 +67,7 @@ namespace Abraham.GalacticConquest.TurnManagement
 
             //Start the new state's updateCoroutine.
             //We can't do this in the update because it will start every frame, so here works for now.
-            updateCoroutine = StartCoroutine(CurrentState.UpdateState());
+            _updateCoroutine = StartCoroutine(CurrentState.UpdateState());
 
         }
     }

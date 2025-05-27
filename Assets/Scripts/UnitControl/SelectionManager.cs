@@ -22,7 +22,7 @@ namespace Abraham.GalacticConquest.UnitControl
         private static SelectionManager _instance;
 
         [ReadOnly] public Selectable selectedObject;
-        private Coroutine manageMovementIndicatorCoroutine;
+        private Coroutine _manageMovementIndicatorCoroutine;
 
         public void SelectObject()
         {
@@ -52,7 +52,7 @@ namespace Abraham.GalacticConquest.UnitControl
         {
             selectedObject = objectToSelect;
             selectedObject.SelectObject();
-            manageMovementIndicatorCoroutine = StartCoroutine(ManageMovementIndicator());
+            _manageMovementIndicatorCoroutine = StartCoroutine(ManageMovementIndicator());
 
             GUIManager.Instance.ShowInfoBox(objectToSelect.gameObject);
         }
@@ -67,7 +67,7 @@ namespace Abraham.GalacticConquest.UnitControl
             }
 
             MovementManager.Instance.HideMovementIndicator();
-            manageMovementIndicatorCoroutine = null;
+            _manageMovementIndicatorCoroutine = null;
         }
 
         public void ClearSelectedObject()

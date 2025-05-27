@@ -13,7 +13,7 @@ namespace Abraham.GalacticConquest
         //Then, to get data from the GenericInfo class, I would have to check each MonoBehaviour that could hold the class.
         //That sucks. So I did this instead.  
 
-        private TraitHandler traitHandler;
+        private TraitHandler _traitHandler;
 
         public string myName;
         [TextArea(4, 10)] public string myDesc;
@@ -44,12 +44,12 @@ namespace Abraham.GalacticConquest
         private string GetPlanetTypeDesc()
         {
             string planetType = typeDescriptor;
-            if (!TryGetComponent(out traitHandler))
+            if (!TryGetComponent(out _traitHandler))
             {
                 return planetType;
             }
 
-            Trait mostImportantTrait = traitHandler.GetTraitWithHighestImportance();
+            Trait mostImportantTrait = _traitHandler.GetTraitWithHighestImportance();
             if (!mostImportantTrait)
             {
                 return planetType;

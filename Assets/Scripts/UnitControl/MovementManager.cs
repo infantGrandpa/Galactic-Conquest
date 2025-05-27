@@ -24,7 +24,7 @@ namespace Abraham.GalacticConquest.UnitControl
 
         [Header("Move Line Indicator")]
         [SerializeField] private GameObject movementIndicatorLinePrefab;
-        private MovementIndicatorHandler movementIndicatorHandler;
+        private MovementIndicatorHandler _movementIndicatorHandler;
         private Vector3 _selectedMoveablePosition;
 
         [SerializeField] private float movementIndicatorSphereCastRadius;
@@ -49,9 +49,9 @@ namespace Abraham.GalacticConquest.UnitControl
 
             GameObject movementIndicatorObject =
                 Instantiate(movementIndicatorLinePrefab, LevelManager.Instance.DynamicTransform);
-            movementIndicatorHandler = movementIndicatorObject.GetComponent<MovementIndicatorHandler>();
+            _movementIndicatorHandler = movementIndicatorObject.GetComponent<MovementIndicatorHandler>();
 
-            if (movementIndicatorHandler == null)
+            if (_movementIndicatorHandler == null)
             {
                 Debug.LogError(
                     "ERROR MovementManager Awake(): Provided Movement Indicator Line Prefab does not have a MovementIndicatorHandler component.",
@@ -59,7 +59,7 @@ namespace Abraham.GalacticConquest.UnitControl
                 return;
             }
 
-            movementIndicatorHandler.HideLineRenderer();
+            _movementIndicatorHandler.HideLineRenderer();
         }
 
         private Moveable GetMoveableFromSelectedObject()
@@ -139,17 +139,17 @@ namespace Abraham.GalacticConquest.UnitControl
             
             GUIManager.Instance.UpdateMovementCostIndicator(apCost);
 
-            movementIndicatorHandler.SetMovementLinePositions(_selectedMoveablePosition, endPosition);
+            _movementIndicatorHandler.SetMovementLinePositions(_selectedMoveablePosition, endPosition);
         }
 
         public void HideMovementIndicator()
         {
-            movementIndicatorHandler.HideLineRenderer();
+            _movementIndicatorHandler.HideLineRenderer();
         }
 
         public void ShowMovementIndicator()
         {
-            movementIndicatorHandler.ShowLineRenderer();
+            _movementIndicatorHandler.ShowLineRenderer();
         }
 
         public int GetRingLevelFromDistance(float distanceToTarget)

@@ -6,13 +6,13 @@ namespace Abraham.GalacticConquest.ActionPoints
 {
     public class PlanetActionPointAggregator : ActionPointAggregator
     {
-        private PlanetBehaviour planetBehaviour;
+        private PlanetBehaviour _planetBehaviour;
         
         private PlanetBehaviour GetPlanetBehaviour()
         {
-            if (planetBehaviour)
+            if (_planetBehaviour)
             {
-                return planetBehaviour;
+                return _planetBehaviour;
             }
 
             if (TryGetComponent(out PlanetBehaviour myPlanetBehaviour))
@@ -30,8 +30,8 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         private void UpdateAPLabel()
         {
-            planetBehaviour = GetPlanetBehaviour();
-            planetBehaviour?.UpdateApLabel(TotalApPerTurn);
+            _planetBehaviour = GetPlanetBehaviour();
+            _planetBehaviour?.UpdateApLabel(TotalApPerTurn);
         }
 
         protected override void CalculateAp()

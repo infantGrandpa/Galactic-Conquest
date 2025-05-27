@@ -24,7 +24,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         //current faction's turn variable
         [SerializeField] private Faction startingFaction;
         [SerializeField] private List<Faction> factionsInGame = new List<Faction>();
-        private Faction currentFactionTurn;
+        private Faction _currentFactionTurn;
 
 
         private void Start()
@@ -34,9 +34,9 @@ namespace Abraham.GalacticConquest.TurnManagement
 
         public void NextTurn()
         {
-            ActionPointManager.Instance.SaveRolloverPoints(currentFactionTurn);
+            ActionPointManager.Instance.SaveRolloverPoints(_currentFactionTurn);
             
-            int currentIndex = factionsInGame.IndexOf(currentFactionTurn);
+            int currentIndex = factionsInGame.IndexOf(_currentFactionTurn);
     
             // Safety check
             if (currentIndex == -1 || factionsInGame.Count == 0)
@@ -51,9 +51,9 @@ namespace Abraham.GalacticConquest.TurnManagement
 
         private void SetCurrentTurn(Faction faction)
         {
-            currentFactionTurn = faction;
-            GUIManager.Instance.ChangeTurn($"{currentFactionTurn.factionName}'s Turn");
-            ActionPointManager.Instance.CalculateActionPoints(currentFactionTurn);
+            _currentFactionTurn = faction;
+            GUIManager.Instance.ChangeTurn($"{_currentFactionTurn.factionName}'s Turn");
+            ActionPointManager.Instance.CalculateActionPoints(_currentFactionTurn);
         }
 
         //TODO: add list of rollover action points

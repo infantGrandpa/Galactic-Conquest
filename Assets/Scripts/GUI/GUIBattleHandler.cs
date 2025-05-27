@@ -13,10 +13,10 @@ namespace Abraham.GalacticConquest.GUI
         [Header("UI Elements")]
         [SerializeField]
         private Button attackerWonButton;
-        private TMP_Text attackerButtonText;
+        private TMP_Text _attackerButtonText;
 
         [SerializeField] private Button defenderWonButton;
-        private TMP_Text defenderButtonText;
+        private TMP_Text _defenderButtonText;
 
         [SerializeField] private TMP_Text descriptionText;
 
@@ -31,12 +31,12 @@ namespace Abraham.GalacticConquest.GUI
         private float secsToTweenScale;
         [SerializeField] private Ease showBoxEasing;
         [SerializeField] private Ease hideBoxEasing;
-        private RectTransform battleHandlerTransform;
+        private RectTransform _battleHandlerTransform;
         #endregion
 
         private void Awake()
         {
-            battleHandlerTransform = gameObject.GetComponent<RectTransform>();
+            _battleHandlerTransform = gameObject.GetComponent<RectTransform>();
 
             if (attackerWonButton == null)
             {
@@ -50,8 +50,8 @@ namespace Abraham.GalacticConquest.GUI
                 return;
             }
 
-            attackerButtonText = attackerWonButton.GetComponentInChildren<TMP_Text>();
-            defenderButtonText = defenderWonButton.GetComponentInChildren<TMP_Text>();
+            _attackerButtonText = attackerWonButton.GetComponentInChildren<TMP_Text>();
+            _defenderButtonText = defenderWonButton.GetComponentInChildren<TMP_Text>();
 
             gameObject.SetActive(false); //Hide the gui battle handler
         }
@@ -82,10 +82,10 @@ namespace Abraham.GalacticConquest.GUI
         private void SetButtons(Faction attackingFaction, Faction defendingFaction)
         {
             attackerWonButton.image.color = attackingFaction.factionColor;
-            attackerButtonText.text = attackingFaction.factionName;
+            _attackerButtonText.text = attackingFaction.factionName;
 
             defenderWonButton.image.color = defendingFaction.factionColor;
-            defenderButtonText.text = defendingFaction.factionName;
+            _defenderButtonText.text = defendingFaction.factionName;
         }
 
         private Faction GetAttackingFaction(Battle battleInfo)
@@ -180,13 +180,13 @@ namespace Abraham.GalacticConquest.GUI
         private void StartShowTween()
         {
             gameObject.SetActive(true);
-            battleHandlerTransform.localScale = Vector2.zero;
-            battleHandlerTransform.DOScale(1, secsToTweenScale).SetEase(showBoxEasing);
+            _battleHandlerTransform.localScale = Vector2.zero;
+            _battleHandlerTransform.DOScale(1, secsToTweenScale).SetEase(showBoxEasing);
         }
 
         public void HideDialogBox()
         {
-            battleHandlerTransform.DOScale(0, secsToTweenScale).SetEase(hideBoxEasing).OnComplete(
+            _battleHandlerTransform.DOScale(0, secsToTweenScale).SetEase(hideBoxEasing).OnComplete(
                 () => gameObject.SetActive(false)       //Set inactive when tween is completed
             );
         }
