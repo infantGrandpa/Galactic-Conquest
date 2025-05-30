@@ -1,4 +1,4 @@
-using System;
+using Abraham.GalacticConquest.Actions;
 using Abraham.GalacticConquest.Planets;
 using Abraham.GalacticConquest.Traits;
 using TMPro;
@@ -86,9 +86,8 @@ namespace Abraham.GalacticConquest.GUI
         public void OnBuildFleetButtonClicked()
         {
             ShipyardBehaviour shipyardBehaviour = _currentPlanet.GetComponent<ShipyardBehaviour>();
-            shipyardBehaviour.BuildFleet();
-
-            GUIManager.Instance.AddActionLogMessage(_currentPlanet.FactionHandler.myFaction.factionName + " built a new fleet at " + _currentPlanet.PlanetInfo.myName + ".");
+            BuildFleetAction buildFleetAction = new BuildFleetAction(shipyardBehaviour);
+            ActionManager.Instance.PerformAction(buildFleetAction);
         }
 
         //Called by button onclick event

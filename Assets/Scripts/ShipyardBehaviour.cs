@@ -1,7 +1,5 @@
-using System;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.Factions;
-using Abraham.GalacticConquest.Fleets;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using Abraham.GalacticConquest.UnitControl;
@@ -40,17 +38,12 @@ namespace Abraham.GalacticConquest
         }
 
         [ContextMenu("Build Fleet")]
-        public void BuildFleet()
+        public bool BuildFleet()
         {
-            if (!CanBuildFleet()) {
-                GUIManager.Instance.AddActionLogMessage("Unable to build a fleet at " + _info.myName);
-                return;
-            }
-
             GameObject fleetToBuild = LevelManager.Instance.fleetPrefab;
-            if (fleetToBuild == null) {
-                Debug.LogError("ERROR ShipyardBehaviour BuildFleet(): LevelManager's fleet prefab is null.", this);
-                return;
+            if (!fleetToBuild)
+            {
+                throw new MissingReferenceException("LevelManager's fleet prefab is null");
             }
 
             GameObject newFleet = Instantiate(fleetToBuild, LevelManager.Instance.DynamicTransform);
@@ -60,15 +53,16 @@ namespace Abraham.GalacticConquest
 
             if (slotTransform == null) {
                 Debug.LogError("ERROR ShipyardBehaviour BuildFleet(): No available planet slots at " + gameObject.name, this);
-                return;
+                return false;
             }
             newFleet.transform.position = slotTransform.position;
             moveable.ChangeCurrentPlanet(gameObject);
 
             SetFleetFaction(newFleet);
+            GUIManager.Instance.AddActionLogMessage(
+                $"{_factionHandler.myFaction.factionName} built a new fleet at {_info.myName}.");
 
-            int buildShipCost = ActionPointManager.Instance.buildShipApCost;
-            ActionPointManager.Instance.DecreaseActionPoints(buildShipCost);
+            return true;
         }
 
         private void SetFleetFaction(GameObject newFleet)
