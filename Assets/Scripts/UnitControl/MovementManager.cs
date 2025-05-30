@@ -110,7 +110,7 @@ namespace Abraham.GalacticConquest.UnitControl
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
             
             MoveAction moveAction = new MoveAction(moveableObject, targetPlanet);
-            moveAction.ExecuteAction();
+            ActionManager.Instance.PerformAction(moveAction);
         }
 
 

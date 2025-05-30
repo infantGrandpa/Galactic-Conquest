@@ -63,6 +63,7 @@ namespace Abraham.GalacticConquest.Actions
 
 
             // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
+            // TODO: This shouldn't add any action log messages. Rewrite so it returns the result of CanPerformAction()
             int apCost = GetActionPointCost();
             if (!ActionPointManager.Instance.CanPerformAction(apCost))
             {
