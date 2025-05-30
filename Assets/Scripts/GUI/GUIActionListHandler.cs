@@ -94,7 +94,7 @@ namespace Abraham.GalacticConquest.GUI
         //Called by button onclick event
         public void OnFortifyPlanetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("Fortifying " + _currentPlanet.PlanetInfo.myName + "...");
+            GUIManager.Instance.AddActionLogMessage("(To Implement) Fortifying " + _currentPlanet.PlanetInfo.myName + "...");
         }
     }
 }

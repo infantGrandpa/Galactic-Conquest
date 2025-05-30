@@ -39,6 +39,7 @@ namespace Abraham.GalacticConquest.GUI
 
         public void AddLogMessage(string message)
         {
+            Debug.Log($"[Action Log] {message}", this);
             _logMessages.Enqueue(message);
 
             if (_logMessages.Count > maxLogMessages)
