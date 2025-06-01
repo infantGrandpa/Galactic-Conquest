@@ -1,7 +1,6 @@
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
-using Abraham.GalacticConquest.UnitControl;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
