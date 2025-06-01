@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.Factions;
-using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using Abraham.GalacticConquest.UnitControl;
 using UnityEngine;
@@ -26,10 +26,10 @@ namespace Abraham.GalacticConquest.Fleets
 
         public void FleetArrivedAtPlanet(PlanetBehaviour targetPlanet)
         {
-            if (targetPlanet == null)
+            if (!targetPlanet)
             {
-                Debug.LogError("ERROR FleetBehaviour FleetArrivedAtPlanet(): Fleet (" + gameObject.name + ") cannot arrive at planet because the provided planet is null.");
-                return;
+                throw new NullReferenceException(
+                    $"Fleet ({gameObject.name}) cannot arrive at planet because the provided planet is null.");
             }
 
             StartCoroutine(CheckForBattles(targetPlanet));
@@ -51,8 +51,8 @@ namespace Abraham.GalacticConquest.Fleets
 
             foreach (Moveable thisMoveable in moveablesAtPlanet)
             {
-                IsEnemyFleet(thisMoveable, out FleetBehaviour enemyFleetBehaviour);
-                if (enemyFleetBehaviour == null)
+                bool isEnemyFleet = IsEnemyFleet(thisMoveable, out FleetBehaviour enemyFleetBehaviour);
+                if (!isEnemyFleet || !enemyFleetBehaviour)
                 {
                     continue;
                 }
@@ -69,7 +69,7 @@ namespace Abraham.GalacticConquest.Fleets
         private IEnumerator CheckForGroundBattles(PlanetBehaviour targetPlanet)
         {
             //Check for ground battles
-            if (targetPlanet.FactionHandler == null)
+            if (!targetPlanet.FactionHandler)
             {
                 Debug.LogError("ERROR FleetBehaviour CheckForGroundBattle(): Planet (" + targetPlanet.gameObject.name + ") does not have a faction handler component assigned.");
                 yield break;
@@ -94,7 +94,7 @@ namespace Abraham.GalacticConquest.Fleets
             enemyFleetBehaviour = null;
 
             FactionHandler moveableFaction = moveable.GetComponent<FactionHandler>();
-            if (moveableFaction == null)
+            if (!moveableFaction)
             {
                 //Moveable doesn't have a faction
                 return false;
