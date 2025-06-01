@@ -62,6 +62,11 @@ namespace Abraham.GalacticConquest.Actions
             return true;
         }
 
+        public void AddAction(IGameAction action)
+        {
+            _actions.Add(action);
+        }
+
         public bool UndoAction()
         {
             throw new System.NotImplementedException();

@@ -105,47 +105,29 @@ namespace Abraham.GalacticConquest.UnitControl
             return targetPlanet;
         }
 
-        public void HandlePlanetMovement()
+        public void MoveToPlanet()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
-            bool mustAttackPlanet = false;
+            
+            // Instead of having separate paths for moving to and attacking vs. just moving to, we use a 
+            // compound action for all moves. There's negligible overhead on creating a compound action, 
+            // so it shouldn't be an issue.
+            MoveAction moveAction = new MoveAction(moveableObject, targetPlanet);
+            CompoundAction compoundAction = new CompoundAction(moveAction);
 
+            // Determine if we need to attack this planet
             Faction moveableFaction = moveableObject.GetComponent<FactionHandler>()?.myFaction;
-            if (moveableFaction)
+            if (moveableFaction && targetPlanet.IsEnemyAtPlanet(moveableFaction))
             {
-                mustAttackPlanet = targetPlanet.IsEnemyAtPlanet(moveableFaction);
+                Debug.Log("Adding attack action to compound action.", this);
+                AttackAction attackAction = new AttackAction();
+                compoundAction.AddAction(attackAction);
             }
             
-            if (mustAttackPlanet)
-            {
-                MoveToAndAttackPlanet(moveableObject, targetPlanet);
-            }
-            else
-            {
-                MoveToPlanet(moveableObject, targetPlanet);
-            }
-            
-        }
-
-        private void MoveToAndAttackPlanet(Moveable objectToMove, PlanetBehaviour planetToMoveTo)
-        {
-            MoveAction moveAction = new MoveAction(objectToMove, planetToMoveTo);
-            Debug.Log($"Moving to {planetToMoveTo.PlanetInfo.myName} and attacking...", this);
-            AttackAction attackAction = new AttackAction();
-
-            CompoundAction compoundAction = new CompoundAction(moveAction, attackAction);
             ActionManager.Instance.PerformAction(compoundAction);
         }
-
-        private void MoveToPlanet(Moveable objectToMove, PlanetBehaviour planetToMoveTo)
-        {
-            MoveAction moveAction = new MoveAction(objectToMove, planetToMoveTo);
-            Debug.Log($"Moving {objectToMove.gameObject.name} to {planetToMoveTo.PlanetInfo.myName}...", this);
-            ActionManager.Instance.PerformAction(moveAction);
-        }
-
-
+        
         public void UpdateMovementIndicator()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();

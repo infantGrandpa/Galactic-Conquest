@@ -37,7 +37,7 @@ namespace Abraham.GalacticConquest.UnitControl
             if (Input.GetMouseButtonUp(1))
             {
                 //Move to planet
-                MovementManager.Instance.HandlePlanetMovement();
+                MovementManager.Instance.MoveToPlanet();
             }
         }
 
