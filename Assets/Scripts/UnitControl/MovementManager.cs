@@ -1,4 +1,5 @@
 using Abraham.GalacticConquest.Actions;
+using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using Abraham.GalacticConquest.Refs;
@@ -104,12 +105,43 @@ namespace Abraham.GalacticConquest.UnitControl
             return targetPlanet;
         }
 
-        public void MoveToPlanet()
+        public void HandlePlanetMovement()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
+            bool mustAttackPlanet = false;
+
+            Faction moveableFaction = moveableObject.GetComponent<FactionHandler>()?.myFaction;
+            if (moveableFaction)
+            {
+                mustAttackPlanet = targetPlanet.IsEnemyAtPlanet(moveableFaction);
+            }
             
-            MoveAction moveAction = new MoveAction(moveableObject, targetPlanet);
+            if (mustAttackPlanet)
+            {
+                MoveToAndAttackPlanet(moveableObject, targetPlanet);
+            }
+            else
+            {
+                MoveToPlanet(moveableObject, targetPlanet);
+            }
+            
+        }
+
+        private void MoveToAndAttackPlanet(Moveable objectToMove, PlanetBehaviour planetToMoveTo)
+        {
+            MoveAction moveAction = new MoveAction(objectToMove, planetToMoveTo);
+            Debug.Log($"Moving to {planetToMoveTo.PlanetInfo.myName} and attacking...", this);
+            AttackAction attackAction = new AttackAction();
+
+            CompoundAction compoundAction = new CompoundAction(moveAction, attackAction);
+            ActionManager.Instance.PerformAction(compoundAction);
+        }
+
+        private void MoveToPlanet(Moveable objectToMove, PlanetBehaviour planetToMoveTo)
+        {
+            MoveAction moveAction = new MoveAction(objectToMove, planetToMoveTo);
+            Debug.Log($"Moving {objectToMove.gameObject.name} to {planetToMoveTo.PlanetInfo.myName}...", this);
             ActionManager.Instance.PerformAction(moveAction);
         }
 

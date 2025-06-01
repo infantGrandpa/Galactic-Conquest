@@ -1,7 +1,8 @@
-using System;
+using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Traits;
+using Abraham.GalacticConquest.UnitControl;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Planets
@@ -80,6 +81,32 @@ namespace Abraham.GalacticConquest.Planets
             }
             
             GUIManager.Instance.HideActionList();
+        }
+
+        /// <summary>
+        /// Determines if there are any forces in space above this planet that are not allied with the provided faction.
+        /// </summary>
+        /// <param name="currentFaction">The faction to check for enemies of.</param>
+        /// <returns>True if there is at least 1 enemy fleet at this planet, otherwise false.</returns>
+        public bool IsEnemyAtPlanet(Faction currentFaction)
+        {
+            List<Moveable> moveables = PlanetSlotHandler.GetAllMoveablesAtPlanet();
+            foreach (Moveable moveable in moveables)
+            {
+                FactionHandler moveableFactionHandler = moveable.GetComponent<FactionHandler>();
+                if (!moveableFactionHandler)
+                {
+                    continue;
+                }
+
+                bool isEnemyFaction = moveableFactionHandler.IsEnemyFaction(currentFaction);
+                if (isEnemyFaction)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void UpdateApLabel(int newAp)
