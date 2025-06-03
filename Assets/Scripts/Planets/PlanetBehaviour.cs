@@ -84,11 +84,11 @@ namespace Abraham.GalacticConquest.Planets
         }
 
         /// <summary>
-        /// Determines if there are any forces in space above this planet that are not allied with the provided faction.
+        /// Returns the first enemy gameobject in space above this planet that is not allied with the provided faction.
         /// </summary>
-        /// <param name="currentFaction">The faction to check for enemies of.</param>
-        /// <returns>True if there is at least 1 enemy fleet at this planet, otherwise false.</returns>
-        public bool IsEnemyAtPlanet(Faction currentFaction)
+        /// <param name="currentFaction">The faction that we're looking for any enemies of.</param>
+        /// <returns>The gameobject of the first enemy found, null if none were found.</returns>
+        public GameObject GetEnemyAtPlanet(Faction currentFaction)
         {
             List<Moveable> moveables = PlanetSlotHandler.GetAllMoveablesAtPlanet();
             foreach (Moveable moveable in moveables)
@@ -98,15 +98,15 @@ namespace Abraham.GalacticConquest.Planets
                 {
                     continue;
                 }
-
+                
                 bool isEnemyFaction = moveableFactionHandler.IsEnemyFaction(currentFaction);
                 if (isEnemyFaction)
                 {
-                    return true;
+                    return moveable.gameObject;
                 }
             }
 
-            return false;
+            return null;
         }
 
         public void UpdateApLabel(int newAp)

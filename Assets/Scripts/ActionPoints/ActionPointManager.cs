@@ -26,8 +26,10 @@ namespace Abraham.GalacticConquest.ActionPoints
         [Header("Action Point Values")]
         [SerializeField, Tooltip("The number of Action Points a player always gets at the start of their turn.")]
         private int baseActionPoints;
-
+        [Tooltip("The AP cost to build a new fleet.")]
         public int buildShipApCost;
+        [Tooltip("The AP cost to attack a fleet or a planet.")]
+        public int attackApCost;
 
         [PropertySpace, ShowInInspector, ReadOnly]
         public int CurrentActionPoints { get; private set; }
@@ -43,8 +45,6 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         public void CalculateActionPoints(Faction currentFaction)
         {
-            
-            
             BuildFactionApModifierList();   // TODO: Do we need to build this EVERY TIME we calculate AP?
             int totalActionPoints = baseActionPoints;
 

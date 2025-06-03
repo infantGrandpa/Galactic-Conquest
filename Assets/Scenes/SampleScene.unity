@@ -5865,6 +5865,10 @@ PrefabInstance:
       value: 0.15294118
       objectReference: {fileID: 0}
     - target: {fileID: 8361774726992741392, guid: 6939d25467f2c054287de818e6895af9, type: 3}
+      propertyPath: attackApCost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361774726992741392, guid: 6939d25467f2c054287de818e6895af9, type: 3}
       propertyPath: buildShipApCost
       value: 15
       objectReference: {fileID: 0}

@@ -1,4 +1,5 @@
 using Abraham.GalacticConquest.Actions;
+using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
@@ -107,25 +108,42 @@ namespace Abraham.GalacticConquest.UnitControl
 
         public void MoveToPlanet()
         {
-            Moveable moveableObject = GetMoveableFromSelectedObject();
+            Moveable moveable = GetMoveableFromSelectedObject();
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
             
             // Instead of having separate paths for moving to and attacking vs. just moving to, we use a 
             // compound action for all moves. There's negligible overhead on creating a compound action, 
             // so it shouldn't be an issue.
-            MoveAction moveAction = new MoveAction(moveableObject, targetPlanet);
+            MoveAction moveAction = new MoveAction(moveable, targetPlanet);
             CompoundAction compoundAction = new CompoundAction(moveAction);
 
             // Determine if we need to attack this planet
-            Faction moveableFaction = moveableObject.GetComponent<FactionHandler>()?.myFaction;
-            if (moveableFaction && targetPlanet.IsEnemyAtPlanet(moveableFaction))
+            Faction moveableFaction = moveable.GetComponent<FactionHandler>()?.myFaction;
+
+            GameObject enemyAtPlanet = targetPlanet.GetEnemyAtPlanet(moveableFaction);
+            if (moveableFaction && enemyAtPlanet)
             {
                 Debug.Log("Adding attack action to compound action.", this);
-                AttackAction attackAction = new AttackAction();
+                AttackAction attackAction = BuildAttackAction(moveable.gameObject, enemyAtPlanet, targetPlanet);
                 compoundAction.AddAction(attackAction);
             }
             
             ActionManager.Instance.PerformAction(compoundAction);
+        }
+
+        private AttackAction BuildAttackAction(GameObject attackerObject, GameObject defenderObject, PlanetBehaviour planet)
+        {
+            if (!attackerObject.TryGetComponent(out CombatantBehaviour attackerCombatantBehaviour))
+            {
+                throw new MissingReferenceException($"Attacker is missing a Combatant behaviour.");
+            }
+            
+            if (!defenderObject.TryGetComponent(out CombatantBehaviour defenderCombatantBehaviour))
+            {
+                throw new MissingReferenceException($"Defender is missing a Combatant behaviour.");
+            }
+
+            return new AttackAction(attackerCombatantBehaviour, defenderCombatantBehaviour, planet);
         }
         
         public void UpdateMovementIndicator()
