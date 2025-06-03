@@ -1,5 +1,7 @@
+using System;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.Combat;
+using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using UnityEngine;
 
@@ -65,6 +67,8 @@ namespace Abraham.GalacticConquest.Actions
             Battle.BattleType battleType = planetCombatBehaviour ? Battle.BattleType.GroundBattle : Battle.BattleType.SpaceBattle;
             
             Battle battle = new Battle(_attacker, _defender, _planet, battleType);
+            LogBattle(battle);
+            
             BattleManager.Instance.StartBattle(battle);
             ActionPointManager.Instance.DecreaseActionPoints(GetActionPointCost());
             return true;
@@ -72,7 +76,24 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        private void LogBattle(Battle battle)
+        {
+            string actionLogMsg;
+            switch (battle.battleType)
+            {
+                case Battle.BattleType.GroundBattle:
+                    actionLogMsg = $"Invading {battle.battlePlanet.PlanetInfo.myName}...";
+                    break;
+                case Battle.BattleType.SpaceBattle:
+                    actionLogMsg = $"Engaging enemy forces over {battle.battlePlanet.PlanetInfo.myName}!";
+                    break;
+                default:
+                    throw new ArgumentException($"Unsupported battle type: {battle.battleType}", nameof(battle.battleType));
+            }
+            GUIManager.Instance.AddActionLogMessage(actionLogMsg, GetActionPointCost());
         }
     }
 }

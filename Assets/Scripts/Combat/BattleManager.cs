@@ -1,4 +1,3 @@
-using System;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
@@ -28,20 +27,6 @@ namespace Abraham.GalacticConquest.Combat
         public void StartBattle(Battle battle)
         {
             _currentBattle = battle;
-            string actionLogMsg;
-            switch (_currentBattle.battleType)
-            {
-                case Battle.BattleType.GroundBattle:
-                    actionLogMsg = $"Invading {battle.battlePlanet.PlanetInfo.myName}...";
-                    break;
-                case Battle.BattleType.SpaceBattle:
-                    actionLogMsg = $"Engaging enemy forces over {battle.battlePlanet.PlanetInfo.myName}!";
-                    break;
-                default:
-                    throw new ArgumentException($"Unsupported battle type: {_currentBattle.battleType}", nameof(_currentBattle.battleType));
-            }
-            GUIManager.Instance.AddActionLogMessage(actionLogMsg);
-            
             GUIManager.Instance.ShowBattleDialogBox(battle);
         }
 
