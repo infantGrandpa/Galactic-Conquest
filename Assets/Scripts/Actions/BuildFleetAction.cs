@@ -1,6 +1,6 @@
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.GUI;
-using Abraham.GalacticConquest.Planets;
+using Abraham.GalacticConquest.UnitControl;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
@@ -8,57 +8,39 @@ namespace Abraham.GalacticConquest.Actions
     public class BuildFleetAction : IGameAction
     {
         private readonly ShipyardBehaviour _shipyardBehaviour;
+
+        private int? _apCost;
         
-        private PlanetSlotHandler _planetSlotHandler;
 
         public BuildFleetAction(ShipyardBehaviour shipyardBehaviour)
         {
             _shipyardBehaviour = shipyardBehaviour;
-            _planetSlotHandler = GetPlanetSlotHandler();
         }
         
         public int GetActionPointCost()
         {
             return ActionPointManager.Instance.buildShipApCost;
         }
-
-        private PlanetSlotHandler GetPlanetSlotHandler()
-        {
-            if (_planetSlotHandler)
-            {
-                return _planetSlotHandler;
-            }
-
-            PlanetSlotHandler handler = _shipyardBehaviour.GetComponent<PlanetSlotHandler>();
-            if (handler)
-            {
-                return handler;
-            }
-
-            throw new MissingComponentException(
-                $"PlanetSlotHandler component missing from {_shipyardBehaviour.gameObject.name}");
-        } 
         
         public bool CanExecuteAction()
         {
-            _planetSlotHandler = GetPlanetSlotHandler();
-            bool slotsAvailable = _planetSlotHandler.AreAnySlotsAvailable();
+            bool slotsAvailable = _shipyardBehaviour.AreAnyPlanetSlotsAvailable();
             if (!slotsAvailable) {
                 return false;
             }
-            
-            return ActionPointManager.Instance.CanPerformAction(GetActionPointCost());
+
+            _apCost = GetActionPointCost();
+            return ActionPointManager.Instance.CanPerformAction(_apCost.Value);
         }
 
         public bool ExecuteAction()
         {
             if (!CanExecuteAction()) {
-                // TODO: This should probably be the planet's name from GenericInfo
-                GUIManager.Instance.AddActionLogMessage("Unable to build a fleet at " + _shipyardBehaviour.gameObject.name);
+                GUIManager.Instance.AddActionLogMessage("Unable to build a fleet at " + _shipyardBehaviour.GetPlanetName());
                 return false;
             }
             
-            bool success = _shipyardBehaviour.BuildFleet();
+            bool success = CreateFleetAtShipyard();
             if (!success)
             {
                 return false;
@@ -71,6 +53,39 @@ namespace Abraham.GalacticConquest.Actions
         public bool UndoAction()
         {
             throw new System.NotImplementedException();
+        }
+
+        private bool CreateFleetAtShipyard()
+        {
+            string factionName = _shipyardBehaviour.GetFactionName();
+            string planetName = _shipyardBehaviour.GetPlanetName();
+            
+            GameObject fleetToBuild = LevelManager.Instance.fleetPrefab;
+            if (!fleetToBuild)
+            {
+                throw new MissingReferenceException("LevelManager's fleet prefab is null.");
+            }
+
+            GameObject newFleet = LevelManager.Instance.InstantiateOnDynamicTransform(fleetToBuild);
+
+            Moveable moveable = newFleet.GetComponent<Moveable>();
+            if (!moveable)
+            {
+                throw new MissingComponentException($"Fleet prefab {newFleet.gameObject.name} does not have a Moveable component.");
+            }
+            
+            Transform slotTransform = _shipyardBehaviour.AddMoveableToPlanetSlot(moveable);
+            if (!slotTransform) {
+                GUIManager.Instance.AddActionLogMessage($"Unable to build a new fleet. No available slots at {planetName}.");    
+                return false;
+            }
+
+            _shipyardBehaviour.PositionFleetAtPlanetSlot(moveable, slotTransform);
+            _shipyardBehaviour.SetFactionForNewFleet(newFleet);
+            
+            GUIManager.Instance.AddActionLogMessage($"{factionName} built a new fleet at {planetName}.");
+            return true;
+            
         }
     }
 }

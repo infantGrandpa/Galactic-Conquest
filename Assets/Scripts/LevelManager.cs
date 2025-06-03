@@ -115,5 +115,10 @@ namespace Abraham.GalacticConquest
             }
         }
 
+        public GameObject InstantiateOnDynamicTransform(GameObject prefab)
+        {
+            return Instantiate(prefab, DynamicTransform);
+        }
+
     }
 }
