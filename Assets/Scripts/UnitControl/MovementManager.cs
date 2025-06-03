@@ -24,22 +24,24 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private static MovementManager _instance;
 
-        [Header("Move Line Indicator")]
-        [SerializeField] private GameObject movementIndicatorLinePrefab;
+        [Header("Move Line Indicator")] [SerializeField]
+        private GameObject movementIndicatorLinePrefab;
+
         private MovementIndicatorHandler _movementIndicatorHandler;
         private Vector3 _selectedMoveablePosition;
 
         [SerializeField] private float movementIndicatorSphereCastRadius;
 
-        [Header("Movement Rings")]
-        [SerializeField] private int movementRings = 5;
+        [Header("Movement Rings")] [SerializeField]
+        private int movementRings = 5;
+
         [SerializeField] private float movementRingRadius = 12.5f;
         private int _activeMovementRing;
 
-        //TEMP
-        [SerializeField] private Color[] ringColors;
-        [SerializeField] private bool showAllRings = false;
-        //END TEMP
+        [Header("Movement Ring Gizmos")] [SerializeField]
+        private Color[] ringColors;
+
+        [SerializeField] private bool showAllRings;
 
         private void Awake()
         {
@@ -64,11 +66,11 @@ namespace Abraham.GalacticConquest.UnitControl
             _movementIndicatorHandler.HideLineRenderer();
         }
 
-        private Moveable GetMoveableFromSelectedObject()
+        private static Moveable GetMoveableFromSelectedObject()
         {
             //Cancel if nothing is selected
             Selectable selectedObject = SelectionManager.Instance.selectedObject;
-            if (selectedObject == null)
+            if (!selectedObject)
             {
                 return null;
             }
@@ -83,7 +85,7 @@ namespace Abraham.GalacticConquest.UnitControl
             return moveableObject;
         }
 
-        private PlanetBehaviour GetPlanetToMoveTo()
+        private static PlanetBehaviour GetPlanetToMoveTo()
         {
             //Get Move To Target
             LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
@@ -91,7 +93,7 @@ namespace Abraham.GalacticConquest.UnitControl
             return GetPlanetFromNullableHitInfo(nullableHitInfo);
         }
 
-        private PlanetBehaviour GetPlanetFromNullableHitInfo(RaycastHit? nullableHitInfo)
+        private static PlanetBehaviour GetPlanetFromNullableHitInfo(RaycastHit? nullableHitInfo)
         {
             if (nullableHitInfo == null)
             {
@@ -99,9 +101,9 @@ namespace Abraham.GalacticConquest.UnitControl
                 return null;
             }
 
-            //Get target planet
-            RaycastHit
-                hitInfo = (RaycastHit)nullableHitInfo; //Convert hit info so we can get the transform of the hit object
+            // Convert hit info into non-nullable so we can get the transform of the hit object
+            RaycastHit hitInfo = (RaycastHit)nullableHitInfo;
+
             PlanetBehaviour targetPlanet = hitInfo.transform.GetComponentInParent<PlanetBehaviour>();
             return targetPlanet;
         }
@@ -110,7 +112,7 @@ namespace Abraham.GalacticConquest.UnitControl
         {
             Moveable moveable = GetMoveableFromSelectedObject();
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
-            
+
             // Instead of having separate paths for moving to and attacking vs. just moving to, we use a 
             // compound action for all moves. There's negligible overhead on creating a compound action, 
             // so it shouldn't be an issue.
@@ -127,17 +129,18 @@ namespace Abraham.GalacticConquest.UnitControl
                 AttackAction attackAction = BuildAttackAction(moveable.gameObject, enemyAtPlanet, targetPlanet);
                 compoundAction.AddAction(attackAction);
             }
-            
+
             ActionManager.Instance.PerformAction(compoundAction);
         }
 
-        private AttackAction BuildAttackAction(GameObject attackerObject, GameObject defenderObject, PlanetBehaviour planet)
+        private static AttackAction BuildAttackAction(GameObject attackerObject, GameObject defenderObject,
+            PlanetBehaviour planet)
         {
             if (!attackerObject.TryGetComponent(out CombatantBehaviour attackerCombatantBehaviour))
             {
                 throw new MissingReferenceException($"Attacker is missing a Combatant behaviour.");
             }
-            
+
             if (!defenderObject.TryGetComponent(out CombatantBehaviour defenderCombatantBehaviour))
             {
                 throw new MissingReferenceException($"Defender is missing a Combatant behaviour.");
@@ -145,7 +148,7 @@ namespace Abraham.GalacticConquest.UnitControl
 
             return new AttackAction(attackerCombatantBehaviour, defenderCombatantBehaviour, planet);
         }
-        
+
         public void UpdateMovementIndicator()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
@@ -165,10 +168,10 @@ namespace Abraham.GalacticConquest.UnitControl
             Vector3 endPosition = targetPlanet == null
                 ? InputManager.Instance.GetCursorPosition()
                 : targetPlanet.transform.position;
-            
+
             _activeMovementRing = GetRingLevelFromDistance(_selectedMoveablePosition, endPosition);
             int apCost = moveableObject.CalculateMovementCost(_activeMovementRing);
-            
+
             GUIManager.Instance.UpdateMovementCostIndicator(apCost);
 
             _movementIndicatorHandler.SetMovementLinePositions(_selectedMoveablePosition, endPosition);
