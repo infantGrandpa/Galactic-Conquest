@@ -12,7 +12,7 @@ namespace Abraham.GalacticConquest.Planets
         public GenericInfo PlanetInfo { get; private set; }
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }
         public FactionHandler FactionHandler { get; private set; }
-        
+
         private PlanetCombatBehaviour _planetCombatBehaviour;
         private TraitHandler _traitHandler;
 
@@ -29,7 +29,8 @@ namespace Abraham.GalacticConquest.Planets
         private void OnDisable()
         {
             // Needed to avoid errors in editor
-            if (LevelManager.Instance == null) {
+            if (LevelManager.Instance == null)
+            {
                 return;
             }
 
@@ -80,7 +81,8 @@ namespace Abraham.GalacticConquest.Planets
         public void OnDeselectPlanet()
         {
             // Needed to avoid errors in editor
-            if (GUIManager.Instance == null) {
+            if (GUIManager.Instance == null)
+            {
                 return;
             }
 
