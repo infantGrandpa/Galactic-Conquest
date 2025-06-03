@@ -55,9 +55,9 @@ namespace Abraham.GalacticConquest.GUI
             actionPointHandler.UpdateActionPoints(newValue);
         }
 
-        public void AddActionLogMessage(string newMessage)
+        public void AddActionLogMessage(string newMessage, int? apValue = null)
         {
-            actionLogHandler.AddLogMessage(newMessage);
+            actionLogHandler.AddLogMessage(newMessage, apValue);
         }
 
         public void ShowBattleDialogBox(Battle battleInfo)
