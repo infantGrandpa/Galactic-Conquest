@@ -72,7 +72,7 @@ namespace Abraham.GalacticConquest.GUI
 
         private bool CanInvadePlanet(PlanetBehaviour planetBehaviour)
         {
-            GameObject enemyAtPlanet = planetBehaviour.GetEnemyAtPlanet(planetBehaviour.FactionHandler.myFaction);
+            GameObject enemyAtPlanet = planetBehaviour.GetEnemyAtPlanet();
             return (bool)enemyAtPlanet;
         }
 
@@ -108,7 +108,9 @@ namespace Abraham.GalacticConquest.GUI
         //Called by button onclick event
         public void OnInvadePlanetButtonClicked()
         {
-            GUIManager.Instance.AddActionLogMessage("(To Implement) Invading " + _currentPlanet.PlanetInfo.myName + "...");
+            GameObject enemyAtPlanet = _currentPlanet.GetEnemyAtPlanet();
+            AttackAction attackAction = new AttackAction(enemyAtPlanet, _currentPlanet.gameObject, _currentPlanet);
+            ActionManager.Instance.PerformAction(attackAction);
         }
     }
 }
