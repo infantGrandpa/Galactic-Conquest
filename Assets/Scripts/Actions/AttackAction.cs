@@ -1,6 +1,7 @@
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.Planets;
+using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
 {
@@ -16,6 +17,23 @@ namespace Abraham.GalacticConquest.Actions
         {
             _attacker = attacker;
             _defender = defender;
+            _planet = planet;
+        }
+
+        public AttackAction(GameObject attackerObject, GameObject defenderObject, PlanetBehaviour planet)
+        {
+            if (!attackerObject.TryGetComponent(out CombatantBehaviour attackerCombatantBehaviour))
+            {
+                throw new MissingComponentException($"Attacker ({attackerObject.name}) is missing a Combatant behaviour.");
+            }
+
+            if (!defenderObject.TryGetComponent(out CombatantBehaviour defenderCombatantBehaviour))
+            {
+                throw new MissingComponentException($"Defender ({defenderObject.name}) is missing a Combatant behaviour.");
+            }
+
+            _attacker = attackerCombatantBehaviour;
+            _defender = defenderCombatantBehaviour;
             _planet = planet;
         }
         

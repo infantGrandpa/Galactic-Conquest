@@ -1,5 +1,4 @@
 using Abraham.GalacticConquest.Actions;
-using Abraham.GalacticConquest.Combat;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
@@ -123,27 +122,11 @@ namespace Abraham.GalacticConquest.UnitControl
             
             if (moveableFaction && enemyAtPlanet)
             {
-                Debug.Log("Adding attack action to compound action.", this);
-                AttackAction attackAction = BuildAttackAction(moveable.gameObject, enemyAtPlanet, targetPlanet);
+                AttackAction attackAction = new AttackAction(moveable.gameObject, enemyAtPlanet, targetPlanet);
                 compoundAction.AddAction(attackAction);
             }
 
             ActionManager.Instance.PerformAction(compoundAction);
-        }
-
-        private static AttackAction BuildAttackAction(GameObject attackerObject, GameObject defenderObject, PlanetBehaviour planet)
-        {
-            if (!attackerObject.TryGetComponent(out CombatantBehaviour attackerCombatantBehaviour))
-            {
-                throw new MissingComponentException($"Attacker ({attackerObject.name}) is missing a Combatant behaviour.");
-            }
-
-            if (!defenderObject.TryGetComponent(out CombatantBehaviour defenderCombatantBehaviour))
-            {
-                throw new MissingComponentException($"Defender ({defenderObject.name}) is missing a Combatant behaviour.");
-            }
-
-            return new AttackAction(attackerCombatantBehaviour, defenderCombatantBehaviour, planet);
         }
 
         public void UpdateMovementIndicator()
