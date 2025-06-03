@@ -94,5 +94,10 @@ namespace Abraham.GalacticConquest.GUI
         {
             infoBoxHandler.HideInfoBox();
         }
+
+        public static string ConvertAPIntToString(int apValue)
+        {
+            return apValue < 0 ? apValue.ToString() : "+" + apValue;
+        }
     }
 }

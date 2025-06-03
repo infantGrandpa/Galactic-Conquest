@@ -66,7 +66,7 @@ namespace Abraham.GalacticConquest.GUI
 
             int apValue = actionPointAggregator.TotalApPerTurn;
             //Add plus sign if the apValue positive; minus is always shown
-            string apString = apValue < 0 ? apValue.ToString() : "+" + apValue;     
+            string apString = GUIManager.ConvertAPIntToString(apValue);    
 
             apPerTurnText.text = apString;
         }
