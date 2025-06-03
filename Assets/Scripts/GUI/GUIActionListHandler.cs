@@ -15,7 +15,7 @@ namespace Abraham.GalacticConquest.GUI
         private TMP_Text header;
         [SerializeField] private Button fortifyPlanetButton;
         [SerializeField] private Button buildFleetButton;
-
+        [SerializeField] private Button invadePlanetButton;
 
         private RectTransform _rectTransform;
 
@@ -54,10 +54,11 @@ namespace Abraham.GalacticConquest.GUI
 
             buildFleetButton.gameObject.SetActive(IsPlanetShipyard(planetBehaviour));
 
-            fortifyPlanetButton.interactable = true; //TODO: Set this up to only work if planet isn't already fortified
+            //TODO: Set this up to only work if planet isn't already fortified
+            fortifyPlanetButton.interactable = true; 
         }
 
-        private bool IsPlanetShipyard(PlanetBehaviour planetBehaviour)
+        private static bool IsPlanetShipyard(PlanetBehaviour planetBehaviour)
         {
             TraitHandler traitHandler = planetBehaviour.GetComponent<TraitHandler>();
             if (traitHandler == null) {
@@ -94,6 +95,12 @@ namespace Abraham.GalacticConquest.GUI
         public void OnFortifyPlanetButtonClicked()
         {
             GUIManager.Instance.AddActionLogMessage("(To Implement) Fortifying " + _currentPlanet.PlanetInfo.myName + "...");
+        }
+        
+        //Called by button onclick event
+        public void OnInvadePlanetButtonClicked()
+        {
+            GUIManager.Instance.AddActionLogMessage("(To Implement) Invading " + _currentPlanet.PlanetInfo.myName + "...");
         }
     }
 }
