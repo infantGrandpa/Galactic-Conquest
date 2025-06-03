@@ -26,8 +26,10 @@ namespace Abraham.GalacticConquest.ActionPoints
         [Header("Action Point Values")]
         [SerializeField, Tooltip("The number of Action Points a player always gets at the start of their turn.")]
         private int baseActionPoints;
+
         [Tooltip("The AP cost to build a new fleet.")]
         public int buildShipApCost;
+
         [Tooltip("The AP cost to attack a fleet or a planet.")]
         public int attackApCost;
 
@@ -39,13 +41,13 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         // readonly refers to the Dictionary itself, not the contents of the dictionary I guess
         private readonly Dictionary<Faction, List<ActionPointModifier>> _factionApModifiers = new();
-        private readonly Dictionary<Faction, int> _factionRolloverPoints = new();       //TODO: Implement a not shit version of rollover points
+        private readonly Dictionary<Faction, int> _factionRolloverPoints = new(); //TODO: Implement a not shit version of rollover points
 
         [SerializeField] private float percOfRolloverPoints = 0.5f;
 
         public void CalculateActionPoints(Faction currentFaction)
         {
-            BuildFactionApModifierList();   // TODO: Do we need to build this EVERY TIME we calculate AP?
+            BuildFactionApModifierList(); // TODO: Do we need to build this EVERY TIME we calculate AP?
             int totalActionPoints = baseActionPoints;
 
             if (!_factionApModifiers.TryGetValue(currentFaction, out List<ActionPointModifier> factionMods))
@@ -58,7 +60,7 @@ namespace Abraham.GalacticConquest.ActionPoints
             {
                 totalActionPoints += thisMod.apModificationValue;
             }
-            
+
             if (_factionRolloverPoints.TryGetValue(currentFaction, out int rolloverPoints))
             {
                 GUIManager.Instance.AddActionLogMessage($"Adding {rolloverPoints} points to {currentFaction.factionName} from last turn.");
@@ -89,7 +91,7 @@ namespace Abraham.GalacticConquest.ActionPoints
                         this);
                     continue;
                 }
-                
+
                 //Add Faction to dictionary if necessary
                 if (!_factionApModifiers.ContainsKey(aggregatorFaction))
                 {
@@ -104,7 +106,7 @@ namespace Abraham.GalacticConquest.ActionPoints
                 }
             }
         }
-        
+
         public void SaveRolloverPoints(Faction faction)
         {
             int rollover = Mathf.FloorToInt(CurrentActionPoints * percOfRolloverPoints);
@@ -121,6 +123,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         public void DecreaseActionPoints(int decreaseBy)
         {
+            //TODO: Should we test if we can actually decrease by this amount first?
             CurrentActionPoints -= decreaseBy;
             GUIManager.Instance.UpdateActionPoints(CurrentActionPoints);
         }
