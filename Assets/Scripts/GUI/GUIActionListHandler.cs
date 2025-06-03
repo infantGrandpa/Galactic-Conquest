@@ -53,9 +53,11 @@ namespace Abraham.GalacticConquest.GUI
             header.text = planetBehaviour.PlanetInfo.myName;
 
             buildFleetButton.gameObject.SetActive(IsPlanetShipyard(planetBehaviour));
-
+            
             //TODO: Set this up to only work if planet isn't already fortified
             fortifyPlanetButton.interactable = true; 
+
+            invadePlanetButton.gameObject.SetActive(CanInvadePlanet(planetBehaviour));
         }
 
         private static bool IsPlanetShipyard(PlanetBehaviour planetBehaviour)
@@ -66,6 +68,12 @@ namespace Abraham.GalacticConquest.GUI
             }
 
             return traitHandler.CanBuildShips();
+        }
+
+        private bool CanInvadePlanet(PlanetBehaviour planetBehaviour)
+        {
+            GameObject enemyAtPlanet = planetBehaviour.GetEnemyAtPlanet(planetBehaviour.FactionHandler.myFaction);
+            return (bool)enemyAtPlanet;
         }
 
         public void HideActionList()

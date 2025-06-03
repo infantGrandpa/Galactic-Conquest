@@ -4230,7 +4230,7 @@ MonoBehaviour:
   header: {fileID: 8565481588001732592}
   fortifyPlanetButton: {fileID: 2771361796180243636}
   buildFleetButton: {fileID: 1797422482461701599}
-  invadePlanetButton: {fileID: 0}
+  invadePlanetButton: {fileID: 3295997991825667969}
 --- !u!114 &8824737867893778367
 MonoBehaviour:
   m_ObjectHideFlags: 0
