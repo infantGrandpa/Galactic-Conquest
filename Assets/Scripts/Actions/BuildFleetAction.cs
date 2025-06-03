@@ -83,7 +83,7 @@ namespace Abraham.GalacticConquest.Actions
             _shipyardBehaviour.PositionFleetAtPlanetSlot(moveable, slotTransform);
             _shipyardBehaviour.SetFactionForNewFleet(newFleet);
             
-            GUIManager.Instance.AddActionLogMessage($"{factionName} built a new fleet at {planetName}.");
+            GUIManager.Instance.AddActionLogMessage($"{factionName} built a new fleet at {planetName}.", GetActionPointCost() * -1);
             return true;
             
         }
