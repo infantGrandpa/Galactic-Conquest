@@ -1,3 +1,4 @@
+using System;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
@@ -22,49 +23,43 @@ namespace Abraham.GalacticConquest.Combat
             }
         }
         private static BattleManager _instance;
-        public Battle CurrentBattle { get; private set; }
+        private Battle _currentBattle;
 
-        private SpaceBattleHandler _spaceBattleHandler;
-        private GroundBattleHandler _groundBattleHandler;
-
-        private void Awake()
+        public void StartBattle(Battle battle)
         {
-            _spaceBattleHandler = GetComponent<SpaceBattleHandler>();
-            _groundBattleHandler = GetComponent<GroundBattleHandler>();
-        }
-
-        public void StartSpaceBattle(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
-        {
-            CurrentBattle = new Battle(attacker, defender, planet, Battle.BattleType.SpaceBattle);
-            _spaceBattleHandler.StartSpaceBattle(CurrentBattle);
-        }
-
-        public void StartGroundBattle(CombatantBehaviour attacker, PlanetBehaviour planet)
-        {
-            if (!planet.TryGetComponent(out CombatantBehaviour defender))
+            _currentBattle = battle;
+            string actionLogMsg;
+            switch (_currentBattle.battleType)
             {
-                Debug.LogError("ERROR BattleManger StartGroundBattle(): Planet is missing a CombatantBehaviour and cannot participate in a ground battle.", this);
-                return;
+                case Battle.BattleType.GroundBattle:
+                    actionLogMsg = $"Invading {battle.battlePlanet.PlanetInfo.myName}...";
+                    break;
+                case Battle.BattleType.SpaceBattle:
+                    actionLogMsg = $"Engaging enemy forces over {battle.battlePlanet.PlanetInfo.myName}!";
+                    break;
+                default:
+                    throw new ArgumentException($"Unsupported battle type: {_currentBattle.battleType}", nameof(_currentBattle.battleType));
             }
-            CurrentBattle = new Battle(attacker, defender, planet, Battle.BattleType.GroundBattle);
-            _groundBattleHandler.StartGroundBattle(CurrentBattle);
+            GUIManager.Instance.AddActionLogMessage(actionLogMsg);
+            
+            GUIManager.Instance.ShowBattleDialogBox(battle);
         }
 
         public void AttackerWon()
         {
-            ResolveBattle(CurrentBattle.attacker);
+            ResolveBattle(_currentBattle.attacker);
         }
 
         public void DefenderWon()
         {
-            ResolveBattle(CurrentBattle.defender);
+            ResolveBattle(_currentBattle.defender);
         }
 
         private void ResolveBattle(CombatantBehaviour winner)
         {
-            CombatantBehaviour loser = winner == CurrentBattle.attacker ? CurrentBattle.defender : CurrentBattle.attacker;
+            CombatantBehaviour loser = winner == _currentBattle.attacker ? _currentBattle.defender : _currentBattle.attacker;
 
-            if (CurrentBattle.battleType == Battle.BattleType.GroundBattle && loser is PlanetCombatBehaviour)
+            if (_currentBattle.battleType == Battle.BattleType.GroundBattle && loser is PlanetCombatBehaviour)
             {
                 PlanetCombatBehaviour loserPlanet = (PlanetCombatBehaviour)loser;
                 loserPlanet.PrepareForInvasion(winner);
@@ -82,13 +77,13 @@ namespace Abraham.GalacticConquest.Combat
                 throw new MissingComponentException($"Winner ({winner.gameObject.name}) does not have a FactionHandler component.");
             }
             string factionName = winningFactionHandler.myFaction.factionName;
-            string planetName = CurrentBattle.battlePlanet.PlanetInfo.myName;
+            string planetName = _currentBattle.battlePlanet.PlanetInfo.myName;
             GUIManager.Instance.AddActionLogMessage("The " + factionName + " won the battle at " + planetName + "!");
         }
 
         private void ClearBattleDetails()
         {
-            CurrentBattle = null;
+            _currentBattle = null;
         }
 
     }

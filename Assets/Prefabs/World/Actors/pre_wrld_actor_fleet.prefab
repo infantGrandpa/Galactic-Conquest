@@ -220,15 +220,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1747910914384766496}
   - component: {fileID: 6591216836308059838}
-  - component: {fileID: 8231007448016084078}
-  - component: {fileID: 7507197599285484860}
-  - component: {fileID: 7847030500744036283}
   - component: {fileID: 133122592915136982}
   - component: {fileID: 4678900628996214075}
   - component: {fileID: 5440470072820585767}
   - component: {fileID: 4140671871952486091}
   - component: {fileID: 8514238081515761836}
   - component: {fileID: 1170545883627905908}
+  - component: {fileID: 2817296917156250314}
   m_Layer: 0
   m_Name: pre_wrld_actor_fleet
   m_TagString: Untagged
@@ -274,48 +272,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8231007448016084078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7851111968153162774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca79b8d4775bc7b44be7f6f5e59dec01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7507197599285484860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7851111968153162774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6c81db1e6c443418cf5686ea6aeab2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageToDeal: 100
---- !u!114 &7847030500744036283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7851111968153162774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e877a437f808004fad77754a207fb98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookTweenDuration: 0.25
-  moveTweenDuration: 1
-  baseMovementApCost: 5
-  movementScalingFactor: 2.5
-  currentPlanet: {fileID: 0}
 --- !u!114 &133122592915136982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +372,23 @@ MonoBehaviour:
   myName: 
   myDesc: 
   typeDescriptor: Fleet
+--- !u!114 &2817296917156250314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851111968153162774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461f49bf8992e0342821beeda2816b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookTweenDuration: 0.25
+  moveTweenDuration: 1
+  baseMovementApCost: 5
+  movementScalingFactor: 2.5
+  currentPlanet: {fileID: 0}
 --- !u!1 &8340410425311720045
 GameObject:
   m_ObjectHideFlags: 0
