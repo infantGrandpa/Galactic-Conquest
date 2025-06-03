@@ -13,7 +13,7 @@ namespace Abraham.GalacticConquest.Actions
         private readonly CombatantBehaviour _defender;
         private readonly PlanetBehaviour _planet;
 
-        private int? _apCost = null;
+        private int? _apCost;
 
         public AttackAction(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
         {
@@ -93,7 +93,7 @@ namespace Abraham.GalacticConquest.Actions
                 default:
                     throw new ArgumentException($"Unsupported battle type: {battle.battleType}", nameof(battle.battleType));
             }
-            GUIManager.Instance.AddActionLogMessage(actionLogMsg, GetActionPointCost());
+            GUIManager.Instance.AddActionLogMessage(actionLogMsg, GetActionPointCost() * -1);
         }
     }
 }
