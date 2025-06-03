@@ -23,7 +23,8 @@ namespace Abraham.GalacticConquest.TurnManagement
         
         //current faction's turn variable
         [SerializeField] private Faction startingFaction;
-        [SerializeField] private List<Faction> factionsInGame = new List<Faction>();
+        // TODO: Replace the factionsInGame list with the ActiveFactionManager
+        [SerializeField] private List<Faction> factionsInGame = new();
         private Faction _currentFactionTurn;
 
 
@@ -55,11 +56,5 @@ namespace Abraham.GalacticConquest.TurnManagement
             GUIManager.Instance.ChangeTurn($"{_currentFactionTurn.factionName}'s Turn");
             ActionPointManager.Instance.CalculateActionPoints(_currentFactionTurn);
         }
-
-        //TODO: add list of rollover action points
-
-        //Move to next faction in active factions
-        //Recalculate AP
-        // Show whose turn it currently is in UI
     }
 }
