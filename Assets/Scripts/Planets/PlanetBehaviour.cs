@@ -11,9 +11,10 @@ namespace Abraham.GalacticConquest.Planets
     {
         public GenericInfo PlanetInfo { get; private set; }
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }
-        public PlanetCombatBehaviour PlanetCombatBehaviour { get; private set; }
         public FactionHandler FactionHandler { get; private set; }
-        public TraitHandler TraitHandler { get; private set; }
+        
+        private PlanetCombatBehaviour _planetCombatBehaviour;
+        private TraitHandler _traitHandler;
 
         [Header("Planet Label")] [SerializeField]
         private GameObject planetLabelPrefab;
@@ -27,42 +28,44 @@ namespace Abraham.GalacticConquest.Planets
 
         private void OnDisable()
         {
+            // Needed to avoid errors in editor
             if (LevelManager.Instance == null) {
                 return;
             }
 
             LevelManager.Instance.planets.Remove(this);
         }
-        
+
         private void Awake()
         {
             PlanetSlotHandler = GetComponent<PlanetSlotHandler>();
-            PlanetCombatBehaviour = GetComponent<PlanetCombatBehaviour>();
+            _planetCombatBehaviour = GetComponent<PlanetCombatBehaviour>();
             FactionHandler = GetComponent<FactionHandler>();
-            TraitHandler = GetComponent<TraitHandler>();
+            _traitHandler = GetComponent<TraitHandler>();
             PlanetInfo = GetComponent<GenericInfo>();
 
             GameObject newPlanetLabel = Instantiate(planetLabelPrefab);
 
             _planetLabel = newPlanetLabel.GetComponent<PlanetLabelBehaviour>();
-            if (_planetLabel == null) {
-                Debug.LogError("ERROR PlanetBehaviour Start(): The planet label prefab is missing a PlanetLabelBehaviour component.");
-                return;
+            if (!_planetLabel)
+            {
+                throw new MissingComponentException(
+                    "The planet label prefab is missing a PlanetLabelBehaviour component.");
             }
         }
 
         private void Start()
         {
-            _planetLabel.InitLabel(PlanetInfo, FactionHandler.myFaction, TraitHandler, transform.position);
+            _planetLabel.InitLabel(PlanetInfo, FactionHandler.myFaction, _traitHandler, transform.position);
         }
 
         public void CapturePlanet() //Called by HealthSystem OnDeathEvent
         {
-            Faction newFaction = PlanetCombatBehaviour.GetInvaderFaction();
+            Faction newFaction = _planetCombatBehaviour.GetInvaderFaction();
             FactionHandler.SetFaction(newFaction);
             _planetLabel.UpdateLabelFaction(newFaction);
 
-            PlanetCombatBehaviour.ResetPlanetAfterCapture();
+            _planetCombatBehaviour.ResetPlanetAfterCapture();
 
             GUIManager.Instance.AddActionLogMessage(PlanetInfo.myName + " captured by " + newFaction.factionName + "!");
 
@@ -76,10 +79,11 @@ namespace Abraham.GalacticConquest.Planets
 
         public void OnDeselectPlanet()
         {
+            // Needed to avoid errors in editor
             if (GUIManager.Instance == null) {
                 return;
             }
-            
+
             GUIManager.Instance.HideActionList();
         }
 
