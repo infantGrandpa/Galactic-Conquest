@@ -113,16 +113,14 @@ namespace Abraham.GalacticConquest.UnitControl
             Moveable moveable = GetMoveableFromSelectedObject();
             PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
 
-            // Instead of having separate paths for moving to and attacking vs. just moving to, we use a 
-            // compound action for all moves. There's negligible overhead on creating a compound action, 
-            // so it shouldn't be an issue.
+            // We use a compound action for all moves so we don't need separate paths for moving vs. moving + attacking
             MoveAction moveAction = new MoveAction(moveable, targetPlanet);
             CompoundAction compoundAction = new CompoundAction(moveAction);
 
             // Determine if we need to attack this planet
             Faction moveableFaction = moveable.GetComponent<FactionHandler>()?.myFaction;
-
             GameObject enemyAtPlanet = targetPlanet.GetEnemyAtPlanet(moveableFaction);
+            
             if (moveableFaction && enemyAtPlanet)
             {
                 Debug.Log("Adding attack action to compound action.", this);
@@ -133,17 +131,16 @@ namespace Abraham.GalacticConquest.UnitControl
             ActionManager.Instance.PerformAction(compoundAction);
         }
 
-        private static AttackAction BuildAttackAction(GameObject attackerObject, GameObject defenderObject,
-            PlanetBehaviour planet)
+        private static AttackAction BuildAttackAction(GameObject attackerObject, GameObject defenderObject, PlanetBehaviour planet)
         {
             if (!attackerObject.TryGetComponent(out CombatantBehaviour attackerCombatantBehaviour))
             {
-                throw new MissingReferenceException($"Attacker is missing a Combatant behaviour.");
+                throw new MissingComponentException($"Attacker ({attackerObject.name}) is missing a Combatant behaviour.");
             }
 
             if (!defenderObject.TryGetComponent(out CombatantBehaviour defenderCombatantBehaviour))
             {
-                throw new MissingReferenceException($"Defender is missing a Combatant behaviour.");
+                throw new MissingComponentException($"Defender ({defenderObject.name}) is missing a Combatant behaviour.");
             }
 
             return new AttackAction(attackerCombatantBehaviour, defenderCombatantBehaviour, planet);
@@ -152,7 +149,7 @@ namespace Abraham.GalacticConquest.UnitControl
         public void UpdateMovementIndicator()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
-            if (moveableObject == null)
+            if (!moveableObject)
             {
                 return;
             }
@@ -165,9 +162,7 @@ namespace Abraham.GalacticConquest.UnitControl
             PlanetBehaviour targetPlanet = GetPlanetFromNullableHitInfo(nullableHitInfo);
 
             _selectedMoveablePosition = moveableObject.transform.position;
-            Vector3 endPosition = targetPlanet == null
-                ? InputManager.Instance.GetCursorPosition()
-                : targetPlanet.transform.position;
+            Vector3 endPosition = targetPlanet ? targetPlanet.transform.position : InputManager.Instance.GetCursorPosition();
 
             _activeMovementRing = GetRingLevelFromDistance(_selectedMoveablePosition, endPosition);
             int apCost = moveableObject.CalculateMovementCost(_activeMovementRing);
