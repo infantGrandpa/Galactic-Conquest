@@ -48,5 +48,14 @@ namespace Abraham.GalacticConquest
             
             fleetFactionHandler.SetFaction(_factionHandler.myFaction);
         }
+
+        /// <summary>
+        /// Destroys a gameobject. This is required because IGameActions (like BuildFleetAction) can't destroy game objects.
+        /// </summary>
+        /// <param name="fleetToDestroy">The gameobject to destroy.</param>
+        public void DestroyFleet(GameObject fleetToDestroy)
+        {
+            Destroy(fleetToDestroy);
+        }
     }
 }

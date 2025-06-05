@@ -8,6 +8,7 @@ namespace Abraham.GalacticConquest.Actions
     public class BuildFleetAction : IGameAction
     {
         private readonly ShipyardBehaviour _shipyardBehaviour;
+        private GameObject _builtFleet;
 
         public BuildFleetAction(ShipyardBehaviour shipyardBehaviour)
         {
@@ -49,37 +50,45 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            throw new System.NotImplementedException();
+            _shipyardBehaviour.DestroyFleet(_builtFleet);
+            int apCost = GetActionPointCost();
+            ActionPointManager.Instance.IncreaseActionPoints(apCost);
+            GUIManager.Instance.AddActionLogMessage(
+                $"Removed {_shipyardBehaviour.GetFactionName()} fleet that was built at {_shipyardBehaviour.GetPlanetName()}.", apCost);
+            return true;
         }
 
         private bool CreateFleetAtShipyard()
         {
             string factionName = _shipyardBehaviour.GetFactionName();
             string planetName = _shipyardBehaviour.GetPlanetName();
-            
-            GameObject fleetToBuild = LevelManager.Instance.fleetPrefab;
-            if (!fleetToBuild)
+
+            GameObject fleetPrefab = LevelManager.Instance.fleetPrefab;
+            if (!fleetPrefab)
             {
                 throw new MissingReferenceException("LevelManager's fleet prefab is null.");
             }
 
-            GameObject newFleet = LevelManager.Instance.InstantiateOnDynamicTransform(fleetToBuild);
+            _builtFleet = LevelManager.Instance.InstantiateOnDynamicTransform(fleetPrefab);
 
-            Moveable moveable = newFleet.GetComponent<Moveable>();
+            Moveable moveable = _builtFleet.GetComponent<Moveable>();
             if (!moveable)
             {
-                throw new MissingComponentException($"Fleet prefab {newFleet.gameObject.name} does not have a Moveable component.");
+                throw new MissingComponentException($"Fleet prefab {_builtFleet.gameObject.name} does not have a Moveable component.");
             }
-            
+
             Transform slotTransform = _shipyardBehaviour.AddMoveableToPlanetSlot(moveable);
             if (!slotTransform) {
                 GUIManager.Instance.AddActionLogMessage($"Unable to build a new fleet. No available slots at {planetName}.");    
+                GUIManager.Instance.AddActionLogMessage($"Unable to build a new fleet. No available slots at {planetName}.");
+                _shipyardBehaviour.DestroyFleet(_builtFleet);
                 return false;
             }
 
             _shipyardBehaviour.PositionFleetAtPlanetSlot(moveable, slotTransform);
             _shipyardBehaviour.SetFactionForNewFleet(newFleet);
             
+            _shipyardBehaviour.SetFactionForNewFleet(_builtFleet);
             GUIManager.Instance.AddActionLogMessage($"{factionName} built a new fleet at {planetName}.", GetActionPointCost() * -1);
             return true;
             
