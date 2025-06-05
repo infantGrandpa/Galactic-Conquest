@@ -110,7 +110,10 @@ namespace Abraham.GalacticConquest.UnitControl
         public void MoveToPlanet()
         {
             Moveable moveable = GetMoveableFromSelectedObject();
-            PlanetBehaviour targetPlanet = GetPlanetToMoveTo();
+            if (!moveable || !targetPlanet)
+            {
+                return;
+            }
 
             // We use a compound action for all moves so we don't need separate paths for moving vs. moving + attacking
             MoveAction moveAction = new MoveAction(moveable, targetPlanet);
