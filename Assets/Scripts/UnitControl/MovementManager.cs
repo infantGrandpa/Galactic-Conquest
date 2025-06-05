@@ -92,7 +92,7 @@ namespace Abraham.GalacticConquest.UnitControl
             return GetPlanetFromNullableHitInfo(nullableHitInfo);
         }
 
-        private static PlanetBehaviour GetPlanetFromNullableHitInfo(RaycastHit? nullableHitInfo)
+        public static PlanetBehaviour GetPlanetFromNullableHitInfo(RaycastHit? nullableHitInfo)
         {
             if (nullableHitInfo == null)
             {
@@ -107,7 +107,7 @@ namespace Abraham.GalacticConquest.UnitControl
             return targetPlanet;
         }
 
-        public void MoveToPlanet()
+        public void MoveToPlanet(PlanetBehaviour targetPlanet)
         {
             Moveable moveable = GetMoveableFromSelectedObject();
             if (!moveable || !targetPlanet)

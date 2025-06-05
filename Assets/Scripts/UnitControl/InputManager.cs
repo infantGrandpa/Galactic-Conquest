@@ -1,3 +1,5 @@
+using Abraham.GalacticConquest.Planets;
+using Abraham.GalacticConquest.Refs;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.UnitControl
@@ -36,12 +38,21 @@ namespace Abraham.GalacticConquest.UnitControl
             //Right Click
             if (Input.GetMouseButtonUp(1))
             {
-                //Move to planet
-                MovementManager.Instance.MoveToPlanet();
+                AttemptMoveToPlanet();
             }
         }
 
         public Vector3 GetCursorPosition()
+        private void AttemptMoveToPlanet()
+        {
+            //Check if we clicked a planet; we only move to planets.
+            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
+            RaycastHit? nullableHitInfo = SphereCastFromCameraToCursor(planetLayerMask);
+            
+            PlanetBehaviour planetToMoveTo = MovementManager.GetPlanetFromNullableHitInfo(nullableHitInfo);
+            MovementManager.Instance.MoveToPlanet(planetToMoveTo);
+        }
+
         {
             Ray rayFromCameraToCursor = LevelManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
             Plane planetPlane = new Plane(Vector3.up, LevelManager.Instance.planetPlanePosition);
