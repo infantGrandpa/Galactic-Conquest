@@ -34,7 +34,13 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoLastAction()
         {
-            throw new NotImplementedException();
+            if (_actionHistory.Count == 0)
+            {
+                return false;
+            }
+
+            IGameAction lastActionToUndo = _actionHistory.Pop();
+            return lastActionToUndo.UndoAction();
         }
     }
 }
