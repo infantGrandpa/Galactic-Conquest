@@ -148,7 +148,7 @@ namespace Abraham.GalacticConquest.UnitControl
             PlanetBehaviour targetPlanet = GetPlanetFromNullableHitInfo(nullableHitInfo);
 
             _selectedMoveablePosition = moveableObject.transform.position;
-            Vector3 endPosition = targetPlanet ? targetPlanet.transform.position : InputManager.Instance.GetCursorPosition();
+            Vector3 endPosition = targetPlanet ? targetPlanet.transform.position : InputManager.GetCursorPosition();
 
             _activeMovementRing = GetRingLevelFromDistance(_selectedMoveablePosition, endPosition);
             int apCost = moveableObject.CalculateMovementCost(_activeMovementRing);

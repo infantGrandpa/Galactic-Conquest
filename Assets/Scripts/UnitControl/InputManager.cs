@@ -42,7 +42,6 @@ namespace Abraham.GalacticConquest.UnitControl
             }
         }
 
-        public Vector3 GetCursorPosition()
         private void AttemptMoveToPlanet()
         {
             //Check if we clicked a planet; we only move to planets.
@@ -53,6 +52,7 @@ namespace Abraham.GalacticConquest.UnitControl
             MovementManager.Instance.MoveToPlanet(planetToMoveTo);
         }
 
+        public static Vector3 GetCursorPosition()
         {
             Ray rayFromCameraToCursor = LevelManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
             Plane planetPlane = new Plane(Vector3.up, LevelManager.Instance.planetPlanePosition);
@@ -67,8 +67,8 @@ namespace Abraham.GalacticConquest.UnitControl
             Vector3 cameraPosition = LevelManager.Instance.MainCamera.transform.position;
             Vector3 directionToCursor = GetDirectionToCursor(cameraPosition);
 
-            RaycastHit hitInfo;
-            if (Physics.SphereCast(cameraPosition, onClickSphereCastRadius, directionToCursor, out hitInfo, 1000f))     //TODO: Make distance not magic
+            const float maxDistance = 1000f; //TODO: Make this distance standard across the project
+            if (Physics.SphereCast(cameraPosition, onClickSphereCastRadius, directionToCursor, out RaycastHit hitInfo, maxDistance))     
             {
                 return hitInfo;
             }
@@ -93,7 +93,7 @@ namespace Abraham.GalacticConquest.UnitControl
             return null;
         }
 
-        private Vector3 GetDirectionToCursor(Vector3 startPosition)
+        private static Vector3 GetDirectionToCursor(Vector3 startPosition)
         {
             Vector3 cursorPosition = GetCursorPosition();
             Vector3 directionToCursor = (cursorPosition - startPosition).normalized;        //(Desitination - Origin).normalized = direction
