@@ -39,6 +39,20 @@ namespace Abraham.GalacticConquest.Traits
             return false;
         }
 
+        public bool HasTraitAspect(TraitAspect traitAspect)
+        {
+            foreach (Trait thisTrait in traits)
+            {
+                if (thisTrait.traitAspects.Contains(traitAspect))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
         public Trait GetTraitWithHighestImportance()
         {
             float maxImportanceSoFar = Mathf.NegativeInfinity;
@@ -56,5 +70,12 @@ namespace Abraham.GalacticConquest.Traits
 
             return mostImportantTrait;
         }
+
+        public void AddTrait(Trait traitToAdd)
+        {
+            traits.Add(traitToAdd);
+        }
+        
+        // TODO: Remove trait
     }
 }

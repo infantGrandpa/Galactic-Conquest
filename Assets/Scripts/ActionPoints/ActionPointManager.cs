@@ -33,6 +33,9 @@ namespace Abraham.GalacticConquest.ActionPoints
         [Tooltip("The AP cost to attack a fleet or a planet.")]
         public int attackApCost;
 
+        [Tooltip("The AP cost to fortify a planet.")]
+        public int fortifyPlanetCost;
+
         [PropertySpace, ShowInInspector, ReadOnly]
         public int CurrentActionPoints { get; private set; }
 
@@ -43,7 +46,7 @@ namespace Abraham.GalacticConquest.ActionPoints
         private readonly Dictionary<Faction, List<ActionPointModifier>> _factionApModifiers = new();
         private readonly Dictionary<Faction, int> _factionRolloverPoints = new(); //TODO: Implement a not shit version of rollover points
 
-        [SerializeField] private float percOfRolloverPoints = 0.5f;
+        [SerializeField, Space] private float percOfRolloverPoints = 0.5f;
 
         public void CalculateActionPoints(Faction currentFaction)
         {

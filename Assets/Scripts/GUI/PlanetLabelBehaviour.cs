@@ -44,7 +44,7 @@ namespace Abraham.GalacticConquest.GUI
             apLabel.text = newAP + " AP";
         }
 
-        private void ShowTraitIcons(TraitHandler traitHandler)
+        public void ShowTraitIcons(TraitHandler traitHandler)
         {
             foreach (Image thisTraitIconSlot in traitIcons) {
                 thisTraitIconSlot.gameObject.SetActive(false);

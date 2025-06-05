@@ -127,6 +127,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1231254459724768466, guid: 3847093d3f783a649810ed3aebdf46ae, type: 3}
   m_PrefabInstance: {fileID: 8035830263276867918}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &41458320 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7812946813445330081, guid: 8eba56beab015fc42a047520ad2c6b06, type: 3}
+  m_PrefabInstance: {fileID: 4668628533277049635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &79012541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2898,6 +2903,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8133272041869668585, guid: 8eba56beab015fc42a047520ad2c6b06, type: 3}
   m_PrefabInstance: {fileID: 4668628533277049635}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1348953592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41458320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afa9b73f94f3e14a99670adf359c51a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fortifiedTrait: {fileID: 11400000, guid: 3ea6c1111e1da9d498eb4bb4782e25ee, type: 2}
 --- !u!21 &1401916961
 Material:
   serializedVersion: 8
@@ -5056,7 +5074,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7812946813445330081, guid: 8eba56beab015fc42a047520ad2c6b06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348953592}
   m_SourcePrefab: {fileID: 100100000, guid: 8eba56beab015fc42a047520ad2c6b06, type: 3}
 --- !u!1001 &6282807000176966619
 PrefabInstance:
@@ -5294,6 +5315,10 @@ PrefabInstance:
     - target: {fileID: 8361774726992741392, guid: 6939d25467f2c054287de818e6895af9, type: 3}
       propertyPath: baseActionPoints
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8361774726992741392, guid: 6939d25467f2c054287de818e6895af9, type: 3}
+      propertyPath: fortifyPlanetCost
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

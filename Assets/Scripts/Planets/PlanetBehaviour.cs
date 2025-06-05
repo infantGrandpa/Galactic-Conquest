@@ -124,5 +124,16 @@ namespace Abraham.GalacticConquest.Planets
         {
             _planetLabel?.UpdateAPLabel(newAp);
         }
+
+        public bool IsPlanetFortified()
+        {
+            return _traitHandler.HasTraitAspect(TraitAspect.Fortified);
+        }
+
+        public void FortifyPlanet()
+        {
+            _traitHandler.AddTrait(TraitManager.Instance.fortifiedTrait);
+            _planetLabel.ShowTraitIcons(_traitHandler);
+        }
     }
 }
