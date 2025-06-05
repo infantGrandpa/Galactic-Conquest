@@ -135,18 +135,13 @@ namespace Abraham.GalacticConquest.UnitControl
         public void UpdateMovementIndicator()
         {
             Moveable moveableObject = GetMoveableFromSelectedObject();
-            if (!moveableObject)
+            PlanetBehaviour targetPlanet = InputManager.Instance.GetPlanetFromCursorPosition(movementIndicatorSphereCastRadius);
+            
+            if (!moveableObject || !targetPlanet)
             {
                 return;
             }
-
-            //Get Closest Planet
-            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
-            RaycastHit? nullableHitInfo =
-                InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask, movementIndicatorSphereCastRadius);
-
-            PlanetBehaviour targetPlanet = GetPlanetFromNullableHitInfo(nullableHitInfo);
-
+            
             _selectedMoveablePosition = moveableObject.transform.position;
             Vector3 endPosition = targetPlanet ? targetPlanet.transform.position : InputManager.GetCursorPosition();
 

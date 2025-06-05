@@ -44,12 +44,17 @@ namespace Abraham.GalacticConquest.UnitControl
 
         private void AttemptMoveToPlanet()
         {
-            //Check if we clicked a planet; we only move to planets.
-            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
-            RaycastHit? nullableHitInfo = SphereCastFromCameraToCursor(planetLayerMask);
-            
-            PlanetBehaviour planetToMoveTo = MovementManager.GetPlanetFromNullableHitInfo(nullableHitInfo);
+            PlanetBehaviour planetToMoveTo = GetPlanetFromCursorPosition(onClickSphereCastRadius);
             MovementManager.Instance.MoveToPlanet(planetToMoveTo);
+        }
+
+        public PlanetBehaviour GetPlanetFromCursorPosition(float sphereCastRadius)
+        {
+            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
+            RaycastHit? nullableHitInfo = SphereCastFromCameraToCursor(planetLayerMask, sphereCastRadius);
+
+            PlanetBehaviour targetPlanet = MovementManager.GetPlanetFromNullableHitInfo(nullableHitInfo);
+            return targetPlanet;
         }
 
         public static Vector3 GetCursorPosition()
