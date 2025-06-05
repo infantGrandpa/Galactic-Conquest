@@ -72,7 +72,20 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            throw new System.NotImplementedException();
+            // Iterate through actions in reverse order to properly undo the compound action
+            for (int thisActionIndex = _actions.Count - 1; thisActionIndex >= 0; thisActionIndex--)
+            {
+                IGameAction thisAction = _actions[thisActionIndex];
+                bool success = thisAction.UndoAction();
+
+                if (success) continue;
+                
+                GUIManager.Instance.AddActionLogMessage(
+                    $"Failed to undo {thisAction.GetType()} action at index {thisActionIndex} in compound action.");
+                return false;
+            }
+
+            return true;
         }
     }
 }
