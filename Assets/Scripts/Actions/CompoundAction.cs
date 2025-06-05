@@ -12,13 +12,13 @@ namespace Abraham.GalacticConquest.Actions
         {
             _actions = new List<IGameAction>(actions);
         }
-        
+
         public int GetActionPointCost()
         {
             int apCost = 0;
             foreach (IGameAction action in _actions)
             {
-                 apCost += action.GetActionPointCost();
+                apCost += action.GetActionPointCost();
             }
 
             return apCost;
@@ -31,7 +31,7 @@ namespace Abraham.GalacticConquest.Actions
             {
                 return false;
             }
-            
+
             foreach (IGameAction action in _actions)
             {
                 bool canExecute = action.CanExecuteAction();
@@ -50,16 +50,15 @@ namespace Abraham.GalacticConquest.Actions
             {
                 return false;
             }
-            
+
             foreach (IGameAction action in _actions)
             {
-                if (!action.ExecuteAction())
-                {
-                    // TODO: What happens if one of the actions fails? Right now we just exit.
-                    //  Should it undo the other actions?
-                    GUIManager.Instance.AddActionLogMessage($"{action.GetType()} action failed. Ending compound action.");
-                    return false;
-                }
+                if (action.ExecuteAction()) continue;
+                
+                // TODO: What happens if one of the actions fails? Right now we just exit.
+                //  Should it undo the other actions?
+                GUIManager.Instance.AddActionLogMessage($"{action.GetType()} action failed. Ending compound action.");
+                return false;
             }
 
             return true;
