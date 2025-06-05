@@ -11,6 +11,8 @@ namespace Abraham.GalacticConquest.Actions
         private readonly Moveable _moveableObject;
         private readonly PlanetBehaviour _targetPlanet;
 
+        private PlanetBehaviour _startingPlanet;
+
         public MoveAction(Moveable moveableObject, PlanetBehaviour targetPlanet)
         {
             _moveableObject = moveableObject;
@@ -44,7 +46,7 @@ namespace Abraham.GalacticConquest.Actions
                 //Didn't click on a planet. Cancel.
                 return false;
             }
-
+            
             bool canMove = _moveableObject.CanMoveToTarget(_targetPlanet);
             if (!canMove)
             {
@@ -63,6 +65,8 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
+            _startingPlanet = _moveableObject.currentPlanet;
+            
             //Send Move Command to moveable object
             bool moveSuccessful = _moveableObject.MoveToPlanet(_targetPlanet);
             if (!moveSuccessful)
@@ -80,7 +84,21 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            throw new NotImplementedException();
+            if (!_startingPlanet)
+            {
+                return false;
+            }
+
+            bool moveSuccessful = _moveableObject.MoveToPlanet(_startingPlanet);
+            if (!moveSuccessful)
+            {
+                return false;
+            }
+            
+            int apCost = GetActionPointCost();
+            ActionPointManager.Instance.IncreaseActionPoints(apCost);
+            GUIManager.Instance.AddActionLogMessage($"{_moveableObject.gameObject.name} returned to {_startingPlanet.PlanetInfo.myName}.", apCost);
+            return true;
         }
     }
 }
