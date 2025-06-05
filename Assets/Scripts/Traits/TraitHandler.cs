@@ -75,7 +75,10 @@ namespace Abraham.GalacticConquest.Traits
         {
             traits.Add(traitToAdd);
         }
-        
-        // TODO: Remove trait
+
+        public void RemoveTrait(Trait traitToRemove)
+        {
+            traits.Remove(traitToRemove);
+        }
     }
 }

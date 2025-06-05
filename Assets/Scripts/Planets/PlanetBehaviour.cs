@@ -135,5 +135,11 @@ namespace Abraham.GalacticConquest.Planets
             _traitHandler.AddTrait(TraitManager.Instance.fortifiedTrait);
             _planetLabel.ShowTraitIcons(_traitHandler);
         }
+
+        public void UnfortifyPlanet()
+        {
+            _traitHandler.RemoveTrait(TraitManager.Instance.fortifiedTrait);
+            _planetLabel.ShowTraitIcons(_traitHandler);
+        }
     }
 }

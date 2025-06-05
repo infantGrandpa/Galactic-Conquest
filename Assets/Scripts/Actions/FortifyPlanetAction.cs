@@ -45,7 +45,12 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            throw new System.NotImplementedException();
+            _planet.UnfortifyPlanet();
+
+            int apCost = GetActionPointCost();
+            ActionPointManager.Instance.IncreaseActionPoints(apCost);
+            GUIManager.Instance.AddActionLogMessage($"Removed fortifications from {_planet.PlanetInfo.myName}.", apCost);
+            return true;
         }
     }
 }
