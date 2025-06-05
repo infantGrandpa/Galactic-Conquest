@@ -14,16 +14,17 @@ namespace Abraham.GalacticConquest.Actions
         {
             _shipyardBehaviour = shipyardBehaviour;
         }
-        
+
         public int GetActionPointCost()
         {
             return ActionPointManager.Instance.buildShipApCost;
         }
-        
+
         public bool CanExecuteAction()
         {
             bool slotsAvailable = _shipyardBehaviour.AreAnyPlanetSlotsAvailable();
-            if (!slotsAvailable) {
+            if (!slotsAvailable)
+            {
                 return false;
             }
 
@@ -33,17 +34,18 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool ExecuteAction()
         {
-            if (!CanExecuteAction()) {
+            if (!CanExecuteAction())
+            {
                 GUIManager.Instance.AddActionLogMessage("Unable to build a fleet at " + _shipyardBehaviour.GetPlanetName());
                 return false;
             }
-            
+
             bool success = CreateFleetAtShipyard();
             if (!success)
             {
                 return false;
             }
-            
+
             ActionPointManager.Instance.DecreaseActionPoints(GetActionPointCost());
             return true;
         }
@@ -78,20 +80,18 @@ namespace Abraham.GalacticConquest.Actions
             }
 
             Transform slotTransform = _shipyardBehaviour.AddMoveableToPlanetSlot(moveable);
-            if (!slotTransform) {
-                GUIManager.Instance.AddActionLogMessage($"Unable to build a new fleet. No available slots at {planetName}.");    
+            if (!slotTransform)
+            {
                 GUIManager.Instance.AddActionLogMessage($"Unable to build a new fleet. No available slots at {planetName}.");
                 _shipyardBehaviour.DestroyFleet(_builtFleet);
                 return false;
             }
 
             _shipyardBehaviour.PositionFleetAtPlanetSlot(moveable, slotTransform);
-            _shipyardBehaviour.SetFactionForNewFleet(newFleet);
-            
             _shipyardBehaviour.SetFactionForNewFleet(_builtFleet);
+
             GUIManager.Instance.AddActionLogMessage($"{factionName} built a new fleet at {planetName}.", GetActionPointCost() * -1);
             return true;
-            
         }
     }
 }
