@@ -84,14 +84,6 @@ namespace Abraham.GalacticConquest.UnitControl
             return moveableObject;
         }
 
-        private static PlanetBehaviour GetPlanetToMoveTo()
-        {
-            //Get Move To Target
-            LayerMask planetLayerMask = LayerMaskRefs.GetLayerMask(LayerMaskRefs.PlanetLayer);
-            RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor(planetLayerMask);
-            return GetPlanetFromNullableHitInfo(nullableHitInfo);
-        }
-
         public static PlanetBehaviour GetPlanetFromNullableHitInfo(RaycastHit? nullableHitInfo)
         {
             if (nullableHitInfo == null)
