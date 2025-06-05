@@ -26,6 +26,7 @@ namespace Abraham.GalacticConquest.GUI
             _currentFaction = faction;
             planetNameText.text = planetDetails.myName;
 
+            //TODO: Don't pass trait handler; cache it when it's initialized
             ShowTraitIcons(traitHandler);
 
             GUIManager.Instance.AddUIElementToSpatialCanvas(transform);
