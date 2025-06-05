@@ -8,8 +8,6 @@ namespace Abraham.GalacticConquest.Actions
     {
         private readonly List<IGameAction> _actions;
 
-        private int? _apCost;
-
         public CompoundAction(params IGameAction[] actions)
         {
             _actions = new List<IGameAction>(actions);
@@ -17,11 +15,6 @@ namespace Abraham.GalacticConquest.Actions
         
         public int GetActionPointCost()
         {
-            if (_apCost != null)
-            {
-                return _apCost.Value;
-            }
-
             int apCost = 0;
             foreach (IGameAction action in _actions)
             {
@@ -33,8 +26,8 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool CanExecuteAction()
         {
-            _apCost = GetActionPointCost();
-            if (!ActionPointManager.Instance.CanPerformAction(_apCost.Value))
+            int apCost = GetActionPointCost();
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
             {
                 return false;
             }

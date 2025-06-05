@@ -9,9 +9,6 @@ namespace Abraham.GalacticConquest.Actions
     {
         private readonly ShipyardBehaviour _shipyardBehaviour;
 
-        private int? _apCost;
-        
-
         public BuildFleetAction(ShipyardBehaviour shipyardBehaviour)
         {
             _shipyardBehaviour = shipyardBehaviour;
@@ -29,8 +26,8 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
-            _apCost = GetActionPointCost();
-            return ActionPointManager.Instance.CanPerformAction(_apCost.Value);
+            int apCost = GetActionPointCost();
+            return ActionPointManager.Instance.CanPerformAction(apCost);
         }
 
         public bool ExecuteAction()

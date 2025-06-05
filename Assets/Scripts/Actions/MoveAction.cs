@@ -11,8 +11,6 @@ namespace Abraham.GalacticConquest.Actions
         private readonly Moveable _moveableObject;
         private readonly PlanetBehaviour _targetPlanet;
 
-        private int? _apCost;
-
         public MoveAction(Moveable moveableObject, PlanetBehaviour targetPlanet)
         {
             _moveableObject = moveableObject;
@@ -22,11 +20,6 @@ namespace Abraham.GalacticConquest.Actions
 
         public int GetActionPointCost()
         {
-            if (_apCost != null)
-            {
-                return _apCost.Value;
-            }
-
             if (!_moveableObject)
             {
                 throw new InvalidOperationException(
@@ -35,8 +28,8 @@ namespace Abraham.GalacticConquest.Actions
 
             float distanceToTarget = _moveableObject.GetDistanceToTarget(_targetPlanet.transform.position);
             int ringLevel = MovementManager.Instance.GetRingLevelFromDistance(distanceToTarget);
-            _apCost = _moveableObject.CalculateMovementCost(ringLevel);
-            return _apCost.Value;
+            int apCost = _moveableObject.CalculateMovementCost(ringLevel);
+            return apCost;
         }
 
         public bool CanExecuteAction()
@@ -59,8 +52,8 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
             
-            _apCost = GetActionPointCost();
-            return ActionPointManager.Instance.CanPerformAction(_apCost.Value);
+            int apCost = GetActionPointCost();
+            return ActionPointManager.Instance.CanPerformAction(apCost);
         }
 
         public bool ExecuteAction()

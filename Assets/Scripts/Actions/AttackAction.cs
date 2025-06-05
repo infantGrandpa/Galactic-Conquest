@@ -13,8 +13,6 @@ namespace Abraham.GalacticConquest.Actions
         private readonly CombatantBehaviour _defender;
         private readonly PlanetBehaviour _planet;
 
-        private int? _apCost;
-
         public AttackAction(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
         {
             _attacker = attacker;
@@ -41,18 +39,13 @@ namespace Abraham.GalacticConquest.Actions
         
         public int GetActionPointCost()
         {
-            if (_apCost != null)
-            {
-                return _apCost.Value;
-            }
-            
             return ActionPointManager.Instance.attackApCost;
         }
 
         public bool CanExecuteAction()
         {
-            _apCost = GetActionPointCost();
-            return ActionPointManager.Instance.CanPerformAction(_apCost.Value);
+            int apCost = GetActionPointCost();
+            return ActionPointManager.Instance.CanPerformAction(apCost);
         }
 
         public bool ExecuteAction()
