@@ -19,7 +19,9 @@ namespace Abraham.GalacticConquest.Traits
     {
         public string traitName;
         public string traitDesc;
-        [Tooltip("Dictates the order to apply traits. Higher numbers = higher importance.")] public int traitOrder = 0;
+
+        [Tooltip("Dictates the order to apply traits. Higher numbers = higher importance.")]
+        public int traitOrder = 0;
 
         [ListDrawerSettings(ShowFoldout = true)]
         public List<TraitAspect> traitAspects = new();
@@ -31,22 +33,24 @@ namespace Abraham.GalacticConquest.Traits
 
         public void ApplyTrait(GameObject target)
         {
-            foreach (TraitAspect thisTraitAspect in traitAspects) {
-                switch (thisTraitAspect) {
-                case TraitAspect.ActionPointModifier:
-                    ApplyActionPointModifiers(target);
-                    break;
-                case TraitAspect.CanBuildShips:
-                    ApplyBuildShipsTraitAspect(target);
-                    break;
-                case TraitAspect.Fortified:
-                    ApplyFortifiedTraitAspect(target);
-                    break;
-                case TraitAspect.RequiredToWin:
-                    ApplyRequiredToWinTraitAspect(target);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+            foreach (TraitAspect thisTraitAspect in traitAspects)
+            {
+                switch (thisTraitAspect)
+                {
+                    case TraitAspect.ActionPointModifier:
+                        ApplyActionPointModifiers(target);
+                        break;
+                    case TraitAspect.CanBuildShips:
+                        ApplyBuildShipsTraitAspect(target);
+                        break;
+                    case TraitAspect.Fortified:
+                        ApplyFortifiedTraitAspect(target);
+                        break;
+                    case TraitAspect.RequiredToWin:
+                        ApplyRequiredToWinTraitAspect(target);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
@@ -54,7 +58,8 @@ namespace Abraham.GalacticConquest.Traits
         private void ApplyActionPointModifiers(GameObject target)
         {
             ActionPointAggregator apAggregator = target.GetComponent<ActionPointAggregator>();
-            if (apAggregator == null) {
+            if (apAggregator == null)
+            {
                 apAggregator = target.AddComponent<ActionPointAggregator>();
             }
 
@@ -64,7 +69,8 @@ namespace Abraham.GalacticConquest.Traits
         private void ApplyBuildShipsTraitAspect(GameObject target)
         {
             ShipyardBehaviour shipyardBehaviour = target.GetComponent<ShipyardBehaviour>();
-            if (shipyardBehaviour != null) {
+            if (shipyardBehaviour != null)
+            {
                 Debug.LogWarning("Trait ApplyBuildShipsTrait(): Target " + target.name + " already has a shipyard behaviour.", this);
                 return;
             }
