@@ -11,7 +11,8 @@ namespace Abraham.GalacticConquest.Traits
         ActionPointModifier,
         CanBuildShips,
         RequiredToWin,
-        Fortified
+        Fortified,
+        StartingFleet
     }
 
     [CreateAssetMenu(fileName = "NewTrait", menuName = "Game/Trait")]
@@ -49,6 +50,8 @@ namespace Abraham.GalacticConquest.Traits
                     case TraitAspect.RequiredToWin:
                         ApplyRequiredToWinTraitAspect(target);
                         break;
+                    case TraitAspect.StartingFleet:
+                        
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -82,6 +85,11 @@ namespace Abraham.GalacticConquest.Traits
         {
             // As of right now, we do nothing. 
             // The fortified trait only changes things in a SWBFII game, not in our game
+        }
+
+        private void ApplyStartingFleetTrait(GameObject target)
+        {
+            throw new NotImplementedException($"Starting Fleet Trait not yet implemented.");
         }
 
         private void ApplyRequiredToWinTraitAspect(GameObject target)
