@@ -36,7 +36,7 @@ namespace Abraham.GalacticConquest.Actions
             _defender = defenderCombatantBehaviour;
             _planet = planet;
         }
-        
+
         public int GetActionPointCost()
         {
             return ActionPointManager.Instance.attackApCost;
@@ -54,14 +54,14 @@ namespace Abraham.GalacticConquest.Actions
             {
                 return false;
             }
-            
+
             // If we can convert the defender into a PlanetCombatBehaviour, then this is a ground battle.
             PlanetCombatBehaviour planetCombatBehaviour = _defender as PlanetCombatBehaviour;
             Battle.BattleType battleType = planetCombatBehaviour ? Battle.BattleType.GroundBattle : Battle.BattleType.SpaceBattle;
-            
+
             Battle battle = new Battle(_attacker, _defender, _planet, battleType);
             LogBattle(battle);
-            
+
             BattleManager.Instance.StartBattle(battle);
             ActionPointManager.Instance.DecreaseActionPoints(GetActionPointCost());
             return true;
@@ -81,11 +81,12 @@ namespace Abraham.GalacticConquest.Actions
                     actionLogMsg = $"Invading {battle.battlePlanet.PlanetInfo.myName}...";
                     break;
                 case Battle.BattleType.SpaceBattle:
-                    actionLogMsg = $"Engaging enemy forces over {battle.battlePlanet.PlanetInfo.myName}!";
+                    actionLogMsg = $"Engaging enemy fleet over {battle.battlePlanet.PlanetInfo.myName}!";
                     break;
                 default:
                     throw new ArgumentException($"Unsupported battle type: {battle.battleType}", nameof(battle.battleType));
             }
+
             GUIManager.Instance.AddActionLogMessage(actionLogMsg, GetActionPointCost() * -1);
         }
     }
