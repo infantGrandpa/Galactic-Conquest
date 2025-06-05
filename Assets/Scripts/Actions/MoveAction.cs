@@ -92,6 +92,8 @@ namespace Abraham.GalacticConquest.Actions
 
             int apCost = GetActionPointCost();
             ActionPointManager.Instance.DecreaseActionPoints(apCost);
+            GUIManager.Instance.AddActionLogMessage($"Moved {_moveableObject.gameObject.name} to {_targetPlanet.PlanetInfo.myName}.",
+                GetActionPointCost() * -1);
             return true;
         }
 
