@@ -39,7 +39,7 @@ namespace Abraham.GalacticConquest.Actions
 
             int apCost = GetActionPointCost();
             ActionPointManager.Instance.DecreaseActionPoints(apCost);
-            GUIManager.Instance.AddActionLogMessage($"Fortified {_planet.PlanetInfo.myName}.", apCost);
+            GUIManager.Instance.AddActionLogMessage($"Fortified {_planet.PlanetInfo.myName}.", apCost * -1);
             return true;
         }
 
