@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Abraham.GalacticConquest.GUI;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
@@ -19,7 +19,7 @@ namespace Abraham.GalacticConquest.Actions
         }
 
         private static ActionManager _instance;
-        private Stack<IGameAction> _actionHistory = new Stack<IGameAction>();
+        private Stack<IGameAction> _actionHistory = new();
 
         public bool PerformAction(IGameAction action)
         {
@@ -36,6 +36,7 @@ namespace Abraham.GalacticConquest.Actions
         {
             if (_actionHistory.Count == 0)
             {
+                GUIManager.Instance.AddActionLogMessage("No actions to undo.");
                 return false;
             }
 
