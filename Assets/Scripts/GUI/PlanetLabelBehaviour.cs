@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
-using Abraham.GalacticConquest.Planets;
 using Abraham.GalacticConquest.Traits;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Abraham.GalacticConquest.GUI
@@ -21,7 +18,7 @@ namespace Abraham.GalacticConquest.GUI
         private Vector3 _currentWorldPosition;
 
         [SerializeField] private List<Image> traitIcons = new List<Image>();
-        
+
         [SerializeField] private TMP_Text apLabel;
 
         public void InitLabel(GenericInfo planetDetails, Faction faction, TraitHandler traitHandler, Vector3 worldPosition)
@@ -46,13 +43,16 @@ namespace Abraham.GalacticConquest.GUI
 
         public void ShowTraitIcons(TraitHandler traitHandler)
         {
-            foreach (Image thisTraitIconSlot in traitIcons) {
+            foreach (Image thisTraitIconSlot in traitIcons)
+            {
                 thisTraitIconSlot.gameObject.SetActive(false);
             }
 
             int traitCount = 0;
-            foreach (Trait thisTrait in traitHandler.traits) {
-                if (thisTrait.traitIcon == null) {
+            foreach (Trait thisTrait in traitHandler.traits)
+            {
+                if (!thisTrait.traitIcon)
+                {
                     continue;
                 }
 
@@ -66,7 +66,8 @@ namespace Abraham.GalacticConquest.GUI
 
         private void SetColors(Color newColor)
         {
-            foreach (Image thisTraitIconSlot in traitIcons) {
+            foreach (Image thisTraitIconSlot in traitIcons)
+            {
                 thisTraitIconSlot.color = newColor;
             }
 
