@@ -22,8 +22,6 @@ namespace Abraham.GalacticConquest.Actions
 
         public int GetActionPointCost()
         {
-            // If we've already calculated the AP cost for this action, just return that.
-            // This could cause an issue if that action cost would change during runtime, but I don't think that is the case right now.
             if (_apCost != null)
             {
                 return _apCost.Value;
@@ -60,19 +58,9 @@ namespace Abraham.GalacticConquest.Actions
                 //Moveable object already at planet. Cancel.
                 return false;
             }
-
-
-            // This is last so we don't send a message about insufficient AP if you click on a planet the object is already at
-            // TODO: This shouldn't add any action log messages. Rewrite so it returns the result of CanPerformAction()
-            int apCost = GetActionPointCost();
-            if (!ActionPointManager.Instance.CanPerformAction(apCost))
-            {
-                //Not Enough AP. Cancel.
-                GUIManager.Instance.AddActionLogMessage("INSUFFICIENT AP (" + apCost + "): Movement Cancelled.");
-                return false;
-            }
-
-            return true;
+            
+            _apCost = GetActionPointCost();
+            return ActionPointManager.Instance.CanPerformAction(_apCost.Value);
         }
 
         public bool ExecuteAction()
@@ -99,7 +87,7 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
