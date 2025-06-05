@@ -10,8 +10,8 @@ namespace Abraham.GalacticConquest.Actions
     {
         private readonly Moveable _moveableObject;
         private readonly PlanetBehaviour _targetPlanet;
-        
-        private int? _cachedApCost = null;
+
+        private int? _apCost;
 
         public MoveAction(Moveable moveableObject, PlanetBehaviour targetPlanet)
         {
@@ -24,9 +24,9 @@ namespace Abraham.GalacticConquest.Actions
         {
             // If we've already calculated the AP cost for this action, just return that.
             // This could cause an issue if that action cost would change during runtime, but I don't think that is the case right now.
-            if (_cachedApCost != null)
+            if (_apCost != null)
             {
-                return _cachedApCost.Value;
+                return _apCost.Value;
             }
 
             if (!_moveableObject)
@@ -37,8 +37,8 @@ namespace Abraham.GalacticConquest.Actions
 
             float distanceToTarget = _moveableObject.GetDistanceToTarget(_targetPlanet.transform.position);
             int ringLevel = MovementManager.Instance.GetRingLevelFromDistance(distanceToTarget);
-            _cachedApCost = _moveableObject.CalculateMovementCost(ringLevel);
-            return _cachedApCost.Value;
+            _apCost = _moveableObject.CalculateMovementCost(ringLevel);
+            return _apCost.Value;
         }
 
         public bool CanExecuteAction()
