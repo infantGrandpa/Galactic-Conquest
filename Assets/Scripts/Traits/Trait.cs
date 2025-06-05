@@ -37,13 +37,13 @@ namespace Abraham.GalacticConquest.Traits
                     ApplyActionPointModifiers(target);
                     break;
                 case TraitAspect.CanBuildShips:
-                    ApplyBuildShipsTrait(target);
+                    ApplyBuildShipsTraitAspect(target);
                     break;
                 case TraitAspect.Fortified:
-                    ApplyFortifiedTrait(target);
+                    ApplyFortifiedTraitAspect(target);
                     break;
                 case TraitAspect.RequiredToWin:
-                    ApplyRequiredToWinTrait(target);
+                    ApplyRequiredToWinTraitAspect(target);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -61,7 +61,7 @@ namespace Abraham.GalacticConquest.Traits
             apAggregator.AddApModifier(traitName, actionPointModifier);
         }
 
-        private void ApplyBuildShipsTrait(GameObject target)
+        private void ApplyBuildShipsTraitAspect(GameObject target)
         {
             ShipyardBehaviour shipyardBehaviour = target.GetComponent<ShipyardBehaviour>();
             if (shipyardBehaviour != null) {
@@ -72,13 +72,13 @@ namespace Abraham.GalacticConquest.Traits
             target.AddComponent<ShipyardBehaviour>();
         }
 
-        private void ApplyFortifiedTrait(GameObject target)
+        private void ApplyFortifiedTraitAspect(GameObject target)
         {
             // As of right now, we do nothing. 
             // The fortified trait only changes things in a SWBFII game, not in our game
         }
 
-        private void ApplyRequiredToWinTrait(GameObject target)
+        private void ApplyRequiredToWinTraitAspect(GameObject target)
         {
             // TODO: Implement Required to Win Trait
         }
