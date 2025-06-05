@@ -107,6 +107,41 @@ namespace Abraham.GalacticConquest.UnitControl
                 return;
             }
 
+            CompoundAction compoundAction = BuildCompoundAction(moveable, targetPlanet);            
+            ActionManager.Instance.PerformAction(compoundAction);
+        }
+
+        public void UpdateMovementIndicator()
+        {
+            Moveable moveableObject = GetMoveableFromSelectedObject();
+            PlanetBehaviour targetPlanet = InputManager.Instance.GetPlanetFromCursorPosition(movementIndicatorSphereCastRadius);
+            
+            if (!moveableObject)
+            {
+                return;
+            }
+
+            Vector3 endPosition;
+            int? apCost;
+            if (targetPlanet)
+            {
+                endPosition = targetPlanet.transform.position;
+                
+                CompoundAction compoundAction = BuildCompoundAction(moveableObject, targetPlanet);
+                apCost = compoundAction.GetActionPointCost(); 
+            }
+            else
+            {
+                endPosition = InputManager.GetCursorPosition();
+                apCost = null;
+            }
+            
+            GUIManager.Instance.UpdateMovementCostIndicator(apCost);
+            _movementIndicatorHandler.SetMovementLinePositions(moveableObject.transform.position, endPosition);
+        }
+
+        private static CompoundAction BuildCompoundAction(Moveable moveable, PlanetBehaviour targetPlanet)
+        {
             // We use a compound action for all moves so we don't need separate paths for moving vs. moving + attacking
             MoveAction moveAction = new MoveAction(moveable, targetPlanet);
             CompoundAction compoundAction = new CompoundAction(moveAction);
@@ -121,28 +156,8 @@ namespace Abraham.GalacticConquest.UnitControl
                 compoundAction.AddAction(attackAction);
             }
 
-            ActionManager.Instance.PerformAction(compoundAction);
-        }
+            return compoundAction;
 
-        public void UpdateMovementIndicator()
-        {
-            Moveable moveableObject = GetMoveableFromSelectedObject();
-            PlanetBehaviour targetPlanet = InputManager.Instance.GetPlanetFromCursorPosition(movementIndicatorSphereCastRadius);
-            
-            if (!moveableObject || !targetPlanet)
-            {
-                return;
-            }
-            
-            _selectedMoveablePosition = moveableObject.transform.position;
-            Vector3 endPosition = targetPlanet ? targetPlanet.transform.position : InputManager.GetCursorPosition();
-
-            _activeMovementRing = GetRingLevelFromDistance(_selectedMoveablePosition, endPosition);
-            int apCost = moveableObject.CalculateMovementCost(_activeMovementRing);
-
-            GUIManager.Instance.UpdateMovementCostIndicator(apCost);
-
-            _movementIndicatorHandler.SetMovementLinePositions(_selectedMoveablePosition, endPosition);
         }
 
         public void HideMovementIndicator()

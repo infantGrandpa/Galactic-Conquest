@@ -80,9 +80,16 @@ namespace Abraham.GalacticConquest.GUI
             actionListHandler.HideActionList();
         }
 
-        public void UpdateMovementCostIndicator(int newCost)
+        public void UpdateMovementCostIndicator(int? newCost = null)
         {
-            costIndicator.UpdateMovementCost(newCost);
+            if (newCost == null)
+            {
+                costIndicator.HideMovementCost();
+            }
+            else
+            {
+                costIndicator.UpdateMovementCost(newCost.Value);
+            }
         }
 
         public void ShowInfoBox(GameObject target)
