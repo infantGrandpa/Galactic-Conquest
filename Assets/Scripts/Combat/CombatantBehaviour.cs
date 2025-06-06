@@ -36,8 +36,14 @@ namespace Abraham.GalacticConquest.Combat
 
         public void DeactivateAndPrepForDeletion()
         {
-            //TODO: Tell Garbage Collector to delete me at the end of the turn
+            GarbageCollector.Instance.AddToGarbageCollection(gameObject);
             gameObject.SetActive(false);
+        }
+
+        public void ReactivateAndCancelDeletion()
+        {
+            gameObject.SetActive(true);
+            GarbageCollector.Instance.RemoveFromGarbageCollection(gameObject);
         }
     }
 }

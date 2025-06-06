@@ -36,6 +36,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         public void NextTurn()
         {
             ActionPointManager.Instance.SaveRolloverPoints(_currentFactionTurn);
+            GarbageCollector.Instance.ClearGarbage();
             
             int currentIndex = factionsInGame.IndexOf(_currentFactionTurn);
     

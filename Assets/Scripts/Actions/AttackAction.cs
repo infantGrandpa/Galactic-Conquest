@@ -74,8 +74,8 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            _attacker.gameObject.SetActive(true);
-            _defender.gameObject.SetActive(true);
+            _attacker.ReactivateAndCancelDeletion();    
+            _defender.ReactivateAndCancelDeletion();    
             
             _planet.ChangePlanetFaction(_startingPlanetFaction);
 

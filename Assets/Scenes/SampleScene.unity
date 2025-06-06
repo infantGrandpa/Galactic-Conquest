@@ -2916,6 +2916,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fortifiedTrait: {fileID: 11400000, guid: 3ea6c1111e1da9d498eb4bb4782e25ee, type: 2}
+--- !u!114 &1348953594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41458320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f71b4f4dee4881449cbd449dd9708d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToDeleteAtEndOfTurn: []
 --- !u!21 &1401916961
 Material:
   serializedVersion: 8
@@ -5054,6 +5067,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7812946813445330081, guid: 8eba56beab015fc42a047520ad2c6b06, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1348953592}
+    - targetCorrespondingSourceObject: {fileID: 7812946813445330081, guid: 8eba56beab015fc42a047520ad2c6b06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1348953594}
   m_SourcePrefab: {fileID: 100100000, guid: 8eba56beab015fc42a047520ad2c6b06, type: 3}
 --- !u!1001 &6282807000176966619
 PrefabInstance:
