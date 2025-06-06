@@ -1,6 +1,7 @@
 using System;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.Combat;
+using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Abraham.GalacticConquest.Actions
         private readonly CombatantBehaviour _attacker;
         private readonly CombatantBehaviour _defender;
         private readonly PlanetBehaviour _planet;
+
+        private readonly Faction _startingPlanetFaction;
 
         public AttackAction(CombatantBehaviour attacker, CombatantBehaviour defender, PlanetBehaviour planet)
         {
@@ -35,6 +38,8 @@ namespace Abraham.GalacticConquest.Actions
             _attacker = attackerCombatantBehaviour;
             _defender = defenderCombatantBehaviour;
             _planet = planet;
+
+            _startingPlanetFaction = _planet.FactionHandler.myFaction;
         }
 
         public int GetActionPointCost()
@@ -69,7 +74,15 @@ namespace Abraham.GalacticConquest.Actions
 
         public bool UndoAction()
         {
-            throw new NotImplementedException();
+            _attacker.gameObject.SetActive(true);
+            _defender.gameObject.SetActive(true);
+            
+            _planet.ChangePlanetFaction(_startingPlanetFaction);
+
+            int apCost = GetActionPointCost();
+            GUIManager.Instance .AddActionLogMessage($"Reverted attack at {_planet.PlanetInfo.myName}.", apCost);
+            ActionPointManager.Instance.IncreaseActionPoints(apCost);
+            return true;
         }
 
         private void LogBattle(Battle battle)
