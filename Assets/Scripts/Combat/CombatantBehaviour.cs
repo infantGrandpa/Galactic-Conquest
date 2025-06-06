@@ -33,5 +33,11 @@ namespace Abraham.GalacticConquest.Combat
 
             DamageTarget(targetHealth);
         }
+
+        public void DeactivateAndPrepForDeletion()
+        {
+            //TODO: Tell Garbage Collector to delete me at the end of the turn
+            gameObject.SetActive(false);
+        }
     }
 }
