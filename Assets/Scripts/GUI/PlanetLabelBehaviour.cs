@@ -79,7 +79,7 @@ namespace Abraham.GalacticConquest.GUI
         private void SetCanvasPosition(Vector3 worldPosition)
         {
             _currentWorldPosition = worldPosition;
-            Vector2 canvasPosition = GUIManager.Instance.mainCanvas.WorldToCanvasPosition(worldPosition, GUIManager.Instance.mainCamera);
+            Vector2 canvasPosition = GUIManager.Instance.spatialCanvas.WorldToCanvasPosition(worldPosition, GUIManager.Instance.mainCamera);
             Vector2 finalPosition = canvasPosition + positionOffset;
 
             _rectTransform.anchoredPosition = finalPosition;

@@ -40,7 +40,7 @@ namespace Abraham.GalacticConquest.GUI
 
             _currentPlanet = planetBehaviour;
 
-            Vector2 canvasPosition = GUIManager.Instance.mainCanvas.WorldToCanvasPosition(planetBehaviour.transform.position, GUIManager.Instance.mainCamera);
+            Vector2 canvasPosition = GUIManager.Instance.spatialCanvas.WorldToCanvasPosition(planetBehaviour.transform.position, GUIManager.Instance.mainCamera);
             Vector2 finalPosition = canvasPosition + positionOffset;
             _rectTransform.anchoredPosition = finalPosition;
 

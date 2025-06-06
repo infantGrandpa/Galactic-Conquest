@@ -19,16 +19,22 @@ namespace Abraham.GalacticConquest.GUI
             set => _instance = value;
         }
         private static GUIManager _instance;
-
-        [ReadOnly] public Canvas mainCanvas;
+        
         [ReadOnly] public Camera mainCamera;
 
+        [Header("Canvases")]
+        public Canvas nonDiegeticCanvas;
+        public Canvas spatialCanvas;
+        public Canvas modalCanvas;
+        
+        [Header("Modal/Priority Elements")]
+        [SerializeField] private GUIBattleHandler guiBattleHandler;
+        
         [Header("Non-Diegetic Elements")] 
         [SerializeField]
         private GUITurnHandler turnHandler;
         [SerializeField] private GUIActionPointHandler actionPointHandler;
         [SerializeField] private GUIActionLogHandler actionLogHandler;
-        [SerializeField] private GUIBattleHandler guiBattleHandler;
         [SerializeField] private GUIInfoBoxHandler infoBoxHandler;
 
         [Header("Spatial Elements")] [SerializeField]
@@ -38,7 +44,6 @@ namespace Abraham.GalacticConquest.GUI
         
         private void Awake()
         {
-            mainCanvas = GetComponent<Canvas>();
             mainCamera = Camera.main;
 
             //Activate the battle handler so it can assign all its variables
