@@ -69,6 +69,7 @@ namespace Abraham.GalacticConquest.Planets
 
             GUIManager.Instance.AddActionLogMessage(PlanetInfo.myName + " captured by " + newFaction.factionName + "!");
 
+            UnfortifyPlanet();
             LevelManager.Instance.CheckWinCondition();
         }
         
