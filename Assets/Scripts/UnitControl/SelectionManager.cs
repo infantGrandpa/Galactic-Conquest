@@ -26,6 +26,7 @@ namespace Abraham.GalacticConquest.UnitControl
 
         public void SelectObject()
         {
+            Selectable previouslySelectedObject = selectedObject;
             ClearSelectedObject();
 
             RaycastHit? nullableHitInfo = InputManager.Instance.SphereCastFromCameraToCursor();
@@ -40,12 +41,17 @@ namespace Abraham.GalacticConquest.UnitControl
 
             //Get Selectable
             Selectable hitSelectableObject = hitInfo.transform.GetComponentInParent<Selectable>();
-            if (hitSelectableObject)
+            
+            if (!hitSelectableObject) return;
+
+            if (hitSelectableObject == previouslySelectedObject)
             {
-                SelectObject(hitSelectableObject);
+                // If you clicked on the same object twice, deselect that object
+                // This functions the same as clicking elsewhere, and the expected behaviour based on testing.
                 return;
             }
             
+            SelectObject(hitSelectableObject);
         }
 
         private void SelectObject(Selectable objectToSelect)
