@@ -51,8 +51,7 @@ namespace Abraham.GalacticConquest.Planets
             _planetLabel = newPlanetLabel.GetComponent<PlanetLabelBehaviour>();
             if (!_planetLabel)
             {
-                throw new MissingComponentException(
-                    "The planet label prefab is missing a PlanetLabelBehaviour component.");
+                throw new MissingComponentException("The planet label prefab is missing a PlanetLabelBehaviour component.");
             }
         }
 
@@ -73,7 +72,7 @@ namespace Abraham.GalacticConquest.Planets
             UnfortifyPlanet();
             LevelManager.Instance.CheckWinCondition();
         }
-        
+
         public void ChangePlanetFaction(Faction newFaction)
         {
             FactionHandler.SetFaction(newFaction);
