@@ -11,6 +11,12 @@ namespace Abraham.GalacticConquest.SaveSystem
         public SaveDataCollection saveDataCollection;
         public string saveFileName = "test-save";
 
+        [ContextMenu("Clear Cached Save Data")]
+        public void ClearCachedSaveDataCollection()
+        {
+            saveDataCollection.saveDataList.Clear();
+        }
+
         [ContextMenu("Save All Data")]
         public void SaveGameData()
         {
@@ -22,6 +28,14 @@ namespace Abraham.GalacticConquest.SaveSystem
             string json = JsonUtility.ToJson(saveDataCollection, true);
             string saveFilePath = GetSaveFilePath(saveFileName);
             SaveJsonToFile(json, saveFilePath);
+        }
+
+        [ContextMenu("Load Data")]
+        public void LoadSaveData()
+        {
+            string loadFilePath = GetSaveFilePath(saveFileName);
+            string json = LoadJsonFromFile(loadFilePath);
+            saveDataCollection = JsonUtility.FromJson<SaveDataCollection>(json);
         }
 
         private static List<SaveData> CollectSaveData()
@@ -41,6 +55,11 @@ namespace Abraham.GalacticConquest.SaveSystem
         private static void SaveJsonToFile(string json, string filePath)
         {
             File.WriteAllText(filePath, json);
+        }
+
+        private static string LoadJsonFromFile(string filePath)
+        {
+            return File.ReadAllText(filePath);
         }
 
         private static string GetSaveFilePath(string fileName)
