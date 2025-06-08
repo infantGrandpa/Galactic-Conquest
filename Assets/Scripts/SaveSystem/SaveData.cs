@@ -7,7 +7,7 @@ namespace Abraham.GalacticConquest.SaveSystem
     [Serializable]
     public class SaveData
     {
-        public string testField = "test";
+        public string objectId;
         public string ToJson()
         {
             return JsonUtility.ToJson(this, true);
@@ -29,6 +29,9 @@ namespace Abraham.GalacticConquest.SaveSystem
         
         public PlanetData(PlanetBehaviour planetBehaviour)
         {
+            SaveableIdentifier saveableIdentifier = planetBehaviour.GetComponent<SaveableIdentifier>();
+            objectId = saveableIdentifier.FullId;
+            
             planetName = planetBehaviour.PlanetInfo.myName;
             typeDescriptor = planetBehaviour.PlanetInfo.typeDescriptor;
             worldPosition = planetBehaviour.transform.position;
