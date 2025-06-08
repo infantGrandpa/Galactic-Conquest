@@ -2940,6 +2940,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffd391a496ba9c44952afde79ef0595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveDataCollection:
+    saveDataList: []
+  saveFileName: test-save
+  references:
+    version: 2
+    RefIds: []
 --- !u!21 &1401916961
 Material:
   serializedVersion: 8

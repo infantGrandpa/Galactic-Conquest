@@ -8,42 +8,26 @@ namespace Abraham.GalacticConquest.SaveSystem
 {
     public class SaveSystem : MonoBehaviour
     {
-        public List<SaveData> allSaveData = new();
-
         public SaveDataCollection saveDataCollection;
-
-        [ContextMenu("Save Single Data")]
-        public void TestSingleSaveData()
-        {
-            allSaveData = CollectSaveData();
-            SaveData saveData = allSaveData[0];
-
-            string json = JsonUtility.ToJson(saveData, true);
-
-            string filePath = GetSaveFilePath("testsave-single");
-
-            SaveJsonToFile(json, filePath);
-        }
+        public string saveFileName = "test-save";
 
         [ContextMenu("Save All Data")]
-        public void TestMultipleSaveData()
+        public void SaveGameData()
         {
-            allSaveData = CollectSaveData();
-            saveDataCollection = new SaveDataCollection();
-            saveDataCollection.saveDataList = allSaveData;
+            saveDataCollection = new SaveDataCollection
+            {
+                saveDataList = CollectSaveData()
+            };
 
             string json = JsonUtility.ToJson(saveDataCollection, true);
-            Debug.Log("json = " + json);
-
-            string saveFileFullPath = GetSaveFilePath("testsave-all");
-
-            SaveJsonToFile(json, saveFileFullPath);
+            string saveFilePath = GetSaveFilePath(saveFileName);
+            SaveJsonToFile(json, saveFilePath);
         }
 
-        private List<SaveData> CollectSaveData()
+        private static List<SaveData> CollectSaveData()
         {
             IEnumerable<ISaveable> allSaveableObjects = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
-                
+
             List<SaveData> saveDataList = new List<SaveData>();
 
             foreach (ISaveable thisSaveableObject in allSaveableObjects)
@@ -54,20 +38,20 @@ namespace Abraham.GalacticConquest.SaveSystem
             return saveDataList;
         }
 
-        private void SaveJsonToFile(string json, string filePath)
+        private static void SaveJsonToFile(string json, string filePath)
         {
             File.WriteAllText(filePath, json);
         }
 
-        private string GetSaveFilePath(string saveFileName)
+        private static string GetSaveFilePath(string fileName)
         {
             // This saves to Unity's persistent data path, which is:
             // - Windows: %userprofile%\AppData\LocalLow\<companyname>\<productname>
             // - Mac: ~/Library/Application Support/<companyname>/<productname>
             // - Linux: ~/.config/unity3d/<companyname>/<productname>
 
-            string fileName = $"{saveFileName}.json";
-            return Path.Combine(Application.persistentDataPath, fileName);
+            string fileNameWithExt = $"{fileName}.json";
+            return Path.Combine(Application.persistentDataPath, fileNameWithExt);
         }
 
         [ContextMenu("Open Save Folder")]
@@ -76,7 +60,7 @@ namespace Abraham.GalacticConquest.SaveSystem
             Application.OpenURL("file://" + Application.persistentDataPath);
         }
     }
-    
+
     [Serializable]
     public class SaveDataCollection
     {
