@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,44 +8,50 @@ namespace Abraham.GalacticConquest.SaveSystem
 {
     public class SaveSystem : MonoBehaviour
     {
-        public static SaveSystem Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = FindObjectOfType(typeof(SaveSystem)) as SaveSystem;
+        public List<SaveData> allSaveData = new();
 
-                return _instance;
-            }
-            set { _instance = value; }
-        }
-
-        private static SaveSystem _instance;
+        public SaveDataCollection saveDataCollection;
 
         [ContextMenu("Save Single Data")]
         public void TestSingleSaveData()
         {
-            List<SaveData> allSaveData = CollectSaveData();
+            allSaveData = CollectSaveData();
             SaveData saveData = allSaveData[0];
 
-            string json = saveData.ToJson();
+            string json = JsonUtility.ToJson(saveData, true);
 
-            string filePath = GetSaveFilePath("testsave");
+            string filePath = GetSaveFilePath("testsave-single");
 
             SaveJsonToFile(json, filePath);
+        }
+
+        [ContextMenu("Save All Data")]
+        public void TestMultipleSaveData()
+        {
+            allSaveData = CollectSaveData();
+            saveDataCollection = new SaveDataCollection();
+            saveDataCollection.saveDataList = allSaveData;
+
+            string json = JsonUtility.ToJson(saveDataCollection, true);
+            Debug.Log("json = " + json);
+
+            string saveFileFullPath = GetSaveFilePath("testsave-all");
+
+            SaveJsonToFile(json, saveFileFullPath);
         }
 
         private List<SaveData> CollectSaveData()
         {
             IEnumerable<ISaveable> allSaveableObjects = FindObjectsOfType<MonoBehaviour>().OfType<ISaveable>();
-            List<SaveData> allSaveData = new List<SaveData>();
+                
+            List<SaveData> saveDataList = new List<SaveData>();
 
             foreach (ISaveable thisSaveableObject in allSaveableObjects)
             {
-                allSaveData.Add(thisSaveableObject.SerializeToSaveData());
+                saveDataList.Add(thisSaveableObject.SerializeToSaveData());
             }
 
-            return allSaveData;
+            return saveDataList;
         }
 
         private void SaveJsonToFile(string json, string filePath)
@@ -68,5 +75,11 @@ namespace Abraham.GalacticConquest.SaveSystem
         {
             Application.OpenURL("file://" + Application.persistentDataPath);
         }
+    }
+    
+    [Serializable]
+    public class SaveDataCollection
+    {
+        public List<SaveData> saveDataList;
     }
 }
