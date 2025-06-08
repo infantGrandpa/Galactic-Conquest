@@ -29,5 +29,10 @@ namespace Abraham.GalacticConquest.SaveSystem
             typeDescriptor = planetBehaviour.PlanetInfo.typeDescriptor;
             worldPosition = planetBehaviour.transform.position;
         }
+
+        public override string ToString()
+        {
+            return $"{typeDescriptor} {planetName} {worldPosition.ToString()}";
+        }
     }
 }
