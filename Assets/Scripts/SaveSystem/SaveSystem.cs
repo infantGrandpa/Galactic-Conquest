@@ -80,6 +80,10 @@ namespace Abraham.GalacticConquest.SaveSystem
     [Serializable]
     public class SaveDataCollection
     {
-        public List<SaveData> saveDataList;
+        /*
+         * SerializeReference is required for "polymorphism", aka including both a parent and it's children.
+         * Since we need SaveData and all it's children's data, we need to tell the serializer that this could be SaveData, PlanetData, etc.
+         */
+        [SerializeReference] public List<SaveData> saveDataList;
     }
 }
