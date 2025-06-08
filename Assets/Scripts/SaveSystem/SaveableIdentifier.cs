@@ -1,12 +1,13 @@
 using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.SaveSystem
 {
     public class SaveableIdentifier : MonoBehaviour
     {
-        [SerializeField] private string customIdPrefix;
-        private string _generatedId;
+        [SerializeField] private string humanReadablePrefix;
+        [SerializeField, ReadOnly] private string generatedId;
         [ShowInInspector, ReadOnly] public string FullId => BuildFullId();
 
         private void Awake()
@@ -16,24 +17,26 @@ namespace Abraham.GalacticConquest.SaveSystem
 
         private void GenerateId()
         {
-            if (string.IsNullOrEmpty(_generatedId))
+            PrefabAssetType assetType = PrefabUtility.GetPrefabAssetType(gameObject);
+            if (assetType != PrefabAssetType.NotAPrefab)
             {
-                _generatedId = System.Guid.NewGuid().ToString();
-            }
-        }
-
-        private string BuildFullId()
-        {
-            string id = "";
-            if (!string.IsNullOrEmpty(customIdPrefix))
-            {
-                id += $"{customIdPrefix}_";
+                generatedId = null;
+                return;
             }
             
+            if (string.IsNullOrEmpty(generatedId))
+            {
+                generatedId = System.Guid.NewGuid().ToString();
+            }
+        }
+        
+        
+        private string BuildFullId()
+        {
             GenerateId();
-
-            id += _generatedId;
-            return id;
+            bool missingIdSection = string.IsNullOrEmpty(humanReadablePrefix) || string.IsNullOrEmpty(generatedId);
+            string idSeparator  = missingIdSection ? "" : "_";
+            return $"{humanReadablePrefix}{idSeparator}{generatedId}";
         }
     }
 }
