@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8869608432704605659}
   - component: {fileID: 5526301174624392162}
   - component: {fileID: 4141150999313406922}
-  - component: {fileID: 6527854200339231391}
+  - component: {fileID: 3275564723986481688}
   m_Layer: 9
   m_Name: pre_wrld_ter_planet
   m_TagString: Untagged
@@ -247,7 +247,7 @@ MonoBehaviour:
   myName: 
   myDesc: 
   typeDescriptor: Planet
---- !u!114 &6527854200339231391
+--- !u!114 &3275564723986481688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dce1d314ae37614a97727fb115976e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanReadablePrefix: planet
+  humanReadablePrefix: 
   generatedId: 
 --- !u!1 &3379968224065540479
 GameObject:

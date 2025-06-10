@@ -140,6 +140,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Polis Massa
@@ -215,6 +219,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetInfo.myName
       value: Kuat
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -908,6 +916,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Rhen Var
@@ -983,6 +995,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -1232,6 +1248,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Kashyyyk
@@ -1307,6 +1327,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -1457,6 +1481,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Tatooine
@@ -1532,6 +1560,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetInfo.myName
       value: Tatooine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -1677,6 +1709,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Production Center - Kamino
@@ -1748,6 +1784,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planetInfo.myName
       value: Kamino
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -2148,6 +2188,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Shipyard - Bespin
@@ -2228,6 +2272,10 @@ PrefabInstance:
       propertyPath: planet.planetSpecialty
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
       value: 2
@@ -2254,6 +2302,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Production Center - Geonosis
@@ -2334,6 +2386,10 @@ PrefabInstance:
       propertyPath: planet.planetSpecialty
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
       value: 2
@@ -2355,6 +2411,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Naboo
@@ -2430,6 +2490,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -2799,6 +2863,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Yavin 4
@@ -2874,6 +2942,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -3190,6 +3262,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Shipyard - Death Star
@@ -3266,6 +3342,10 @@ PrefabInstance:
       propertyPath: planet.planetSpecialty
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
       value: 2
@@ -3292,6 +3372,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Dagobah
@@ -3368,6 +3452,10 @@ PrefabInstance:
       propertyPath: planet.planetSpecialty
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
       value: 1
@@ -3394,6 +3482,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Shipyard - Felucia
@@ -3469,6 +3561,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -3581,6 +3677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Capital - Mustafar
@@ -3660,6 +3760,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -3809,6 +3913,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Shipyard - Mygeeto
@@ -3884,6 +3992,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -4309,6 +4421,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Utapau
@@ -4384,6 +4500,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
@@ -4566,6 +4686,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1964751948}
     m_Modifications:
+    - target: {fileID: 1015075479922041647, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Capital - Coruscant
@@ -4637,6 +4761,10 @@ PrefabInstance:
     - target: {fileID: 7560300631888595443, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: planet.planetSpecialty
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723788355917956736, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: generatedId
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8869608432704605659, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: traits.Array.size
