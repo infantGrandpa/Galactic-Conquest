@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet - Polis Massa
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 12dde322-d1d4-4af7-82ba-d867f7203fdd
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -924,6 +928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet - Rhen Var
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: bacc1300-f80b-4a60-952b-07b1ba2ee42d
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1256,6 +1264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet - Kashyyyk
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: e65c303f-ae1b-4dd3-90e3-a97c78327e73
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1489,6 +1501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet - Tatooine
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 7cc6718f-632e-4ece-9b82-aafc49191c0b
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1716,6 +1732,10 @@ PrefabInstance:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Production Center - Kamino
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 583ca41b-2dd6-4e16-a2b9-f9c8cb3928a0
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -2196,6 +2216,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shipyard - Bespin
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 3e1cd215-590b-4ce9-9eff-22a9ce3b6530
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2310,6 +2334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Production Center - Geonosis
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: cefab3e4-dc6d-45ad-af0a-8647b7f36b60
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2418,6 +2446,10 @@ PrefabInstance:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Planet - Naboo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 3bcfd164-35df-435f-9341-6e03637bbcef
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -2871,6 +2903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet - Yavin 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 200f48a5-4f63-4828-b560-5f36e211c457
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3270,6 +3306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shipyard - Death Star
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 5efbe7b0-c9b0-4f62-9a85-9be8352fb643
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3380,6 +3420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet - Dagobah
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: b3a7f156-e775-497c-a183-c0f5fa7bf25b
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3489,6 +3533,10 @@ PrefabInstance:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Shipyard - Felucia
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: b54dbced-009a-4227-ae78-85ec4e637564
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -3684,6 +3732,10 @@ PrefabInstance:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Capital - Mustafar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 629a78f1-dd0d-4d10-9d97-4d04d9efe34c
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -3920,6 +3972,10 @@ PrefabInstance:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Shipyard - Mygeeto
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 92205d30-081a-4a2a-9cf8-5dc5867211ba
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
@@ -4429,6 +4485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Planet - Utapau
       objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: f4ed756b-db37-4098-ba33-fa1be92b9234
+      objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4693,6 +4753,10 @@ PrefabInstance:
     - target: {fileID: 3091433258522064170, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_Name
       value: Capital - Coruscant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275564723986481688, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: uniqueID
+      value: 2e410e61-3887-4ada-bcc2-35340832201e
       objectReference: {fileID: 0}
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_RootOrder

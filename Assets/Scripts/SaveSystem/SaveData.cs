@@ -30,7 +30,7 @@ namespace Abraham.GalacticConquest.SaveSystem
         public PlanetData(PlanetBehaviour planetBehaviour)
         {
             SaveableIdentifier saveableIdentifier = planetBehaviour.GetComponent<SaveableIdentifier>();
-            objectId = saveableIdentifier.GetGeneratedId();
+            objectId = saveableIdentifier.uniqueID;
             
             planetName = planetBehaviour.PlanetInfo.myName;
             typeDescriptor = planetBehaviour.PlanetInfo.typeDescriptor;
