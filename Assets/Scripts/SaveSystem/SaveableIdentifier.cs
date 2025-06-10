@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest.SaveSystem
 {
+    [ExecuteInEditMode]
     public class SaveableIdentifier : MonoBehaviour
     {
-        [SerializeField] private string humanReadablePrefix;
         [SerializeField, ReadOnly] private string generatedId;
-        [ShowInInspector, ReadOnly] public string FullId => BuildFullId();
 
         private void Awake()
         {
@@ -29,14 +28,11 @@ namespace Abraham.GalacticConquest.SaveSystem
                 generatedId = System.Guid.NewGuid().ToString();
             }
         }
-        
-        
-        private string BuildFullId()
+
+        public string GetGeneratedId()
         {
             GenerateId();
-            bool missingIdSection = string.IsNullOrEmpty(humanReadablePrefix) || string.IsNullOrEmpty(generatedId);
-            string idSeparator  = missingIdSection ? "" : "_";
-            return $"{humanReadablePrefix}{idSeparator}{generatedId}";
+            return generatedId;
         }
     }
 }
