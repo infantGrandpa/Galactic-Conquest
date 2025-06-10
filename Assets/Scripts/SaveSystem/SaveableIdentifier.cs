@@ -17,7 +17,7 @@ namespace Abraham.GalacticConquest.SaveSystem
         private void GenerateId()
         {
             PrefabAssetType assetType = PrefabUtility.GetPrefabAssetType(gameObject);
-            if (assetType != PrefabAssetType.NotAPrefab)
+            if (assetType != PrefabAssetType.Regular)
             {
                 generatedId = null;
                 return;
