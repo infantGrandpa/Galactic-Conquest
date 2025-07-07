@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.Traits;
 using TMPro;
@@ -10,7 +10,8 @@ namespace Abraham.GalacticConquest.GUI
     {
         [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text descText;
-        [SerializeField] private TMP_Text apPerTurnText;
+
+        [SerializeField] private List<GUIActionPointEntry> apEntries;
 
         private void Awake()
         {
@@ -63,12 +64,14 @@ namespace Abraham.GalacticConquest.GUI
                 Debug.LogWarning("GUIInfoBoxHandler GetActionPointInfo(): Target " + target.name + " does not have an action point modifier.", this);
                 return;
             }
-
-            int apValue = actionPointAggregator.TotalApPerTurn;
-            //Add plus sign if the apValue positive; minus is always shown
-            string apString = GUIManager.ConvertAPIntToString(apValue);    
-
-            apPerTurnText.text = apString;
+            
+            List<ActionPointModifier> modifiers = actionPointAggregator.APModifiers;
+            for (int i = 0; i < modifiers.Count; i++)
+            {
+                ActionPointModifier thisModifier = modifiers[i];
+                GUIActionPointEntry thisEntry = apEntries[i];
+                thisEntry.UpdateApEntry(thisModifier.apModificationReason, thisModifier.apModificationValue);
+            }
         }
 
         public void HideInfoBox()
