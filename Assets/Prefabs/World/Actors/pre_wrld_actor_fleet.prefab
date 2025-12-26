@@ -384,7 +384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myName: 
-  myDesc: 
+  myDesc: Transports armies around the galaxy and can engage in ship-to-ship space
+    combat.
   typeDescriptor: Fleet
 --- !u!114 &2817296917156250314
 MonoBehaviour:

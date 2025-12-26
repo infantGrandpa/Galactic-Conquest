@@ -197,6 +197,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Discreet medical and recovery hub for protected personnel and command
+        assets.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Polis Massa
       objectReference: {fileID: 0}
@@ -977,6 +982,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Isolated frozen world suitable for secure storage, research, or classified
+        installations.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Rhen Var
       objectReference: {fileID: 0}
@@ -1313,6 +1323,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: "Wookiee homeworld fiercely defended with Republic aid near war\u2019s
+        end."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Kashyyyk
       objectReference: {fileID: 0}
@@ -1550,6 +1565,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Smuggler nexus enabling deniable logistics, intelligence exchange, and
+        black-market supply.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Tatooine
       objectReference: {fileID: 0}
@@ -1780,6 +1800,10 @@ PrefabInstance:
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Cloning world producing the Grand Army, vital yet politically isolated.
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
@@ -2265,6 +2289,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Gas giant consisting of valuable tibanna gas used for starship fuel.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Bespin
       objectReference: {fileID: 0}
@@ -2383,6 +2411,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Separatist foundry world and first major battlefield of the Clone Wars.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Geonosis
       objectReference: {fileID: 0}
@@ -2494,6 +2526,11 @@ PrefabInstance:
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Politically symbolic world whose control grants legitimacy, morale,
+        and diplomatic leverage.
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
@@ -2952,6 +2989,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Remote staging ground with space for bases, training, and fleet assembly.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Yavin 4
       objectReference: {fileID: 0}
@@ -3355,6 +3396,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Death Star
       objectReference: {fileID: 0}
@@ -3469,6 +3514,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Sensor-obscured world ideal for hidden bases, training, or covert operations.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Dagobah
       objectReference: {fileID: 0}
@@ -3581,6 +3630,11 @@ PrefabInstance:
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Chaotic jungle front where prolonged campaigns drained clones and commanders
+        alike.
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
@@ -3780,6 +3834,11 @@ PrefabInstance:
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Remote lava world hosting secret Separatist leadership meetings late
+        in the war.
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
@@ -4020,6 +4079,11 @@ PrefabInstance:
     - target: {fileID: 3552822677226016053, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Financial and industrial hub capable of funding armies and anchoring
+        long-duration sieges.
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
@@ -4534,6 +4598,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Naturally fortified sinkhole cities suited for concealed command or
+        production sites.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Utapau
       objectReference: {fileID: 0}
@@ -4803,6 +4872,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
+      propertyPath: myDesc
+      value: Republic capital, Senate seat, and strategic nerve center targeted by
+        Separatist strikes.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141150999313406922, guid: 2ec6630a96567d14f8f68d0adbe438f4, type: 3}
       propertyPath: myName
       value: Coruscant
       objectReference: {fileID: 0}
@@ -4924,6 +4998,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 539582313}
     m_Modifications:
+    - target: {fileID: 745470086751326153, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 745470086751326153, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 745470086751326153, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 745470086751326153, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 745470086751326153, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 745470086751326153, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 878373525523579019, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5002,6 +5100,154 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 878373525523579019, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528609010820054611, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528609010820054611, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528609010820054611, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528609010820054611, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860833994360998706, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_text
+      value: 1st Republic Fleet
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354418365796369011, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354418365796369011, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354418365796369011, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354418365796369011, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2354418365796369011, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806029325171208644, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806029325171208644, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806029325171208644, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806029325171208644, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866753719514107115, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866753719514107115, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866753719514107115, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866753719514107115, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866753719514107115, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3866753719514107115, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657902790244695254, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_Spacing
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036995530480294966, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036995530480294966, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036995530480294966, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036995530480294966, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045003574855343837, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045003574855343837, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045003574855343837, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045003574855343837, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045003574855343837, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5045003574855343837, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250981362775085324, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841274355004642226, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841274355004642226, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841274355004642226, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841274355004642226, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841274355004642226, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8967905200068416215, guid: f310fc0b0ec3e8b4ebee53d444290c0d, type: 3}
