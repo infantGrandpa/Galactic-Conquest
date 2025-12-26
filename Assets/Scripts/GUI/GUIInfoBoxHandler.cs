@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
-using Abraham.GalacticConquest.Traits;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ namespace Abraham.GalacticConquest.GUI
     public class GUIInfoBoxHandler : MonoBehaviour
     {
         [SerializeField] private TMP_Text titleText;
-        // TODO: Remove Description text? Or fill it out. That'd probably be better.
         [SerializeField] private TMP_Text descText;
 
         [Header("AP Entries")]
@@ -32,7 +30,6 @@ namespace Abraham.GalacticConquest.GUI
         public void ShowInfoBox(GameObject target)
         {
             GetGenericInfo(target);
-            GetTraitInfo(target);
             GetActionPointInfo(target);
 
             gameObject.SetActive(true);
@@ -41,7 +38,7 @@ namespace Abraham.GalacticConquest.GUI
         private void GetGenericInfo(GameObject target)
         {
             GenericInfo targetInfo = target.GetComponent<GenericInfo>();
-            if (targetInfo == null) {
+            if (!targetInfo) {
                 Debug.LogWarning("GUIInfoBoxHandler ShowInfoBox(): Target " + target.name + " does not have generic info.", this);
                 titleText.text = "Unknown Name";
                 descText.text = "";
@@ -49,23 +46,7 @@ namespace Abraham.GalacticConquest.GUI
             }
 
             titleText.text = targetInfo.myName;
-        }
-
-        private void GetTraitInfo(GameObject target)
-        {
-            TraitHandler targetTraitHandler = target.GetComponent<TraitHandler>();
-            if (targetTraitHandler == null) {
-                Debug.LogWarning("GUIInfoBoxHandler ShowInfoBox(): Target " + target.name + " does not have a trait handler.", this);
-                return;
-            }
-
-            string testString = "";
-
-            foreach (Trait thisTrait in targetTraitHandler.traits) {
-                testString += thisTrait.traitName + "\n";
-            }
-
-            descText.text = testString;
+            descText.text = targetInfo.myDesc;
         }
 
         private void GetActionPointInfo(GameObject target)
