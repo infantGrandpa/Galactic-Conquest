@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
-using Abraham.GalacticConquest.Traits;
 using TMPro;
 using UnityEngine;
 
@@ -10,17 +10,26 @@ namespace Abraham.GalacticConquest.GUI
     {
         [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text descText;
-        [SerializeField] private TMP_Text apPerTurnText;
+
+        [Header("AP Entries")]
+        [SerializeField] private GameObject apEntryPrefab;
+        [SerializeField] private Transform apListParent;
+        [SerializeField, Tooltip("The number of list entries created on Awake")] private int startingListEntries = 3;
+        [SerializeField] private List<GUIActionPointEntry> apEntries;
+
 
         private void Awake()
         {
             HideInfoBox();
+            for (int i = 0; i < startingListEntries; i++)
+            {
+                CreateNewApEntry();
+            }
         }
 
         public void ShowInfoBox(GameObject target)
         {
             GetGenericInfo(target);
-            GetTraitInfo(target);
             GetActionPointInfo(target);
 
             gameObject.SetActive(true);
@@ -29,7 +38,7 @@ namespace Abraham.GalacticConquest.GUI
         private void GetGenericInfo(GameObject target)
         {
             GenericInfo targetInfo = target.GetComponent<GenericInfo>();
-            if (targetInfo == null) {
+            if (!targetInfo) {
                 Debug.LogWarning("GUIInfoBoxHandler ShowInfoBox(): Target " + target.name + " does not have generic info.", this);
                 titleText.text = "Unknown Name";
                 descText.text = "";
@@ -37,23 +46,7 @@ namespace Abraham.GalacticConquest.GUI
             }
 
             titleText.text = targetInfo.myName;
-        }
-
-        private void GetTraitInfo(GameObject target)
-        {
-            TraitHandler targetTraitHandler = target.GetComponent<TraitHandler>();
-            if (targetTraitHandler == null) {
-                Debug.LogWarning("GUIInfoBoxHandler ShowInfoBox(): Target " + target.name + " does not have a trait handler.", this);
-                return;
-            }
-
-            string testString = "";
-
-            foreach (Trait thisTrait in targetTraitHandler.traits) {
-                testString += thisTrait.traitName + "\n";
-            }
-
-            descText.text = testString;
+            descText.text = targetInfo.myDesc;
         }
 
         private void GetActionPointInfo(GameObject target)
@@ -63,12 +56,39 @@ namespace Abraham.GalacticConquest.GUI
                 Debug.LogWarning("GUIInfoBoxHandler GetActionPointInfo(): Target " + target.name + " does not have an action point modifier.", this);
                 return;
             }
+            
+            List<ActionPointModifier> modifiers = actionPointAggregator.APModifiers;
 
-            int apValue = actionPointAggregator.TotalApPerTurn;
-            //Add plus sign if the apValue positive; minus is always shown
-            string apString = GUIManager.ConvertAPIntToString(apValue);    
+            int listLength = Math.Max(modifiers.Count, apEntries.Count);
+            
+            for (int i = 0; i < listLength; i++)
+            {
+                GUIActionPointEntry thisEntry = i >= apEntries.Count ? CreateNewApEntry() : apEntries[i];
+                
+                if (i >= modifiers.Count)
+                {
+                    thisEntry.gameObject.SetActive(false);
+                    continue;
+                }
+                
+                ActionPointModifier thisModifier = modifiers[i];
 
-            apPerTurnText.text = apString;
+                thisEntry.gameObject.SetActive(true);
+                thisEntry.UpdateApEntry(thisModifier.apModificationReason, thisModifier.apModificationValue);
+            }
+        }
+
+        private GUIActionPointEntry CreateNewApEntry()
+        {
+            GameObject newEntryObject = Instantiate(apEntryPrefab, apListParent);
+            GUIActionPointEntry entry = newEntryObject.GetComponent<GUIActionPointEntry>();
+            if (!entry)
+            {
+                throw new MissingComponentException($"Prefab {apEntryPrefab.name} is missing a GUIActionPointEntry component.");
+            }
+            
+            apEntries.Add(entry);
+            return entry;
         }
 
         public void HideInfoBox()
