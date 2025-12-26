@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
-using Abraham.GalacticConquest.SaveSystem;
 using Abraham.GalacticConquest.Traits;
 using Abraham.GalacticConquest.UnitControl;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Planets
 {
-    public class PlanetBehaviour : MonoBehaviour, ISaveable
+    public class PlanetBehaviour : MonoBehaviour
     {
         public GenericInfo PlanetInfo { get; private set; }
         public PlanetSlotHandler PlanetSlotHandler { get; private set; }
@@ -146,16 +145,6 @@ namespace Abraham.GalacticConquest.Planets
         {
             _traitHandler.RemoveTrait(TraitManager.Instance.fortifiedTrait);
             _planetLabel.ShowTraitIcons(_traitHandler);
-        }
-
-        public SaveData SerializeToSaveData()
-        {
-            return new PlanetData(this);
-        }
-
-        public void DeserializeFromSaveData()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
