@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.Traits;
@@ -9,13 +10,23 @@ namespace Abraham.GalacticConquest.GUI
     public class GUIInfoBoxHandler : MonoBehaviour
     {
         [SerializeField] private TMP_Text titleText;
+        // TODO: Remove Description text? Or fill it out. That'd probably be better.
         [SerializeField] private TMP_Text descText;
 
+        [Header("AP Entries")]
+        [SerializeField] private GameObject apEntryPrefab;
+        [SerializeField] private Transform apListParent;
+        [SerializeField, Tooltip("The number of list entries created on Awake")] private int startingListEntries = 3;
         [SerializeField] private List<GUIActionPointEntry> apEntries;
+
 
         private void Awake()
         {
             HideInfoBox();
+            for (int i = 0; i < startingListEntries; i++)
+            {
+                CreateNewApEntry();
+            }
         }
 
         public void ShowInfoBox(GameObject target)
@@ -66,12 +77,37 @@ namespace Abraham.GalacticConquest.GUI
             }
             
             List<ActionPointModifier> modifiers = actionPointAggregator.APModifiers;
-            for (int i = 0; i < modifiers.Count; i++)
+
+            int listLength = Math.Max(modifiers.Count, apEntries.Count);
+            
+            for (int i = 0; i < listLength; i++)
             {
+                GUIActionPointEntry thisEntry = i >= apEntries.Count ? CreateNewApEntry() : apEntries[i];
+                
+                if (i >= modifiers.Count)
+                {
+                    thisEntry.gameObject.SetActive(false);
+                    continue;
+                }
+                
                 ActionPointModifier thisModifier = modifiers[i];
-                GUIActionPointEntry thisEntry = apEntries[i];
+
+                thisEntry.gameObject.SetActive(true);
                 thisEntry.UpdateApEntry(thisModifier.apModificationReason, thisModifier.apModificationValue);
             }
+        }
+
+        private GUIActionPointEntry CreateNewApEntry()
+        {
+            GameObject newEntryObject = Instantiate(apEntryPrefab, apListParent);
+            GUIActionPointEntry entry = newEntryObject.GetComponent<GUIActionPointEntry>();
+            if (!entry)
+            {
+                throw new MissingComponentException($"Prefab {apEntryPrefab.name} is missing a GUIActionPointEntry component.");
+            }
+            
+            apEntries.Add(entry);
+            return entry;
         }
 
         public void HideInfoBox()
