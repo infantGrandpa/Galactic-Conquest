@@ -9,6 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1231254459724768466}
+  - component: {fileID: 6782337894604243722}
+  - component: {fileID: 7865309212197498180}
+  - component: {fileID: 9198888585861406684}
+  - component: {fileID: -8543086685791198717}
   m_Layer: 0
   m_Name: '@TurnManager'
   m_TagString: Untagged
@@ -31,3 +35,82 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6782337894604243722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944015907768776238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74c73d6ebc3e179428f9fe66d98d21d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7865309212197498180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944015907768776238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46fe82638c5fd74285bff83b80f8a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingFaction: {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
+  factionsInGame:
+  - {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
+  - {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+--- !u!114 &9198888585861406684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944015907768776238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabId: 161103056249910365
+  localRefs:
+    _Keys:
+    - {fileID: 9198888585861406684}
+    - {fileID: 11500000, guid: d609dd78b9dc6354aab8bffbb31f1d00, type: 3}
+    - {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
+    - {fileID: -8543086685791198717}
+    - {fileID: 11500000, guid: baff8732cd3074ef88b34f9cc487846d, type: 3}
+    - {fileID: 7865309212197498180}
+    - {fileID: 11500000, guid: d46fe82638c5fd74285bff83b80f8a54, type: 3}
+    - {fileID: 11500000, guid: 74c73d6ebc3e179428f9fe66d98d21d3, type: 3}
+    - {fileID: 1231254459724768466}
+    - {fileID: 8944015907768776238}
+    - {fileID: 6782337894604243722}
+    - {fileID: 11400000, guid: d5c98e459d657774dbdb76198420fa0e, type: 2}
+    - {fileID: 11400000, guid: 3fd875b374fb7d847bc85deae5bb89e4, type: 2}
+    _Values: e1bc6830872f7d0d7bb6c8422d836b1c564d06f4f5b5036d632a70109fede736df6ce522c57a681f9e309d270a719a0e3cae23c02952912a460431a2419392699dff62c19d48573049daa93ae8249d0f709d2b0f35d8f23103ef233fb73a21313df83af52ba3547b
+--- !u!114 &-8543086685791198717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944015907768776238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveLayer: 0
+  saveTag: 0
+  saveName: 0
+  saveHideFlags: 0
+  saveActive: 0
+  saveChildren: 0
+  saveDestroyed: 0
+  componentsToSave:
+  - {fileID: 6782337894604243722}
+  - {fileID: 7865309212197498180}

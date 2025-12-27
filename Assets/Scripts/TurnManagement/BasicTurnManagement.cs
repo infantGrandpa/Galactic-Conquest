@@ -25,20 +25,21 @@ namespace Abraham.GalacticConquest.TurnManagement
         [SerializeField] private Faction startingFaction;
         // TODO: Replace the factionsInGame list with the ActiveFactionManager
         [SerializeField] private List<Faction> factionsInGame = new();
-        private Faction _currentFactionTurn;
+        public Faction currentFactionTurn;
 
 
         private void Start()
         {
-            SetCurrentTurn(startingFaction);
+            Faction faction = currentFactionTurn ? currentFactionTurn : startingFaction;
+            SetCurrentTurn(faction);
         }
 
         public void NextTurn()
         {
-            ActionPointManager.Instance.SaveRolloverPoints(_currentFactionTurn);
+            ActionPointManager.Instance.SaveRolloverPoints(currentFactionTurn);
             GarbageCollector.Instance.ClearGarbage();
             
-            int currentIndex = factionsInGame.IndexOf(_currentFactionTurn);
+            int currentIndex = factionsInGame.IndexOf(currentFactionTurn);
     
             // Safety check
             if (currentIndex == -1 || factionsInGame.Count == 0)
@@ -53,9 +54,9 @@ namespace Abraham.GalacticConquest.TurnManagement
 
         private void SetCurrentTurn(Faction faction)
         {
-            _currentFactionTurn = faction;
-            GUIManager.Instance.ChangeTurn($"{_currentFactionTurn.factionName}'s Turn");
-            ActionPointManager.Instance.CalculateActionPoints(_currentFactionTurn);
+            currentFactionTurn = faction;
+            GUIManager.Instance.ChangeTurn($"{currentFactionTurn.factionName}'s Turn");
+            ActionPointManager.Instance.CalculateActionPoints(currentFactionTurn);
         }
     }
 }
