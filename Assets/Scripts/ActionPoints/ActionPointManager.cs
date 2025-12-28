@@ -36,8 +36,8 @@ namespace Abraham.GalacticConquest.ActionPoints
         [Tooltip("The AP cost to fortify a planet.")]
         public int fortifyPlanetCost;
 
-        [PropertySpace, ShowInInspector, ReadOnly]
-        public int CurrentActionPoints { get; private set; }
+        [FormerlySerializedAs("CurrentActionPoints")] [PropertySpace, ShowInInspector, ReadOnly]
+        public int currentActionPoints;
 
         [FormerlySerializedAs("actionPointModifiers")] [FormerlySerializedAs("actionPointAdjusters")] [HideInInspector]
         public List<ActionPointAggregator> actionPointAggregators = new();
@@ -74,8 +74,8 @@ namespace Abraham.GalacticConquest.ActionPoints
             }
 
             FactionNotFound:
-            CurrentActionPoints = totalActionPoints;
-            GUIManager.Instance.UpdateActionPoints(CurrentActionPoints);
+            currentActionPoints = totalActionPoints;
+            GUIManager.Instance.UpdateActionPoints(currentActionPoints);
         }
 
         [Button("Build AP Modifier List for each Faction")]
@@ -112,28 +112,28 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         public void SaveRolloverPoints(Faction faction)
         {
-            int rollover = Mathf.FloorToInt(CurrentActionPoints * percOfRolloverPoints);
+            int rollover = Mathf.FloorToInt(currentActionPoints * percOfRolloverPoints);
             _factionRolloverPoints[faction] = rollover;
-            GUIManager.Instance.AddActionLogMessage($"Saved {rollover} of {CurrentActionPoints} points for the {faction.factionName}.");
+            GUIManager.Instance.AddActionLogMessage($"Saved {rollover} of {currentActionPoints} points for the {faction.factionName}.");
         }
 
 
         public void IncreaseActionPoints(int increaseBy)
         {
-            CurrentActionPoints += increaseBy;
-            GUIManager.Instance.UpdateActionPoints(CurrentActionPoints);
+            currentActionPoints += increaseBy;
+            GUIManager.Instance.UpdateActionPoints(currentActionPoints);
         }
 
         public void DecreaseActionPoints(int decreaseBy)
         {
             //TODO: Should we test if we can actually decrease by this amount first?
-            CurrentActionPoints -= decreaseBy;
-            GUIManager.Instance.UpdateActionPoints(CurrentActionPoints);
+            currentActionPoints -= decreaseBy;
+            GUIManager.Instance.UpdateActionPoints(currentActionPoints);
         }
 
         public bool IsTurnComplete()
         {
-            if (CurrentActionPoints <= 0)
+            if (currentActionPoints <= 0)
             {
                 return true;
             }
@@ -143,7 +143,7 @@ namespace Abraham.GalacticConquest.ActionPoints
 
         public bool CanPerformAction(int targetAPCost)
         {
-            return targetAPCost <= CurrentActionPoints;
+            return targetAPCost <= currentActionPoints;
         }
     }
 }

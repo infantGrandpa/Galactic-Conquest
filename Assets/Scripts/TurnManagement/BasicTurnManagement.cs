@@ -30,8 +30,17 @@ namespace Abraham.GalacticConquest.TurnManagement
 
         private void Start()
         {
-            Faction faction = currentFactionTurn ? currentFactionTurn : startingFaction;
-            SetCurrentTurn(faction);
+            //If currentFactionTurn is set, then we loaded a game.
+            // This means AP should already be set, and we shouldn't recalculate.
+            //  This has to happen after we've set currentFactionTurn on Awake() using EasySave3.
+            if (currentFactionTurn)
+            {
+                SetCurrentTurn(currentFactionTurn, false);
+                GUIManager.Instance.UpdateActionPoints(ActionPointManager.Instance.currentActionPoints);
+                return;
+            }
+            
+            SetCurrentTurn(startingFaction);
         }
 
         public void NextTurn()
@@ -52,10 +61,14 @@ namespace Abraham.GalacticConquest.TurnManagement
             SetCurrentTurn(factionsInGame[nextIndex]);
         }
 
-        private void SetCurrentTurn(Faction faction)
+        private void SetCurrentTurn(Faction faction, bool calculateAp = true)
         {
             currentFactionTurn = faction;
             GUIManager.Instance.ChangeTurn($"{currentFactionTurn.factionName}'s Turn");
+            if (!calculateAp)
+            {
+                return;
+            }
             ActionPointManager.Instance.CalculateActionPoints(currentFactionTurn);
         }
     }
