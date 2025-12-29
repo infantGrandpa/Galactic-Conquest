@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.GUI;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
@@ -19,6 +20,7 @@ namespace Abraham.GalacticConquest.Actions
         }
 
         private static ActionManager _instance;
+        [ShowInInspector, ReadOnly, ListDrawerSettings(ShowFoldout = true)]
         private Stack<IGameAction> _actionHistory = new();
 
         public bool PerformAction(IGameAction action)
