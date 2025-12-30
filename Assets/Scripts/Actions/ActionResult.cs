@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+
 namespace Abraham.GalacticConquest.Actions
 {
     public class ActionResult
@@ -7,7 +9,7 @@ namespace Abraham.GalacticConquest.Actions
         public int APCost { get; private set; }
         public bool WasSuccessful { get; private set; }
 
-        public ActionResult(string actionType, bool wasSuccessful, string message, int apCost)
+        private ActionResult(string actionType, bool wasSuccessful, int apCost, string message)
         {
             ActionType = actionType;
             WasSuccessful = wasSuccessful;
@@ -15,14 +17,14 @@ namespace Abraham.GalacticConquest.Actions
             APCost = apCost;
         }
 
-        public static ActionResult Success(string actionType, string message, int apCost)
+        public static ActionResult Success(string actionType, int apCost, [CanBeNull] string message = "")
         {
-            return new ActionResult(actionType, true, message, apCost);
+            return new ActionResult(actionType, true, apCost, message);
         }
 
-        public static ActionResult Failure(string actionType, string message)
+        public static ActionResult Failure(string actionType, [CanBeNull] string message = "")
         {
-            return new ActionResult(actionType, false, message, 0);
+            return new ActionResult(actionType, false, 0, message);
         }
     }
 }
