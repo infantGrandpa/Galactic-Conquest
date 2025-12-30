@@ -5,7 +5,7 @@ namespace Abraham.GalacticConquest.Actions
     public abstract class GameAction
     {
         [ShowInInspector, ReadOnly] protected int CachedApCost;
-        [ShowInInspector, ReadOnly] protected ActionResult ActionResult;
+        [ShowInInspector, ReadOnly] protected ActionResult Result;
         
         public int GetActionPointCost()
         {
