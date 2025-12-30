@@ -7,12 +7,12 @@ namespace Abraham.GalacticConquest.Actions
     public class FortifyPlanetAction : GameAction
     {
         private readonly PlanetBehaviour _planet;
-        
+
         public FortifyPlanetAction(PlanetBehaviour planetToFortify)
         {
             _planet = planetToFortify;
         }
-        
+
         protected override int CalculateActionPointCost()
         {
             return ActionPointManager.Instance.fortifyPlanetCost;
@@ -26,12 +26,13 @@ namespace Abraham.GalacticConquest.Actions
                 return Result.WasSuccessful;
             }
 
-            if (!ActionPointManager.Instance.CanPerformAction(GetActionPointCost()))
+            int apCost = GetActionPointCost();
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
             {
-                Result = ActionResult.Failure(GetActionTypeName(), "Planet is already fortified.");
+                Result = ActionResult.Failure(GetActionTypeName(), $"Fortifying requires {apCost} AP.");
                 return Result.WasSuccessful;
             }
-            
+
             return true;
         }
 
@@ -41,7 +42,7 @@ namespace Abraham.GalacticConquest.Actions
             {
                 return Result.WasSuccessful;
             }
-            
+
             _planet.FortifyPlanet();
 
             int apCost = GetActionPointCost();
