@@ -4,19 +4,19 @@ using Abraham.GalacticConquest.GUI;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class CompoundAction : IGameAction
+    public class CompoundAction : GameAction
     {
-        private readonly List<IGameAction> _actions;
+        private readonly List<GameAction> _actions;
 
-        public CompoundAction(params IGameAction[] actions)
+        public CompoundAction(params GameAction[] actions)
         {
-            _actions = new List<IGameAction>(actions);
+            _actions = new List<GameAction>(actions);
         }
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             int apCost = 0;
-            foreach (IGameAction action in _actions)
+            foreach (GameAction action in _actions)
             {
                 apCost += action.GetActionPointCost();
             }
@@ -24,7 +24,7 @@ namespace Abraham.GalacticConquest.Actions
             return apCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             int apCost = GetActionPointCost();
             if (!ActionPointManager.Instance.CanPerformAction(apCost))
@@ -32,7 +32,7 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
-            foreach (IGameAction action in _actions)
+            foreach (GameAction action in _actions)
             {
                 bool canExecute = action.CanExecuteAction();
                 if (!canExecute)
@@ -44,14 +44,14 @@ namespace Abraham.GalacticConquest.Actions
             return true;
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
                 return false;
             }
 
-            foreach (IGameAction action in _actions)
+            foreach (GameAction action in _actions)
             {
                 if (action.ExecuteAction()) continue;
                 
@@ -64,17 +64,17 @@ namespace Abraham.GalacticConquest.Actions
             return true;
         }
 
-        public void AddAction(IGameAction action)
+        public void AddAction(GameAction action)
         {
             _actions.Add(action);
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             // Iterate through actions in reverse order to properly undo the compound action
             for (int thisActionIndex = _actions.Count - 1; thisActionIndex >= 0; thisActionIndex--)
             {
-                IGameAction thisAction = _actions[thisActionIndex];
+                GameAction thisAction = _actions[thisActionIndex];
                 bool success = thisAction.UndoAction();
 
                 if (success) continue;

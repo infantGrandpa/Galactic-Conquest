@@ -6,7 +6,7 @@ using Abraham.GalacticConquest.UnitControl;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class MoveAction : IGameAction
+    public class MoveAction : GameAction
     {
         private readonly Moveable _moveableObject;
         private readonly PlanetBehaviour _targetPlanet;
@@ -20,7 +20,7 @@ namespace Abraham.GalacticConquest.Actions
         }
 
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             if (!_moveableObject)
             {
@@ -34,7 +34,7 @@ namespace Abraham.GalacticConquest.Actions
             return apCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             if (!_moveableObject)
             {
@@ -58,7 +58,7 @@ namespace Abraham.GalacticConquest.Actions
             return ActionPointManager.Instance.CanPerformAction(apCost);
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
@@ -82,7 +82,7 @@ namespace Abraham.GalacticConquest.Actions
             return true;
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             if (!_startingPlanet)
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class BuildFleetAction : IGameAction
+    public class BuildFleetAction : GameAction
     {
         private readonly ShipyardBehaviour _shipyardBehaviour;
         private GameObject _builtFleet;
@@ -15,12 +15,12 @@ namespace Abraham.GalacticConquest.Actions
             _shipyardBehaviour = shipyardBehaviour;
         }
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             return ActionPointManager.Instance.buildShipApCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             bool slotsAvailable = _shipyardBehaviour.AreAnyPlanetSlotsAvailable();
             if (!slotsAvailable)
@@ -32,7 +32,7 @@ namespace Abraham.GalacticConquest.Actions
             return ActionPointManager.Instance.CanPerformAction(apCost);
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
@@ -50,7 +50,7 @@ namespace Abraham.GalacticConquest.Actions
             return true;
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             _shipyardBehaviour.DestroyFleet(_builtFleet);
             int apCost = GetActionPointCost();

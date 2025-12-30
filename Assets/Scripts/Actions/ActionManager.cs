@@ -21,9 +21,9 @@ namespace Abraham.GalacticConquest.Actions
 
         private static ActionManager _instance;
         [ShowInInspector, ReadOnly, ListDrawerSettings(ShowFoldout = true)]
-        private Stack<IGameAction> _actionHistory = new();
+        private Stack<GameAction> _actionHistory = new();
 
-        public bool PerformAction(IGameAction action)
+        public bool PerformAction(GameAction action)
         {
             if (action.ExecuteAction())
             {
@@ -42,7 +42,7 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
-            IGameAction lastActionToUndo = _actionHistory.Pop();
+            GameAction lastActionToUndo = _actionHistory.Pop();
             return lastActionToUndo.UndoAction();
         }
     }

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class AttackAction : IGameAction
+    public class AttackAction : GameAction
     {
         private readonly CombatantBehaviour _attacker;
         private readonly CombatantBehaviour _defender;
@@ -44,18 +44,18 @@ namespace Abraham.GalacticConquest.Actions
             _wasPlanetFortified = _planet.IsPlanetFortified();
         }
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             return ActionPointManager.Instance.attackApCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             int apCost = GetActionPointCost();
             return ActionPointManager.Instance.CanPerformAction(apCost);
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
@@ -74,7 +74,7 @@ namespace Abraham.GalacticConquest.Actions
             return true;
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             _attacker.ReactivateAndCancelDeletion();    
             _defender.ReactivateAndCancelDeletion();    
