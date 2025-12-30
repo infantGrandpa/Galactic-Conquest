@@ -22,13 +22,13 @@ namespace Abraham.GalacticConquest.Actions
         {
             if (_planet.IsPlanetFortified())
             {
-                Result = ActionResult.Failure(GetType().ToString(), "Planet is already fortified.");
+                Result = ActionResult.Failure(GetActionTypeName(), "Planet is already fortified.");
                 return Result.WasSuccessful;
             }
 
             if (!ActionPointManager.Instance.CanPerformAction(GetActionPointCost()))
             {
-                Result = ActionResult.Failure(GetType().ToString(), "Planet is already fortified.");
+                Result = ActionResult.Failure(GetActionTypeName(), "Planet is already fortified.");
                 return Result.WasSuccessful;
             }
             
@@ -48,7 +48,7 @@ namespace Abraham.GalacticConquest.Actions
             ActionPointManager.Instance.DecreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage($"Fortified {_planet.PlanetInfo.myName}.", apCost * -1);
 
-            Result = ActionResult.Success(GetType().ToString(), apCost, $"Fortified {_planet.PlanetInfo.myName}.");
+            Result = ActionResult.Success(GetActionTypeName(), apCost, $"Fortified {_planet.PlanetInfo.myName}.");
             return Result.WasSuccessful;
         }
 

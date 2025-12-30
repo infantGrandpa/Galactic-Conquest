@@ -1,14 +1,18 @@
 using JetBrains.Annotations;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
 {
     public class ActionResult
     {
-        [ShowInInspector, ReadOnly] public string ActionType { get; private set; }
-        [ShowInInspector, ReadOnly] public string Message { get; private set; }
-        [ShowInInspector, ReadOnly] public int APCost { get; private set; }
-        [ShowInInspector, ReadOnly] public bool WasSuccessful { get; private set; }
+        public string ActionType { get; private set; }
+
+        [ShowInInspector, ReadOnly, Title("$ActionType")] public int APCost { get; private set; }
+        public bool WasSuccessful { get; private set; }
+        
+        [ShowInInspector, ReadOnly, HideLabel, DisplayAsString(false, TextAlignment.Center, FontSize = 16)]
+        public string Message { get; private set; }
 
         private ActionResult(string actionType, bool wasSuccessful, int apCost, string message)
         {
