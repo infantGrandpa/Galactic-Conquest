@@ -1,13 +1,14 @@
 using JetBrains.Annotations;
+using Sirenix.OdinInspector;
 
 namespace Abraham.GalacticConquest.Actions
 {
     public class ActionResult
     {
-        public string ActionType { get; private set; }
-        public string Message { get; private set; }
-        public int APCost { get; private set; }
-        public bool WasSuccessful { get; private set; }
+        [ShowInInspector, ReadOnly] public string ActionType { get; private set; }
+        [ShowInInspector, ReadOnly] public string Message { get; private set; }
+        [ShowInInspector, ReadOnly] public int APCost { get; private set; }
+        [ShowInInspector, ReadOnly] public bool WasSuccessful { get; private set; }
 
         private ActionResult(string actionType, bool wasSuccessful, int apCost, string message)
         {
