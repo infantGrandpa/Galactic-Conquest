@@ -40,6 +40,7 @@ namespace Abraham.GalacticConquest.Actions
         {
             if (!CanExecuteAction())
             {
+                GUIManager.Instance.AddActionLogMessage(Result.Message);
                 return Result.WasSuccessful;
             }
 
