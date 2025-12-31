@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.GUI;
+using Sirenix.OdinInspector;
 
 namespace Abraham.GalacticConquest.Actions
 {
     public class CompoundAction : GameAction
     {
+        [ShowInInspector, ReadOnly]
         private readonly List<GameAction> _actions;
 
         public CompoundAction(params GameAction[] actions)
@@ -26,19 +28,24 @@ namespace Abraham.GalacticConquest.Actions
 
         public override bool CanExecuteAction()
         {
-            int apCost = GetActionPointCost();
-            if (!ActionPointManager.Instance.CanPerformAction(apCost))
-            {
-                return false;
-            }
-
             foreach (GameAction action in _actions)
             {
                 bool canExecute = action.CanExecuteAction();
                 if (!canExecute)
                 {
-                    return false;
+                    Result = ActionResult.Failure(GetActionTypeName(), $"{action.GetActionTypeName()} cannot be executed.");
+                    return Result.WasSuccessful;
                 }
+            }
+            
+            int apCost = GetActionPointCost();
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
+            {
+                string msg = $"These actions require {apCost} AP.";
+                GUIManager.Instance.AddActionLogMessage(msg);
+                
+                Result = ActionResult.Failure(GetActionTypeName(), msg);
+                return Result.WasSuccessful;
             }
 
             return true;
@@ -48,20 +55,27 @@ namespace Abraham.GalacticConquest.Actions
         {
             if (!CanExecuteAction())
             {
-                return false;
+                return Result.WasSuccessful;
             }
 
             foreach (GameAction action in _actions)
             {
-                if (action.ExecuteAction()) continue;
+                if (action.ExecuteAction())
+                {
+                    continue;
+                }
                 
                 // TODO: What happens if one of the actions fails? Right now we just exit.
                 //  Should it undo the other actions?
-                GUIManager.Instance.AddActionLogMessage($"{action.GetType()} action failed. Ending compound action.");
-                return false;
+                string msg = $"{action.GetActionTypeName()} action failed. Ending compound action.";
+                
+                GUIManager.Instance.AddActionLogMessage(msg);
+                Result = ActionResult.Failure(GetActionTypeName(), msg);
+                return Result.WasSuccessful;
             }
 
-            return true;
+            Result = ActionResult.Success(GetActionTypeName(), GetActionPointCost(), "Compound action completed.");
+            return Result.WasSuccessful;
         }
 
         public void AddAction(GameAction action)
@@ -80,7 +94,7 @@ namespace Abraham.GalacticConquest.Actions
                 if (success) continue;
                 
                 GUIManager.Instance.AddActionLogMessage(
-                    $"Failed to undo {thisAction.GetType()} action at index {thisActionIndex} in compound action.");
+                    $"Failed to undo {thisAction.GetActionTypeName()} action at index {thisActionIndex} in compound action.");
                 return false;
             }
 

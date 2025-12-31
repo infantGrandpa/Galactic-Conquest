@@ -7,7 +7,7 @@ namespace Abraham.GalacticConquest.Actions
         protected int CachedApCost;
         [ShowInInspector, ReadOnly, HideLabel] protected ActionResult Result;
 
-        protected string GetActionTypeName()
+        public string GetActionTypeName()
         {
             string className = GetType().Name;
             
