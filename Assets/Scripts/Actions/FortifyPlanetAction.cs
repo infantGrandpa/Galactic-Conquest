@@ -58,6 +58,7 @@ namespace Abraham.GalacticConquest.Actions
         {
             _planet.UnfortifyPlanet();
 
+            // TODO: Use ActionResult apCost to ensure we're always using the cost of the action
             int apCost = GetActionPointCost();
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage($"Removed fortifications from {_planet.PlanetInfo.myName}.", apCost);
