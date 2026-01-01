@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
+using Abraham.GalacticConquest.Actions;
 using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using UnityEngine;
@@ -46,6 +47,7 @@ namespace Abraham.GalacticConquest.TurnManagement
         public void NextTurn()
         {
             ActionPointManager.Instance.SaveRolloverPoints(currentFactionTurn);
+            ActionManager.Instance.ClearActionHistory();
             GarbageCollector.Instance.ClearGarbage();
             
             int currentIndex = factionsInGame.IndexOf(currentFactionTurn);

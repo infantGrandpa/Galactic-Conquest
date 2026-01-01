@@ -34,6 +34,11 @@ namespace Abraham.GalacticConquest.Actions
             return false;
         }
 
+        public void ClearActionHistory()
+        {
+            _actionHistory.Clear();
+        }
+
         public bool UndoLastAction()
         {
             if (_actionHistory.Count == 0)
