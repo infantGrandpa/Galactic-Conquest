@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class BuildFleetAction : IGameAction
+    public class BuildFleetAction : GameAction
     {
         private readonly ShipyardBehaviour _shipyardBehaviour;
         private GameObject _builtFleet;
@@ -15,45 +15,59 @@ namespace Abraham.GalacticConquest.Actions
             _shipyardBehaviour = shipyardBehaviour;
         }
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             return ActionPointManager.Instance.buildShipApCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             bool slotsAvailable = _shipyardBehaviour.AreAnyPlanetSlotsAvailable();
             if (!slotsAvailable)
             {
-                return false;
+                Result = ActionResult.Failure(GetActionTypeName(), $"There are no available slots for new ships at {_shipyardBehaviour.GetPlanetName()}");
+                return Result.WasSuccessful;
             }
 
             int apCost = GetActionPointCost();
-            return ActionPointManager.Instance.CanPerformAction(apCost);
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
+            {
+                Result = ActionResult.Failure(GetActionTypeName(), $"Building a new fleet requires {apCost} AP.");
+                return Result.WasSuccessful;
+            }
+
+            return true;
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
-                GUIManager.Instance.AddActionLogMessage("Unable to build a fleet at " + _shipyardBehaviour.GetPlanetName());
-                return false;
+                GUIManager.Instance.AddActionLogMessage(Result.Message);
+                return Result.WasSuccessful;
             }
 
             bool success = CreateFleetAtShipyard();
             if (!success)
             {
-                return false;
+                GUIManager.Instance.AddActionLogMessage(Result.Message);
+                return Result.WasSuccessful;
             }
 
-            ActionPointManager.Instance.DecreaseActionPoints(GetActionPointCost());
-            return true;
+            int apCost = GetActionPointCost();
+            ActionPointManager.Instance.DecreaseActionPoints(apCost);
+
+            string successMsg = $"{_shipyardBehaviour.GetFactionName()} built a new fleet at {_shipyardBehaviour.GetPlanetName()}."; 
+            GUIManager.Instance.AddActionLogMessage(successMsg, apCost * -1);
+
+            Result = ActionResult.Success(GetActionTypeName(), apCost, successMsg);
+            return Result.WasSuccessful;
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             _shipyardBehaviour.DestroyFleet(_builtFleet);
-            int apCost = GetActionPointCost();
+            int apCost = Result.APCost;
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage(
                 $"Removed {_shipyardBehaviour.GetFactionName()} fleet that was built at {_shipyardBehaviour.GetPlanetName()}.", apCost);
@@ -62,9 +76,6 @@ namespace Abraham.GalacticConquest.Actions
 
         private bool CreateFleetAtShipyard()
         {
-            string factionName = _shipyardBehaviour.GetFactionName();
-            string planetName = _shipyardBehaviour.GetPlanetName();
-
             GameObject fleetPrefab = LevelManager.Instance.fleetPrefab;
             if (!fleetPrefab)
             {
@@ -82,15 +93,14 @@ namespace Abraham.GalacticConquest.Actions
             Transform slotTransform = _shipyardBehaviour.AddMoveableToPlanetSlot(moveable);
             if (!slotTransform)
             {
-                GUIManager.Instance.AddActionLogMessage($"Unable to build a new fleet. No available slots at {planetName}.");
+                Result = ActionResult.Failure(GetActionTypeName(),
+                    $"There are no available slots for new ships at {_shipyardBehaviour.GetPlanetName()}");
                 _shipyardBehaviour.DestroyFleet(_builtFleet);
-                return false;
+                return Result.WasSuccessful;
             }
 
             _shipyardBehaviour.PositionFleetAtPlanetSlot(moveable, slotTransform);
             _shipyardBehaviour.SetFactionForNewFleet(_builtFleet);
-
-            GUIManager.Instance.AddActionLogMessage($"{factionName} built a new fleet at {planetName}.", GetActionPointCost() * -1);
             return true;
         }
     }

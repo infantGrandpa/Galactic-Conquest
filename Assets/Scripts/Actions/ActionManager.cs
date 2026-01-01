@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.GUI;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
@@ -19,9 +20,10 @@ namespace Abraham.GalacticConquest.Actions
         }
 
         private static ActionManager _instance;
-        private Stack<IGameAction> _actionHistory = new();
+        [ShowInInspector, ReadOnly, ListDrawerSettings(ShowFoldout = true)]
+        private Stack<GameAction> _actionHistory = new();
 
-        public bool PerformAction(IGameAction action)
+        public bool PerformAction(GameAction action)
         {
             if (action.ExecuteAction())
             {
@@ -32,6 +34,11 @@ namespace Abraham.GalacticConquest.Actions
             return false;
         }
 
+        public void ClearActionHistory()
+        {
+            _actionHistory.Clear();
+        }
+
         public bool UndoLastAction()
         {
             if (_actionHistory.Count == 0)
@@ -40,7 +47,7 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
 
-            IGameAction lastActionToUndo = _actionHistory.Pop();
+            GameAction lastActionToUndo = _actionHistory.Pop();
             return lastActionToUndo.UndoAction();
         }
     }

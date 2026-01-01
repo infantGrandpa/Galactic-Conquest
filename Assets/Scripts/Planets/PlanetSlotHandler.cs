@@ -12,6 +12,7 @@ namespace Abraham.GalacticConquest.Planets
 
         private void Awake()
         {
+            //TODO: Don't create planet slots if slots are already full!
             foreach (Transform thisSlotTransform in planetSlotTransforms)
             {
                 PlanetSlot newPlanetSlot = new PlanetSlot(thisSlotTransform, null);
@@ -21,7 +22,7 @@ namespace Abraham.GalacticConquest.Planets
 
         public Transform AddMoveableToAvailableSlot(Moveable moveableToAdd)
         {
-            foreach (PlanetSlot thisPlanetSlot in planetSlots)     //Can't use a foreach loop because thisPlanetSlot is readonly in a foreach loop
+            foreach (PlanetSlot thisPlanetSlot in planetSlots)
             {
                 if (thisPlanetSlot.occupyingMoveable != null)
                 {

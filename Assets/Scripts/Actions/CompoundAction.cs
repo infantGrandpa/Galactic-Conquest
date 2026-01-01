@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using Abraham.GalacticConquest.ActionPoints;
 using Abraham.GalacticConquest.GUI;
+using Sirenix.OdinInspector;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class CompoundAction : IGameAction
+    public class CompoundAction : GameAction
     {
-        private readonly List<IGameAction> _actions;
+        [ShowInInspector, ReadOnly] private readonly List<GameAction> _actions;
 
-        public CompoundAction(params IGameAction[] actions)
+        public CompoundAction(params GameAction[] actions)
         {
-            _actions = new List<IGameAction>(actions);
+            _actions = new List<GameAction>(actions);
         }
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             int apCost = 0;
-            foreach (IGameAction action in _actions)
+            foreach (GameAction action in _actions)
             {
                 apCost += action.GetActionPointCost();
             }
@@ -24,63 +25,81 @@ namespace Abraham.GalacticConquest.Actions
             return apCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
-            int apCost = GetActionPointCost();
-            if (!ActionPointManager.Instance.CanPerformAction(apCost))
-            {
-                return false;
-            }
-
-            foreach (IGameAction action in _actions)
+            foreach (GameAction action in _actions)
             {
                 bool canExecute = action.CanExecuteAction();
                 if (!canExecute)
                 {
-                    return false;
+                    Result = ActionResult.Failure(GetActionTypeName(), $"{action.GetActionTypeName()} cannot be executed.");
+                    return Result.WasSuccessful;
                 }
             }
 
+            int apCost = GetActionPointCost();
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
+            {
+                string msg = $"These actions require {apCost} AP.";
+                GUIManager.Instance.AddActionLogMessage(msg);
+
+                Result = ActionResult.Failure(GetActionTypeName(), msg);
+                return Result.WasSuccessful;
+            }
+
             return true;
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
-                return false;
+                return Result.WasSuccessful;
             }
 
-            foreach (IGameAction action in _actions)
+            string completedActionsMessage = "";
+            int completedActionCount = 0;
+            foreach (GameAction action in _actions)
             {
-                if (action.ExecuteAction()) continue;
-                
+                if (action.ExecuteAction())
+                {
+                    if (completedActionCount > 0) completedActionsMessage += " => ";
+
+                    completedActionsMessage += action.GetActionTypeName();
+                    completedActionCount++;
+                    continue;
+                }
+
                 // TODO: What happens if one of the actions fails? Right now we just exit.
                 //  Should it undo the other actions?
-                GUIManager.Instance.AddActionLogMessage($"{action.GetType()} action failed. Ending compound action.");
-                return false;
+                string msg = $"{action.GetActionTypeName()} action failed. Ending compound action.";
+
+                GUIManager.Instance.AddActionLogMessage(msg);
+                Result = ActionResult.Failure(GetActionTypeName(), msg);
+                return Result.WasSuccessful;
             }
 
-            return true;
+            Result = ActionResult.Success(GetActionTypeName(), GetActionPointCost(), $"Completed: {completedActionsMessage}");
+            return Result.WasSuccessful;
         }
 
-        public void AddAction(IGameAction action)
+        public void AddAction(GameAction action)
         {
             _actions.Add(action);
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             // Iterate through actions in reverse order to properly undo the compound action
             for (int thisActionIndex = _actions.Count - 1; thisActionIndex >= 0; thisActionIndex--)
             {
-                IGameAction thisAction = _actions[thisActionIndex];
+                GameAction thisAction = _actions[thisActionIndex];
                 bool success = thisAction.UndoAction();
 
                 if (success) continue;
-                
+
                 GUIManager.Instance.AddActionLogMessage(
-                    $"Failed to undo {thisAction.GetType()} action at index {thisActionIndex} in compound action.");
+                    $"Failed to undo {thisAction.GetActionTypeName()} action at index {thisActionIndex} in compound action.");
                 return false;
             }
 

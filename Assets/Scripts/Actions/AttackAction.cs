@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class AttackAction : IGameAction
+    public class AttackAction : GameAction
     {
         private readonly CombatantBehaviour _attacker;
         private readonly CombatantBehaviour _defender;
@@ -44,22 +44,29 @@ namespace Abraham.GalacticConquest.Actions
             _wasPlanetFortified = _planet.IsPlanetFortified();
         }
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             return ActionPointManager.Instance.attackApCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             int apCost = GetActionPointCost();
-            return ActionPointManager.Instance.CanPerformAction(apCost);
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
+            {
+                Result = ActionResult.Failure(GetActionTypeName(), $"Attacking requires {apCost} AP.");
+                return Result.WasSuccessful;
+            }
+            
+            return true;
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
-                return false;
+                GUIManager.Instance.AddActionLogMessage(Result.Message);
+                return Result.WasSuccessful;
             }
 
             // If we can convert the defender into a PlanetCombatBehaviour, then this is a ground battle.
@@ -67,14 +74,20 @@ namespace Abraham.GalacticConquest.Actions
             Battle.BattleType battleType = planetCombatBehaviour ? Battle.BattleType.GroundBattle : Battle.BattleType.SpaceBattle;
 
             Battle battle = new Battle(_attacker, _defender, _planet, battleType);
-            LogBattle(battle);
-
+            
+            int apCost = GetActionPointCost();
+            ActionPointManager.Instance.DecreaseActionPoints(apCost);
+            
+            string message = GetBattleMessage(battle);
+            GUIManager.Instance.AddActionLogMessage(message, apCost * -1);
+            
             BattleManager.Instance.StartBattle(battle);
-            ActionPointManager.Instance.DecreaseActionPoints(GetActionPointCost());
-            return true;
+            
+            Result = ActionResult.Success(GetActionTypeName(), apCost, message);
+            return Result.WasSuccessful;
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             _attacker.ReactivateAndCancelDeletion();    
             _defender.ReactivateAndCancelDeletion();    
@@ -82,13 +95,13 @@ namespace Abraham.GalacticConquest.Actions
             _planet.ChangePlanetFaction(_startingPlanetFaction);
             if (_wasPlanetFortified) _planet.FortifyPlanet();
 
-            int apCost = GetActionPointCost();
-            GUIManager.Instance .AddActionLogMessage($"Reverted attack at {_planet.PlanetInfo.myName}.", apCost);
+            int apCost = Result.APCost;
+            GUIManager.Instance.AddActionLogMessage($"Reverted attack at {_planet.PlanetInfo.myName}.", apCost);
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             return true;
         }
 
-        private void LogBattle(Battle battle)
+        private static string GetBattleMessage(Battle battle)
         {
             string actionLogMsg;
             switch (battle.battleType)
@@ -103,7 +116,7 @@ namespace Abraham.GalacticConquest.Actions
                     throw new ArgumentException($"Unsupported battle type: {battle.battleType}", nameof(battle.battleType));
             }
 
-            GUIManager.Instance.AddActionLogMessage(actionLogMsg, GetActionPointCost() * -1);
+            return actionLogMsg;
         }
     }
 }

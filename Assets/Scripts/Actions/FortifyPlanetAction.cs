@@ -4,50 +4,61 @@ using Abraham.GalacticConquest.Planets;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class FortifyPlanetAction : IGameAction
+    public class FortifyPlanetAction : GameAction
     {
         private readonly PlanetBehaviour _planet;
-        
+
         public FortifyPlanetAction(PlanetBehaviour planetToFortify)
         {
             _planet = planetToFortify;
         }
-        
-        public int GetActionPointCost()
+
+        protected override int CalculateActionPointCost()
         {
             return ActionPointManager.Instance.fortifyPlanetCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             if (_planet.IsPlanetFortified())
             {
-                return false;
+                Result = ActionResult.Failure(GetActionTypeName(), "Planet is already fortified.");
+                return Result.WasSuccessful;
             }
-            
-            return ActionPointManager.Instance.CanPerformAction(GetActionPointCost());
+
+            int apCost = GetActionPointCost();
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
+            {
+                Result = ActionResult.Failure(GetActionTypeName(), $"Fortifying requires {apCost} AP.");
+                return Result.WasSuccessful;
+            }
+
+            return true;
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
-                return false;
+                GUIManager.Instance.AddActionLogMessage(Result.Message);
+                return Result.WasSuccessful;
             }
-            
+
             _planet.FortifyPlanet();
 
             int apCost = GetActionPointCost();
             ActionPointManager.Instance.DecreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage($"Fortified {_planet.PlanetInfo.myName}.", apCost * -1);
-            return true;
+
+            Result = ActionResult.Success(GetActionTypeName(), apCost, $"Fortified {_planet.PlanetInfo.myName}.");
+            return Result.WasSuccessful;
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             _planet.UnfortifyPlanet();
-
-            int apCost = GetActionPointCost();
+            
+            int apCost = Result.APCost;
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage($"Removed fortifications from {_planet.PlanetInfo.myName}.", apCost);
             return true;

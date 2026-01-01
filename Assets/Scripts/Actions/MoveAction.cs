@@ -6,7 +6,7 @@ using Abraham.GalacticConquest.UnitControl;
 
 namespace Abraham.GalacticConquest.Actions
 {
-    public class MoveAction : IGameAction
+    public class MoveAction : GameAction
     {
         private readonly Moveable _moveableObject;
         private readonly PlanetBehaviour _targetPlanet;
@@ -20,7 +20,7 @@ namespace Abraham.GalacticConquest.Actions
         }
 
 
-        public int GetActionPointCost()
+        protected override int CalculateActionPointCost()
         {
             if (!_moveableObject)
             {
@@ -34,35 +34,45 @@ namespace Abraham.GalacticConquest.Actions
             return apCost;
         }
 
-        public bool CanExecuteAction()
+        public override bool CanExecuteAction()
         {
             if (!_moveableObject)
             {
-                return false;
+                Result = ActionResult.Failure(GetActionTypeName(), "A moveable object is not selected.");
+                return Result.WasSuccessful;
             }
 
             if (!_targetPlanet)
             {
-                //Didn't click on a planet. Cancel.
-                return false;
+                Result = ActionResult.Failure(GetActionTypeName(), "The user didn't click on a planet.");
+                return Result.WasSuccessful;
             }
             
             bool canMove = _moveableObject.CanMoveToTarget(_targetPlanet);
             if (!canMove)
             {
-                //Moveable object already at planet. Cancel.
-                return false;
+                Result = ActionResult.Failure(GetActionTypeName(), $"Move prevented by moveable object.");
+                return Result.WasSuccessful;
             }
             
             int apCost = GetActionPointCost();
-            return ActionPointManager.Instance.CanPerformAction(apCost);
+            if (!ActionPointManager.Instance.CanPerformAction(apCost))
+            {
+                string msg = $"This move action requires {apCost} AP.";
+                GUIManager.Instance.AddActionLogMessage(msg);
+                
+                Result = ActionResult.Failure(GetActionTypeName(), msg);
+                return Result.WasSuccessful;
+            }
+
+            return true;
         }
 
-        public bool ExecuteAction()
+        public override bool ExecuteAction()
         {
             if (!CanExecuteAction())
             {
-                return false;
+                return Result.WasSuccessful;
             }
 
             _startingPlanet = _moveableObject.currentPlanet;
@@ -71,18 +81,21 @@ namespace Abraham.GalacticConquest.Actions
             bool moveSuccessful = _moveableObject.MoveToPlanet(_targetPlanet);
             if (!moveSuccessful)
             {
-                //Move cancelled by moveable object.
-                return false;
+                Result = ActionResult.Failure(GetActionTypeName(), $"Move cancelled by moveable object.");
+                return Result.WasSuccessful;
             }
 
             int apCost = GetActionPointCost();
             ActionPointManager.Instance.DecreaseActionPoints(apCost);
-            GUIManager.Instance.AddActionLogMessage($"Moved {_moveableObject.gameObject.name} to {_targetPlanet.PlanetInfo.myName}.",
-                GetActionPointCost() * -1);
-            return true;
+
+            string msg = $"Moved {_moveableObject.gameObject.name} to {_targetPlanet.PlanetInfo.myName}.";
+            GUIManager.Instance.AddActionLogMessage(msg, apCost * -1);
+
+            Result = ActionResult.Success(GetActionTypeName(), apCost, msg);
+            return Result.WasSuccessful;
         }
 
-        public bool UndoAction()
+        public override bool UndoAction()
         {
             if (!_startingPlanet)
             {
@@ -95,7 +108,7 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
             
-            int apCost = GetActionPointCost();
+            int apCost = Result.APCost;
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage($"{_moveableObject.gameObject.name} returned to {_startingPlanet.PlanetInfo.myName}.", apCost);
             return true;

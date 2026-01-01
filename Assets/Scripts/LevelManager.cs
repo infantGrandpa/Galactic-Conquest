@@ -3,6 +3,7 @@ using Abraham.GalacticConquest.Factions;
 using Abraham.GalacticConquest.GUI;
 using Abraham.GalacticConquest.Planets;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Abraham.GalacticConquest
 {
@@ -38,6 +39,29 @@ namespace Abraham.GalacticConquest
             CreateDynamicTransform();
 
             MainCamera = Camera.main;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    //Restart level
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+                
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    //Delete All Saves
+                    ES3Settings settings = new ES3Settings();
+                    foreach (var fileName in ES3.GetFiles(settings))
+                    {
+                        ES3.DeleteFile(fileName, settings);
+                        Debug.Log($"{fileName} deleted.");
+                    }
+                }
+            }
         }
 
         private void CreateDynamicTransform()
