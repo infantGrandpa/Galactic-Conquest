@@ -7,8 +7,7 @@ namespace Abraham.GalacticConquest.Actions
 {
     public class CompoundAction : GameAction
     {
-        [ShowInInspector, ReadOnly]
-        private readonly List<GameAction> _actions;
+        [ShowInInspector, ReadOnly] private readonly List<GameAction> _actions;
 
         public CompoundAction(params GameAction[] actions)
         {
@@ -37,13 +36,13 @@ namespace Abraham.GalacticConquest.Actions
                     return Result.WasSuccessful;
                 }
             }
-            
+
             int apCost = GetActionPointCost();
             if (!ActionPointManager.Instance.CanPerformAction(apCost))
             {
                 string msg = $"These actions require {apCost} AP.";
                 GUIManager.Instance.AddActionLogMessage(msg);
-                
+
                 Result = ActionResult.Failure(GetActionTypeName(), msg);
                 return Result.WasSuccessful;
             }
@@ -70,11 +69,11 @@ namespace Abraham.GalacticConquest.Actions
                     completedActionCount++;
                     continue;
                 }
-                
+
                 // TODO: What happens if one of the actions fails? Right now we just exit.
                 //  Should it undo the other actions?
                 string msg = $"{action.GetActionTypeName()} action failed. Ending compound action.";
-                
+
                 GUIManager.Instance.AddActionLogMessage(msg);
                 Result = ActionResult.Failure(GetActionTypeName(), msg);
                 return Result.WasSuccessful;
@@ -98,7 +97,7 @@ namespace Abraham.GalacticConquest.Actions
                 bool success = thisAction.UndoAction();
 
                 if (success) continue;
-                
+
                 GUIManager.Instance.AddActionLogMessage(
                     $"Failed to undo {thisAction.GetActionTypeName()} action at index {thisActionIndex} in compound action.");
                 return false;
