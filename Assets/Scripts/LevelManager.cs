@@ -50,6 +50,17 @@ namespace Abraham.GalacticConquest
                     //Restart level
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
+                
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    //Delete All Saves
+                    ES3Settings settings = new ES3Settings();
+                    foreach (var fileName in ES3.GetFiles(settings))
+                    {
+                        ES3.DeleteFile(fileName, settings);
+                        Debug.Log($"{fileName} deleted.");
+                    }
+                }
             }
         }
 
