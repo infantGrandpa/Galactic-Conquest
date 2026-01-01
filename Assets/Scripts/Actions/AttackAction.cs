@@ -95,7 +95,7 @@ namespace Abraham.GalacticConquest.Actions
             _planet.ChangePlanetFaction(_startingPlanetFaction);
             if (_wasPlanetFortified) _planet.FortifyPlanet();
 
-            int apCost = GetActionPointCost();
+            int apCost = Result.APCost;
             GUIManager.Instance.AddActionLogMessage($"Reverted attack at {_planet.PlanetInfo.myName}.", apCost);
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             return true;

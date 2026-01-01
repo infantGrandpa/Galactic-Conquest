@@ -67,7 +67,7 @@ namespace Abraham.GalacticConquest.Actions
         public override bool UndoAction()
         {
             _shipyardBehaviour.DestroyFleet(_builtFleet);
-            int apCost = GetActionPointCost();
+            int apCost = Result.APCost;
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage(
                 $"Removed {_shipyardBehaviour.GetFactionName()} fleet that was built at {_shipyardBehaviour.GetPlanetName()}.", apCost);

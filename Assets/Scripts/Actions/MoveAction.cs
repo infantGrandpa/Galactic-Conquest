@@ -108,7 +108,7 @@ namespace Abraham.GalacticConquest.Actions
                 return false;
             }
             
-            int apCost = GetActionPointCost();
+            int apCost = Result.APCost;
             ActionPointManager.Instance.IncreaseActionPoints(apCost);
             GUIManager.Instance.AddActionLogMessage($"{_moveableObject.gameObject.name} returned to {_startingPlanet.PlanetInfo.myName}.", apCost);
             return true;
