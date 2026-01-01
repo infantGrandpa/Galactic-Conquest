@@ -58,10 +58,16 @@ namespace Abraham.GalacticConquest.Actions
                 return Result.WasSuccessful;
             }
 
+            string completedActionsMessage = "";
+            int completedActionCount = 0;
             foreach (GameAction action in _actions)
             {
                 if (action.ExecuteAction())
                 {
+                    if (completedActionCount > 0) completedActionsMessage += " => ";
+
+                    completedActionsMessage += action.GetActionTypeName();
+                    completedActionCount++;
                     continue;
                 }
                 
@@ -74,7 +80,7 @@ namespace Abraham.GalacticConquest.Actions
                 return Result.WasSuccessful;
             }
 
-            Result = ActionResult.Success(GetActionTypeName(), GetActionPointCost(), "Compound action completed.");
+            Result = ActionResult.Success(GetActionTypeName(), GetActionPointCost(), $"Completed: {completedActionsMessage}");
             return Result.WasSuccessful;
         }
 
